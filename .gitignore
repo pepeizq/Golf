@@ -361,3 +361,18 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+*.graph
+*.yml
+*.collabattributes
+*.collabignore
+*.png
+*.uxml
+*.uss
+*.asset
+/Library/PackageCache
+/Library
+/ProjectSettings
+/Temp
+/UserSettings
+/Assets/TextMesh Pro
+/Assets/Modelos/Maya/.mayaSwatches
