@@ -368,7 +368,6 @@ FodyWeavers.xsd
 *.png
 *.uxml
 *.uss
-*.asset
 /Library/PackageCache
 /Library
 /ProjectSettings
@@ -376,3 +375,5 @@ FodyWeavers.xsd
 /UserSettings
 /Assets/TextMesh Pro
 /Assets/Modelos/Maya/.mayaSwatches
+Settings
+Settings/HDRPDefaultResources
