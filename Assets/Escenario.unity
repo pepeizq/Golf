@@ -386,55 +386,55 @@ MonoBehaviour:
   casillasFinal: []
   casillasDebug:
   - {fileID: 11400000, guid: f9f56dfc8d3b71d4592fb2889203f9cb, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 7cc8fbc133e47dd4a95682f6e5034bb3, type: 2}
+  - {fileID: 11400000, guid: ee32aca0bbdcc854997a3600f4a4fee6, type: 2}
+  - {fileID: 11400000, guid: ab07687dc2706bf44ba70cf8b4212749, type: 2}
+  - {fileID: 11400000, guid: 7a824fd3f3adf084e9a8cd985ef8f073, type: 2}
+  - {fileID: 11400000, guid: 523c23bf4cde4694b9a8001785435c5f, type: 2}
+  - {fileID: 11400000, guid: 7ac65617eb51d2a44bc9caf7437a3fb7, type: 2}
+  - {fileID: 11400000, guid: c2b18699b4b5cc348987baa7061a9ef9, type: 2}
+  - {fileID: 11400000, guid: 5129229bf03d33f4a9ddacb43694023f, type: 2}
+  - {fileID: 11400000, guid: 9d2eddee1d630ca44bdd467799744d6b, type: 2}
+  - {fileID: 11400000, guid: b761e2f062275274e9522a1a44c38156, type: 2}
+  - {fileID: 11400000, guid: c1c1589d46ea52e43a90663108114146, type: 2}
+  - {fileID: 11400000, guid: bf5d6be79be01704d842f2a7e23b17d5, type: 2}
+  - {fileID: 11400000, guid: 2dd3ad47140601442aee97673ca194b2, type: 2}
+  - {fileID: 11400000, guid: 72e2d58b47a2791419891e3b238f403d, type: 2}
+  - {fileID: 11400000, guid: 8debbb4e02449c041977d30283300f79, type: 2}
+  - {fileID: 11400000, guid: 6e5db60438c1778469e1faf47201bf10, type: 2}
+  - {fileID: 11400000, guid: 757ee73a3107bc542ac3a10e40531017, type: 2}
+  - {fileID: 11400000, guid: 4bcba2b368649da4f8ff9c5491be6c71, type: 2}
+  - {fileID: 11400000, guid: 35c583fdb4e2eff4ca48168f179b479e, type: 2}
+  - {fileID: 11400000, guid: c9e6053c3417f8f48b753e78d50e7a22, type: 2}
+  - {fileID: 11400000, guid: 07e74804f6a4aaa4ba9403acff5b881a, type: 2}
+  - {fileID: 11400000, guid: 98772033cd58c214a827f54c32a80d91, type: 2}
+  - {fileID: 11400000, guid: 099d0986720a84d4cadb33f77dbfd95c, type: 2}
+  - {fileID: 11400000, guid: d05eefb62966d8e45bfd4b8e0a806b32, type: 2}
+  - {fileID: 11400000, guid: 25a44cf0aaf13c842b56e66675d99f57, type: 2}
+  - {fileID: 11400000, guid: c2030391f95db3d49b716554f0e38da9, type: 2}
+  - {fileID: 11400000, guid: 9249d91704d4fa94b9c2f759ca4e05c8, type: 2}
+  - {fileID: 11400000, guid: ff976a9cb62dbb449bb67bf05fbbc06f, type: 2}
+  - {fileID: 11400000, guid: 6b1741faa1dc4c249bd7f9eae77210fb, type: 2}
+  - {fileID: 11400000, guid: 3348cd9d265ee224cbbda14759939b12, type: 2}
+  - {fileID: 11400000, guid: ff361bf0d12f9b44db2b12c93dc266a9, type: 2}
+  - {fileID: 11400000, guid: 42c8bea790e94fd4192e839d6442c5af, type: 2}
+  - {fileID: 11400000, guid: 9748bf861728224468882f6785cdac4e, type: 2}
+  - {fileID: 11400000, guid: 9c4ac253bdcc4364db1a01f3e4e33fc3, type: 2}
+  - {fileID: 11400000, guid: 4ca61d1a5e148d44d8f3109ed4079e04, type: 2}
+  - {fileID: 11400000, guid: 3ca3f929506f1d740bc6b6bf3dba93be, type: 2}
+  - {fileID: 11400000, guid: 4c00f6f2afc82f046827c1247265240a, type: 2}
+  - {fileID: 11400000, guid: 64c81e34b77a2f64ea3bc9b7735ea560, type: 2}
+  - {fileID: 11400000, guid: 12e7f90c9ce4f424aa408e80ecdd58c7, type: 2}
+  - {fileID: 11400000, guid: a87765e0bb661bf4e8906343b44f2cdc, type: 2}
+  - {fileID: 11400000, guid: f36b7201102e8ec43af91807f3b29873, type: 2}
+  - {fileID: 11400000, guid: 2d4066ad242ef1e429ad3effb1666315, type: 2}
+  - {fileID: 11400000, guid: 2a177300f0d9e5c4289037a968f2f2eb, type: 2}
+  - {fileID: 11400000, guid: 154bdf70bbde87448ad2d12ac44fe517, type: 2}
+  - {fileID: 11400000, guid: 02e1694f8cc541f46b97277bc08778da, type: 2}
+  - {fileID: 11400000, guid: 82f02396b4f33f845af87e95479a24be, type: 2}
+  - {fileID: 11400000, guid: 51ffc086de76a4d48afe6b063068a77a, type: 2}
+  - {fileID: 11400000, guid: 00bc548c71e4eb245a6ee47d4977ad31, type: 2}
+  - {fileID: 11400000, guid: 9ac8727231aa1b342a6d25db8fb700f0, type: 2}
   casillasEscala: 1
   limitesMapa: 3
 --- !u!1 &1673124162
