@@ -56,7 +56,12 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Partida\Cargar.cs" />
+    <Compile Include="Assets\Scripts\Partida\Gestor.cs" />
+    <Compile Include="Assets\Scripts\Partida\Datos.cs" />
     <Compile Include="Assets\Scripts\Escenario\Generacion\Llano.cs" />
+    <Compile Include="Assets\Scripts\Partida\Guardar.cs" />
+    <Compile Include="Assets\Scripts\Jugador\Movimiento.cs" />
     <Compile Include="Assets\Scripts\Escenario\Generacion\Limites.cs" />
     <Compile Include="Assets\Scripts\Escenario\Generacion\Vectores.cs" />
     <Compile Include="Assets\Scripts\Escenario\Escenario.cs" />

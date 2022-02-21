@@ -15,6 +15,6 @@ MonoBehaviour:
   id: 0
   idDebug: 20
   idColocacion: 0
-  prefab: {fileID: 3919966450550532443, guid: 020b86f76a8d7324f93376675314defc, type: 3}
+  prefab: {fileID: 7353379256057709743, guid: 78357a001ce86364b88214fc4e65f4fc, type: 3}
   posicion: {x: 0, y: 0, z: 0}
   rotacion: 0

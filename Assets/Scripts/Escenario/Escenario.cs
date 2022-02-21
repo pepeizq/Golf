@@ -34,7 +34,7 @@ namespace Escenario
         public void Start()
         {
             casillasMapa = new Casilla[(int)tamañoEscenario.x, (int)tamañoEscenario.y];
-
+        
             if (aleatorio == true)
             {
                 Vectores.instancia.GenerarCasillas(casillasMapa, tamañoEscenario, alturaMaxima, limitesMapa);
@@ -51,9 +51,9 @@ namespace Escenario
                 {
                     break;
                 }
-
+                
                 try
-                {
+                {          
                     GenerarNivel(altura);
                 }
                 catch (Exception fallo)
@@ -88,7 +88,7 @@ namespace Escenario
                 {
                     int x = (int)subcasilla.posicion.x;
                     int z = (int)subcasilla.posicion.z;
-
+                 
                     float y = subcasilla.posicion.y;
                     y = y - 0.5f;
 
@@ -96,7 +96,7 @@ namespace Escenario
                     {
                         y = 0.0f;
                     }
-
+                    
                     if ((y > 0) && (altura == subcasilla.posicion.y) && Limites.Comprobar(x, 2, (int)tamañoEscenario.x) == true && Limites.Comprobar(z, 2, (int)tamañoEscenario.y) == true)
                     {
                         if (casillasMapa[x - 1, z - 1] == null)
@@ -194,7 +194,7 @@ namespace Escenario
 
             int x = (int)casilla.posicion.x;
             int z = (int)casilla.posicion.z;
-
+       
             if (Limites.Comprobar(x, 3, (int)tamañoEscenario.x) == true && Limites.Comprobar(z, 3, (int)tamañoEscenario.y) == true)
             {
                 if (casillasMapa[x, z] == null)
@@ -207,7 +207,7 @@ namespace Escenario
                         posicionFinal.y = posicionFinal.y + posicionFinal.y * (casillasEscala * 1.5f);
                         posicionFinal.z = (posicionFinal.z + posicionFinal.z * (casillasEscala * 1.5f)) - (tamañoEscenario.y / (casillasEscala + 0.5f));
                     }
-
+                 
                     GameObject casilla2 = Instantiate(casillasFinal2[id].prefab, posicionFinal, Quaternion.identity);
                     casilla2.gameObject.transform.Rotate(Vector3.up, casilla.rotacion, Space.World);
                     casilla2.gameObject.transform.localScale = new Vector3(casillasEscala, casillasEscala, casillasEscala);

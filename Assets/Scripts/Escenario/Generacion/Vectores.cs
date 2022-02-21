@@ -19,7 +19,7 @@ namespace Escenario.Generacion
 
             int montañasGenerar = (int)extension.x / 10 * (int)extension.y / 10;
             int intentosGeneracion = montañasGenerar;
-
+     
             int i = 1;
             while (i <= intentosGeneracion)
             {
@@ -49,7 +49,7 @@ namespace Escenario.Generacion
                         }
                     }
                 }
-
+              
                 if (Limites.Comprobar(posicionX, 2, (int)Escenario.instancia.tamañoEscenario.x) == false || Limites.Comprobar(posicionZ, 2, (int)Escenario.instancia.tamañoEscenario.y) == false)
                 {
                     añadir = false;
@@ -58,7 +58,7 @@ namespace Escenario.Generacion
                 if (añadir == true)
                 {
                     listado.Add(new Vector3(posicionX, alturaCasilla, posicionZ));
-
+              
                     int desplazamiento = 0;
                     while (alturaCasilla >= 1)
                     {
@@ -169,6 +169,45 @@ namespace Escenario.Generacion
 
                 i += 1;
             }
+
+            CopiarDatos(listado, isla.id);
         }
+    }
+
+    private void LimpiarDatos(Assets.Isla[] islas)
+    {
+        foreach (Assets.Isla isla in islas)
+        {
+            PlayerPrefs.SetString("isla" + isla.id.ToString(), null);
+        }
+    }
+
+    private void CopiarDatos(List<Vector3> listado, int id)
+    {
+        Partida.PartidaIsla isla = new Partida.PartidaIsla
+        {
+            id = id,
+            casillas = new Partida.PartidaCasilla[listado.Count]
+        };
+
+        int i = 0;
+        while (i < isla.casillas.Length)
+        {
+            isla.casillas[i] = new Partida.PartidaCasilla
+            {
+                coordenadas = new Partida.VectorTres(listado[i])
+            };
+
+            i += 1;
+        }
+
+        string datos = JsonUtility.ToJson(isla);
+        PlayerPrefs.SetString("vectoresIsla" + isla.id.ToString(), datos);
+    }
+
+    public Partida.PartidaIsla LeerDatos(int id)
+    {
+        Partida.PartidaIsla isla = JsonUtility.FromJson<Partida.PartidaIsla>(PlayerPrefs.GetString("vectoresIsla" + id.ToString()));
+        return isla;
     }
 }
