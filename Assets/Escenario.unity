@@ -376,6 +376,7 @@ GameObject:
   - component: {fileID: 565598172}
   - component: {fileID: 565598173}
   - component: {fileID: 565598174}
+  - component: {fileID: 565598175}
   m_Layer: 0
   m_Name: Escenario
   m_TagString: Untagged
@@ -411,12 +412,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debug: 0
-  aleatorio: 1
+  aleatorio: 0
   coloresGeneracion: 1
-  llano: 0
-  recursos: 0
+  llano: 1
   alturaMaxima: 3
-  "tama\xF1oEscenario": {x: 100, y: 100}
+  "tama\xF1oEscenario": {x: 40, y: 40}
   casillasFinal:
   - {fileID: 11400000, guid: f9f56dfc8d3b71d4592fb2889203f9cb, type: 2}
   - {fileID: 11400000, guid: 7cc8fbc133e47dd4a95682f6e5034bb3, type: 2}
@@ -474,6 +474,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 51ffc086de76a4d48afe6b063068a77a, type: 2}
   - {fileID: 11400000, guid: 00bc548c71e4eb245a6ee47d4977ad31, type: 2}
   - {fileID: 11400000, guid: 9ac8727231aa1b342a6d25db8fb700f0, type: 2}
+  casillasIniciales: []
   casillasEscala: 1
   limitesMapa: 3
 --- !u!114 &565598173
@@ -498,6 +499,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 561887eb2d49c564c9574c5173d18823, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &565598175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 565598170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e08dee71089c2974caf369ed762b7ee9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1673124162

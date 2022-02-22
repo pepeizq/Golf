@@ -13,7 +13,7 @@ namespace Escenario.Generacion
             instancia = this;
         }
 
-        public void GenerarCasillas(Casilla[,] casillas, Vector2 extension, int alturaMaxima, int limitesMapa)
+        public List<Vector3> GenerarCasillas(Casilla[,] casillas, Vector2 extension, int alturaMaxima, int limitesMapa)
         {
             List<Vector3> listado = new List<Vector3>();
 
@@ -170,44 +170,7 @@ namespace Escenario.Generacion
                 i += 1;
             }
 
-            CopiarDatos(listado, isla.id);
+            return listado;
         }
-    }
-
-    private void LimpiarDatos(Assets.Isla[] islas)
-    {
-        foreach (Assets.Isla isla in islas)
-        {
-            PlayerPrefs.SetString("isla" + isla.id.ToString(), null);
-        }
-    }
-
-    private void CopiarDatos(List<Vector3> listado, int id)
-    {
-        Partida.PartidaIsla isla = new Partida.PartidaIsla
-        {
-            id = id,
-            casillas = new Partida.PartidaCasilla[listado.Count]
-        };
-
-        int i = 0;
-        while (i < isla.casillas.Length)
-        {
-            isla.casillas[i] = new Partida.PartidaCasilla
-            {
-                coordenadas = new Partida.VectorTres(listado[i])
-            };
-
-            i += 1;
-        }
-
-        string datos = JsonUtility.ToJson(isla);
-        PlayerPrefs.SetString("vectoresIsla" + isla.id.ToString(), datos);
-    }
-
-    public Partida.PartidaIsla LeerDatos(int id)
-    {
-        Partida.PartidaIsla isla = JsonUtility.FromJson<Partida.PartidaIsla>(PlayerPrefs.GetString("vectoresIsla" + id.ToString()));
-        return isla;
     }
 }

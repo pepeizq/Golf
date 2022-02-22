@@ -1,5 +1,7 @@
 ﻿using Escenario.Generacion;
+using Partida;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Escenario
@@ -11,7 +13,6 @@ namespace Escenario
         public bool aleatorio;
         public bool coloresGeneracion;
         public bool llano;
-        public bool recursos;
 
         [Header("Datos")]
         public int alturaMaxima = 3;
@@ -21,7 +22,8 @@ namespace Escenario
         public Casilla[] casillasDebug;
 
         [HideInInspector] public Casilla[,] casillasMapa = new Casilla[1, 1];
-        [HideInInspector] public float casillasEscala = 1f;
+        [HideInInspector] public List<Vector3> casillasIniciales;
+        [HideInInspector] public float casillasEscala = 0.5f;
         [HideInInspector] public int limitesMapa = 3;
 
         public static Escenario instancia;
@@ -37,7 +39,12 @@ namespace Escenario
         
             if (aleatorio == true)
             {
-                Vectores.instancia.GenerarCasillas(casillasMapa, tamañoEscenario, alturaMaxima, limitesMapa);
+                casillasIniciales = Vectores.instancia.GenerarCasillas(casillasMapa, tamañoEscenario, alturaMaxima, limitesMapa);
+                CopiarDatos(casillasIniciales, (int)tamañoEscenario.x, (int)tamañoEscenario.y);
+            }
+            else
+            {
+                casillasIniciales = LeerDatos();
             }
 
             int k = 0;
@@ -69,7 +76,7 @@ namespace Escenario
 
             if (llano == true)
             {
-                Llano.instancia.Generar(casillasMapa, altura);
+                Llano.instancia.Generar(casillasMapa, altura, casillasFinal[0]);
             }
         }
 
@@ -82,6 +89,20 @@ namespace Escenario
 
         private void GenerarNivel(float altura)
         {
+            if (casillasIniciales != null)
+            {
+                if (casillasIniciales.Count > 0)
+                {
+                    foreach (Vector3 vector in casillasIniciales)
+                    {
+                        if (vector.y == altura)
+                        {
+                            PonerCasilla(new Casilla(0, 0, vector));
+                        }
+                    }
+                }
+            }
+
             foreach (Casilla subcasilla in casillasMapa)
             {
                 if (subcasilla != null)
@@ -200,34 +221,15 @@ namespace Escenario
                 if (casillasMapa[x, z] == null)
                 {
                     Vector3 posicionFinal = casilla.posicion;
-
-                    if (casillasEscala != 0.5f)
-                    {
-                        posicionFinal.x = (posicionFinal.x + posicionFinal.x * (casillasEscala * 1.5f)) - (tamañoEscenario.x / (casillasEscala + 0.5f));
-                        posicionFinal.y = posicionFinal.y + posicionFinal.y * (casillasEscala * 1.5f);
-                        posicionFinal.z = (posicionFinal.z + posicionFinal.z * (casillasEscala * 1.5f)) - (tamañoEscenario.y / (casillasEscala + 0.5f));
-                    }
                  
                     GameObject casilla2 = Instantiate(casillasFinal2[id].prefab, posicionFinal, Quaternion.identity);
                     casilla2.gameObject.transform.Rotate(Vector3.up, casilla.rotacion, Space.World);
-                    casilla2.gameObject.transform.localScale = new Vector3(casillasEscala, casillasEscala, casillasEscala);
-
-                    //Coordenadas coordenadas = casilla2.gameObject.AddComponent<Coordenadas>();
-                    //coordenadas.x = x;
-                    //coordenadas.z = z;
 
                     Casilla casilla3 = new Casilla(id, casilla.rotacion, casilla.posicion);
                     casilla3.id = id;
                     casilla3.idDebug = idDebug;
                     casilla3.prefab = casilla2;
                     casilla3.prefab.gameObject.layer = LayerMask.NameToLayer("Terreno");
-                    //casilla3.isla = casilla.isla;
-                    //casilla3.recursoPuesto = false;
-                    //casilla3.recursoPosible = casillasFinal[id].recursoPosible;
-                    //casilla3.recursoPosicion = casillasFinal[id].recursoPosicion;
-                    //casilla3.construccionPosible = casillasFinal[id].construccionPosible;
-                    //casilla3.posicionesSuelo = casillasFinal[id].posicionesSuelo;
-                    //casilla3.posicionesParedes = casillasFinal[id].posicionesParedes;
 
                     casillasMapa[x, z] = casilla3;
                 }
@@ -438,6 +440,52 @@ namespace Escenario
             {
                 return false;
             }
+        }
+
+        private void CopiarDatos(List<Vector3> listado, int tamañoX, int tamañoZ)
+        {
+            if (listado != null)
+            {
+                if (listado.Count > 0)
+                {
+                    Datos partida = new Datos();
+
+                    PartidaCasilla[] casillas = new PartidaCasilla[listado.Count];
+
+                    int i = 0;
+                    foreach (Vector3 vector in listado)
+                    {
+                        casillas[i].coordenadas = new VectorTres(vector);
+                        i += 1;
+                    }
+
+                    partida.casillas = casillas;
+
+                    PartidaEscenario escenario = new PartidaEscenario();
+                    escenario.tamañoEscenarioX = tamañoX;
+                    escenario.tamañoEscenarioZ = tamañoZ;
+
+                    partida.escenario = escenario;
+
+                    string datos = JsonUtility.ToJson(partida);
+                    Debug.Log(datos);
+                    PlayerPrefs.SetString("partida", datos);
+                }
+            }  
+        }
+
+        private List<Vector3> LeerDatos()
+        {
+            Datos partida = JsonUtility.FromJson<Datos>(PlayerPrefs.GetString("partida"));
+            List<Vector3> listado = new List<Vector3>();
+           
+            foreach (PartidaCasilla casilla in partida.casillas)
+            {
+                Vector3 casilla2 = casilla.coordenadas.ObtenerVector3();
+                listado.Add(casilla2);
+            }
+
+            return listado;
         }
     }
 }

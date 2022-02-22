@@ -565,6 +565,10 @@ namespace Escenario.Generacion
             {
                 Escenario.instancia.PonerCasilla(plano);
             }
+            else if (Escenario.instancia.ComprobarCasilla0(Escenario.instancia.casillasMapa[x, z], y, 0) == true && Escenario.instancia.ComprobarCasilla0(Escenario.instancia.casillasMapa[x + 2, z - 1], y, 0) == true && Escenario.instancia.ComprobarCasilla0(Escenario.instancia.casillasMapa[x + 1, z - 2], y, 0) == true)
+            {
+                Escenario.instancia.PonerCasilla(plano);
+            }
             else if (Escenario.instancia.ComprobarCasilla0(Escenario.instancia.casillasMapa[x, z], y, 0) == true && Escenario.instancia.ComprobarCasilla0(Escenario.instancia.casillasMapa[x + 2, z - 1], y, 0) == true && Escenario.instancia.ComprobarCasilla2(Escenario.instancia.casillasMapa[x + 1, z - 2], y, 270) == true)
             {
                 Escenario.instancia.PonerCasilla(plano);
