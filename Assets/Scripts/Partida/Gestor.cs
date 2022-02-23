@@ -22,7 +22,7 @@ namespace Partida
         {
             if (nuevaPartida == false)
             {
-                Cargar.instancia.CargarDatos();
+                //Cargar.instancia.CargarDatos();
             }
         }
 

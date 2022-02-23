@@ -9,10 +9,10 @@ namespace Escenario
     public class Escenario : MonoBehaviour
     {
         [Header("Opciones")]
-        public bool debug;
         public bool aleatorio;
         public bool coloresGeneracion;
         public bool llano;
+        public bool colocarBola;
 
         [Header("Datos")]
         public int alturaMaxima = 3;
@@ -40,11 +40,11 @@ namespace Escenario
             if (aleatorio == true)
             {
                 casillasIniciales = Vectores.instancia.GenerarCasillas(casillasMapa, tamañoEscenario, alturaMaxima, limitesMapa);
-                CopiarDatos(casillasIniciales, (int)tamañoEscenario.x, (int)tamañoEscenario.y);
+                Guardar.GuardarEscenario(casillasIniciales, (int)tamañoEscenario.x, (int)tamañoEscenario.y);
             }
             else
             {
-                casillasIniciales = LeerDatos();
+                casillasIniciales = Cargar.CargarEscenario();
             }
 
             int k = 0;
@@ -77,6 +77,11 @@ namespace Escenario
             if (llano == true)
             {
                 Llano.instancia.Generar(casillasMapa, altura, casillasFinal[0]);
+            }
+
+            if (colocarBola == true)
+            {
+                ColocarBola.instancia.Colocar(casillasMapa);
             }
         }
 
@@ -184,27 +189,13 @@ namespace Escenario
                     id = CalcularIDFinal(id);
                 }
 
-                if (debug == false)
-                {
-                    casillasFinal2 = casillasFinal;                 
-                }
-                else
-                {
-                    casillasFinal2 = casillasDebug;
-                }
+                casillasFinal2 = casillasFinal;
             }
             else
             {
                 if (idDebug == 99)
                 {
-                    if (debug == false)
-                    {
-                        casillasFinal2 = casillasFinal;
-                    }
-                    else
-                    {
-                        casillasFinal2 = casillasDebug;
-                    }
+                    casillasFinal2 = casillasFinal;
                 }
                 else
                 {
@@ -440,52 +431,6 @@ namespace Escenario
             {
                 return false;
             }
-        }
-
-        private void CopiarDatos(List<Vector3> listado, int tamañoX, int tamañoZ)
-        {
-            if (listado != null)
-            {
-                if (listado.Count > 0)
-                {
-                    Datos partida = new Datos();
-
-                    PartidaCasilla[] casillas = new PartidaCasilla[listado.Count];
-
-                    int i = 0;
-                    foreach (Vector3 vector in listado)
-                    {
-                        casillas[i].coordenadas = new VectorTres(vector);
-                        i += 1;
-                    }
-
-                    partida.casillas = casillas;
-
-                    PartidaEscenario escenario = new PartidaEscenario();
-                    escenario.tamañoEscenarioX = tamañoX;
-                    escenario.tamañoEscenarioZ = tamañoZ;
-
-                    partida.escenario = escenario;
-
-                    string datos = JsonUtility.ToJson(partida);
-                    Debug.Log(datos);
-                    PlayerPrefs.SetString("partida", datos);
-                }
-            }  
-        }
-
-        private List<Vector3> LeerDatos()
-        {
-            Datos partida = JsonUtility.FromJson<Datos>(PlayerPrefs.GetString("partida"));
-            List<Vector3> listado = new List<Vector3>();
-           
-            foreach (PartidaCasilla casilla in partida.casillas)
-            {
-                Vector3 casilla2 = casilla.coordenadas.ObtenerVector3();
-                listado.Add(casilla2);
-            }
-
-            return listado;
         }
     }
 }

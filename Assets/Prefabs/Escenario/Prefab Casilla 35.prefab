@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8514418057428254536}
   - component: {fileID: 4721621280701395181}
   - component: {fileID: 7377572114577048615}
+  - component: {fileID: -7501451399631879853}
   m_Layer: 0
   m_Name: Prefab Casilla 35
   m_TagString: Untagged
@@ -84,3 +85,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &-7501451399631879853
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9034953884180604402}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 3369316746193770658, guid: 58bbd33d87ad84441abf7fe032077fbc, type: 3}
