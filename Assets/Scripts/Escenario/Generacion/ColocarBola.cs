@@ -22,8 +22,8 @@ namespace Escenario.Generacion
                    
                     while (i < intentos)
                     {
-                        int x = Random.Range(0, 10);
-                        int z = Random.Range(0, 10);
+                        int x = Random.Range(5, 20);
+                        int z = Random.Range(5, 20);
 
                         if (casillas[x, z] != null)
                         {

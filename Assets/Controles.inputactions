@@ -24,9 +24,27 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Bola",
+                    "name": "Bola Potencia",
                     "type": "Button",
                     "id": "112cbe11-f309-4241-8f36-8918326ad498",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Bola Rotar Izquierda",
+                    "type": "Button",
+                    "id": "8040d91c-61f1-45ab-9a5c-58f5b4874306",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Bola Rotar Derecha",
+                    "type": "Button",
+                    "id": "f26d05fe-243c-4287-ac1a-acd8b7785676",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -107,7 +125,29 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Bola",
+                    "action": "Bola Potencia",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a7019b5d-1868-45eb-a72a-362d8e27e00a",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Bola Rotar Izquierda",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9d2c9a28-1ffe-4c10-8025-44f9a8f48f00",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Bola Rotar Derecha",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
