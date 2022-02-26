@@ -1,19 +1,19 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
 
 namespace Jugador
 {
-    //https://www.youtube.com/watch?v=1rwchBV61ys
+    //https://www.youtube.com/watch?v=DZEiMFBndco
     public class Bola : MonoBehaviour
     {
+        public float potenciaMaxima = 10f;
         public float cambiarAnguloVelocidad = 200f;
-        public float cambiarLineaLongitud = 0.5f;
-        public Slider potenciaSlider;
+        public float cambiarLineaLongitud = 2f;
 
         private float angulo = 0;
         private float potencia = 0;
-        private float potenciaTiempo = 0;
+        private bool potenciaDecrecer = false;
+        private int golpes = 0;
 
         private bool permitirPotencia;
         private bool permitirRotarIzquierda;
@@ -31,13 +31,38 @@ namespace Jugador
             instancia.cuerpo = GetComponent<Rigidbody>();
             instancia.cuerpo.maxAngularVelocity = 1000;
             instancia.linea = GetComponent<LineRenderer>();
+
+            Canvas.Partida.instancia.sliderPotencia.maxValue = instancia.potenciaMaxima;
         }
 
         public void Update()
         {
             if (instancia.permitirPotencia == true)
             {
-                instancia.potencia += 0.2f;
+                if (instancia.potenciaDecrecer == false)
+                {
+                    if (instancia.potencia <= instancia.potenciaMaxima)
+                    {
+                        instancia.potencia += 0.1f;
+                    }
+                    else
+                    {
+                        instancia.potencia = instancia.potenciaMaxima;
+                        instancia.potenciaDecrecer = true;
+                    }
+                }
+                else if (instancia.potenciaDecrecer == true)
+                {
+                    if (instancia.potencia >= 0)
+                    {
+                        instancia.potencia -= 0.1f;
+                    }
+                    else
+                    {
+                        instancia.potencia = 0;
+                        instancia.potenciaDecrecer = false;
+                    }
+                }
             }
             else
             {
@@ -45,8 +70,24 @@ namespace Jugador
                 {
                     instancia.cuerpo.AddForce(Quaternion.Euler(0, instancia.angulo, 0) * Vector3.forward * instancia.potencia, ForceMode.Impulse);
                     instancia.potencia = 0;
+
+                    instancia.golpes += 1;
+                    Canvas.Partida.instancia.textoGolpes.text = instancia.golpes.ToString();
                 }
             }
+
+            Canvas.Partida.instancia.sliderPotencia.value = instancia.potencia;
+
+            if (instancia.potencia == 0)
+            {
+                Canvas.Partida.instancia.sliderPotencia.gameObject.SetActive(false);
+            }
+            else
+            {
+                Canvas.Partida.instancia.sliderPotencia.gameObject.SetActive(true);
+            }
+
+            //--------------------------------------------------------
 
             if (instancia.permitirRotarIzquierda == true)
             {
@@ -58,7 +99,10 @@ namespace Jugador
                 instancia.angulo += Time.deltaTime * instancia.cambiarAnguloVelocidad;
             }
 
-            ActualizarLinea();
+            //--------------------------------------------------------
+
+            instancia.linea.SetPosition(0, instancia.transform.position);
+            instancia.linea.SetPosition(1, instancia.transform.position + Quaternion.Euler(0, instancia.angulo, 0) * Vector3.forward * instancia.cambiarLineaLongitud);
         }
 
         public void PotenciaInput(InputAction.CallbackContext contexto)
@@ -95,17 +139,6 @@ namespace Jugador
             {
                 instancia.permitirRotarDerecha = false;
             }
-        }
-
-        private void ActualizarLinea()
-        {
-            instancia.linea.SetPosition(0, instancia.transform.position);
-            instancia.linea.SetPosition(1, instancia.transform.position + Quaternion.Euler(0, instancia.angulo, 0) * Vector3.forward * instancia.cambiarLineaLongitud);
-        }
-
-        private void PotenciaSlider()
-        {
-
         }
     }
 }
