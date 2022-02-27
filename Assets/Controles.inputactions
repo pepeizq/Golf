@@ -6,7 +6,7 @@
             "id": "669b0d30-2e30-44e6-983d-9922ead7866f",
             "actions": [
                 {
-                    "name": "Movimiento",
+                    "name": "Camara Libre Movimiento",
                     "type": "Value",
                     "id": "aaec9391-0d14-4ae3-a2af-dd6feaeadd0f",
                     "expectedControlType": "Vector2",
@@ -15,7 +15,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Zoom",
+                    "name": "Camara Zoom",
                     "type": "PassThrough",
                     "id": "272bc560-4c65-4da2-8801-eb3565610653",
                     "expectedControlType": "",
@@ -59,7 +59,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Movimiento",
+                    "action": "Camara Libre Movimiento",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -70,7 +70,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Movimiento",
+                    "action": "Camara Libre Movimiento",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -81,7 +81,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Movimiento",
+                    "action": "Camara Libre Movimiento",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -92,7 +92,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Movimiento",
+                    "action": "Camara Libre Movimiento",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -103,7 +103,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Movimiento",
+                    "action": "Camara Libre Movimiento",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -114,7 +114,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Zoom",
+                    "action": "Camara Zoom",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

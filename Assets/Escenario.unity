@@ -133,9 +133,8 @@ GameObject:
   m_Component:
   - component: {fileID: 20866581}
   - component: {fileID: 20866583}
-  - component: {fileID: 20866582}
   m_Layer: 0
-  m_Name: Jugador
+  m_Name: Movimientos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -152,28 +151,10 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 275121559}
+  m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &20866582
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 20866580}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 084d8110cad73d64b8b0c4be383eda16, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bola: {fileID: 2940215367368277056, guid: ac0726078a3bc3a41914c5c863caa66c, type: 3}
-  camara: {fileID: 275121558}
-  zoomCerca: 0.5
-  zoomLejos: 25
-  velocidad: 20
 --- !u!114 &20866583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,9 +183,10 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 20866582}
-        m_TargetAssemblyTypeName: Movimiento, Assembly-CSharp
-        m_MethodName: MovimientoInput
+      - m_Target: {fileID: -3739768454185946720, guid: ac0726078a3bc3a41914c5c863caa66c,
+          type: 3}
+        m_TargetAssemblyTypeName: Jugador.Bola, Assembly-CSharp
+        m_MethodName: CamaraMovimientoInput
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -218,9 +200,10 @@ MonoBehaviour:
     m_ActionName: Principal/Movimiento[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 20866582}
-        m_TargetAssemblyTypeName: Movimiento, Assembly-CSharp
-        m_MethodName: ZoomInput
+      - m_Target: {fileID: -3739768454185946720, guid: ac0726078a3bc3a41914c5c863caa66c,
+          type: 3}
+        m_TargetAssemblyTypeName: Jugador.Bola, Assembly-CSharp
+        m_MethodName: CamaraZoomInput
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -419,7 +402,7 @@ Camera:
   field of view: 60
   orthographic: 1
   orthographic size: 10
-  m_Depth: 20
+  m_Depth: 100
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -442,12 +425,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 275121556}
   m_LocalRotation: {x: 0.35355338, y: 0.35355338, z: -0.1464466, w: 0.8535535}
-  m_LocalPosition: {x: 10, y: 45, z: 10}
+  m_LocalPosition: {x: -31, y: 45, z: -31}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 20866581}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 45, y: 45, z: 0}
 --- !u!114 &275121560
 MonoBehaviour:
@@ -947,12 +930,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dbdca9cacba2ec4abf2c57eb308045f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aleatorio: 1
-  coloresGeneracion: 0
-  llano: 1
-  colocarBola: 1
-  alturaMaxima: 3
-  "tama\xF1oEscenario": {x: 40, y: 40}
   casillasFinal:
   - {fileID: 11400000, guid: f9f56dfc8d3b71d4592fb2889203f9cb, type: 2}
   - {fileID: 11400000, guid: 7cc8fbc133e47dd4a95682f6e5034bb3, type: 2}
@@ -1011,7 +988,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 00bc548c71e4eb245a6ee47d4977ad31, type: 2}
   - {fileID: 11400000, guid: 9ac8727231aa1b342a6d25db8fb700f0, type: 2}
   casillasIniciales: []
-  casillasEscala: 1
   limitesMapa: 3
 --- !u!114 &565598173
 MonoBehaviour:
@@ -1107,7 +1083,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1190786177
 MonoBehaviour:
@@ -1479,6 +1455,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1707549032}
+  - component: {fileID: 1707549033}
+  - component: {fileID: 1707549034}
   m_Layer: 0
   m_Name: Juego
   m_TagString: Untagged
@@ -1500,8 +1478,50 @@ Transform:
   m_Children:
   - {fileID: 565598171}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1707549033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1707549031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b10b756b2fa80a408aa7f6cc3e93d80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  potenciaMaxima: 10
+  anguloVelocidad: 100
+  lineaLongitud: 2
+  camara: 0
+  velocidadLibre: 20
+  zoomCerca: 0.5
+  zoomLejos: 25
+  aleatorio: 1
+  colores: 0
+  llano: 1
+  colocarBola: 1
+  "tama\xF1oX": 40
+  "tama\xF1oZ": 40
+  alturaMaxima: 3
+--- !u!114 &1707549034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1707549031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c4bf8eac5cd2ba49993c4e92352d9a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bola: {fileID: 2940215367368277056, guid: ac0726078a3bc3a41914c5c863caa66c, type: 3}
+  camara: {fileID: 275121556}
+  textoGolpes: {fileID: 514939800}
+  sliderPotencia: {fileID: 440376284}
 --- !u!1 &1788695731
 GameObject:
   m_ObjectHideFlags: 0
@@ -1587,7 +1607,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2114800862}
-  - component: {fileID: 2114800863}
   m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
@@ -1609,22 +1628,8 @@ Transform:
   m_Children:
   - {fileID: 436698339}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2114800863
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2114800861}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c4bf8eac5cd2ba49993c4e92352d9a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  textoGolpes: {fileID: 514939800}
-  sliderPotencia: {fileID: 440376284}
 --- !u!1 &2128774809
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,7 +13,7 @@ namespace Escenario.Generacion
 
         public void Colocar(Casilla[,] casillas)
         {
-            if (Jugador.Movimiento.instancia.bola != null)
+            if (Objetos.instancia.bola != null)
             {
                 if (casillas != null)
                 {
@@ -32,15 +32,19 @@ namespace Escenario.Generacion
                                 Vector3 posicion = casillas[x, z].prefab.gameObject.transform.position;
                                 posicion.y = posicion.y + 1f;
 
-                                GameObject bola = Instantiate(Jugador.Movimiento.instancia.bola);
+                                GameObject bola = Instantiate(Objetos.instancia.bola);
                                 bola.transform.position = casillas[x, z].prefab.transform.position;
 
                                 Vector3 posicion2 = bola.transform.position;
-                                posicion2.x = posicion2.x - 45f;
-                                posicion2.z = posicion2.z - 45f;
 
-                                Jugador.Movimiento.instancia.camara.transform.position = posicion2;
-                                
+                                if (Configuracion.instancia.camara == Configuracion.CamaraModos.Libre)
+                                {
+                                    posicion2.x = posicion2.x - 40f;
+                                    posicion2.z = posicion2.z - 40f;
+                                }
+
+                                Objetos.instancia.camara.transform.position = posicion2;
+
                                 break;
                             }
                         }

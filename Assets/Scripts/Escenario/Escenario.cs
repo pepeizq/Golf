@@ -8,22 +8,12 @@ namespace Escenario
 {
     public class Escenario : MonoBehaviour
     {
-        [Header("Opciones")]
-        public bool aleatorio;
-        public bool coloresGeneracion;
-        public bool llano;
-        public bool colocarBola;
-
-        [Header("Datos")]
-        public int alturaMaxima = 3;
-        public Vector2 tamañoEscenario = new Vector2(20, 20);
-
+        [Header("Casillas")]
         public Casilla[] casillasFinal;
         public Casilla[] casillasDebug;
 
         [HideInInspector] public Casilla[,] casillasMapa = new Casilla[1, 1];
         [HideInInspector] public List<Vector3> casillasIniciales;
-        [HideInInspector] public float casillasEscala = 0.5f;
         [HideInInspector] public int limitesMapa = 3;
 
         public static Escenario instancia;
@@ -35,12 +25,12 @@ namespace Escenario
 
         public void Start()
         {
-            casillasMapa = new Casilla[(int)tamañoEscenario.x, (int)tamañoEscenario.y];
+            casillasMapa = new Casilla[Configuracion.instancia.tamañoX, Configuracion.instancia.tamañoZ];
         
-            if (aleatorio == true)
+            if (Configuracion.instancia.aleatorio == true)
             {
-                casillasIniciales = Vectores.instancia.GenerarCasillas(casillasMapa, tamañoEscenario, alturaMaxima, limitesMapa);
-                Guardar.GuardarEscenario(casillasIniciales, (int)tamañoEscenario.x, (int)tamañoEscenario.y);
+                casillasIniciales = Vectores.instancia.GenerarCasillas(casillasMapa, Configuracion.instancia.alturaMaxima, limitesMapa);
+                Guardar.GuardarEscenario(casillasIniciales, Configuracion.instancia.tamañoX, Configuracion.instancia.tamañoZ);
             }
             else
             {
@@ -48,8 +38,8 @@ namespace Escenario
             }
 
             int k = 0;
-            float altura = alturaMaxima;
-            int tope = (int)alturaMaxima * 2;
+            float altura = Configuracion.instancia.alturaMaxima;
+            int tope = (int)Configuracion.instancia.alturaMaxima * 2;
             while (k < tope)
             {
                 altura -= 0.5f;
@@ -74,12 +64,12 @@ namespace Escenario
 
             //----------------------------------------------------------
 
-            if (llano == true)
+            if (Configuracion.instancia.llano == true)
             {
                 Llano.instancia.Generar(casillasMapa, altura, casillasFinal[0]);
             }
 
-            if (colocarBola == true)
+            if (Configuracion.instancia.colocarBola == true)
             {
                 ColocarBola.instancia.Colocar(casillasMapa);
             }
@@ -123,7 +113,7 @@ namespace Escenario
                         y = 0.0f;
                     }
                     
-                    if ((y > 0) && (altura == subcasilla.posicion.y) && Limites.Comprobar(x, 2, (int)tamañoEscenario.x) == true && Limites.Comprobar(z, 2, (int)tamañoEscenario.y) == true)
+                    if ((y > 0) && (altura == subcasilla.posicion.y) && Limites.Comprobar(x, 2, Configuracion.instancia.tamañoX) == true && Limites.Comprobar(z, 2, Configuracion.instancia.tamañoZ) == true)
                     {
                         if (casillasMapa[x - 1, z - 1] == null)
                         {
@@ -177,7 +167,7 @@ namespace Escenario
             int id = casilla.id;
             int idDebug = casilla.idDebug;
 
-            if (coloresGeneracion == false)
+            if (Configuracion.instancia.colores == false)
             {
                 if (idDebug != 99)
                 {
@@ -207,7 +197,7 @@ namespace Escenario
             int x = (int)casilla.posicion.x;
             int z = (int)casilla.posicion.z;
        
-            if (Limites.Comprobar(x, 3, (int)tamañoEscenario.x) == true && Limites.Comprobar(z, 3, (int)tamañoEscenario.y) == true)
+            if (Limites.Comprobar(x, 3, Configuracion.instancia.tamañoX) == true && Limites.Comprobar(z, 3, Configuracion.instancia.tamañoZ) == true)
             {
                 if (casillasMapa[x, z] == null)
                 {
@@ -275,7 +265,7 @@ namespace Escenario
                     {
                         if (casilla.rotacion == rotacion)
                         {
-                            if (coloresGeneracion == false)
+                            if (Configuracion.instancia.colores == false)
                             {
                                 if (casilla.id == 0)
                                 {
@@ -307,7 +297,7 @@ namespace Escenario
                     {
                         if (casilla.rotacion == rotacion)
                         {
-                            if (coloresGeneracion == false)
+                            if (Configuracion.instancia.colores == false)
                             {
                                 if (casilla.id == 1)
                                 {
@@ -339,7 +329,7 @@ namespace Escenario
                     {
                         if (casilla.rotacion == rotacion)
                         {
-                            if (coloresGeneracion == false)
+                            if (Configuracion.instancia.colores == false)
                             {
                                 if (casilla.id == 2)
                                 {
@@ -371,7 +361,7 @@ namespace Escenario
                     {
                         if (casilla.rotacion == rotacion)
                         {
-                            if (coloresGeneracion == false)
+                            if (Configuracion.instancia.colores == false)
                             {
                                 if (casilla.id == 3)
                                 {
@@ -411,7 +401,7 @@ namespace Escenario
     
         private bool ComprobarLimiteX(int x, int ajuste)
         {
-            if ((x - ajuste >= 0) && (x + ajuste <= tamañoEscenario.x))
+            if ((x - ajuste >= 0) && (x + ajuste <= Configuracion.instancia.tamañoX))
             {
                 return true;
             }
@@ -423,7 +413,7 @@ namespace Escenario
 
         private bool ComprobarLimiteZ(int z, int ajuste)
         {
-            if ((z - ajuste >= 0) && (z + ajuste <= tamañoEscenario.y))
+            if ((z - ajuste >= 0) && (z + ajuste <= Configuracion.instancia.tamañoZ))
             {
                 return true;
             }

@@ -565,6 +565,10 @@ namespace Escenario.Generacion
             {
                 Escenario.instancia.PonerCasilla(plano);
             }
+            else if (Escenario.instancia.ComprobarCasilla2(Escenario.instancia.casillasMapa[x, z], y, 90) == true && Escenario.instancia.ComprobarCasilla2(Escenario.instancia.casillasMapa[x + 1, z - 2], y, 270) == true && Escenario.instancia.ComprobarCasilla0(Escenario.instancia.casillasMapa[x + 1, z], y, 0) == true)
+            {
+                Escenario.instancia.PonerCasilla(plano);
+            }
             else if (Escenario.instancia.ComprobarCasilla0(Escenario.instancia.casillasMapa[x, z], y, 0) == true && Escenario.instancia.ComprobarCasilla0(Escenario.instancia.casillasMapa[x + 2, z - 1], y, 0) == true && Escenario.instancia.ComprobarCasilla0(Escenario.instancia.casillasMapa[x + 1, z - 2], y, 0) == true)
             {
                 Escenario.instancia.PonerCasilla(plano);
@@ -1061,11 +1065,31 @@ namespace Escenario.Generacion
             {
                 Escenario.instancia.PonerCasilla(plano);
             }
+            else if (Escenario.instancia.ComprobarCasilla2(Escenario.instancia.casillasMapa[x, z], y, 0) == true && Escenario.instancia.ComprobarCasilla0(Escenario.instancia.casillasMapa[x + 1, z], y, 0) == true && Escenario.instancia.ComprobarCasilla2(Escenario.instancia.casillasMapa[x + 2, z + 2], y, 180) == true && Escenario.instancia.ComprobarCasilla0(Escenario.instancia.casillasMapa[x, z + 1], y, 0) == true)
+            {
+                Escenario.instancia.PonerCasilla(plano);
+            }
             else if (Escenario.instancia.ComprobarCasilla0(Escenario.instancia.casillasMapa[x, z], y, 0) == true && Escenario.instancia.ComprobarCasilla0(Escenario.instancia.casillasMapa[x + 2, z], y, 0) == true && Escenario.instancia.ComprobarCasilla0(Escenario.instancia.casillasMapa[x + 2, z + 2], y, 0) == true && Escenario.instancia.ComprobarCasilla2(Escenario.instancia.casillasMapa[x, z + 2], y, 90) == true)
             {
                 Escenario.instancia.PonerCasilla(plano);
             }
             else if (Escenario.instancia.ComprobarCasilla0(Escenario.instancia.casillasMapa[x, z], y, 0) == true && Escenario.instancia.ComprobarCasilla2(Escenario.instancia.casillasMapa[x + 1, z], y, 270) == true && Escenario.instancia.ComprobarCasilla0(Escenario.instancia.casillasMapa[x + 2, z + 2], y, 0) == true && Escenario.instancia.ComprobarCasilla0(Escenario.instancia.casillasMapa[x, z + 2], y, 0) == true)
+            {
+                Escenario.instancia.PonerCasilla(plano);
+            }
+            else if (Escenario.instancia.ComprobarCasilla0(Escenario.instancia.casillasMapa[x, z], y, 0) == true && Escenario.instancia.ComprobarCasilla0(Escenario.instancia.casillasMapa[x + 1, z], y, 0) == true && Escenario.instancia.ComprobarCasilla0(Escenario.instancia.casillasMapa[x, z + 1], y, 0) == true && Escenario.instancia.ComprobarCasilla2(Escenario.instancia.casillasMapa[x + 2, z + 2], y, 180) == true)
+            {
+                Escenario.instancia.PonerCasilla(plano);
+            }
+            else if (Escenario.instancia.ComprobarCasilla0(Escenario.instancia.casillasMapa[x, z], y, 0) == true && Escenario.instancia.ComprobarCasilla0(Escenario.instancia.casillasMapa[x + 2, z], y, 0) == true && Escenario.instancia.ComprobarCasilla0(Escenario.instancia.casillasMapa[x + 1, z + 2], y, 0) == true)
+            {
+                Escenario.instancia.PonerCasilla(plano);
+            }
+            else if (Escenario.instancia.ComprobarCasilla2(Escenario.instancia.casillasMapa[x, z], y, 0) == true && Escenario.instancia.ComprobarCasilla2(Escenario.instancia.casillasMapa[x + 2, z + 1], y, 270) == true && Escenario.instancia.ComprobarCasilla2(Escenario.instancia.casillasMapa[x, z + 2], y, 90) == true)
+            {
+                Escenario.instancia.PonerCasilla(plano);
+            }
+            else if (Escenario.instancia.ComprobarCasilla0(Escenario.instancia.casillasMapa[x, z], y, 0) == true && Escenario.instancia.ComprobarCasilla0(Escenario.instancia.casillasMapa[x + 2, z + 1], y, 0) == true && Escenario.instancia.ComprobarCasilla0(Escenario.instancia.casillasMapa[x + 1, z + 2], y, 0) == true)
             {
                 Escenario.instancia.PonerCasilla(plano);
             }
@@ -1285,7 +1309,7 @@ namespace Escenario.Generacion
             {
                 Escenario.instancia.PonerCasilla(plano);
             }
-            else if (Escenario.instancia.ComprobarCasilla0(Escenario.instancia.casillasMapa[x, z], y, 0) == true && Escenario.instancia.ComprobarCasilla2(Escenario.instancia.casillasMapa[x, z + 2], y, 90) == true && Escenario.instancia.ComprobarCasilla2(Escenario.instancia.casillasMapa[x + 2, z + 2], y, 180) == true)
+            else if (Escenario.instancia.ComprobarCasilla0(Escenario.instancia.casillasMapa[x, z], y, 0) == true && Escenario.instancia.ComprobarCasilla2(Escenario.instancia.casillasMapa[x, z + 2], y, 90) == true && Escenario.instancia.ComprobarCasilla2(Escenario.instancia.casillasMapa[x + 2, z + 2], y, 180) == true && Escenario.instancia.ComprobarVacio(Escenario.instancia.casillasMapa[x + 2, z + 1]) == false)
             {
                 Escenario.instancia.PonerCasilla(plano);
             }
@@ -3397,6 +3421,14 @@ namespace Escenario.Generacion
             Casilla plano = new Casilla(15, 0, new Vector3(x + 1, y + 0.5f, z));
 
             if (Escenario.instancia.ComprobarCasilla1(Escenario.instancia.casillasMapa[x, z], y, 0) == true && Escenario.instancia.ComprobarCasilla1(Escenario.instancia.casillasMapa[x + 1, z + 1], y, 90) == true && Escenario.instancia.ComprobarCasilla2(Escenario.instancia.casillasMapa[x + 2, z], y, 180) == true)
+            {
+                Escenario.instancia.PonerCasilla(plano);
+            }
+            else if (Escenario.instancia.ComprobarCasilla0(Escenario.instancia.casillasMapa[x, z], y, 0) == true && Escenario.instancia.ComprobarCasilla0(Escenario.instancia.casillasMapa[x + 1, z - 1], y, 0) == true && Escenario.instancia.ComprobarCasilla0(Escenario.instancia.casillasMapa[x + 2, z + 1], y, 0) == true)
+            {
+                Escenario.instancia.PonerCasilla(plano);
+            }
+            else if (Escenario.instancia.ComprobarCasilla2(Escenario.instancia.casillasMapa[x, z], y, 90) == true && Escenario.instancia.ComprobarCasilla0(Escenario.instancia.casillasMapa[x + 1, z + 1], y, 0) == true && Escenario.instancia.ComprobarCasilla0(Escenario.instancia.casillasMapa[x + 2, z - 1], y, 0) == true)
             {
                 Escenario.instancia.PonerCasilla(plano);
             }

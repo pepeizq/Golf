@@ -56,20 +56,20 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Configuracion.cs" />
     <Compile Include="Assets\Scripts\Partida\Guardar.cs" />
     <Compile Include="Assets\Scripts\Partida\Cargar.cs" />
+    <Compile Include="Assets\Scripts\Objetos.cs" />
     <Compile Include="Assets\Scripts\Partida\Gestor.cs" />
     <Compile Include="Assets\Scripts\Partida\Datos.cs" />
     <Compile Include="Assets\Scripts\Jugador\Bola.cs" />
     <Compile Include="Assets\Scripts\Escenario\Generacion\Llano.cs" />
-    <Compile Include="Assets\Scripts\Jugador\Movimiento.cs" />
     <Compile Include="Assets\Scripts\Escenario\Generacion\ColocarBola.cs" />
     <Compile Include="Assets\Scripts\Escenario\Generacion\Limites.cs" />
     <Compile Include="Assets\Scripts\Escenario\Generacion\Vectores.cs" />
     <Compile Include="Assets\Scripts\Escenario\Escenario.cs" />
     <Compile Include="Assets\Scripts\Escenario\Casilla.cs" />
     <Compile Include="Assets\Scripts\Escenario\Generacion\Colores.cs" />
-    <Compile Include="Assets\Scripts\Canvas\Partida.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

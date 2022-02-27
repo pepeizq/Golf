@@ -3,13 +3,10 @@ using UnityEngine.InputSystem;
 
 namespace Jugador
 {
-    //https://www.youtube.com/watch?v=DZEiMFBndco
+    //https://www.youtube.com/watch?v=rHM9bDgT2zQ
+    //https://www.codinblack.com/how-to-make-the-camera-follow-an-object-in-unity3d/
     public class Bola : MonoBehaviour
-    {
-        public float potenciaMaxima = 10f;
-        public float cambiarAnguloVelocidad = 200f;
-        public float cambiarLineaLongitud = 2f;
-
+    {       
         private float angulo = 0;
         private float potencia = 0;
         private bool potenciaDecrecer = false;
@@ -19,8 +16,13 @@ namespace Jugador
         private bool permitirRotarIzquierda;
         private bool permitirRotarDerecha;
 
+        private Vector3 ultimaPosicion;
         private LineRenderer linea;
         private Rigidbody cuerpo;
+
+        private Vector3 camaraOffset;
+        private Vector2 camaraMovimientoInput;
+        private float camaraZoomInput;
 
         public static Bola instancia;
 
@@ -28,81 +30,159 @@ namespace Jugador
         {
             instancia = this;
 
+            instancia.linea = GetComponent<LineRenderer>();
             instancia.cuerpo = GetComponent<Rigidbody>();
             instancia.cuerpo.maxAngularVelocity = 1000;
-            instancia.linea = GetComponent<LineRenderer>();
-
-            Canvas.Partida.instancia.sliderPotencia.maxValue = instancia.potenciaMaxima;
+            
+            Objetos.instancia.sliderPotencia.maxValue = Configuracion.instancia.potenciaMaxima;
         }
 
         public void Update()
         {
-            if (instancia.permitirPotencia == true)
+            Vector3 velocidad = instancia.cuerpo.velocity;
+
+            if (velocidad.magnitude == 0)
             {
-                if (instancia.potenciaDecrecer == false)
+                instancia.linea.enabled = true;
+                instancia.ultimaPosicion = transform.localPosition;                           
+
+                if (instancia.permitirPotencia == true)
                 {
-                    if (instancia.potencia <= instancia.potenciaMaxima)
+                    if (instancia.potenciaDecrecer == false)
                     {
-                        instancia.potencia += 0.1f;
+                        if (instancia.potencia <= Configuracion.instancia.potenciaMaxima)
+                        {
+                            instancia.potencia += 0.1f;
+                        }
+                        else
+                        {
+                            instancia.potencia = Configuracion.instancia.potenciaMaxima;
+                            instancia.potenciaDecrecer = true;
+                        }
                     }
-                    else
+                    else if (instancia.potenciaDecrecer == true)
                     {
-                        instancia.potencia = instancia.potenciaMaxima;
-                        instancia.potenciaDecrecer = true;
+                        if (instancia.potencia >= 0)
+                        {
+                            instancia.potencia -= 0.1f;
+                        }
+                        else
+                        {
+                            instancia.potencia = 0;
+                            instancia.potenciaDecrecer = false;
+                        }
                     }
                 }
-                else if (instancia.potenciaDecrecer == true)
+                else
                 {
-                    if (instancia.potencia >= 0)
+                    if (instancia.potencia != 0)
                     {
-                        instancia.potencia -= 0.1f;
-                    }
-                    else
-                    {
+                        instancia.cuerpo.AddForce(Quaternion.Euler(0, instancia.angulo, 0) * Vector3.forward * instancia.potencia, ForceMode.Impulse);
                         instancia.potencia = 0;
-                        instancia.potenciaDecrecer = false;
+
+                        instancia.golpes += 1;
+                        Objetos.instancia.textoGolpes.text = instancia.golpes.ToString();
                     }
                 }
+
+                Objetos.instancia.sliderPotencia.value = instancia.potencia;
+
+                if (instancia.potencia == 0)
+                {
+                    Objetos.instancia.sliderPotencia.gameObject.SetActive(false);
+                }
+                else
+                {
+                    Objetos.instancia.sliderPotencia.gameObject.SetActive(true);
+                }
+
+                //--------------------------------------------------------
+
+                if (instancia.permitirRotarIzquierda == true)
+                {
+                    instancia.angulo -= Time.deltaTime * Configuracion.instancia.anguloVelocidad;
+                }
+
+                if (instancia.permitirRotarDerecha == true)
+                {
+                    instancia.angulo += Time.deltaTime * Configuracion.instancia.anguloVelocidad;
+                }
+
+                //--------------------------------------------------------
+
+                instancia.linea.SetPosition(0, instancia.transform.position);
+                instancia.linea.SetPosition(1, instancia.transform.position + Quaternion.Euler(0, instancia.angulo, 0) * Vector3.forward * Configuracion.instancia.lineaLongitud * instancia.potencia);
             }
             else
             {
-                if (instancia.potencia != 0)
-                {
-                    instancia.cuerpo.AddForce(Quaternion.Euler(0, instancia.angulo, 0) * Vector3.forward * instancia.potencia, ForceMode.Impulse);
-                    instancia.potencia = 0;
+                instancia.linea.enabled = false;
 
-                    instancia.golpes += 1;
-                    Canvas.Partida.instancia.textoGolpes.text = instancia.golpes.ToString();
+                if (transform.localPosition.y <= -1f)
+                {
+                    transform.localPosition = instancia.ultimaPosicion;
+                    instancia.cuerpo.velocity = Vector3.zero;
+                    instancia.cuerpo.angularVelocity = Vector3.zero;
                 }
             }
+        }
 
-            Canvas.Partida.instancia.sliderPotencia.value = instancia.potencia;
-
-            if (instancia.potencia == 0)
+        public void Start()
+        {
+            if (Configuracion.instancia.camara == Configuracion.CamaraModos.Fija)
             {
-                Canvas.Partida.instancia.sliderPotencia.gameObject.SetActive(false);
+                instancia.camaraOffset = Objetos.instancia.camara.transform.position - instancia.transform.position;
+            }           
+        }
+
+        public void FixedUpdate()
+        {
+            if (Configuracion.instancia.camara == Configuracion.CamaraModos.Libre)
+            {
+                if (instancia.camaraMovimientoInput.x > 0 && instancia.camaraMovimientoInput.y == 0)
+                {
+                    Objetos.instancia.camara.transform.Translate(new Vector3(Configuracion.instancia.velocidadLibre * Time.deltaTime * 10, 0, 0));
+                }
+                else if (instancia.camaraMovimientoInput.x < 0 && instancia.camaraMovimientoInput.y == 0)
+                {
+                    Objetos.instancia.camara.transform.Translate(new Vector3(-Configuracion.instancia.velocidadLibre * Time.deltaTime * 10, 0, 0));
+                }
+                else if (instancia.camaraMovimientoInput.x == 0 && instancia.camaraMovimientoInput.y > 0)
+                {
+                    Objetos.instancia.camara.transform.Translate(new Vector3(0, Configuracion.instancia.velocidadLibre * Time.deltaTime * 10, 0));
+                }
+                else if (instancia.camaraMovimientoInput.x == 0 && instancia.camaraMovimientoInput.y < 0)
+                {
+                    Objetos.instancia.camara.transform.Translate(new Vector3(0, -Configuracion.instancia.velocidadLibre * Time.deltaTime * 10, 0));
+                }
+
+                Objetos.instancia.camara.transform.position = new Vector3(Objetos.instancia.camara.transform.position.x, 60, Objetos.instancia.camara.transform.position.z);
+            }
+            else if (Configuracion.instancia.camara == Configuracion.CamaraModos.Fija)
+            {
+                Vector3 posicion = instancia.transform.position + instancia.camaraOffset;
+                posicion.x -= 40;
+                posicion.y = 60;
+                posicion.z -= 40;
+                Objetos.instancia.camara.transform.position = posicion;
+            }
+
+            //------------------------------------
+
+            if (instancia.camaraZoomInput > 0)
+            {
+                instancia.camaraZoomInput = 0.1f;
+            }
+            else if (instancia.camaraZoomInput < 0)
+            {
+                instancia.camaraZoomInput = -0.1f;
             }
             else
             {
-                Canvas.Partida.instancia.sliderPotencia.gameObject.SetActive(true);
+                instancia.camaraZoomInput = 0;
             }
-
-            //--------------------------------------------------------
-
-            if (instancia.permitirRotarIzquierda == true)
-            {
-                instancia.angulo -= Time.deltaTime * instancia.cambiarAnguloVelocidad;
-            }
-
-            if (instancia.permitirRotarDerecha == true)
-            {
-                instancia.angulo += Time.deltaTime * instancia.cambiarAnguloVelocidad;
-            }
-
-            //--------------------------------------------------------
-
-            instancia.linea.SetPosition(0, instancia.transform.position);
-            instancia.linea.SetPosition(1, instancia.transform.position + Quaternion.Euler(0, instancia.angulo, 0) * Vector3.forward * instancia.cambiarLineaLongitud);
+          
+            Camera objeto = Objetos.instancia.camara.GetComponent<Camera>();
+            objeto.orthographicSize = Mathf.Clamp(objeto.orthographicSize -= instancia.camaraZoomInput * (10f * objeto.orthographicSize * .1f), Configuracion.instancia.zoomCerca, Configuracion.instancia.zoomLejos);
         }
 
         public void PotenciaInput(InputAction.CallbackContext contexto)
@@ -138,6 +218,26 @@ namespace Jugador
             else if (contexto.phase == InputActionPhase.Canceled)
             {
                 instancia.permitirRotarDerecha = false;
+            }
+        }
+
+        public void CamaraMovimientoInput(InputAction.CallbackContext contexto)
+        {
+            if (contexto.phase == InputActionPhase.Performed)
+            {
+                instancia.camaraMovimientoInput = contexto.ReadValue<Vector2>();
+            }
+            else if (contexto.phase == InputActionPhase.Canceled)
+            {
+                instancia.camaraMovimientoInput = Vector2.zero;
+            }
+        }
+
+        public void CamaraZoomInput(InputAction.CallbackContext contexto)
+        {
+            if (contexto.phase == InputActionPhase.Performed)
+            {
+                instancia.camaraZoomInput = contexto.ReadValue<float>();
             }
         }
     }

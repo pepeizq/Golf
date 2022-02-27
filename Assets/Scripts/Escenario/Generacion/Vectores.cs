@@ -13,11 +13,11 @@ namespace Escenario.Generacion
             instancia = this;
         }
 
-        public List<Vector3> GenerarCasillas(Casilla[,] casillas, Vector2 extension, int alturaMaxima, int limitesMapa)
+        public List<Vector3> GenerarCasillas(Casilla[,] casillas, int alturaMaxima, int limitesMapa)
         {
             List<Vector3> listado = new List<Vector3>();
 
-            int montañasGenerar = (int)extension.x / 10 * (int)extension.y / 10;
+            int montañasGenerar = Configuracion.instancia.tamañoX / 10 * Configuracion.instancia.tamañoZ / 10;
             int intentosGeneracion = montañasGenerar;
      
             int i = 1;
@@ -25,8 +25,8 @@ namespace Escenario.Generacion
             {
                 float alturaCasilla = (int)Random.Range(3, alturaMaxima);
 
-                int posicionX = (int)Random.Range(0 + limitesMapa, (int)0 + (int)extension.x - limitesMapa);
-                int posicionZ = (int)Random.Range(0 + limitesMapa, (int)0 + (int)extension.y - limitesMapa);
+                int posicionX = (int)Random.Range(0 + limitesMapa, (int)0 + Configuracion.instancia.tamañoX - limitesMapa);
+                int posicionZ = (int)Random.Range(0 + limitesMapa, (int)0 + Configuracion.instancia.tamañoZ - limitesMapa);
 
                 bool añadir = true;
 
@@ -50,7 +50,7 @@ namespace Escenario.Generacion
                     }
                 }
               
-                if (Limites.Comprobar(posicionX, 2, (int)Escenario.instancia.tamañoEscenario.x) == false || Limites.Comprobar(posicionZ, 2, (int)Escenario.instancia.tamañoEscenario.y) == false)
+                if (Limites.Comprobar(posicionX, 2, Configuracion.instancia.tamañoX) == false || Limites.Comprobar(posicionZ, 2, Configuracion.instancia.tamañoZ) == false)
                 {
                     añadir = false;
                 }
@@ -123,7 +123,7 @@ namespace Escenario.Generacion
                                         {
                                             for (int origenZ = posicionZ + z - 1; origenZ < posicionZ + z + 2; origenZ++)
                                             {
-                                                if (Limites.Comprobar(origenX, 2, (int)extension.x) == true && Limites.Comprobar(origenZ, 2, (int)extension.y) == true)
+                                                if (Limites.Comprobar(origenX, 2, Configuracion.instancia.tamañoX) == true && Limites.Comprobar(origenZ, 2, Configuracion.instancia.tamañoZ) == true)
                                                 {
                                                     if (casillas[origenX, origenZ] == null)
                                                     {
@@ -139,7 +139,7 @@ namespace Escenario.Generacion
                                         {
                                             for (int origenZ = posicionZ + z - 2; origenZ < posicionZ + z + 3; origenZ++)
                                             {
-                                                if (Limites.Comprobar(origenX, 2, (int)extension.x) == true && Limites.Comprobar(origenZ, 2, (int)extension.y) == true)
+                                                if (Limites.Comprobar(origenX, 2, Configuracion.instancia.tamañoX) == true && Limites.Comprobar(origenZ, 2, Configuracion.instancia.tamañoZ) == true)
                                                 {
                                                     if (casillas[origenX, origenZ] == null)
                                                     {
@@ -151,7 +151,7 @@ namespace Escenario.Generacion
                                     }
                                     else
                                     {
-                                        if (Limites.Comprobar(posicionX + x, 2, (int)extension.x) == true && Limites.Comprobar(posicionZ + z, 2, (int)extension.y) == true)
+                                        if (Limites.Comprobar(posicionX + x, 2, Configuracion.instancia.tamañoX) == true && Limites.Comprobar(posicionZ + z, 2, Configuracion.instancia.tamañoZ) == true)
                                         {
                                             listado.Add(new Vector3(posicionX + x, alturaCasilla, posicionZ + z));
                                         }
