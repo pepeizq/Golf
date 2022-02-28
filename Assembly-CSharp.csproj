@@ -64,12 +64,13 @@
     <Compile Include="Assets\Scripts\Partida\Datos.cs" />
     <Compile Include="Assets\Scripts\Jugador\Bola.cs" />
     <Compile Include="Assets\Scripts\Escenario\Generacion\Llano.cs" />
-    <Compile Include="Assets\Scripts\Escenario\Generacion\ColocarBola.cs" />
     <Compile Include="Assets\Scripts\Escenario\Generacion\Limites.cs" />
     <Compile Include="Assets\Scripts\Escenario\Generacion\Vectores.cs" />
+    <Compile Include="Assets\Scripts\Escenario\Colocar\Hoyo.cs" />
     <Compile Include="Assets\Scripts\Escenario\Escenario.cs" />
     <Compile Include="Assets\Scripts\Escenario\Casilla.cs" />
     <Compile Include="Assets\Scripts\Escenario\Generacion\Colores.cs" />
+    <Compile Include="Assets\Scripts\Escenario\Colocar\Bola.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

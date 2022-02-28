@@ -1,4 +1,5 @@
-﻿using Escenario.Generacion;
+﻿using Escenario.Colocar;
+using Escenario.Generacion;
 using Partida;
 using System;
 using System.Collections.Generic;
@@ -39,7 +40,7 @@ namespace Escenario
 
             int k = 0;
             float altura = Configuracion.instancia.alturaMaxima;
-            int tope = (int)Configuracion.instancia.alturaMaxima * 2;
+            int tope = Configuracion.instancia.alturaMaxima * 2;
             while (k < tope)
             {
                 altura -= 0.5f;
@@ -69,9 +70,14 @@ namespace Escenario
                 Llano.instancia.Generar(casillasMapa, altura, casillasFinal[0]);
             }
 
-            if (Configuracion.instancia.colocarBola == true)
+            if (Configuracion.instancia.bola == true)
             {
-                ColocarBola.instancia.Colocar(casillasMapa);
+                Bola.instancia.Colocar(casillasMapa);
+            }
+
+            if (Configuracion.instancia.hoyo == true)
+            {
+                Hoyo.instancia.Colocar(casillasMapa);
             }
         }
 

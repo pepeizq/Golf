@@ -896,6 +896,7 @@ GameObject:
   - component: {fileID: 565598174}
   - component: {fileID: 565598175}
   - component: {fileID: 565598176}
+  - component: {fileID: 565598177}
   m_Layer: 0
   m_Name: Escenario
   m_TagString: Untagged
@@ -1034,7 +1035,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 565598170}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 110f3ae9da3965c4cb79d734949b03d5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5e582ae6528f04e44a9b24e12719b4ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &565598177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 565598170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2925b39e48a0e540870973067106822, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1190786173
@@ -1502,10 +1515,11 @@ MonoBehaviour:
   aleatorio: 1
   colores: 0
   llano: 1
-  colocarBola: 1
-  "tama\xF1oX": 40
-  "tama\xF1oZ": 40
-  alturaMaxima: 3
+  "tama\xF1oX": 20
+  "tama\xF1oZ": 20
+  alturaMaxima: 2
+  bola: 1
+  hoyo: 1
 --- !u!114 &1707549034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1519,6 +1533,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bola: {fileID: 2940215367368277056, guid: ac0726078a3bc3a41914c5c863caa66c, type: 3}
+  hoyo: {fileID: 493594958679372392, guid: 8fd3a73ca778fed458557d8ef7c1d631, type: 3}
   camara: {fileID: 275121556}
   textoGolpes: {fileID: 514939800}
   sliderPotencia: {fileID: 440376284}

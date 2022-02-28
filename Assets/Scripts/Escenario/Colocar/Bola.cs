@@ -1,10 +1,10 @@
 using UnityEngine;
 
-namespace Escenario.Generacion
+namespace Escenario.Colocar
 {
-    public class ColocarBola : MonoBehaviour
+    public class Bola : MonoBehaviour
     {
-        public static ColocarBola instancia;
+        public static Bola instancia;
 
         public void Awake()
         {
@@ -17,13 +17,13 @@ namespace Escenario.Generacion
             {
                 if (casillas != null)
                 {
-                    int intentos = 100;
+                    int intentos = 10000;
                     int i = 0;
                    
                     while (i < intentos)
                     {
-                        int x = Random.Range(5, 20);
-                        int z = Random.Range(5, 20);
+                        int x = Random.Range(5, Configuracion.instancia.tamañoX / 4);
+                        int z = Random.Range(5, Configuracion.instancia.tamañoZ / 4);
 
                         if (casillas[x, z] != null)
                         {
@@ -44,7 +44,6 @@ namespace Escenario.Generacion
                                 }
 
                                 Objetos.instancia.camara.transform.position = posicion2;
-
                                 break;
                             }
                         }

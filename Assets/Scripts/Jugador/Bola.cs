@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -111,13 +112,13 @@ namespace Jugador
                 //--------------------------------------------------------
 
                 instancia.linea.SetPosition(0, instancia.transform.position);
-                instancia.linea.SetPosition(1, instancia.transform.position + Quaternion.Euler(0, instancia.angulo, 0) * Vector3.forward * Configuracion.instancia.lineaLongitud * instancia.potencia);
+                instancia.linea.SetPosition(1, instancia.transform.position + Quaternion.Euler(0, instancia.angulo, 0) * Vector3.forward * (Configuracion.instancia.lineaLongitud + instancia.potencia / 4));
             }
             else
             {
                 instancia.linea.enabled = false;
 
-                if (transform.localPosition.y <= -1f)
+                if (transform.localPosition.y <= -5f)
                 {
                     transform.localPosition = instancia.ultimaPosicion;
                     instancia.cuerpo.velocity = Vector3.zero;
@@ -183,6 +184,20 @@ namespace Jugador
           
             Camera objeto = Objetos.instancia.camara.GetComponent<Camera>();
             objeto.orthographicSize = Mathf.Clamp(objeto.orthographicSize -= instancia.camaraZoomInput * (10f * objeto.orthographicSize * .1f), Configuracion.instancia.zoomCerca, Configuracion.instancia.zoomLejos);
+        }
+
+        private void OnTriggerEnter(Collider colision)
+        {
+            if (colision.gameObject.name == "FondoHoyo")
+            {
+                StartCoroutine(Terminar());
+            }
+        }
+
+        IEnumerator Terminar()
+        {
+            yield return new WaitForSeconds(5);
+            Destroy(instancia.gameObject);
         }
 
         public void PotenciaInput(InputAction.CallbackContext contexto)
