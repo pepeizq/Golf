@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scripts\Escenario\Colocar\Hoyo.cs" />
     <Compile Include="Assets\Scripts\Escenario\Escenario.cs" />
     <Compile Include="Assets\Scripts\Escenario\Casilla.cs" />
+    <Compile Include="Assets\Scripts\Elementos\HoyoPalo.cs" />
     <Compile Include="Assets\Scripts\Escenario\Generacion\Colores.cs" />
     <Compile Include="Assets\Scripts\Escenario\Colocar\Bola.cs" />
   </ItemGroup>

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Escenario.Colocar
@@ -17,17 +18,17 @@ namespace Escenario.Colocar
             {
                 if (casillas != null)
                 {
-                    int intentos = 10000;
+                    int intentos = 100;
                     int i = 0;
-                   
+
                     while (i < intentos)
                     {
-                        int x = Random.Range(5, Configuracion.instancia.tamañoX / 4);
-                        int z = Random.Range(5, Configuracion.instancia.tamañoZ / 4);
+                        int x = Random.Range(3, Configuracion.instancia.tamañoX / 4);
+                        int z = Random.Range(3, Configuracion.instancia.tamañoZ / 4);
 
                         if (casillas[x, z] != null)
                         {
-                            if (casillas[x, z].id == 0)
+                            if (casillas[x, z].id == 0 && casillas[x, z].modificable == true)
                             {
                                 Vector3 posicion = casillas[x, z].prefab.gameObject.transform.position;
                                 posicion.y = posicion.y + 1f;
@@ -44,12 +45,21 @@ namespace Escenario.Colocar
                                 }
 
                                 Objetos.instancia.camara.transform.position = posicion2;
+                                casillas[x, z].modificable = false;
                                 break;
                             }
+                            else
+                            {
+                                i -= 1;
+                            }
                         }
+                        else
+                        {
+                            i += 1;
+                        }
+
                         i += 1;
                     }
-                    
                 }
             }
         }

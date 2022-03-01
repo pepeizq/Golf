@@ -266,6 +266,23 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: f26d05fe-243c-4287-ac1a-acd8b7785676
     m_ActionName: Principal/Bola Rotar Derecha[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -3739768454185946720, guid: ac0726078a3bc3a41914c5c863caa66c,
+          type: 3}
+        m_TargetAssemblyTypeName: Jugador.Bola, Assembly-CSharp
+        m_MethodName: CamaraModoInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 87f48b90-af73-45a1-a37e-cc6a55574d1a
+    m_ActionName: Principal/Camara Modo[/Keyboard/c]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Principal
@@ -1508,13 +1525,14 @@ MonoBehaviour:
   potenciaMaxima: 10
   anguloVelocidad: 100
   lineaLongitud: 2
-  camara: 0
+  camara: 1
   velocidadLibre: 20
   zoomCerca: 0.5
   zoomLejos: 25
   aleatorio: 1
   colores: 0
   llano: 1
+  nivel: 0
   "tama\xF1oX": 20
   "tama\xF1oZ": 20
   alturaMaxima: 2

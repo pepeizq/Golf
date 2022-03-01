@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Configuracion : MonoBehaviour
 {      
@@ -19,8 +20,9 @@ public class Configuracion : MonoBehaviour
     [Space(5)]
     public bool aleatorio;
     public bool colores;
-    public bool llano;  
+    public bool llano;
     [Space(10)]
+    public int nivel = 1;
     public int tamañoX = 40;
     public int tamañoZ = 40;
     public int alturaMaxima = 3;
@@ -36,6 +38,22 @@ public class Configuracion : MonoBehaviour
     public void Awake()
     {
         instancia = this;
+
+        nivel = PlayerPrefs.GetInt("nivel");
+
+        tamañoX = tamañoX + nivel * 10;
+        tamañoZ = tamañoZ + nivel * 2;
+    }
+
+    public void Start()
+    {
+
+    }
+
+    public void NuevoNivel(int nuevoNivel)
+    {
+        PlayerPrefs.SetInt("nivel", nuevoNivel);
+        SceneManager.LoadScene("Escenario");
     }
 
     public enum CamaraModos { Libre, Fija }

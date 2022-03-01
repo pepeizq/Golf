@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Escenario.Colocar
@@ -17,29 +18,36 @@ namespace Escenario.Colocar
             {
                 if (casillas != null)
                 {
-                    int intentos = 10000;
+                    int intentos = 100;
                     int i = 0;
 
                     while (i < intentos)
                     {
-                        int x = Random.Range(Configuracion.instancia.tamañoX / 2, Configuracion.instancia.tamañoX - 5);
-                        int z = Random.Range(Configuracion.instancia.tamañoZ / 2, Configuracion.instancia.tamañoZ - 5);
+                        int x = Random.Range(Configuracion.instancia.tamañoX / 2 + Configuracion.instancia.tamañoX / 3, Configuracion.instancia.tamañoX - 5);
+                        int z = Random.Range(Configuracion.instancia.tamañoZ / 2 + Configuracion.instancia.tamañoZ / 3, Configuracion.instancia.tamañoZ - 5);
 
                         if (casillas[x, z] != null)
                         {
-                            if (casillas[x, z].id == 0)
+                            if (casillas[x, z].id == 0 && casillas[x, z].modificable == true)
                             {
                                 GameObject hoyo = Instantiate(Objetos.instancia.hoyo);
-                                Vector3 posicion = casillas[x, z].prefab.transform.position;
-                                //posicion.y = posicion.y - 0f;
-                                hoyo.transform.position = posicion;
+                                hoyo.transform.position = casillas[x, z].prefab.transform.position;
 
                                 Destroy(casillas[x, z].prefab);
                                 casillas[x, z].prefab = hoyo;
-
+                                casillas[x, z].modificable = false;
                                 break;
                             }
+                            else
+                            {
+                                i -= 1;
+                            }
                         }
+                        else
+                        {
+                            i -= 1;
+                        }
+
                         i += 1;
                     }
                 }

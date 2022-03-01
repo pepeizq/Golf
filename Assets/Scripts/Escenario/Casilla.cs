@@ -13,6 +13,7 @@ namespace Escenario
 
         [HideInInspector] public Vector3 posicion;
         [HideInInspector] public int rotacion;
+        [HideInInspector] public bool modificable = true;
 
         public Casilla(int ID, int Rotacion, Vector3 Posicion)
         {

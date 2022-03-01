@@ -5,7 +5,6 @@ using UnityEngine.InputSystem;
 namespace Jugador
 {
     //https://www.youtube.com/watch?v=rHM9bDgT2zQ
-    //https://www.codinblack.com/how-to-make-the-camera-follow-an-object-in-unity3d/
     public class Bola : MonoBehaviour
     {       
         private float angulo = 0;
@@ -42,8 +41,11 @@ namespace Jugador
         {
             Vector3 velocidad = instancia.cuerpo.velocity;
 
-            if (velocidad.magnitude == 0)
+            if (velocidad.magnitude <= 0.001f)
             {
+                instancia.cuerpo.velocity = Vector3.zero;
+                instancia.cuerpo.angularVelocity = Vector3.zero;
+
                 instancia.linea.enabled = true;
                 instancia.ultimaPosicion = transform.localPosition;                           
 
@@ -128,11 +130,8 @@ namespace Jugador
         }
 
         public void Start()
-        {
-            if (Configuracion.instancia.camara == Configuracion.CamaraModos.Fija)
-            {
-                instancia.camaraOffset = Objetos.instancia.camara.transform.position - instancia.transform.position;
-            }           
+        {     
+            instancia.camaraOffset = Objetos.instancia.camara.transform.position - instancia.transform.position;
         }
 
         public void FixedUpdate()
@@ -161,9 +160,9 @@ namespace Jugador
             else if (Configuracion.instancia.camara == Configuracion.CamaraModos.Fija)
             {
                 Vector3 posicion = instancia.transform.position + instancia.camaraOffset;
-                posicion.x -= 40;
+                posicion.x -= 41.7f;
                 posicion.y = 60;
-                posicion.z -= 40;
+                posicion.z -= 41.7f;
                 Objetos.instancia.camara.transform.position = posicion;
             }
 
@@ -181,7 +180,7 @@ namespace Jugador
             {
                 instancia.camaraZoomInput = 0;
             }
-          
+
             Camera objeto = Objetos.instancia.camara.GetComponent<Camera>();
             objeto.orthographicSize = Mathf.Clamp(objeto.orthographicSize -= instancia.camaraZoomInput * (10f * objeto.orthographicSize * .1f), Configuracion.instancia.zoomCerca, Configuracion.instancia.zoomLejos);
         }
@@ -195,9 +194,10 @@ namespace Jugador
         }
 
         IEnumerator Terminar()
-        {
+        {            
             yield return new WaitForSeconds(5);
             Destroy(instancia.gameObject);
+            Configuracion.instancia.NuevoNivel(Configuracion.instancia.nivel += 1);
         }
 
         public void PotenciaInput(InputAction.CallbackContext contexto)
@@ -253,6 +253,21 @@ namespace Jugador
             if (contexto.phase == InputActionPhase.Performed)
             {
                 instancia.camaraZoomInput = contexto.ReadValue<float>();
+            }
+        }
+
+        public void CamaraModoInput(InputAction.CallbackContext contexto)
+        {
+            if (contexto.phase == InputActionPhase.Performed)
+            {
+                if (Configuracion.instancia.camara == Configuracion.CamaraModos.Fija)
+                {
+                    Configuracion.instancia.camara = Configuracion.CamaraModos.Libre;
+                }
+                else
+                {
+                    Configuracion.instancia.camara = Configuracion.CamaraModos.Fija;
+                }
             }
         }
     }
