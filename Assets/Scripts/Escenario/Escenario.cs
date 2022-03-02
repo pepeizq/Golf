@@ -79,6 +79,11 @@ namespace Escenario
             {
                 Hoyo.instancia.Colocar(casillasMapa);
             }
+
+            if (Configuracion.instancia.mordiscos == true)
+            {
+                Mordiscos.instancia.Colocar(casillasMapa);
+            }
         }
 
         public void Update()

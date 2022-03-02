@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Escenario.Colocar
@@ -23,8 +22,8 @@ namespace Escenario.Colocar
 
                     while (i < intentos)
                     {
-                        int x = Random.Range(3, Configuracion.instancia.tamañoX / 4);
-                        int z = Random.Range(3, Configuracion.instancia.tamañoZ / 4);
+                        int x = Random.Range(Escenario.instancia.limitesMapa + 5, Configuracion.instancia.tamañoX / 4);
+                        int z = Random.Range(Escenario.instancia.limitesMapa + 5, Configuracion.instancia.tamañoZ / 4);
 
                         if (casillas[x, z] != null)
                         {

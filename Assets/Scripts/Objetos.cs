@@ -9,9 +9,7 @@ public class Objetos : MonoBehaviour
     public GameObject camara;
 
     [Space(20)]
-
     [Header("Canvas")]
-    [Space(5)]
     public TextMeshProUGUI textoGolpes;
     public Slider sliderPotencia;
 
