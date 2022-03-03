@@ -38,7 +38,7 @@ namespace Partida
                     partida.escenario = escenario;
 
                     string datos = JsonUtility.ToJson(partida);
-                    PlayerPrefs.SetString("escenario", datos);
+                    PlayerPrefs.SetString(Configuracion.instancia.numeroPartida.ToString() + "escenario" + Configuracion.instancia.nivel.ToString(), datos);
                 }
             }
         }

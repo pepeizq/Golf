@@ -14,7 +14,7 @@ namespace Partida
 
         public static List<Vector3> CargarEscenario()
         {
-            Datos partida = JsonUtility.FromJson<Datos>(PlayerPrefs.GetString("escenario"));
+            Datos partida = JsonUtility.FromJson<Datos>(PlayerPrefs.GetString(Configuracion.instancia.numeroPartida.ToString() + "escenario" + Configuracion.instancia.nivel.ToString()));
             List<Vector3> listado = new List<Vector3>();
 
             foreach (PartidaCasilla casilla in partida.casillas)

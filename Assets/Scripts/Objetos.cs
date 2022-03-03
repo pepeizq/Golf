@@ -10,7 +10,9 @@ public class Objetos : MonoBehaviour
 
     [Space(20)]
     [Header("Canvas")]
+    public TextMeshProUGUI textoHoyo;
     public TextMeshProUGUI textoGolpes;
+    public TextMeshProUGUI textoPalos;
     public Slider sliderPotencia;
 
     public static Objetos instancia;

@@ -80,11 +80,20 @@ namespace Jugador
                 {
                     if (instancia.potencia != 0)
                     {
-                        instancia.cuerpo.AddForce(Quaternion.Euler(0, instancia.angulo, 0) * Vector3.forward * instancia.potencia, ForceMode.Impulse);
+                        if (Configuracion.instancia.palos == Configuracion.Palos.Madera)
+                        {
+                            instancia.cuerpo.AddForce(Quaternion.Euler(0, instancia.angulo, 0) * Vector3.up * (instancia.potencia * 2), ForceMode.Impulse);
+                            instancia.cuerpo.AddForce(Quaternion.Euler(0, instancia.angulo, 0) * Vector3.forward * (instancia.potencia * 2), ForceMode.Impulse);
+                        }
+                        else
+                        {
+                            instancia.cuerpo.AddForce(Quaternion.Euler(0, instancia.angulo, 0) * Vector3.forward * instancia.potencia, ForceMode.Impulse);
+                        }
+                        
                         instancia.potencia = 0;
 
                         instancia.golpes += 1;
-                        Objetos.instancia.textoGolpes.text = instancia.golpes.ToString();
+                        Objetos.instancia.textoGolpes.text = string.Format("Golpes: {0}", instancia.golpes.ToString());
                     }
                 }
 
@@ -268,6 +277,23 @@ namespace Jugador
                 {
                     Configuracion.instancia.camara = Configuracion.CamaraModos.Fija;
                 }
+            }
+        }
+
+        public void CambiarPaloInput(InputAction.CallbackContext contexto)
+        {
+            if (contexto.phase == InputActionPhase.Performed)
+            {
+                if (Configuracion.instancia.palos == Configuracion.Palos.Madera)
+                {
+                    Configuracion.instancia.palos = Configuracion.Palos.Hierro;
+                }
+                else
+                {
+                    Configuracion.instancia.palos = Configuracion.Palos.Madera;
+                }
+
+                Objetos.instancia.textoPalos.text = Configuracion.instancia.palos.ToString();
             }
         }
     }

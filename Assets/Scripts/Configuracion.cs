@@ -5,6 +5,7 @@ public class Configuracion : MonoBehaviour
 {
     [Header("Partida")]
     public int numeroPartida = 0;
+    public Palos palos;
 
     [Space(20)]
     [Header("Bola")]
@@ -59,7 +60,9 @@ public class Configuracion : MonoBehaviour
 
     public void Start()
     {
-
+        Objetos.instancia.textoHoyo.text = string.Format("Hoyo: {0}", nivel.ToString());
+        Objetos.instancia.textoGolpes.text = "Golpes: 0";
+        Objetos.instancia.textoPalos.text = palos.ToString();
     }
 
     public void NuevoNivel(int nuevoNivel)
@@ -69,4 +72,5 @@ public class Configuracion : MonoBehaviour
     }
 
     public enum CamaraModos { Libre, Fija }
+    public enum Palos { Madera, Hierro }
 }
