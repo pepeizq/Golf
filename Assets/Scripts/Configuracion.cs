@@ -67,6 +67,7 @@ public class Configuracion : MonoBehaviour
 
     public void NuevoNivel(int nuevoNivel)
     {
+        aleatorio = true;
         PlayerPrefs.SetInt(numeroPartida.ToString() + "nivel", nuevoNivel);
         SceneManager.LoadScene("Escenario");
     }

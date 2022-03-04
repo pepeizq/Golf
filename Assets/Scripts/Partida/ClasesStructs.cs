@@ -3,13 +3,6 @@ using UnityEngine;
 namespace Partida
 {
     [System.Serializable]
-    public class Datos 
-    {
-        public PartidaCasilla[] casillas;
-        public PartidaEscenario escenario;
-    }
-
-    [System.Serializable]
     public struct VectorTres
     {
         public float x;
@@ -29,6 +22,15 @@ namespace Partida
         }
     }
 
+    //-----------------------------------------------------------------------
+
+    [System.Serializable]
+    public class PartidaEscenario 
+    {
+        public PartidaCasilla[] casillas;
+        public PartidaTamaño tamaño;
+    }
+
     [System.Serializable]
     public struct PartidaCasilla
     {
@@ -40,10 +42,28 @@ namespace Partida
     }
  
     [System.Serializable]
-    public struct PartidaEscenario
+    public struct PartidaTamaño
     {
         public int tamañoEscenarioX;
         public int tamañoEscenarioZ;
+    }
+
+    //-----------------------------------------------------------------------
+
+    [System.Serializable]
+    public class PartidaBola
+    {
+        public VectorTres posicion;
+        public float angulo;
+    }
+
+    //-----------------------------------------------------------------------
+
+    [System.Serializable]
+    public class PartidaHoyo
+    {
+        public int casillaX;
+        public int casillaZ;
     }
 }
 

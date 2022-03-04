@@ -1,3 +1,4 @@
+using Partida;
 using UnityEngine;
 
 namespace Escenario.Colocar
@@ -17,40 +18,54 @@ namespace Escenario.Colocar
             {
                 if (casillas != null)
                 {
-                    int intentos = 100;
-                    int i = 0;
-
-                    while (i < intentos)
+                    if (Configuracion.instancia.aleatorio == true)
                     {
-                        int x = Random.Range(Configuracion.instancia.tamañoX / 2 + Configuracion.instancia.tamañoX / 3, Configuracion.instancia.tamañoX - 5 - Escenario.instancia.limitesMapa);
-                        int z = Random.Range(Configuracion.instancia.tamañoZ / 2 + Configuracion.instancia.tamañoZ / 3, Configuracion.instancia.tamañoZ - 5 - Escenario.instancia.limitesMapa);
+                        int intentos = 100;
+                        int i = 0;
 
-                        if (casillas[x, z] != null)
+                        while (i < intentos)
                         {
-                            if (casillas[x, z].id == 0 && casillas[x, z].modificable == true)
-                            {
-                                GameObject hoyo = Instantiate(Objetos.instancia.hoyo);
-                                hoyo.transform.position = casillas[x, z].prefab.transform.position;
+                            int x = Random.Range(Configuracion.instancia.tamañoX / 2 + Configuracion.instancia.tamañoX / 3, Configuracion.instancia.tamañoX - 5 - Escenario.instancia.limitesMapa);
+                            int z = Random.Range(Configuracion.instancia.tamañoZ / 2 + Configuracion.instancia.tamañoZ / 3, Configuracion.instancia.tamañoZ - 5 - Escenario.instancia.limitesMapa);
 
-                                Destroy(casillas[x, z].prefab);
-                                casillas[x, z].prefab = hoyo;
-                                casillas[x, z].modificable = false;
-                                break;
+                            if (casillas[x, z] != null)
+                            {
+                                if (casillas[x, z].id == 0 && casillas[x, z].modificable == true)
+                                {
+                                    InstanciarHoyo(casillas, x, z);
+                                    Guardar.GuardarHoyo(x, z);
+                                    break;
+                                }
+                                else
+                                {
+                                    i -= 1;
+                                }
                             }
                             else
                             {
                                 i -= 1;
                             }
-                        }
-                        else
-                        {
-                            i -= 1;
-                        }
 
-                        i += 1;
+                            i += 1;
+                        }
                     }
+                    else
+                    {
+                        PartidaHoyo hoyo = Cargar.CargarHoyo();
+                        InstanciarHoyo(casillas, hoyo.casillaX, hoyo.casillaZ);
+                    }                       
                 }
             }
+        }
+
+        private void InstanciarHoyo(Casilla[,] casillas, int casillaX, int casillaZ)
+        {
+            GameObject hoyo = Instantiate(Objetos.instancia.hoyo);
+            hoyo.transform.position = casillas[casillaX, casillaZ].prefab.transform.position;
+
+            Destroy(casillas[casillaX, casillaZ].prefab);
+            casillas[casillaX, casillaZ].prefab = hoyo;
+            casillas[casillaX, casillaZ].modificable = false;
         }
     }
 }

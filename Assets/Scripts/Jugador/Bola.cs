@@ -37,6 +37,18 @@ namespace Jugador
             Objetos.instancia.sliderPotencia.maxValue = Configuracion.instancia.potenciaMaxima;
         }
 
+        public void Start()
+        {
+            instancia.camaraOffset = Objetos.instancia.camara.transform.position - instancia.transform.position;
+
+            instancia.angulo = 90;
+
+            if (Configuracion.instancia.aleatorio == false)
+            {
+                instancia.angulo = Partida.Cargar.CargarBolaRotacion();
+            }
+        }
+
         public void Update()
         {
             Vector3 velocidad = instancia.cuerpo.velocity;
@@ -47,7 +59,9 @@ namespace Jugador
                 instancia.cuerpo.angularVelocity = Vector3.zero;
 
                 instancia.linea.enabled = true;
-                instancia.ultimaPosicion = transform.localPosition;                           
+                instancia.ultimaPosicion = transform.localPosition;
+
+                Partida.Guardar.GuardarBola(instancia.ultimaPosicion, instancia.angulo);
 
                 if (instancia.permitirPotencia == true)
                 {
@@ -138,11 +152,6 @@ namespace Jugador
             }
         }
 
-        public void Start()
-        {     
-            instancia.camaraOffset = Objetos.instancia.camara.transform.position - instancia.transform.position;
-        }
-
         public void FixedUpdate()
         {
             if (Configuracion.instancia.camara == Configuracion.CamaraModos.Libre)
@@ -169,9 +178,9 @@ namespace Jugador
             else if (Configuracion.instancia.camara == Configuracion.CamaraModos.Fija)
             {
                 Vector3 posicion = instancia.transform.position + instancia.camaraOffset;
-                posicion.x -= 41.7f;
+                posicion.x -= 41.7f - instancia.transform.position.y / 2;
                 posicion.y = 60;
-                posicion.z -= 41.7f;
+                posicion.z -= 41.7f - instancia.transform.position.y / 2;
                 Objetos.instancia.camara.transform.position = posicion;
             }
 

@@ -14,7 +14,7 @@ namespace Partida
 
         public static List<Vector3> CargarEscenario()
         {
-            Datos partida = JsonUtility.FromJson<Datos>(PlayerPrefs.GetString(Configuracion.instancia.numeroPartida.ToString() + "escenario" + Configuracion.instancia.nivel.ToString()));
+            PartidaEscenario partida = JsonUtility.FromJson<PartidaEscenario>(PlayerPrefs.GetString(Configuracion.instancia.numeroPartida.ToString() + "escenario" + Configuracion.instancia.nivel.ToString()));
             List<Vector3> listado = new List<Vector3>();
 
             foreach (PartidaCasilla casilla in partida.casillas)
@@ -24,6 +24,24 @@ namespace Partida
             }
 
             return listado;
+        }
+
+        public static Vector3 CargarBolaPosicion()
+        {
+            PartidaBola bola = JsonUtility.FromJson<PartidaBola>(PlayerPrefs.GetString(Configuracion.instancia.numeroPartida.ToString() + "bola" + Configuracion.instancia.nivel.ToString()));
+            Vector3 posicion2 = bola.posicion.ObtenerVector3();
+            return posicion2;
+        }
+
+        public static float CargarBolaRotacion()
+        {
+            PartidaBola bola = JsonUtility.FromJson<PartidaBola>(PlayerPrefs.GetString(Configuracion.instancia.numeroPartida.ToString() + "bola" + Configuracion.instancia.nivel.ToString()));
+            return bola.angulo;
+        }
+
+        public static PartidaHoyo CargarHoyo()
+        {
+            return JsonUtility.FromJson<PartidaHoyo>(PlayerPrefs.GetString(Configuracion.instancia.numeroPartida.ToString() + "hoyo" + Configuracion.instancia.nivel.ToString()));
         }
     }
 }

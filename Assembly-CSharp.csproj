@@ -60,8 +60,7 @@
     <Compile Include="Assets\Scripts\Partida\Guardar.cs" />
     <Compile Include="Assets\Scripts\Partida\Cargar.cs" />
     <Compile Include="Assets\Scripts\Objetos.cs" />
-    <Compile Include="Assets\Scripts\Partida\Gestor.cs" />
-    <Compile Include="Assets\Scripts\Partida\Datos.cs" />
+    <Compile Include="Assets\Scripts\Partida\ClasesStructs.cs" />
     <Compile Include="Assets\Scripts\Jugador\Bola.cs" />
     <Compile Include="Assets\Scripts\Escenario\Generacion\Llano.cs" />
     <Compile Include="Assets\Scripts\Escenario\Generacion\Limites.cs" />

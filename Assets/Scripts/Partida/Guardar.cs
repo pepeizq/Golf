@@ -18,7 +18,7 @@ namespace Partida
             {
                 if (listado.Count > 0)
                 {
-                    Datos partida = new Datos();
+                    PartidaEscenario escenario = new PartidaEscenario();
 
                     PartidaCasilla[] casillas = new PartidaCasilla[listado.Count];
 
@@ -29,18 +29,46 @@ namespace Partida
                         i += 1;
                     }
 
-                    partida.casillas = casillas;
+                    escenario.casillas = casillas;
 
-                    PartidaEscenario escenario = new PartidaEscenario();
-                    escenario.tamañoEscenarioX = tamañoX;
-                    escenario.tamañoEscenarioZ = tamañoZ;
+                    PartidaTamaño tamaño = new PartidaTamaño
+                    {
+                        tamañoEscenarioX = tamañoX,
+                        tamañoEscenarioZ = tamañoZ
+                    };
 
-                    partida.escenario = escenario;
+                    escenario.tamaño = tamaño;
 
-                    string datos = JsonUtility.ToJson(partida);
+                    string datos = JsonUtility.ToJson(escenario);
                     PlayerPrefs.SetString(Configuracion.instancia.numeroPartida.ToString() + "escenario" + Configuracion.instancia.nivel.ToString(), datos);
                 }
             }
+        }
+
+        public static void GuardarBola(Vector3 posicion, float angulo)
+        {
+            VectorTres posicion2 = new VectorTres(posicion);
+
+            PartidaBola bola = new PartidaBola
+            {
+                posicion = posicion2,
+                angulo = angulo
+            };
+
+            string datos = JsonUtility.ToJson(bola);
+            PlayerPrefs.SetString(Configuracion.instancia.numeroPartida.ToString() + "bola" + Configuracion.instancia.nivel.ToString(), datos);
+        }
+
+        public static void GuardarHoyo(int casillaX, int casillaZ)
+        {
+            PartidaHoyo hoyo = new PartidaHoyo
+            {
+                casillaX = casillaX,
+                casillaZ = casillaZ
+            };
+
+            string datos = JsonUtility.ToJson(hoyo);
+            PlayerPrefs.SetString(Configuracion.instancia.numeroPartida.ToString() + "hoyo" + Configuracion.instancia.nivel.ToString(), datos);
         }
     }
 }
