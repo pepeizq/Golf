@@ -1,3 +1,5 @@
+using Escenario.Colocar;
+using Recursos;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -5,6 +7,7 @@ public class Configuracion : MonoBehaviour
 {
     [Header("Partida")]
     public int numeroPartida = 0;
+    public Campo campo;
     public Palos palos;
 
     [Space(20)]
@@ -43,19 +46,27 @@ public class Configuracion : MonoBehaviour
 
         nivel = PlayerPrefs.GetInt(numeroPartida.ToString() + "nivel");
 
-        tamañoX = tamañoX + nivel * 10;
-        tamañoZ = tamañoZ + nivel * 2;
-
-        alturaMaxima = alturaMaxima * (nivel / 4);
-
-        if (tamañoX > 60)
+        if (campo != null)
         {
-            Escenario.Colocar.Mordiscos.instancia.intentos = tamañoX / (tamañoX / 2);
+            tamañoX = campo.hoyos[nivel].tamañoX;
+            tamañoZ = campo.hoyos[nivel].tamañoZ;
         }
         else
         {
-            Escenario.Colocar.Mordiscos.instancia.intentos = 0;
-        }
+            tamañoX = tamañoX + nivel * 10;
+            tamañoZ = tamañoZ + nivel * 2;
+
+            alturaMaxima = alturaMaxima * (nivel / 4);
+
+            if (tamañoX > 60)
+            {
+                Mordiscos.instancia.intentos = tamañoX / (tamañoX / 2);
+            }
+            else
+            {
+                Mordiscos.instancia.intentos = 0;
+            }
+        }       
     }
 
     public void Start()

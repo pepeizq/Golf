@@ -1,6 +1,7 @@
 ﻿using Escenario.Colocar;
 using Escenario.Generacion;
 using Partida;
+using Recursos;
 using System;
 using System.Collections.Generic;
 using UnityEngine;

@@ -68,10 +68,12 @@
     <Compile Include="Assets\Scripts\Escenario\Colocar\Mordiscos.cs" />
     <Compile Include="Assets\Scripts\Escenario\Colocar\Hoyo.cs" />
     <Compile Include="Assets\Scripts\Escenario\Escenario.cs" />
-    <Compile Include="Assets\Scripts\Escenario\Casilla.cs" />
+    <Compile Include="Assets\Scripts\Recursos\Casilla.cs" />
     <Compile Include="Assets\Scripts\Elementos\HoyoPalo.cs" />
     <Compile Include="Assets\Scripts\Escenario\Generacion\Colores.cs" />
     <Compile Include="Assets\Scripts\Escenario\Colocar\Bola.cs" />
+    <Compile Include="Assets\Scripts\Recursos\Campo.cs" />
+    <Compile Include="Assets\Scripts\Recursos\CampoHoyo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

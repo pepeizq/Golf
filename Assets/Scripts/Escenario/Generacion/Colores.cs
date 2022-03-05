@@ -1,3 +1,4 @@
+using Recursos;
 using UnityEngine;
 
 namespace Escenario.Generacion

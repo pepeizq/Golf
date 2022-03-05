@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Escenario
+namespace Recursos
 {
     [CreateAssetMenu(fileName = "Casilla", menuName = "Escenario/Casilla")]
     public class Casilla : ScriptableObject

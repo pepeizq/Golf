@@ -3,6 +3,24 @@ using UnityEngine;
 namespace Partida
 {
     [System.Serializable]
+    public struct VectorDos
+    {
+        public float x;
+        public float y;
+
+        public VectorDos(Vector2 vector)
+        {
+            x = vector.x;
+            y = vector.y;
+        }
+
+        public Vector2 ObtenerVector2()
+        {
+            return new Vector2(x, y);
+        }
+    }
+
+    [System.Serializable]
     public struct VectorTres
     {
         public float x;
@@ -64,6 +82,14 @@ namespace Partida
     {
         public int casillaX;
         public int casillaZ;
+    }
+
+    //-----------------------------------------------------------------------
+
+    [System.Serializable]
+    public class PartidaMordiscos
+    {
+        public VectorDos[] mordiscos;
     }
 }
 

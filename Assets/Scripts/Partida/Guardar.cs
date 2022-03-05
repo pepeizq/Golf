@@ -70,5 +70,30 @@ namespace Partida
             string datos = JsonUtility.ToJson(hoyo);
             PlayerPrefs.SetString(Configuracion.instancia.numeroPartida.ToString() + "hoyo" + Configuracion.instancia.nivel.ToString(), datos);
         }
+
+        public static void GuardarMordiscos(List<Vector2> casillas)
+        {
+            if (casillas != null)
+            {
+                if (casillas.Count > 0)
+                {
+                    PartidaMordiscos mordiscos = new PartidaMordiscos();
+                    VectorDos[] mordiscos2 = new VectorDos[casillas.Count];
+
+                    int i = 0;
+                    foreach (Vector2 vector in casillas)
+                    {
+                        mordiscos2[i] = new VectorDos(vector);
+
+                        i += 1;
+                    }
+
+                    mordiscos.mordiscos = mordiscos2;
+
+                    string datos = JsonUtility.ToJson(mordiscos);
+                    PlayerPrefs.SetString(Configuracion.instancia.numeroPartida.ToString() + "mordiscos" + Configuracion.instancia.nivel.ToString(), datos);
+                }
+            }
+        }
     }
 }

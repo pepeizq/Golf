@@ -1,3 +1,5 @@
+using Recursos;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Escenario.Colocar
@@ -17,30 +19,57 @@ namespace Escenario.Colocar
         {
             if (casillas != null)
             {
-                int i = 0;
-
-                while (i < instancia.intentos)
+                if (Configuracion.instancia.aleatorio == true)
                 {
-                    int azarX = Random.Range(Configuracion.instancia.tamañoX / 4, Configuracion.instancia.tamañoX / 4 * 3);
-                    int azarZ = Random.Range(Configuracion.instancia.tamañoZ / 4, Configuracion.instancia.tamañoZ / 4 * 3);
+                    List<Vector2> guardar = new List<Vector2>();
+                    int i = 0;
 
-                    for (int a = azarX - 2; a <= azarX + 2; a++)
+                    while (i < instancia.intentos)
                     {
-                        for (int b = azarZ - 2; b <= azarZ + 2; b++)
+                        int azarX = Random.Range(Configuracion.instancia.tamañoX / 4, Configuracion.instancia.tamañoX / 4 * 3);
+                        int azarZ = Random.Range(Configuracion.instancia.tamañoZ / 4, Configuracion.instancia.tamañoZ / 4 * 3);
+
+                        for (int a = azarX - 2; a <= azarX + 2; a++)
                         {
-                            if (casillas[a, b] != null)
+                            for (int b = azarZ - 2; b <= azarZ + 2; b++)
                             {
-                                if (casillas[a, b].modificable == true)
-                                {
-                                    Destroy(casillas[a, b].prefab);
-                                    casillas[a, b].modificable = false;
-                                }
+                                InstanciarMordisco(casillas, a, b);
+                                guardar.Add(new Vector2(a, b));
+                            }
+                        }
+
+                        i += 1;
+                    }
+
+                    Partida.Guardar.GuardarMordiscos(guardar);
+                }
+                else
+                {
+                    List<Vector2> listado = Partida.Cargar.CargarMordiscos();
+
+                    if (listado != null)
+                    {
+                        if (listado.Count > 0)
+                        {
+                            foreach (Vector2 vector in listado)
+                            {
+                                InstanciarMordisco(casillas, (int)vector.x, (int)vector.y);
                             }
                         }
                     }
+                }
+            }
+        }
 
-                    i += 1;
-                }                   
+        private void InstanciarMordisco(Casilla[,] casillas, int x, int z)
+        {
+            if (casillas[x, z] != null)
+            {
+                if (casillas[x, z].modificable == true)
+                {
+                    Destroy(casillas[x, z].prefab);
+                    casillas[x, z].modificable = false;
+                }
             }
         }
     }

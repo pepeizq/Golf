@@ -43,5 +43,27 @@ namespace Partida
         {
             return JsonUtility.FromJson<PartidaHoyo>(PlayerPrefs.GetString(Configuracion.instancia.numeroPartida.ToString() + "hoyo" + Configuracion.instancia.nivel.ToString()));
         }
+
+        public static List<Vector2> CargarMordiscos()
+        {
+            PartidaMordiscos mordiscos = JsonUtility.FromJson<PartidaMordiscos>(PlayerPrefs.GetString(Configuracion.instancia.numeroPartida.ToString() + "mordiscos" + Configuracion.instancia.nivel.ToString()));
+            
+            if (mordiscos != null)
+            {
+                List<Vector2> listado = new List<Vector2>();
+
+                foreach (VectorDos casilla in mordiscos.mordiscos)
+                {
+                    Vector2 casilla2 = casilla.ObtenerVector2();
+                    listado.Add(casilla2);
+                }
+
+                return listado;
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }
