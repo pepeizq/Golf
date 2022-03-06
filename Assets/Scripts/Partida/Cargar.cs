@@ -26,6 +26,28 @@ namespace Partida
             return listado;
         }
 
+        public static List<Vector2> CargarForma()
+        {
+            PartidaCoordenadas formas = JsonUtility.FromJson<PartidaCoordenadas>(PlayerPrefs.GetString(Configuracion.instancia.numeroPartida.ToString() + "forma" + Configuracion.instancia.nivel.ToString()));
+
+            if (formas != null)
+            {
+                List<Vector2> listado = new List<Vector2>();
+
+                foreach (VectorDos casilla in formas.coordenada)
+                {
+                    Vector2 casilla2 = casilla.ObtenerVector2();
+                    listado.Add(casilla2);
+                }
+
+                return listado;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public static Vector3 CargarBolaPosicion()
         {
             PartidaBola bola = JsonUtility.FromJson<PartidaBola>(PlayerPrefs.GetString(Configuracion.instancia.numeroPartida.ToString() + "bola" + Configuracion.instancia.nivel.ToString()));
@@ -46,13 +68,13 @@ namespace Partida
 
         public static List<Vector2> CargarMordiscos()
         {
-            PartidaMordiscos mordiscos = JsonUtility.FromJson<PartidaMordiscos>(PlayerPrefs.GetString(Configuracion.instancia.numeroPartida.ToString() + "mordiscos" + Configuracion.instancia.nivel.ToString()));
+            PartidaCoordenadas mordiscos = JsonUtility.FromJson<PartidaCoordenadas>(PlayerPrefs.GetString(Configuracion.instancia.numeroPartida.ToString() + "mordiscos" + Configuracion.instancia.nivel.ToString()));
             
             if (mordiscos != null)
             {
                 List<Vector2> listado = new List<Vector2>();
 
-                foreach (VectorDos casilla in mordiscos.mordiscos)
+                foreach (VectorDos casilla in mordiscos.coordenada)
                 {
                     Vector2 casilla2 = casilla.ObtenerVector2();
                     listado.Add(casilla2);

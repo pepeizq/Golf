@@ -25,18 +25,20 @@ public class Configuracion : MonoBehaviour
 
     [Space(20)]
     [Header("Escenario")]
-    public bool aleatorio;
-    public bool colores;
-    public bool llano;
+    public bool aleatorio = true;
+    public bool colores = false;
+    public bool llano = true;
     [Space(10)]
-    public int nivel = 1;
-    public int tamañoX = 40;
-    public int tamañoZ = 40;
-    public int alturaMaxima = 3;
-    [Space(10)]
-    public bool bola;
-    public bool hoyo;
-    public bool mordiscos;
+    public bool formar = true;
+    public bool bola = true;
+    public bool hoyo = true;
+    public bool mordiscos = true;
+
+    [HideInInspector] public int nivel = 0;
+    [HideInInspector] public int tamañoX = 40;
+    [HideInInspector] public int tamañoZ = 40;
+    [HideInInspector] public float alturaMaxima = 2f;
+    [HideInInspector] public HoyoFormas forma = HoyoFormas.SinTocar;
 
     public static Configuracion instancia;
 
@@ -48,25 +50,15 @@ public class Configuracion : MonoBehaviour
 
         if (campo != null)
         {
+            forma = campo.hoyos[nivel].forma;
+
             tamañoX = campo.hoyos[nivel].tamañoX;
             tamañoZ = campo.hoyos[nivel].tamañoZ;
-        }
-        else
-        {
-            tamañoX = tamañoX + nivel * 10;
-            tamañoZ = tamañoZ + nivel * 2;
 
-            alturaMaxima = alturaMaxima * (nivel / 4);
+            alturaMaxima = campo.hoyos[nivel].alturaMaxima;
 
-            if (tamañoX > 60)
-            {
-                Mordiscos.instancia.intentos = tamañoX / (tamañoX / 2);
-            }
-            else
-            {
-                Mordiscos.instancia.intentos = 0;
-            }
-        }       
+            Mordiscos.instancia.intentos = campo.hoyos[nivel].intentosMordiscos;
+        }    
     }
 
     public void Start()

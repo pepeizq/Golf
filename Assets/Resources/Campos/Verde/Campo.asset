@@ -20,5 +20,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7a824fd3f3adf084e9a8cd985ef8f073, type: 2}
   hoyos:
   - {fileID: 11400000, guid: 83646fa25d62e404e9d9f536bd01e9f7, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 306ba914c4953f04c94e81ff1842d4e0, type: 2}

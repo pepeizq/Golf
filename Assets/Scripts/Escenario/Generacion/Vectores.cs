@@ -14,7 +14,7 @@ namespace Escenario.Generacion
             instancia = this;
         }
 
-        public List<Vector3> GenerarCasillas(Casilla[,] casillas, int alturaMaxima, int limitesMapa)
+        public List<Vector3> GenerarCasillas(Casilla[,] casillas, float alturaMaxima, int limitesMapa)
         {
             List<Vector3> listado = new List<Vector3>();
 

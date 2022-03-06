@@ -45,6 +45,31 @@ namespace Partida
             }
         }
 
+        public static void GuardarForma(List<Vector2> casillas)
+        {
+            if (casillas != null)
+            {
+                if (casillas.Count > 0)
+                {
+                    PartidaCoordenadas mordiscos = new PartidaCoordenadas();
+                    VectorDos[] mordiscos2 = new VectorDos[casillas.Count];
+
+                    int i = 0;
+                    foreach (Vector2 vector in casillas)
+                    {
+                        mordiscos2[i] = new VectorDos(vector);
+
+                        i += 1;
+                    }
+
+                    mordiscos.coordenada = mordiscos2;
+
+                    string datos = JsonUtility.ToJson(mordiscos);
+                    PlayerPrefs.SetString(Configuracion.instancia.numeroPartida.ToString() + "forma" + Configuracion.instancia.nivel.ToString(), datos);
+                }
+            }
+        }
+
         public static void GuardarBola(Vector3 posicion, float angulo)
         {
             VectorTres posicion2 = new VectorTres(posicion);
@@ -77,7 +102,7 @@ namespace Partida
             {
                 if (casillas.Count > 0)
                 {
-                    PartidaMordiscos mordiscos = new PartidaMordiscos();
+                    PartidaCoordenadas mordiscos = new PartidaCoordenadas();
                     VectorDos[] mordiscos2 = new VectorDos[casillas.Count];
 
                     int i = 0;
@@ -88,7 +113,7 @@ namespace Partida
                         i += 1;
                     }
 
-                    mordiscos.mordiscos = mordiscos2;
+                    mordiscos.coordenada = mordiscos2;
 
                     string datos = JsonUtility.ToJson(mordiscos);
                     PlayerPrefs.SetString(Configuracion.instancia.numeroPartida.ToString() + "mordiscos" + Configuracion.instancia.nivel.ToString(), datos);

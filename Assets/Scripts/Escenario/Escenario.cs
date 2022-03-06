@@ -41,7 +41,7 @@ namespace Escenario
 
             int k = 0;
             float altura = Configuracion.instancia.alturaMaxima;
-            int tope = Configuracion.instancia.alturaMaxima * 2;
+            int tope = (int)Configuracion.instancia.alturaMaxima * 2;
             while (k < tope)
             {
                 altura -= 0.5f;
@@ -69,6 +69,11 @@ namespace Escenario
             if (Configuracion.instancia.llano == true)
             {
                 Llano.instancia.Generar(casillasMapa, altura, casillasFinal[0]);
+            }
+
+            if (Configuracion.instancia.formar == true)
+            {
+                Forma.instancia.Formar(Configuracion.instancia.forma, casillasMapa);
             }
 
             if (Configuracion.instancia.bola == true)

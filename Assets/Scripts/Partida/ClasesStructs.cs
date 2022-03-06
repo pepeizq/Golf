@@ -87,9 +87,9 @@ namespace Partida
     //-----------------------------------------------------------------------
 
     [System.Serializable]
-    public class PartidaMordiscos
+    public class PartidaCoordenadas
     {
-        public VectorDos[] mordiscos;
+        public VectorDos[] coordenada;
     }
 }
 
