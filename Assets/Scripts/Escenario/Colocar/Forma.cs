@@ -43,7 +43,7 @@ namespace Escenario.Colocar
 
                         int puntoX = (Configuracion.instancia.tamañoX - Escenario.instancia.limitesMapa * 2) / 2;
                         int puntoZ = (Configuracion.instancia.tamañoZ - Escenario.instancia.limitesMapa * 2) / 3;
-                  
+
                         for (int x = Escenario.instancia.limitesMapa; x <= puntoX; x++)
                         {
                             for (int z = puntoZ; z <= Configuracion.instancia.tamañoZ - Escenario.instancia.limitesMapa; z++)
@@ -65,6 +65,60 @@ namespace Escenario.Colocar
                         for (int x = Escenario.instancia.limitesMapa; x <= puntoX; x++)
                         {
                             for (int z = puntoZ; z <= Configuracion.instancia.tamañoZ - Escenario.instancia.limitesMapa; z++)
+                            {
+                                InstanciarForma(casillas, x, z);
+                                guardar.Add(new Vector2(x, z));
+                            }
+                        }
+
+                        Partida.Guardar.GuardarForma(guardar);
+                    }
+                    else if (forma == HoyoFormas.Ele33)
+                    {
+                        List<Vector2> guardar = new List<Vector2>();
+
+                        int puntoX = (Configuracion.instancia.tamañoX - Escenario.instancia.limitesMapa * 2) / 3;
+                        int puntoZ = (Configuracion.instancia.tamañoZ - Escenario.instancia.limitesMapa * 2) / 2;
+
+                        for (int x = puntoX; x <= Configuracion.instancia.tamañoX - Escenario.instancia.limitesMapa; x++)
+                        {
+                            for (int z = Escenario.instancia.limitesMapa; z <= puntoZ; z++)
+                            {
+                                InstanciarForma(casillas, x, z);
+                                guardar.Add(new Vector2(x, z));
+                            }
+                        }
+
+                        Partida.Guardar.GuardarForma(guardar);
+                    }
+                    else if (forma == HoyoFormas.Ele50)
+                    {
+                        List<Vector2> guardar = new List<Vector2>();
+
+                        int puntoX = (Configuracion.instancia.tamañoX - Escenario.instancia.limitesMapa * 2) / 2;
+                        int puntoZ = (Configuracion.instancia.tamañoZ - Escenario.instancia.limitesMapa * 2) / 2;
+
+                        for (int x = puntoX; x <= Configuracion.instancia.tamañoX - Escenario.instancia.limitesMapa; x++)
+                        {
+                            for (int z = Escenario.instancia.limitesMapa; z <= puntoZ; z++)
+                            {
+                                InstanciarForma(casillas, x, z);
+                                guardar.Add(new Vector2(x, z));
+                            }
+                        }
+
+                        Partida.Guardar.GuardarForma(guardar);
+                    }
+                    else if (forma == HoyoFormas.Ele66)
+                    {
+                        List<Vector2> guardar = new List<Vector2>();
+
+                        int puntoX = (Configuracion.instancia.tamañoX - Escenario.instancia.limitesMapa * 2) / 2;
+                        int puntoZ = (Configuracion.instancia.tamañoZ - Escenario.instancia.limitesMapa * 2) / 3;
+
+                        for (int x = puntoX; x <= Configuracion.instancia.tamañoX - Escenario.instancia.limitesMapa; x++)
+                        {
+                            for (int z = Escenario.instancia.limitesMapa; z <= puntoZ; z++)
                             {
                                 InstanciarForma(casillas, x, z);
                                 guardar.Add(new Vector2(x, z));

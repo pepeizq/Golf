@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20fd2c13e73dcdd4795cd40b09767045, type: 3}
   m_Name: Hoyo 1
   m_EditorClassIdentifier: 
-  forma: 1
-  "tama\xF1oX": 20
-  "tama\xF1oZ": 20
+  forma: 7
+  "tama\xF1oX": 40
+  "tama\xF1oZ": 40
   alturaMaxima: 1.5
   intentosMordiscos: 0

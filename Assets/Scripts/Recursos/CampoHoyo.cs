@@ -15,5 +15,5 @@ namespace Recursos
         public int intentosMordiscos;
     }
 
-    public enum HoyoFormas { SinTocar, Jota33, Jota50, Jota66 }
+    public enum HoyoFormas { SinTocar, Jota33, Jota50, Jota66, Ele33, Ele50, Ele66 }
 }
