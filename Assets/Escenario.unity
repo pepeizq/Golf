@@ -1703,7 +1703,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b10b756b2fa80a408aa7f6cc3e93d80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numeroPartida: 22
+  numeroPartida: 25
   campo: {fileID: 11400000, guid: 5f1ea259c26884241980cf74c5b240b4, type: 2}
   palos: 0
   potenciaMaxima: 10
@@ -1716,10 +1716,10 @@ MonoBehaviour:
   aleatorio: 1
   colores: 0
   llano: 1
-  formar: 1
+  formar: 0
   bola: 1
   hoyo: 1
-  mordiscos: 1
+  mordiscos: 0
   nivel: 0
   "tama\xF1oX": 20
   "tama\xF1oZ": 20

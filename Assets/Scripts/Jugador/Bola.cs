@@ -137,7 +137,7 @@ namespace Jugador
                 //--------------------------------------------------------
 
                 instancia.linea.SetPosition(0, instancia.transform.position);
-                instancia.linea.SetPosition(1, instancia.transform.position + Quaternion.Euler(0, instancia.angulo, 0) * Vector3.forward * (Configuracion.instancia.lineaLongitud + instancia.potencia / 4));
+                instancia.linea.SetPosition(1, instancia.transform.position + Quaternion.Euler(0, instancia.angulo, 0) * Vector3.forward * (Configuracion.instancia.lineaLongitud + instancia.potencia / 4));           
             }
             else
             {
@@ -208,6 +208,14 @@ namespace Jugador
             if (colision.gameObject.name == "FondoHoyo")
             {
                 StartCoroutine(Terminar());
+            }
+        }
+
+        private void OnTriggerExit(Collider colision)
+        {
+            if (colision.gameObject.name == "FondoHoyo")
+            {
+                StopCoroutine(Terminar());
             }
         }
 
