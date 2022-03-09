@@ -164,6 +164,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hoyo Modelo
       objectReference: {fileID: 0}
+    - target: {fileID: 1678216783806058623, guid: aab9f649c3c4354448ec83099598f816,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 71306783159ea2c448d6b499539cd03a, type: 2}
+    - target: {fileID: 1678216783806058623, guid: aab9f649c3c4354448ec83099598f816,
+        type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: ceadad0c0ffe6c84ebc40a9e36aec291, type: 2}
     - target: {fileID: 9006685021845503817, guid: aab9f649c3c4354448ec83099598f816,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -288,18 +298,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 3576223751218230137}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5714530787018338705
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4422575912162184744}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46b9a6430d8fe65409f1fb6af70413c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &8008705066112802060
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -313,3 +311,15 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.7, y: 0.1, z: 0.7}
   m_Center: {x: 0, y: 0.035254624, z: 0.024683032}
+--- !u!114 &5714530787018338705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4422575912162184744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46b9a6430d8fe65409f1fb6af70413c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

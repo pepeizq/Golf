@@ -15,6 +15,7 @@ public class Configuracion : MonoBehaviour
     public float potenciaMaxima = 6f;
     public float anguloVelocidad = 100f;
     public float lineaLongitud = 2f;
+    public Color color;
 
     [Space(20)]
     [Header("Camara")]

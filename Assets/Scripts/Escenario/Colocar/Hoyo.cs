@@ -21,13 +21,14 @@ namespace Escenario.Colocar
                 {
                     if (Configuracion.instancia.aleatorio == true)
                     {
-                        int intentos = 100;
+                        int proporcion = 3;
+                        int intentos = 1000;
                         int i = 0;
 
                         while (i < intentos)
                         {
-                            int x = Random.Range(Configuracion.instancia.tamañoX / 2 + Configuracion.instancia.tamañoX / 3, Configuracion.instancia.tamañoX - 5 - Escenario.instancia.limitesMapa);
-                            int z = Random.Range(Configuracion.instancia.tamañoZ / 2 + Configuracion.instancia.tamañoZ / 3, Configuracion.instancia.tamañoZ - 5 - Escenario.instancia.limitesMapa);
+                            int x = Random.Range(Configuracion.instancia.tamañoX / 2 + Configuracion.instancia.tamañoX / proporcion, Configuracion.instancia.tamañoX - 2 - Escenario.instancia.limitesMapa);
+                            int z = Random.Range(Configuracion.instancia.tamañoZ / 2 + Configuracion.instancia.tamañoZ / proporcion, Configuracion.instancia.tamañoZ - 2 - Escenario.instancia.limitesMapa);
 
                             if (casillas[x, z] != null)
                             {
@@ -37,17 +38,15 @@ namespace Escenario.Colocar
                                     Guardar.GuardarHoyo(x, z);
                                     break;
                                 }
-                                else
-                                {
-                                    i -= 1;
-                                }
-                            }
-                            else
-                            {
-                                i -= 1;
                             }
 
                             i += 1;
+
+                            if (i == intentos)
+                            {
+                                i = 0;
+                                proporcion += 1;
+                            }
                         }
                     }
                     else

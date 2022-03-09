@@ -21,3 +21,9 @@ MonoBehaviour:
   hoyos:
   - {fileID: 11400000, guid: 83646fa25d62e404e9d9f536bd01e9f7, type: 2}
   - {fileID: 11400000, guid: 306ba914c4953f04c94e81ff1842d4e0, type: 2}
+  casillaClaroOpaco: {fileID: 2100000, guid: ceadad0c0ffe6c84ebc40a9e36aec291, type: 2}
+  casillaClaroTransparente: {fileID: 2100000, guid: 1cba6042469b70c4885665a146fc0642,
+    type: 2}
+  casillaOscuroOpaco: {fileID: 2100000, guid: 71306783159ea2c448d6b499539cd03a, type: 2}
+  casillaOscuroTransparente: {fileID: 2100000, guid: 8095716a581eb7b41b749fbe177da462,
+    type: 2}

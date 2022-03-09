@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 262.38354, g: 325.1084, b: 430.30957, a: 1}
+  m_IndirectSpecularColor: {r: 262.11768, g: 324.74365, b: 429.81006, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -153,7 +153,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &20866583
 MonoBehaviour:
@@ -439,7 +439,7 @@ Camera:
   m_Depth: 100
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 2147483647
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -464,7 +464,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 45, y: 45, z: 0}
 --- !u!114 &275121560
 MonoBehaviour:
@@ -832,12 +832,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dbdca9cacba2ec4abf2c57eb308045f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  casillasFinal:
-  - {fileID: 11400000, guid: f9f56dfc8d3b71d4592fb2889203f9cb, type: 2}
-  - {fileID: 11400000, guid: 7cc8fbc133e47dd4a95682f6e5034bb3, type: 2}
-  - {fileID: 11400000, guid: ee32aca0bbdcc854997a3600f4a4fee6, type: 2}
-  - {fileID: 11400000, guid: ab07687dc2706bf44ba70cf8b4212749, type: 2}
-  - {fileID: 11400000, guid: 7a824fd3f3adf084e9a8cd985ef8f073, type: 2}
   casillasDebug:
   - {fileID: 11400000, guid: f9f56dfc8d3b71d4592fb2889203f9cb, type: 2}
   - {fileID: 11400000, guid: 7cc8fbc133e47dd4a95682f6e5034bb3, type: 2}
@@ -1703,12 +1697,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b10b756b2fa80a408aa7f6cc3e93d80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numeroPartida: 25
+  numeroPartida: 28
   campo: {fileID: 11400000, guid: 5f1ea259c26884241980cf74c5b240b4, type: 2}
   palos: 0
   potenciaMaxima: 10
   anguloVelocidad: 100
   lineaLongitud: 2
+  color: {r: 0.8490566, g: 0.8113208, b: 0, a: 1}
   camara: 1
   velocidadLibre: 20
   zoomCerca: 0.5
@@ -1716,10 +1711,10 @@ MonoBehaviour:
   aleatorio: 1
   colores: 0
   llano: 1
-  formar: 0
+  formar: 1
   bola: 1
   hoyo: 1
-  mordiscos: 0
+  mordiscos: 1
   nivel: 0
   "tama\xF1oX": 20
   "tama\xF1oZ": 20

@@ -10,9 +10,7 @@ namespace Escenario
 {
     public class Escenario : MonoBehaviour
     {
-        [Header("Casillas")]
-        public Casilla[] casillasFinal;
-        public Casilla[] casillasDebug;
+        public List<Casilla> casillasDebug;
 
         [HideInInspector] public Casilla[,] casillasMapa = new Casilla[1, 1];
         [HideInInspector] public List<Vector3> casillasIniciales;
@@ -68,7 +66,7 @@ namespace Escenario
 
             if (Configuracion.instancia.llano == true)
             {
-                Llano.instancia.Generar(casillasMapa, altura, casillasFinal[0]);
+                Llano.instancia.Generar(casillasMapa, altura, Configuracion.instancia.campo.casillas[0]);
             }
 
             if (Configuracion.instancia.formar == true)
@@ -180,7 +178,7 @@ namespace Escenario
 
         public void PonerCasilla(Casilla casilla)
         {
-            Casilla[] casillasFinal2;
+            List<Casilla> casillasFinal2;
             int id = casilla.id;
             int idDebug = casilla.idDebug;
 
@@ -191,18 +189,18 @@ namespace Escenario
                     idDebug = id;
                 }
                 
-                if (id != casillasDebug.Length - 1 && idDebug != 99)
+                if (id != casillasDebug.Count - 1 && idDebug != 99)
                 {
                     id = CalcularIDFinal(id);
                 }
 
-                casillasFinal2 = casillasFinal;
+                casillasFinal2 = Configuracion.instancia.campo.casillas;
             }
             else
             {
                 if (idDebug == 99)
                 {
-                    casillasFinal2 = casillasFinal;
+                    casillasFinal2 = Configuracion.instancia.campo.casillas;
                 }
                 else
                 {
