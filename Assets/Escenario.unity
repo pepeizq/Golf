@@ -1697,13 +1697,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b10b756b2fa80a408aa7f6cc3e93d80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numeroPartida: 28
+  numeroPartida: 30
   campo: {fileID: 11400000, guid: 5f1ea259c26884241980cf74c5b240b4, type: 2}
   palos: 0
   potenciaMaxima: 10
   anguloVelocidad: 100
   lineaLongitud: 2
-  color: {r: 0.8490566, g: 0.8113208, b: 0, a: 1}
+  color: {r: 0, g: 0.4909292, b: 0.8509804, a: 0.58431375}
   camara: 1
   velocidadLibre: 20
   zoomCerca: 0.5

@@ -347,74 +347,42 @@ namespace Jugador
         {
             if (posicionBola != null)
             {
-                bool borrar = false;
-                List<Vector2> posiciones = new List<Vector2>();
-                Debug.Log(anguloBola);
-                if (materialElegido == CasillasMaterial.Transparente)
+                List<Vector2> posiciones = new List<Vector2>
                 {
-                    posiciones.Add(new Vector2((int)posicionBola.x, (int)posicionBola.z));
+                    new Vector2((int)posicionBola.x, (int)posicionBola.z),
+                    new Vector2((int)posicionBola.x - 1, (int)posicionBola.z),
+                    new Vector2((int)posicionBola.x - 1, (int)posicionBola.z - 1),
+                    new Vector2((int)posicionBola.x, (int)posicionBola.z - 1),
+                    new Vector2((int)posicionBola.x + 1, (int)posicionBola.z - 1),
+                    new Vector2((int)posicionBola.x + 1, (int)posicionBola.z),
+                    new Vector2((int)posicionBola.x + 1, (int)posicionBola.z + 1),
+                    new Vector2((int)posicionBola.x, (int)posicionBola.z + 1),
+                    new Vector2((int)posicionBola.x - 1, (int)posicionBola.z + 1),
+                    new Vector2((int)posicionBola.x, (int)posicionBola.z + 2),
+                    new Vector2((int)posicionBola.x + 1, (int)posicionBola.z + 2),
+                    new Vector2((int)posicionBola.x + 2, (int)posicionBola.z + 2),
+                    new Vector2((int)posicionBola.x + 2, (int)posicionBola.z + 1),
+                    new Vector2((int)posicionBola.x + 2, (int)posicionBola.z),
+                    new Vector2((int)posicionBola.x + 2, (int)posicionBola.z - 1),
+                    new Vector2((int)posicionBola.x + 2, (int)posicionBola.z - 2),
+                    new Vector2((int)posicionBola.x + 1, (int)posicionBola.z - 2),
+                    new Vector2((int)posicionBola.x, (int)posicionBola.z - 2),
+                    new Vector2((int)posicionBola.x - 1, (int)posicionBola.z - 2),
+                    new Vector2((int)posicionBola.x - 2, (int)posicionBola.z - 2),
+                    new Vector2((int)posicionBola.x - 2, (int)posicionBola.z - 1),
+                    new Vector2((int)posicionBola.x - 2, (int)posicionBola.z),
+                    new Vector2((int)posicionBola.x - 2, (int)posicionBola.z + 1),
+                    new Vector2((int)posicionBola.x - 2, (int)posicionBola.z + 2),
+                    new Vector2((int)posicionBola.x - 1, (int)posicionBola.z + 2)
+                };
 
-                    if (anguloBola >= -20 && anguloBola <= 20)
-                    {
-                        posiciones.Add(new Vector2((int)posicionBola.x - 1, (int)posicionBola.z));
-                        posiciones.Add(new Vector2((int)posicionBola.x + 1, (int)posicionBola.z));
-                        posiciones.Add(new Vector2((int)posicionBola.x, (int)posicionBola.z + 1));
-                        posiciones.Add(new Vector2((int)posicionBola.x - 1, (int)posicionBola.z + 1));
-                        posiciones.Add(new Vector2((int)posicionBola.x + 1, (int)posicionBola.z + 1));
-                        posiciones.Add(new Vector2((int)posicionBola.x, (int)posicionBola.z + 2));
-                        posiciones.Add(new Vector2((int)posicionBola.x - 1, (int)posicionBola.z + 2));
-                        posiciones.Add(new Vector2((int)posicionBola.x + 1, (int)posicionBola.z + 2));
-                    }
-                    else if (anguloBola >= 21 && anguloBola <= 75)
-                    {
-                        
-                    }
-                    else
-                    {
-                        borrar = true;
-                    }
-                }
-                else if (materialElegido == CasillasMaterial.Opaco)
+                float posicionY = 1;
+
+                if (Escenario.Escenario.instancia.casillasMapa[(int)posiciones[0].x, (int)posiciones[0].y] != null)
                 {
-                    borrar = true;
+                    posicionY = Escenario.Escenario.instancia.casillasMapa[(int)posiciones[0].x, (int)posiciones[0].y].prefab.gameObject.transform.localPosition.y;
                 }
-
-                if (borrar == true)
-                {
-                    posiciones.Add(new Vector2((int)posicionBola.x, (int)posicionBola.z));
-                    posiciones.Add(new Vector2((int)posicionBola.x - 1, (int)posicionBola.z));
-                    posiciones.Add(new Vector2((int)posicionBola.x - 1, (int)posicionBola.z - 1));
-                    posiciones.Add(new Vector2((int)posicionBola.x, (int)posicionBola.z - 1));
-                    posiciones.Add(new Vector2((int)posicionBola.x + 1, (int)posicionBola.z - 1));
-                    posiciones.Add(new Vector2((int)posicionBola.x + 1, (int)posicionBola.z));
-                    posiciones.Add(new Vector2((int)posicionBola.x + 1, (int)posicionBola.z + 1));
-                    posiciones.Add(new Vector2((int)posicionBola.x, (int)posicionBola.z + 1));
-                    posiciones.Add(new Vector2((int)posicionBola.x - 1, (int)posicionBola.z + 1));
-                    posiciones.Add(new Vector2((int)posicionBola.x, (int)posicionBola.z + 2));
-                    posiciones.Add(new Vector2((int)posicionBola.x + 1, (int)posicionBola.z + 2));
-                    posiciones.Add(new Vector2((int)posicionBola.x + 2, (int)posicionBola.z + 2));
-                    posiciones.Add(new Vector2((int)posicionBola.x + 2, (int)posicionBola.z + 1));
-                    posiciones.Add(new Vector2((int)posicionBola.x + 2, (int)posicionBola.z));
-                    posiciones.Add(new Vector2((int)posicionBola.x + 2, (int)posicionBola.z - 1));
-                    posiciones.Add(new Vector2((int)posicionBola.x + 2, (int)posicionBola.z - 2));
-                    posiciones.Add(new Vector2((int)posicionBola.x + 1, (int)posicionBola.z - 2));
-                    posiciones.Add(new Vector2((int)posicionBola.x, (int)posicionBola.z - 2));
-                    posiciones.Add(new Vector2((int)posicionBola.x - 1, (int)posicionBola.z - 2));
-                    posiciones.Add(new Vector2((int)posicionBola.x - 2, (int)posicionBola.z - 2));
-                    posiciones.Add(new Vector2((int)posicionBola.x - 2, (int)posicionBola.z - 1));
-                    posiciones.Add(new Vector2((int)posicionBola.x - 2, (int)posicionBola.z));
-                    posiciones.Add(new Vector2((int)posicionBola.x - 2, (int)posicionBola.z + 1));
-                    posiciones.Add(new Vector2((int)posicionBola.x - 2, (int)posicionBola.z + 2));
-                    posiciones.Add(new Vector2((int)posicionBola.x - 1, (int)posicionBola.z + 2));
-                }
-
-                int posicionY = 1;
-                
-                //if (Escenario.Escenario.instancia.casillasMapa[(int)posiciones[0].x, (int)posiciones[0].y] != null)
-                //{
-                //    posicionY = (int)Escenario.Escenario.instancia.casillasMapa[(int)posiciones[0].x, (int)posiciones[0].y].prefab.gameObject.transform.localPosition.y;
-                //}
-                
+            
                 foreach (Vector2 posicion in posiciones)
                 {
                     if (Limites.Comprobar((int)posicion.x, 2, Configuracion.instancia.tamañoX) == true && Limites.Comprobar((int)posicion.y, 2, Configuracion.instancia.tamañoZ) == true)
@@ -423,28 +391,28 @@ namespace Jugador
                         {
                             bool cambiar = true;
 
-                            //if ((int)Escenario.Escenario.instancia.casillasMapa[(int)posicion.x, (int)posicion.y].prefab.gameObject.transform.localPosition.y == posicionY)
-                            //{
-                            //    if (Escenario.Escenario.instancia.casillasMapa[(int)posicion.x, (int)posicion.y].id == 0)
-                            //    {
-                            //        cambiar = false;
-                            //    }
-                            //}
-                            //else if ((int)Escenario.Escenario.instancia.casillasMapa[(int)posicion.x, (int)posicion.y].prefab.gameObject.transform.localPosition.y < posicionY)
-                            //{
-                            //    cambiar = false;
-                            //}
+                            if (Escenario.Escenario.instancia.casillasMapa[(int)posicion.x, (int)posicion.y].prefab.gameObject.transform.localPosition.y == posicionY)
+                            {
+                                if (Escenario.Escenario.instancia.casillasMapa[(int)posicion.x, (int)posicion.y].id == 0)
+                                {
+                                    cambiar = false;
+                                }
+                            }
+                            else if ((int)Escenario.Escenario.instancia.casillasMapa[(int)posicion.x, (int)posicion.y].prefab.gameObject.transform.localPosition.y < posicionY)
+                            {
+                                cambiar = false;
+                            }
 
                             if (cambiar == true)
                             {
                                 Renderer renderer = Escenario.Escenario.instancia.casillasMapa[(int)posicion.x, (int)posicion.y].prefab.gameObject.GetComponent<Renderer>();
 
-                                if (borrar == false)
+                                if (materialElegido == CasillasMaterial.Transparente)
                                 {
                                     renderer.materials[0].CopyPropertiesFromMaterial(Configuracion.instancia.campo.casillaOscuroTransparente);
                                     renderer.materials[1].CopyPropertiesFromMaterial(Configuracion.instancia.campo.casillaClaroTransparente);
                                 }
-                                else if (borrar == true)
+                                else if (materialElegido == CasillasMaterial.Opaco)
                                 {
                                     renderer.materials[0].CopyPropertiesFromMaterial(Configuracion.instancia.campo.casillaOscuroOpaco);
                                     renderer.materials[1].CopyPropertiesFromMaterial(Configuracion.instancia.campo.casillaClaroOpaco);
