@@ -20,14 +20,15 @@ namespace Escenario.Colocar
                 {
                     if (Configuracion.instancia.aleatorio == true)
                     {
+                        int perimetro = 5;
                         int proporcion = 4;
                         int intentos = 1000;
                         int i = 0;
 
                         while (i < intentos)
                         {
-                            int x = Random.Range(Escenario.instancia.limitesMapa + 2, Configuracion.instancia.tamañoX / proporcion);
-                            int z = Random.Range(Escenario.instancia.limitesMapa + 2, Configuracion.instancia.tamañoZ / proporcion);
+                            int x = Random.Range(Escenario.instancia.limitesMapa + perimetro, Configuracion.instancia.tamañoX / proporcion);
+                            int z = Random.Range(Escenario.instancia.limitesMapa + perimetro, Configuracion.instancia.tamañoZ / proporcion);
 
                             if (casillas[x, z] != null)
                             {
@@ -46,6 +47,7 @@ namespace Escenario.Colocar
                             {
                                 i = 0;
                                 proporcion -= 1;
+                                perimetro -= 1;
                             }
                         }
                     }
@@ -66,8 +68,8 @@ namespace Escenario.Colocar
 
             if (Configuracion.instancia.camara == Configuracion.CamaraModos.Libre)
             {
-                posicion2.x = posicion2.x - 41.7f;
-                posicion2.z = posicion2.z - 41.7f;
+                posicion2.x = posicion2.x - Configuracion.instancia.rotacionCamaraX;
+                posicion2.z = posicion2.z - Configuracion.instancia.rotacionCamaraZ;
             }
 
             Objetos.instancia.camara.transform.position = posicion2;            

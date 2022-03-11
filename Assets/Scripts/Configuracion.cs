@@ -17,12 +17,18 @@ public class Configuracion : MonoBehaviour
     public float lineaLongitud = 2f;
     public Color color;
 
+    [HideInInspector] public bool poderMover = true;
+
     [Space(20)]
     [Header("Camara")]
     public CamaraModos camara;
     public int velocidadLibre = 20;
     public float zoomCerca = 0.5f;
     public float zoomLejos = 25f;
+
+    [HideInInspector] public float rotacionCamaraX = 41.7f;
+    [HideInInspector] public float rotacionCamaraY = 60f;
+    [HideInInspector] public float rotacionCamaraZ = 41.7f;
 
     [Space(20)]
     [Header("Escenario")]
@@ -34,12 +40,18 @@ public class Configuracion : MonoBehaviour
     public bool bola = true;
     public bool hoyo = true;
     public bool mordiscos = true;
+    public bool muros = true;
+    public bool animacionHoyoBola = true;
 
     [HideInInspector] public int nivel = 0;
     [HideInInspector] public int tamañoX = 40;
     [HideInInspector] public int tamañoZ = 40;
     [HideInInspector] public float alturaMaxima = 2f;
     [HideInInspector] public HoyoFormas forma = HoyoFormas.SinTocar;
+
+    [HideInInspector] public Vector3 posicionHoyo;
+    [HideInInspector] public int posicionHoyoX;
+    [HideInInspector] public int posicionHoyoZ;
 
     public static Configuracion instancia;
 

@@ -5,7 +5,6 @@ using UnityEngine.UI;
 public class Objetos : MonoBehaviour
 {
     public GameObject bola;
-    public GameObject hoyo;
     public GameObject camara;
 
     [Space(20)]

@@ -27,3 +27,6 @@ MonoBehaviour:
   casillaOscuroOpaco: {fileID: 2100000, guid: 71306783159ea2c448d6b499539cd03a, type: 2}
   casillaOscuroTransparente: {fileID: 2100000, guid: 8095716a581eb7b41b749fbe177da462,
     type: 2}
+  hoyo: {fileID: 493594958679372392, guid: 8fd3a73ca778fed458557d8ef7c1d631, type: 3}
+  muros:
+  - {fileID: 8570388267494190964, guid: 4f2fe23f9e8df0e4184814565d50ae20, type: 3}

@@ -18,7 +18,7 @@ namespace Jugador
         private bool permitirRotarIzquierda;
         private bool permitirRotarDerecha;
 
-        private Vector3 ultimaPosicion;
+        public Vector3 ultimaPosicion;
         private LineRenderer linea;
         private Rigidbody cuerpo;
 
@@ -42,6 +42,10 @@ namespace Jugador
         public void Start()
         {
             instancia.camaraOffset = Objetos.instancia.camara.transform.position - instancia.transform.position;
+
+            //--------------------------------------------------------------------
+
+            instancia.ultimaPosicion = transform.localPosition;
 
             //--------------------------------------------------------------------
 
@@ -69,159 +73,171 @@ namespace Jugador
 
         public void Update()
         {
-            Vector3 velocidad = instancia.cuerpo.velocity;
-
-            if (velocidad.magnitude <= 0.001f)
+            if (Configuracion.instancia.poderMover == true)
             {
-                instancia.cuerpo.velocity = Vector3.zero;
-                instancia.cuerpo.angularVelocity = Vector3.zero;
-
                 instancia.linea.enabled = true;
-                instancia.ultimaPosicion = transform.localPosition;
 
-                Partida.Guardar.GuardarBola(instancia.ultimaPosicion, instancia.angulo);
-                CasillasCambiarMaterial(instancia.ultimaPosicion, instancia.angulo, CasillasMaterial.Transparente);
+                Vector3 velocidad = instancia.cuerpo.velocity;
 
-                if (instancia.permitirPotencia == true)
+                if (velocidad.magnitude <= 0.001f)
                 {
-                    if (instancia.potenciaDecrecer == false)
+                    instancia.cuerpo.velocity = Vector3.zero;
+                    instancia.cuerpo.angularVelocity = Vector3.zero;
+
+                    instancia.linea.enabled = true;
+                    instancia.ultimaPosicion = transform.localPosition;
+
+                    Partida.Guardar.GuardarBola(instancia.ultimaPosicion, instancia.angulo);
+                    CasillasCambiarMaterial(instancia.ultimaPosicion, CasillasMaterial.Transparente);
+
+                    if (instancia.permitirPotencia == true)
                     {
-                        if (instancia.potencia <= Configuracion.instancia.potenciaMaxima)
+                        if (instancia.potenciaDecrecer == false)
                         {
-                            instancia.potencia += 0.1f;
+                            if (instancia.potencia <= Configuracion.instancia.potenciaMaxima)
+                            {
+                                instancia.potencia += 0.1f;
+                            }
+                            else
+                            {
+                                instancia.potencia = Configuracion.instancia.potenciaMaxima;
+                                instancia.potenciaDecrecer = true;
+                            }
                         }
-                        else
+                        else if (instancia.potenciaDecrecer == true)
                         {
-                            instancia.potencia = Configuracion.instancia.potenciaMaxima;
-                            instancia.potenciaDecrecer = true;
+                            if (instancia.potencia >= 0)
+                            {
+                                instancia.potencia -= 0.1f;
+                            }
+                            else
+                            {
+                                instancia.potencia = 0;
+                                instancia.potenciaDecrecer = false;
+                            }
                         }
                     }
-                    else if (instancia.potenciaDecrecer == true)
+                    else
                     {
-                        if (instancia.potencia >= 0)
+                        if (instancia.potencia != 0)
                         {
-                            instancia.potencia -= 0.1f;
-                        }
-                        else
-                        {
+                            if (Configuracion.instancia.palos == Configuracion.Palos.Madera)
+                            {
+                                instancia.cuerpo.AddForce(Quaternion.Euler(0, instancia.angulo, 0) * Vector3.up * (instancia.potencia * 2), ForceMode.Impulse);
+                                instancia.cuerpo.AddForce(Quaternion.Euler(0, instancia.angulo, 0) * Vector3.forward * (instancia.potencia * 2), ForceMode.Impulse);
+                            }
+                            else
+                            {
+                                instancia.cuerpo.AddForce(Quaternion.Euler(0, instancia.angulo, 0) * Vector3.forward * instancia.potencia, ForceMode.Impulse);
+                            }
+
                             instancia.potencia = 0;
-                            instancia.potenciaDecrecer = false;
+
+                            instancia.golpes += 1;
+                            Objetos.instancia.textoGolpes.text = string.Format("Golpes: {0}", instancia.golpes.ToString());
                         }
                     }
-                }
-                else
-                {
-                    if (instancia.potencia != 0)
+
+                    Objetos.instancia.sliderPotencia.value = instancia.potencia;
+
+                    if (instancia.potencia == 0)
                     {
-                        if (Configuracion.instancia.palos == Configuracion.Palos.Madera)
-                        {
-                            instancia.cuerpo.AddForce(Quaternion.Euler(0, instancia.angulo, 0) * Vector3.up * (instancia.potencia * 2), ForceMode.Impulse);
-                            instancia.cuerpo.AddForce(Quaternion.Euler(0, instancia.angulo, 0) * Vector3.forward * (instancia.potencia * 2), ForceMode.Impulse);
-                        }
-                        else
-                        {
-                            instancia.cuerpo.AddForce(Quaternion.Euler(0, instancia.angulo, 0) * Vector3.forward * instancia.potencia, ForceMode.Impulse);
-                        }
-                        
-                        instancia.potencia = 0;
-
-                        instancia.golpes += 1;
-                        Objetos.instancia.textoGolpes.text = string.Format("Golpes: {0}", instancia.golpes.ToString());
+                        Objetos.instancia.sliderPotencia.gameObject.SetActive(false);
                     }
-                }
+                    else
+                    {
+                        Objetos.instancia.sliderPotencia.gameObject.SetActive(true);
+                    }
 
-                Objetos.instancia.sliderPotencia.value = instancia.potencia;
+                    //--------------------------------------------------------
 
-                if (instancia.potencia == 0)
-                {
-                    Objetos.instancia.sliderPotencia.gameObject.SetActive(false);
+                    if (instancia.permitirRotarIzquierda == true)
+                    {
+                        instancia.angulo -= Time.deltaTime * Configuracion.instancia.anguloVelocidad;
+                    }
+
+                    if (instancia.permitirRotarDerecha == true)
+                    {
+                        instancia.angulo += Time.deltaTime * Configuracion.instancia.anguloVelocidad;
+                    }
+
+                    //--------------------------------------------------------
+
+                    instancia.linea.SetPosition(0, instancia.transform.position);
+                    instancia.linea.SetPosition(1, instancia.transform.position + Quaternion.Euler(0, instancia.angulo, 0) * Vector3.forward * (Configuracion.instancia.lineaLongitud + instancia.potencia / 4));
                 }
                 else
                 {
-                    Objetos.instancia.sliderPotencia.gameObject.SetActive(true);
+                    instancia.linea.enabled = false;
+
+                    if (transform.localPosition.y <= -5f)
+                    {
+                        transform.localPosition = instancia.ultimaPosicion;
+                        instancia.cuerpo.velocity = Vector3.zero;
+                        instancia.cuerpo.angularVelocity = Vector3.zero;
+                    }
+
+                    CasillasCambiarMaterial(instancia.ultimaPosicion, CasillasMaterial.Opaco);
                 }
-
-                //--------------------------------------------------------
-
-                if (instancia.permitirRotarIzquierda == true)
-                {
-                    instancia.angulo -= Time.deltaTime * Configuracion.instancia.anguloVelocidad;
-                }
-
-                if (instancia.permitirRotarDerecha == true)
-                {
-                    instancia.angulo += Time.deltaTime * Configuracion.instancia.anguloVelocidad;
-                }
-
-                //--------------------------------------------------------
-
-                instancia.linea.SetPosition(0, instancia.transform.position);
-                instancia.linea.SetPosition(1, instancia.transform.position + Quaternion.Euler(0, instancia.angulo, 0) * Vector3.forward * (Configuracion.instancia.lineaLongitud + instancia.potencia / 4));           
-            }
+            }     
             else
             {
                 instancia.linea.enabled = false;
-
-                if (transform.localPosition.y <= -5f)
-                {
-                    transform.localPosition = instancia.ultimaPosicion;
-                    instancia.cuerpo.velocity = Vector3.zero;
-                    instancia.cuerpo.angularVelocity = Vector3.zero;
-                }
-
-                CasillasCambiarMaterial(instancia.ultimaPosicion, instancia.angulo, CasillasMaterial.Opaco);
             }
         }
 
         public void FixedUpdate()
         {
-            if (Configuracion.instancia.camara == Configuracion.CamaraModos.Libre)
+            if (Configuracion.instancia.poderMover == true)
             {
-                if (instancia.camaraMovimientoInput.x > 0 && instancia.camaraMovimientoInput.y == 0)
+                if (Configuracion.instancia.camara == Configuracion.CamaraModos.Libre)
                 {
-                    Objetos.instancia.camara.transform.Translate(new Vector3(Configuracion.instancia.velocidadLibre * Time.deltaTime * 10, 0, 0));
+                    if (instancia.camaraMovimientoInput.x > 0 && instancia.camaraMovimientoInput.y == 0)
+                    {
+                        Objetos.instancia.camara.transform.Translate(new Vector3(Configuracion.instancia.velocidadLibre * Time.deltaTime * 10, 0, 0));
+                    }
+                    else if (instancia.camaraMovimientoInput.x < 0 && instancia.camaraMovimientoInput.y == 0)
+                    {
+                        Objetos.instancia.camara.transform.Translate(new Vector3(-Configuracion.instancia.velocidadLibre * Time.deltaTime * 10, 0, 0));
+                    }
+                    else if (instancia.camaraMovimientoInput.x == 0 && instancia.camaraMovimientoInput.y > 0)
+                    {
+                        Objetos.instancia.camara.transform.Translate(new Vector3(0, Configuracion.instancia.velocidadLibre * Time.deltaTime * 10, 0));
+                    }
+                    else if (instancia.camaraMovimientoInput.x == 0 && instancia.camaraMovimientoInput.y < 0)
+                    {
+                        Objetos.instancia.camara.transform.Translate(new Vector3(0, -Configuracion.instancia.velocidadLibre * Time.deltaTime * 10, 0));
+                    }
+
+                    Objetos.instancia.camara.transform.position = new Vector3(Objetos.instancia.camara.transform.position.x, 60, Objetos.instancia.camara.transform.position.z);
                 }
-                else if (instancia.camaraMovimientoInput.x < 0 && instancia.camaraMovimientoInput.y == 0)
+                else if (Configuracion.instancia.camara == Configuracion.CamaraModos.Fija)
                 {
-                    Objetos.instancia.camara.transform.Translate(new Vector3(-Configuracion.instancia.velocidadLibre * Time.deltaTime * 10, 0, 0));
-                }
-                else if (instancia.camaraMovimientoInput.x == 0 && instancia.camaraMovimientoInput.y > 0)
-                {
-                    Objetos.instancia.camara.transform.Translate(new Vector3(0, Configuracion.instancia.velocidadLibre * Time.deltaTime * 10, 0));
-                }
-                else if (instancia.camaraMovimientoInput.x == 0 && instancia.camaraMovimientoInput.y < 0)
-                {
-                    Objetos.instancia.camara.transform.Translate(new Vector3(0, -Configuracion.instancia.velocidadLibre * Time.deltaTime * 10, 0));
+                    Vector3 posicion = instancia.transform.position + instancia.camaraOffset;
+                    posicion.x -= Configuracion.instancia.rotacionCamaraX - (instancia.transform.position.y - 1f) / 2;
+                    posicion.y = 60;
+                    posicion.z -= Configuracion.instancia.rotacionCamaraZ - (instancia.transform.position.y - 1f) / 2;
+                    Objetos.instancia.camara.transform.position = posicion;
                 }
 
-                Objetos.instancia.camara.transform.position = new Vector3(Objetos.instancia.camara.transform.position.x, 60, Objetos.instancia.camara.transform.position.z);
-            }
-            else if (Configuracion.instancia.camara == Configuracion.CamaraModos.Fija)
-            {
-                Vector3 posicion = instancia.transform.position + instancia.camaraOffset;
-                posicion.x -= 41.7f - (instancia.transform.position.y - 1f) / 2;
-                posicion.y = 60;
-                posicion.z -= 41.7f - (instancia.transform.position.y - 1f) / 2;
-                Objetos.instancia.camara.transform.position = posicion;
-            }
+                //------------------------------------
 
-            //------------------------------------
+                if (instancia.camaraZoomInput > 0)
+                {
+                    instancia.camaraZoomInput = 0.1f;
+                }
+                else if (instancia.camaraZoomInput < 0)
+                {
+                    instancia.camaraZoomInput = -0.1f;
+                }
+                else
+                {
+                    instancia.camaraZoomInput = 0;
+                }
 
-            if (instancia.camaraZoomInput > 0)
-            {
-                instancia.camaraZoomInput = 0.1f;
+                Camera objeto = Objetos.instancia.camara.GetComponent<Camera>();
+                objeto.orthographicSize = Mathf.Clamp(objeto.orthographicSize -= instancia.camaraZoomInput * (10f * objeto.orthographicSize * .1f), Configuracion.instancia.zoomCerca, Configuracion.instancia.zoomLejos);
             }
-            else if (instancia.camaraZoomInput < 0)
-            {
-                instancia.camaraZoomInput = -0.1f;
-            }
-            else
-            {
-                instancia.camaraZoomInput = 0;
-            }
-
-            Camera objeto = Objetos.instancia.camara.GetComponent<Camera>();
-            objeto.orthographicSize = Mathf.Clamp(objeto.orthographicSize -= instancia.camaraZoomInput * (10f * objeto.orthographicSize * .1f), Configuracion.instancia.zoomCerca, Configuracion.instancia.zoomLejos);
         }
 
         private void OnTriggerEnter(Collider colision)
@@ -253,97 +269,117 @@ namespace Jugador
         }
 
         public void PotenciaInput(InputAction.CallbackContext contexto)
-        {          
-            if (contexto.phase == InputActionPhase.Performed)
+        {
+            if (Configuracion.instancia.poderMover == true)
             {
-                instancia.permitirPotencia = true;
-            }
-            else if (contexto.phase == InputActionPhase.Canceled)
-            {
-                instancia.permitirPotencia = false;
-            }
+                if (contexto.phase == InputActionPhase.Performed)
+                {
+                    instancia.permitirPotencia = true;
+                }
+                else if (contexto.phase == InputActionPhase.Canceled)
+                {
+                    instancia.permitirPotencia = false;
+                }
+            }               
         }
 
         public void RotarIzquierdaInput(InputAction.CallbackContext contexto)
         {
-            if (contexto.phase == InputActionPhase.Performed)
+            if (Configuracion.instancia.poderMover == true)
             {
-                instancia.permitirRotarIzquierda = true;    
-            }
-            else if (contexto.phase == InputActionPhase.Canceled)
-            {
-                instancia.permitirRotarIzquierda = false;
-            }
+                if (contexto.phase == InputActionPhase.Performed)
+                {
+                    instancia.permitirRotarIzquierda = true;
+                }
+                else if (contexto.phase == InputActionPhase.Canceled)
+                {
+                    instancia.permitirRotarIzquierda = false;
+                }
+            }                
         }
 
         public void RotarDerechaInput(InputAction.CallbackContext contexto)
         {
-            if (contexto.phase == InputActionPhase.Performed)
+            if (Configuracion.instancia.poderMover == true)
             {
-                instancia.permitirRotarDerecha = true;
-            }
-            else if (contexto.phase == InputActionPhase.Canceled)
-            {
-                instancia.permitirRotarDerecha = false;
-            }
+                if (contexto.phase == InputActionPhase.Performed)
+                {
+                    instancia.permitirRotarDerecha = true;
+                }
+                else if (contexto.phase == InputActionPhase.Canceled)
+                {
+                    instancia.permitirRotarDerecha = false;
+                }
+            }                
         }
 
         public void CamaraMovimientoInput(InputAction.CallbackContext contexto)
         {
-            if (contexto.phase == InputActionPhase.Performed)
+            if (Configuracion.instancia.poderMover == true)
             {
-                instancia.camaraMovimientoInput = contexto.ReadValue<Vector2>();
-            }
-            else if (contexto.phase == InputActionPhase.Canceled)
-            {
-                instancia.camaraMovimientoInput = Vector2.zero;
-            }
+                if (contexto.phase == InputActionPhase.Performed)
+                {
+                    instancia.camaraMovimientoInput = contexto.ReadValue<Vector2>();
+                }
+                else if (contexto.phase == InputActionPhase.Canceled)
+                {
+                    instancia.camaraMovimientoInput = Vector2.zero;
+                }
+            }                
         }
 
         public void CamaraZoomInput(InputAction.CallbackContext contexto)
         {
-            if (contexto.phase == InputActionPhase.Performed)
+            if (Configuracion.instancia.poderMover == true)
             {
-                instancia.camaraZoomInput = contexto.ReadValue<float>();
-            }
+                if (contexto.phase == InputActionPhase.Performed)
+                {
+                    instancia.camaraZoomInput = contexto.ReadValue<float>();
+                }
+            }              
         }
 
         public void CamaraModoInput(InputAction.CallbackContext contexto)
         {
-            if (contexto.phase == InputActionPhase.Performed)
+            if (Configuracion.instancia.poderMover == true)
             {
-                if (Configuracion.instancia.camara == Configuracion.CamaraModos.Fija)
+                if (contexto.phase == InputActionPhase.Performed)
                 {
-                    Configuracion.instancia.camara = Configuracion.CamaraModos.Libre;
+                    if (Configuracion.instancia.camara == Configuracion.CamaraModos.Fija)
+                    {
+                        Configuracion.instancia.camara = Configuracion.CamaraModos.Libre;
+                    }
+                    else
+                    {
+                        Configuracion.instancia.camara = Configuracion.CamaraModos.Fija;
+                    }
                 }
-                else
-                {
-                    Configuracion.instancia.camara = Configuracion.CamaraModos.Fija;
-                }
-            }
+            }              
         }
 
         public void CambiarPaloInput(InputAction.CallbackContext contexto)
         {
-            if (contexto.phase == InputActionPhase.Performed)
+            if (Configuracion.instancia.poderMover == true)
             {
-                if (Configuracion.instancia.palos == Configuracion.Palos.Madera)
+                if (contexto.phase == InputActionPhase.Performed)
                 {
-                    Configuracion.instancia.palos = Configuracion.Palos.Hierro;
-                }
-                else
-                {
-                    Configuracion.instancia.palos = Configuracion.Palos.Madera;
-                }
+                    if (Configuracion.instancia.palos == Configuracion.Palos.Madera)
+                    {
+                        Configuracion.instancia.palos = Configuracion.Palos.Hierro;
+                    }
+                    else
+                    {
+                        Configuracion.instancia.palos = Configuracion.Palos.Madera;
+                    }
 
-                Objetos.instancia.textoPalos.text = Configuracion.instancia.palos.ToString();
-            }
+                    Objetos.instancia.textoPalos.text = Configuracion.instancia.palos.ToString();
+                }
+            }              
         }
-
 
         private enum CasillasMaterial { Transparente, Opaco }
 
-        private void CasillasCambiarMaterial(Vector3 posicionBola, float anguloBola, CasillasMaterial materialElegido)
+        private void CasillasCambiarMaterial(Vector3 posicionBola, CasillasMaterial materialElegido)
         {
             if (posicionBola != null)
             {

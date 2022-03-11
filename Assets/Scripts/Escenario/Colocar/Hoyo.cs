@@ -15,7 +15,7 @@ namespace Escenario.Colocar
 
         public void Colocar(Casilla[,] casillas)
         {
-            if (Objetos.instancia.hoyo != null)
+            if (Configuracion.instancia.campo.hoyo != null)
             {
                 if (casillas != null)
                 {
@@ -60,8 +60,12 @@ namespace Escenario.Colocar
 
         private void InstanciarHoyo(Casilla[,] casillas, int casillaX, int casillaZ)
         {
-            GameObject hoyo = Instantiate(Objetos.instancia.hoyo);
+            GameObject hoyo = Instantiate(Configuracion.instancia.campo.hoyo);
             hoyo.transform.position = casillas[casillaX, casillaZ].prefab.transform.position;
+
+            Configuracion.instancia.posicionHoyo = hoyo.transform.localPosition;
+            Configuracion.instancia.posicionHoyoX = casillaX;
+            Configuracion.instancia.posicionHoyoZ = casillaZ;
 
             Destroy(casillas[casillaX, casillaZ].prefab);
             casillas[casillaX, casillaZ].prefab = hoyo;

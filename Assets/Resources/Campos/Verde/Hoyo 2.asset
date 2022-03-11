@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Hoyo 2
   m_EditorClassIdentifier: 
   forma: 2
-  "tama\xF1oX": 40
+  "tama\xF1oX": 60
   "tama\xF1oZ": 60
-  alturaMaxima: 2
-  intentosMordiscos: 12
+  alturaMaxima: 3
+  intentosMordiscos: 0

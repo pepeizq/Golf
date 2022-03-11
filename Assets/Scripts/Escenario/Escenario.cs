@@ -88,6 +88,16 @@ namespace Escenario
             {
                 Mordiscos.instancia.Colocar(casillasMapa);
             }
+
+            if (Configuracion.instancia.muros == true)
+            {
+                Muros.instancia.Colocar(casillasMapa);
+            }
+
+            if (Configuracion.instancia.animacionHoyoBola == true)
+            {
+                AnimacionHoyoBola.instancia.Generar();
+            }
         }
 
         public void Update()
