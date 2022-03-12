@@ -21,14 +21,15 @@ namespace Escenario.Colocar
                 {
                     if (Configuracion.instancia.aleatorio == true)
                     {
+                        int perimetro = 5;
                         int proporcion = 3;
                         int intentos = 1000;
                         int i = 0;
 
                         while (i < intentos)
                         {
-                            int x = Random.Range(Configuracion.instancia.tamañoX / 2 + Configuracion.instancia.tamañoX / proporcion, Configuracion.instancia.tamañoX - 2 - Escenario.instancia.limitesMapa);
-                            int z = Random.Range(Configuracion.instancia.tamañoZ / 2 + Configuracion.instancia.tamañoZ / proporcion, Configuracion.instancia.tamañoZ - 2 - Escenario.instancia.limitesMapa);
+                            int x = Random.Range(Configuracion.instancia.tamañoX / 2 + Configuracion.instancia.tamañoX / proporcion, Configuracion.instancia.tamañoX - perimetro - Escenario.instancia.limitesMapa);
+                            int z = Random.Range(Configuracion.instancia.tamañoZ / 2 + Configuracion.instancia.tamañoZ / proporcion, Configuracion.instancia.tamañoZ - perimetro - Escenario.instancia.limitesMapa);
 
                             if (casillas[x, z] != null)
                             {
@@ -46,6 +47,7 @@ namespace Escenario.Colocar
                             {
                                 i = 0;
                                 proporcion += 1;
+                                perimetro -= 1;
                             }
                         }
                     }

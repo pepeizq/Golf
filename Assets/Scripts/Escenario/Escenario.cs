@@ -123,6 +123,59 @@ namespace Escenario
                 }
             }
 
+            //Rampas 4 Morado
+            foreach (Casilla subcasilla in casillasMapa)
+            {
+                if (subcasilla != null)
+                {
+                    int x = (int)subcasilla.posicion.x;
+                    int z = (int)subcasilla.posicion.z;
+
+                    float y = subcasilla.posicion.y;
+                    y = y - 0.5f;
+
+                    if (y < 0.0f)
+                    {
+                        y = 0.0f;
+                    }
+
+                    if ((y > 0) && (altura == subcasilla.posicion.y) && Limites.Comprobar(x, 2, Configuracion.instancia.tamañoX) == true && Limites.Comprobar(z, 2, Configuracion.instancia.tamañoZ) == true)
+                    {
+                        if (casillasMapa[x + 1, z + 1] == null)
+                        {
+                            Colores.instancia.PonerRampas4Morado(x, y, z);
+                        }
+                    }
+                }
+            }
+
+            //Rampas 4 MarronClaro
+            foreach (Casilla subcasilla in casillasMapa)
+            {
+                if (subcasilla != null)
+                {
+                    int x = (int)subcasilla.posicion.x;
+                    int z = (int)subcasilla.posicion.z;
+
+                    float y = subcasilla.posicion.y;
+                    y = y - 0.5f;
+
+                    if (y < 0.0f)
+                    {
+                        y = 0.0f;
+                    }
+
+                    if ((y > 0) && (altura == subcasilla.posicion.y) && Limites.Comprobar(x, 2, Configuracion.instancia.tamañoX) == true && Limites.Comprobar(z, 2, Configuracion.instancia.tamañoZ) == true)
+                    {
+                        if (casillasMapa[x + 1, z - 1] == null)
+                        {
+                            Colores.instancia.PonerRampas4MarronClaro(x, y, z);
+                        }
+                    }
+                }
+            }
+
+            //Resto
             foreach (Casilla subcasilla in casillasMapa)
             {
                 if (subcasilla != null)

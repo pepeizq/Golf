@@ -16,6 +16,7 @@ public class Configuracion : MonoBehaviour
     public float anguloVelocidad = 100f;
     public float lineaLongitud = 2f;
     public Color color;
+    public bool transparencias = true;
 
     [HideInInspector] public bool poderMover = true;
 
@@ -23,6 +24,7 @@ public class Configuracion : MonoBehaviour
     [Header("Camara")]
     public CamaraModos camara;
     public int velocidadLibre = 20;
+    public float zoomDefecto = 3.5f;
     public float zoomCerca = 0.5f;
     public float zoomLejos = 25f;
 

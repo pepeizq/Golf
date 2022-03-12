@@ -58,6 +58,11 @@ namespace Jugador
 
             //--------------------------------------------------------------------
 
+            Camera objeto = Objetos.instancia.camara.GetComponent<Camera>();
+            objeto.orthographicSize = Configuracion.instancia.zoomDefecto;
+
+            //--------------------------------------------------------------------
+
             Renderer renderer = instancia.GetComponent<Renderer>();
             renderer.material.shader = Shader.Find("HDRP/Lit");
             renderer.material.SetColor("_BaseColor", Configuracion.instancia.color);
@@ -88,7 +93,7 @@ namespace Jugador
                     instancia.ultimaPosicion = transform.localPosition;
 
                     Partida.Guardar.GuardarBola(instancia.ultimaPosicion, instancia.angulo);
-                    CasillasCambiarMaterial(instancia.ultimaPosicion, CasillasMaterial.Transparente);
+                    Transparentar.Casillas(instancia.ultimaPosicion, Transparentar.CasillasMaterial.Transparente);
 
                     if (instancia.permitirPotencia == true)
                     {
@@ -177,7 +182,7 @@ namespace Jugador
                         instancia.cuerpo.angularVelocity = Vector3.zero;
                     }
 
-                    CasillasCambiarMaterial(instancia.ultimaPosicion, CasillasMaterial.Opaco);
+                    Transparentar.Casillas(instancia.ultimaPosicion, Transparentar.CasillasMaterial.Opaco);
                 }
             }     
             else
@@ -377,88 +382,6 @@ namespace Jugador
             }              
         }
 
-        private enum CasillasMaterial { Transparente, Opaco }
-
-        private void CasillasCambiarMaterial(Vector3 posicionBola, CasillasMaterial materialElegido)
-        {
-            if (posicionBola != null)
-            {
-                List<Vector2> posiciones = new List<Vector2>
-                {
-                    new Vector2((int)posicionBola.x, (int)posicionBola.z),
-                    new Vector2((int)posicionBola.x - 1, (int)posicionBola.z),
-                    new Vector2((int)posicionBola.x - 1, (int)posicionBola.z - 1),
-                    new Vector2((int)posicionBola.x, (int)posicionBola.z - 1),
-                    new Vector2((int)posicionBola.x + 1, (int)posicionBola.z - 1),
-                    new Vector2((int)posicionBola.x + 1, (int)posicionBola.z),
-                    new Vector2((int)posicionBola.x + 1, (int)posicionBola.z + 1),
-                    new Vector2((int)posicionBola.x, (int)posicionBola.z + 1),
-                    new Vector2((int)posicionBola.x - 1, (int)posicionBola.z + 1),
-                    new Vector2((int)posicionBola.x, (int)posicionBola.z + 2),
-                    new Vector2((int)posicionBola.x + 1, (int)posicionBola.z + 2),
-                    new Vector2((int)posicionBola.x + 2, (int)posicionBola.z + 2),
-                    new Vector2((int)posicionBola.x + 2, (int)posicionBola.z + 1),
-                    new Vector2((int)posicionBola.x + 2, (int)posicionBola.z),
-                    new Vector2((int)posicionBola.x + 2, (int)posicionBola.z - 1),
-                    new Vector2((int)posicionBola.x + 2, (int)posicionBola.z - 2),
-                    new Vector2((int)posicionBola.x + 1, (int)posicionBola.z - 2),
-                    new Vector2((int)posicionBola.x, (int)posicionBola.z - 2),
-                    new Vector2((int)posicionBola.x - 1, (int)posicionBola.z - 2),
-                    new Vector2((int)posicionBola.x - 2, (int)posicionBola.z - 2),
-                    new Vector2((int)posicionBola.x - 2, (int)posicionBola.z - 1),
-                    new Vector2((int)posicionBola.x - 2, (int)posicionBola.z),
-                    new Vector2((int)posicionBola.x - 2, (int)posicionBola.z + 1),
-                    new Vector2((int)posicionBola.x - 2, (int)posicionBola.z + 2),
-                    new Vector2((int)posicionBola.x - 1, (int)posicionBola.z + 2)
-                };
-
-                float posicionY = 1;
-
-                if (Escenario.Escenario.instancia.casillasMapa[(int)posiciones[0].x, (int)posiciones[0].y] != null)
-                {
-                    posicionY = Escenario.Escenario.instancia.casillasMapa[(int)posiciones[0].x, (int)posiciones[0].y].prefab.gameObject.transform.localPosition.y;
-                }
-            
-                foreach (Vector2 posicion in posiciones)
-                {
-                    if (Limites.Comprobar((int)posicion.x, 2, Configuracion.instancia.tamañoX) == true && Limites.Comprobar((int)posicion.y, 2, Configuracion.instancia.tamañoZ) == true)
-                    {
-                        if (Escenario.Escenario.instancia.casillasMapa[(int)posicion.x, (int)posicion.y] != null)
-                        {
-                            bool cambiar = true;
-
-                            if (Escenario.Escenario.instancia.casillasMapa[(int)posicion.x, (int)posicion.y].prefab.gameObject.transform.localPosition.y == posicionY)
-                            {
-                                if (Escenario.Escenario.instancia.casillasMapa[(int)posicion.x, (int)posicion.y].id == 0)
-                                {
-                                    cambiar = false;
-                                }
-                            }
-                            else if ((int)Escenario.Escenario.instancia.casillasMapa[(int)posicion.x, (int)posicion.y].prefab.gameObject.transform.localPosition.y < posicionY)
-                            {
-                                cambiar = false;
-                            }
-
-                            if (cambiar == true)
-                            {
-                                Renderer renderer = Escenario.Escenario.instancia.casillasMapa[(int)posicion.x, (int)posicion.y].prefab.gameObject.GetComponent<Renderer>();
-
-                                if (materialElegido == CasillasMaterial.Transparente)
-                                {
-                                    renderer.materials[0].CopyPropertiesFromMaterial(Configuracion.instancia.campo.casillaOscuroTransparente);
-                                    renderer.materials[1].CopyPropertiesFromMaterial(Configuracion.instancia.campo.casillaClaroTransparente);
-                                }
-                                else if (materialElegido == CasillasMaterial.Opaco)
-                                {
-                                    renderer.materials[0].CopyPropertiesFromMaterial(Configuracion.instancia.campo.casillaOscuroOpaco);
-                                    renderer.materials[1].CopyPropertiesFromMaterial(Configuracion.instancia.campo.casillaClaroOpaco);
-                                }
-                            }
-                        }
-                    }                                    
-                }
-            }            
-        }
     }
 }
 
