@@ -63,6 +63,7 @@
     <Compile Include="Assets\Scripts\Partida\ClasesStructs.cs" />
     <Compile Include="Assets\Scripts\Jugador\Bola.cs" />
     <Compile Include="Assets\Scripts\Escenario\Generacion\Llano.cs" />
+    <Compile Include="Assets\Scripts\Jugador\Transparentar.cs" />
     <Compile Include="Assets\Scripts\Escenario\Colocar\Forma.cs" />
     <Compile Include="Assets\Scripts\Escenario\Colocar\AnimacionHoyoBola.cs" />
     <Compile Include="Assets\Scripts\Escenario\Generacion\Limites.cs" />
@@ -77,7 +78,6 @@
     <Compile Include="Assets\Scripts\Elementos\HoyoPalo.cs" />
     <Compile Include="Assets\Scripts\Escenario\Generacion\Colores.cs" />
     <Compile Include="Assets\Scripts\Escenario\Colocar\Bola.cs" />
-    <Compile Include="Assets\Scripts\Jugador\Transparentar.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

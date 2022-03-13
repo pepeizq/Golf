@@ -1729,7 +1729,7 @@ MonoBehaviour:
   potenciaMaxima: 10
   anguloVelocidad: 100
   lineaLongitud: 2
-  color: {r: 0, g: 0.4909292, b: 0.8509804, a: 0.58431375}
+  color: {r: 0.49798858, g: 0.75999415, b: 0.9528302, a: 1}
   transparencias: 0
   poderMover: 1
   camara: 1
