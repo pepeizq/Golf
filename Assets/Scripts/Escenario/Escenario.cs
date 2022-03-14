@@ -461,6 +461,38 @@ namespace Escenario
             return false;
         }
 
+        public bool ComprobarCasilla4(Casilla casilla, float altura, int rotacion)
+        {
+            if (casilla != null)
+            {
+                if (ComprobarLimiteX((int)casilla.posicion.x, limitesMapa) == true && ComprobarLimiteZ((int)casilla.posicion.z, limitesMapa) == true)
+                {
+                    if (casilla.posicion.y == (altura + 0.5f))
+                    {
+                        if (casilla.rotacion == rotacion)
+                        {
+                            if (Configuracion.instancia.colores == false)
+                            {
+                                if (casilla.id == 4)
+                                {
+                                    return true;
+                                }
+                            }
+                            else
+                            {
+                                if (CalcularIDFinal(casilla.idDebug) == 4)
+                                {
+                                    return true;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            return false;
+        }
+
         public bool ComprobarVacio(Casilla casilla)
         {
             if (casilla != null)

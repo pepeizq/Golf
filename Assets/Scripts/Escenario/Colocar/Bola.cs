@@ -25,7 +25,7 @@ namespace Escenario.Colocar
                         int intentos = 1000;
                         int i = 0;
 
-                        while (i < intentos)
+                        while (i <= intentos)
                         {
                             int x = Random.Range(Escenario.instancia.limitesMapa + perimetro, Configuracion.instancia.tamañoX / proporcion);
                             int z = Random.Range(Escenario.instancia.limitesMapa + perimetro, Configuracion.instancia.tamañoZ / proporcion);
@@ -41,14 +41,14 @@ namespace Escenario.Colocar
                                 }
                             }
 
-                            i += 1;
-
                             if (i == intentos)
                             {
                                 i = 0;
                                 proporcion -= 1;
                                 perimetro -= 1;
                             }
+
+                            i += 1;
                         }
                     }
                     else
