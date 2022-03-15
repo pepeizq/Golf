@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class Configuracion : MonoBehaviour
 {
     [Header("Partida")]
-    public int numeroPartida = 0;
+    [HideInInspector] public int numeroPartida = 0;
     public Campo campo;
     public Palos palos;
 
@@ -61,8 +61,15 @@ public class Configuracion : MonoBehaviour
     {
         instancia = this;
 
-        nivel = PlayerPrefs.GetInt(numeroPartida.ToString() + "nivel");
+        if (PlayerPrefs.GetString("continuarPartida") == "si")
+        {
+            aleatorio = false;
+            PlayerPrefs.SetString("continuarPartida", "no");
+        }
 
+        numeroPartida = PlayerPrefs.GetInt("numeroPartida");
+        nivel = PlayerPrefs.GetInt(numeroPartida.ToString() + "nivel");
+     
         if (campo != null)
         {
             forma = campo.hoyos[nivel].forma;
@@ -78,8 +85,8 @@ public class Configuracion : MonoBehaviour
 
     public void Start()
     {
-        Objetos.instancia.textoHoyo.text = string.Format("Hoyo: {0}", nivel.ToString());
-        Objetos.instancia.textoGolpes.text = "Golpes: 0";
+        Objetos.instancia.textoPartida.text = string.Format("Partida: {0}", numeroPartida.ToString());
+        Objetos.instancia.textoHoyo.text = string.Format("Hoyo: {0}", (nivel + 1).ToString());
         Objetos.instancia.textoPalos.text = palos.ToString();
     }
 

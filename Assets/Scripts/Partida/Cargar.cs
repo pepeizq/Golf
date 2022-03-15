@@ -48,17 +48,35 @@ namespace Partida
             }
         }
 
+        public static PartidaMaestro CargarBola(int numeroPartida)
+        {
+            PartidaMaestro bola = JsonUtility.FromJson<PartidaMaestro>(PlayerPrefs.GetString(numeroPartida.ToString() + "bola"));
+            return bola;
+        }
+
         public static Vector3 CargarBolaPosicion()
         {
-            PartidaBola bola = JsonUtility.FromJson<PartidaBola>(PlayerPrefs.GetString(Configuracion.instancia.numeroPartida.ToString() + "bola" + Configuracion.instancia.nivel.ToString()));
+            PartidaMaestro bola = JsonUtility.FromJson<PartidaMaestro>(PlayerPrefs.GetString(Configuracion.instancia.numeroPartida.ToString() + "bola"));
             Vector3 posicion2 = bola.posicion.ObtenerVector3();
             return posicion2;
         }
 
         public static float CargarBolaRotacion()
         {
-            PartidaBola bola = JsonUtility.FromJson<PartidaBola>(PlayerPrefs.GetString(Configuracion.instancia.numeroPartida.ToString() + "bola" + Configuracion.instancia.nivel.ToString()));
+            PartidaMaestro bola = JsonUtility.FromJson<PartidaMaestro>(PlayerPrefs.GetString(Configuracion.instancia.numeroPartida.ToString() + "bola"));
             return bola.angulo;
+        }
+
+        public static int CargarBolaGolpes()
+        {
+            PartidaMaestro bola = JsonUtility.FromJson<PartidaMaestro>(PlayerPrefs.GetString(Configuracion.instancia.numeroPartida.ToString() + "bola"));
+            return bola.golpes;
+        }
+
+        public static float CargarBolaZoom()
+        {
+            PartidaMaestro bola = JsonUtility.FromJson<PartidaMaestro>(PlayerPrefs.GetString(Configuracion.instancia.numeroPartida.ToString() + "bola"));
+            return bola.zoom;
         }
 
         public static PartidaHoyo CargarHoyo()

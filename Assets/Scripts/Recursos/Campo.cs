@@ -6,6 +6,7 @@ namespace Recursos
     [CreateAssetMenu(fileName = "Campo", menuName = "Campo/Configuracion")]
     public class Campo : ScriptableObject
     {
+        public int id;
         public List<Casilla> casillas;
         public List<CampoHoyo> hoyos;
 

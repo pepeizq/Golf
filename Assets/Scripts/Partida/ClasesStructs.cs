@@ -69,10 +69,16 @@ namespace Partida
     //-----------------------------------------------------------------------
 
     [System.Serializable]
-    public class PartidaBola
+    public class PartidaMaestro
     {
         public VectorTres posicion;
         public float angulo;
+        public int golpes;
+        public float zoom;
+        public string fecha;
+        public int campo;
+        public int hoyo;
+        public int numeroPartida;
     }
 
     //-----------------------------------------------------------------------

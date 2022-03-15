@@ -9,6 +9,7 @@ public class Objetos : MonoBehaviour
 
     [Space(20)]
     [Header("Canvas")]
+    public TextMeshProUGUI textoPartida;
     public TextMeshProUGUI textoHoyo;
     public TextMeshProUGUI textoGolpes;
     public TextMeshProUGUI textoPalos;

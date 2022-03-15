@@ -1,6 +1,5 @@
-using Escenario.Generacion;
+using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -24,6 +23,7 @@ namespace Jugador
 
         private Vector3 camaraOffset;
         private Vector2 camaraMovimientoInput;
+        private float camaraZoom;
         private float camaraZoomInput;
 
         public static Bola instancia;
@@ -49,18 +49,20 @@ namespace Jugador
 
             //--------------------------------------------------------------------
 
-            instancia.angulo = 90;
-
             if (Configuracion.instancia.aleatorio == false)
             {
+                instancia.camaraZoom = Partida.Cargar.CargarBolaZoom();
                 instancia.angulo = Partida.Cargar.CargarBolaRotacion();
+                instancia.golpes = Partida.Cargar.CargarBolaGolpes();
+            }
+            else
+            {
+                instancia.camaraZoom = Configuracion.instancia.zoomDefecto;
+                instancia.angulo = 90;
             }
 
-            //--------------------------------------------------------------------
-
-            Camera objeto = Objetos.instancia.camara.GetComponent<Camera>();
-            objeto.orthographicSize = Configuracion.instancia.zoomDefecto;
-
+            Objetos.instancia.textoGolpes.text = string.Format("Golpes: {0}", instancia.golpes.ToString());
+           
             //--------------------------------------------------------------------
 
             Renderer renderer = instancia.GetComponent<Renderer>();
@@ -91,8 +93,8 @@ namespace Jugador
 
                     instancia.linea.enabled = true;
                     instancia.ultimaPosicion = transform.localPosition;
-
-                    Partida.Guardar.GuardarBola(instancia.ultimaPosicion, instancia.angulo);
+            
+                    Partida.Guardar.GuardarMaestro(instancia.ultimaPosicion, instancia.angulo, instancia.golpes, instancia.camaraZoom, DateTime.Now, Configuracion.instancia.campo.id, Configuracion.instancia.nivel, Configuracion.instancia.numeroPartida);
                     Transparentar.Casillas(instancia.ultimaPosicion, Transparentar.CasillasMaterial.Transparente);
 
                     if (instancia.permitirPotencia == true)
@@ -227,6 +229,9 @@ namespace Jugador
 
                 //------------------------------------
 
+                Camera camara = Objetos.instancia.camara.GetComponent<Camera>();
+                camara.orthographicSize = instancia.camaraZoom;
+
                 if (instancia.camaraZoomInput > 0)
                 {
                     instancia.camaraZoomInput = 0.1f;
@@ -239,9 +244,9 @@ namespace Jugador
                 {
                     instancia.camaraZoomInput = 0;
                 }
-
-                Camera objeto = Objetos.instancia.camara.GetComponent<Camera>();
-                objeto.orthographicSize = Mathf.Clamp(objeto.orthographicSize -= instancia.camaraZoomInput * (10f * objeto.orthographicSize * .1f), Configuracion.instancia.zoomCerca, Configuracion.instancia.zoomLejos);
+   
+                camara.orthographicSize = Mathf.Clamp(camara.orthographicSize -= instancia.camaraZoomInput * (10f * camara.orthographicSize * .1f), Configuracion.instancia.zoomCerca, Configuracion.instancia.zoomLejos);
+                instancia.camaraZoom = camara.orthographicSize;
             }
         }
 

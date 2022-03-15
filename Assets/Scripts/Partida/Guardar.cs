@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -70,18 +71,24 @@ namespace Partida
             }
         }
 
-        public static void GuardarBola(Vector3 posicion, float angulo)
+        public static void GuardarMaestro(Vector3 posicion, float angulo, int golpes, float zoom, DateTime fecha, int campo, int hoyo, int numeroPartida)
         {
             VectorTres posicion2 = new VectorTres(posicion);
 
-            PartidaBola bola = new PartidaBola
+            PartidaMaestro bola = new PartidaMaestro
             {
                 posicion = posicion2,
-                angulo = angulo
+                angulo = angulo,
+                golpes = golpes,
+                zoom = zoom,
+                fecha = fecha.ToString(), 
+                campo = campo,
+                hoyo = hoyo,
+                numeroPartida = numeroPartida
             };
 
             string datos = JsonUtility.ToJson(bola);
-            PlayerPrefs.SetString(Configuracion.instancia.numeroPartida.ToString() + "bola" + Configuracion.instancia.nivel.ToString(), datos);
+            PlayerPrefs.SetString(Configuracion.instancia.numeroPartida.ToString() + "bola", datos);
         }
 
         public static void GuardarHoyo(int casillaX, int casillaZ)

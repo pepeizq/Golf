@@ -75,10 +75,10 @@
     <Compile Include="Assets\Scripts\Recursos\Campo.cs" />
     <Compile Include="Assets\Scripts\Escenario\Escenario.cs" />
     <Compile Include="Assets\Scripts\Recursos\Casilla.cs" />
+    <Compile Include="Assets\Scripts\Principal\Principal.cs" />
     <Compile Include="Assets\Scripts\Elementos\HoyoPalo.cs" />
     <Compile Include="Assets\Scripts\Escenario\Generacion\Colores.cs" />
     <Compile Include="Assets\Scripts\Escenario\Colocar\Bola.cs" />
-    <Compile Include="Assets\Scripts\Principal\Principal.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
