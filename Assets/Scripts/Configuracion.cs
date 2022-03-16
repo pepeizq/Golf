@@ -1,5 +1,6 @@
 using Escenario.Colocar;
 using Recursos;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,10 +8,10 @@ public class Configuracion : MonoBehaviour
 {
     [Header("Partida")]
     [HideInInspector] public int numeroPartida = 0;
-    public Campo campo;
+    public List<Campo> campos;
+    [HideInInspector] public Campo campo;
     public Palos palos;
 
-    [Space(20)]
     [Header("Bola")]
     public float potenciaMaxima = 6f;
     public float anguloVelocidad = 100f;
@@ -20,7 +21,6 @@ public class Configuracion : MonoBehaviour
 
     [HideInInspector] public bool poderMover = true;
 
-    [Space(20)]
     [Header("Camara")]
     public CamaraModos camara;
     public int velocidadLibre = 20;
@@ -32,7 +32,6 @@ public class Configuracion : MonoBehaviour
     [HideInInspector] public float rotacionCamaraY = 60f;
     [HideInInspector] public float rotacionCamaraZ = 41.7f;
 
-    [Space(20)]
     [Header("Escenario")]
     public bool aleatorio = true;
     public bool colores = false;
@@ -69,6 +68,7 @@ public class Configuracion : MonoBehaviour
 
         numeroPartida = PlayerPrefs.GetInt("numeroPartida");
         nivel = PlayerPrefs.GetInt(numeroPartida.ToString() + "nivel");
+        campo = campos[PlayerPrefs.GetInt(numeroPartida.ToString() + "campo")];
      
         if (campo != null)
         {

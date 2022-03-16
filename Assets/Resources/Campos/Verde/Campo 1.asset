@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5638bb101622f5a4488faf818d321cc8, type: 3}
+  m_Name: Campo 1
+  m_EditorClassIdentifier: 
+  casillas:
+  - {fileID: 11400000, guid: f9f56dfc8d3b71d4592fb2889203f9cb, type: 2}
+  - {fileID: 11400000, guid: 7cc8fbc133e47dd4a95682f6e5034bb3, type: 2}
+  - {fileID: 11400000, guid: ee32aca0bbdcc854997a3600f4a4fee6, type: 2}
+  - {fileID: 11400000, guid: ab07687dc2706bf44ba70cf8b4212749, type: 2}
+  - {fileID: 11400000, guid: 7a824fd3f3adf084e9a8cd985ef8f073, type: 2}
+  hoyos:
+  - {fileID: 11400000, guid: 83646fa25d62e404e9d9f536bd01e9f7, type: 2}
+  - {fileID: 11400000, guid: 306ba914c4953f04c94e81ff1842d4e0, type: 2}
+  casillaClaroOpaco: {fileID: 2100000, guid: ceadad0c0ffe6c84ebc40a9e36aec291, type: 2}
+  casillaClaroTransparente: {fileID: 2100000, guid: 1cba6042469b70c4885665a146fc0642,
+    type: 2}
+  casillaOscuroOpaco: {fileID: 2100000, guid: 71306783159ea2c448d6b499539cd03a, type: 2}
+  casillaOscuroTransparente: {fileID: 2100000, guid: 8095716a581eb7b41b749fbe177da462,
+    type: 2}
+  hoyo: {fileID: 493594958679372392, guid: 8fd3a73ca778fed458557d8ef7c1d631, type: 3}
+  muros:
+  - {fileID: 8570388267494190964, guid: 4f2fe23f9e8df0e4184814565d50ae20, type: 3}

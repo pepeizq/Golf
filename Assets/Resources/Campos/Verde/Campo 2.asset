@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5638bb101622f5a4488faf818d321cc8, type: 3}
-  m_Name: Campo
+  m_Name: Campo 2
   m_EditorClassIdentifier: 
+  id: 1
   casillas:
   - {fileID: 11400000, guid: f9f56dfc8d3b71d4592fb2889203f9cb, type: 2}
   - {fileID: 11400000, guid: 7cc8fbc133e47dd4a95682f6e5034bb3, type: 2}
@@ -20,7 +21,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7a824fd3f3adf084e9a8cd985ef8f073, type: 2}
   hoyos:
   - {fileID: 11400000, guid: 83646fa25d62e404e9d9f536bd01e9f7, type: 2}
-  - {fileID: 11400000, guid: 306ba914c4953f04c94e81ff1842d4e0, type: 2}
   casillaClaroOpaco: {fileID: 2100000, guid: ceadad0c0ffe6c84ebc40a9e36aec291, type: 2}
   casillaClaroTransparente: {fileID: 2100000, guid: 1cba6042469b70c4885665a146fc0642,
     type: 2}

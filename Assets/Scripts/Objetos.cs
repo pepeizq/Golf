@@ -7,13 +7,16 @@ public class Objetos : MonoBehaviour
     public GameObject bola;
     public GameObject camara;
 
-    [Space(20)]
-    [Header("Canvas")]
+    [Header("Canvas Partida")]
+    public Canvas canvasPartida;
     public TextMeshProUGUI textoPartida;
     public TextMeshProUGUI textoHoyo;
     public TextMeshProUGUI textoGolpes;
     public TextMeshProUGUI textoPalos;
     public Slider sliderPotencia;
+
+    [Header("Canvas Menu")]
+    public Canvas canvasMenu;
 
     public static Objetos instancia;
 

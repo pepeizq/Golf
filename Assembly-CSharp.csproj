@@ -65,6 +65,8 @@
     <Compile Include="Assets\Scripts\Escenario\Generacion\Llano.cs" />
     <Compile Include="Assets\Scripts\Jugador\Transparentar.cs" />
     <Compile Include="Assets\Scripts\Escenario\Colocar\Forma.cs" />
+    <Compile Include="Assets\Scripts\Canvas\Escenario.cs" />
+    <Compile Include="Assets\Scripts\Jugador\Multijugador.cs" />
     <Compile Include="Assets\Scripts\Escenario\Colocar\AnimacionHoyoBola.cs" />
     <Compile Include="Assets\Scripts\Escenario\Generacion\Limites.cs" />
     <Compile Include="Assets\Scripts\Escenario\Generacion\Vectores.cs" />
@@ -75,7 +77,7 @@
     <Compile Include="Assets\Scripts\Recursos\Campo.cs" />
     <Compile Include="Assets\Scripts\Escenario\Escenario.cs" />
     <Compile Include="Assets\Scripts\Recursos\Casilla.cs" />
-    <Compile Include="Assets\Scripts\Principal\Principal.cs" />
+    <Compile Include="Assets\Scripts\Canvas\Principal.cs" />
     <Compile Include="Assets\Scripts\Elementos\HoyoPalo.cs" />
     <Compile Include="Assets\Scripts\Escenario\Generacion\Colores.cs" />
     <Compile Include="Assets\Scripts\Escenario\Colocar\Bola.cs" />
