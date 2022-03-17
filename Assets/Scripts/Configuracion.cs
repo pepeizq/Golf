@@ -28,9 +28,9 @@ public class Configuracion : MonoBehaviour
     public float zoomCerca = 0.5f;
     public float zoomLejos = 25f;
 
-    [HideInInspector] public float rotacionCamaraX = 41.7f;
+    [HideInInspector] public float rotacionCamaraX = 42f;
     [HideInInspector] public float rotacionCamaraY = 60f;
-    [HideInInspector] public float rotacionCamaraZ = 41.7f;
+    [HideInInspector] public float rotacionCamaraZ = 42f;
 
     [Header("Escenario")]
     public bool aleatorio = true;
@@ -70,6 +70,20 @@ public class Configuracion : MonoBehaviour
         nivel = PlayerPrefs.GetInt(numeroPartida.ToString() + "nivel");
         campo = campos[PlayerPrefs.GetInt(numeroPartida.ToString() + "campo")];
      
+        if (PlayerPrefs.GetInt("multijugador") > 0)
+        {
+            if (PlayerPrefs.GetInt("multijugador") == 1)
+            {
+                Jugador.Multijugador.instancia.Hospedador();
+            }
+            else if (PlayerPrefs.GetInt("multijugador") == 2)
+            {
+                Jugador.Multijugador.instancia.Cliente();
+            }
+
+            PlayerPrefs.SetInt("multijugador", 0);
+        }
+
         if (campo != null)
         {
             forma = campo.hoyos[nivel].forma;

@@ -72,7 +72,7 @@ namespace Escenario.Colocar
                 posicion2.z = posicion2.z - Configuracion.instancia.rotacionCamaraZ;
             }
 
-            Objetos.instancia.camara.transform.position = posicion2;            
+            Jugador.Bola.instancia.transform.GetChild(0).gameObject.transform.position = posicion2;
         }
     }
 }

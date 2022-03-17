@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class Objetos : MonoBehaviour
 {
     public GameObject bola;
-    public GameObject camara;
+    //public GameObject camara;
 
     [Header("Canvas Partida")]
     public Canvas canvasPartida;

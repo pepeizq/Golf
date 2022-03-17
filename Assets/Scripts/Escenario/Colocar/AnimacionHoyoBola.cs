@@ -26,7 +26,7 @@ namespace Escenario.Colocar
             {
                 Vector3 posicionBola = Jugador.Bola.instancia.ultimaPosicion;
                 Vector3 posicionHoyo = Configuracion.instancia.posicionHoyo;
-                GameObject camara = Objetos.instancia.camara;
+                GameObject camara = Jugador.Bola.instancia.transform.GetChild(0).gameObject;
 
                 instancia.pasos += Time.deltaTime * 5;
              
