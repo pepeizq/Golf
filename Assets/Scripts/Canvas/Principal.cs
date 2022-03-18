@@ -198,7 +198,7 @@ namespace Canvas2
 
         //------------------------------------------------------------------
 
-        public void Hospedador()
+        public void Servidor()
         {
             totalPartidas += 1;
             PlayerPrefs.SetInt("totalPartidas", totalPartidas);
@@ -214,9 +214,36 @@ namespace Canvas2
             cargando = SceneManager.LoadSceneAsync("Escenario");
         }
 
+        public void Hospedador()
+        {
+            totalPartidas += 1;
+            PlayerPrefs.SetInt("totalPartidas", totalPartidas);
+
+            PlayerPrefs.SetInt("numeroPartida", totalPartidas);
+            PlayerPrefs.SetInt(totalPartidas.ToString() + "campo", 0);
+            PlayerPrefs.SetInt("multijugador", 2);
+
+            canvasMenu.gameObject.SetActive(false);
+            canvasCargando.gameObject.SetActive(true);
+            sliderCargando.value = 0;
+
+            cargando = SceneManager.LoadSceneAsync("Escenario");
+        }
+
         public void Cliente()
         {
+            totalPartidas += 1;
+            PlayerPrefs.SetInt("totalPartidas", totalPartidas);
 
+            PlayerPrefs.SetInt("numeroPartida", totalPartidas);
+            PlayerPrefs.SetInt(totalPartidas.ToString() + "campo", 0);
+            PlayerPrefs.SetInt("multijugador", 3);
+
+            canvasMenu.gameObject.SetActive(false);
+            canvasCargando.gameObject.SetActive(true);
+            sliderCargando.value = 0;
+
+            cargando = SceneManager.LoadSceneAsync("Escenario");
         }
     }
 }

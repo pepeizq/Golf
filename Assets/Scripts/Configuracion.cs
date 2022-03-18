@@ -74,9 +74,13 @@ public class Configuracion : MonoBehaviour
         {
             if (PlayerPrefs.GetInt("multijugador") == 1)
             {
+                Jugador.Multijugador.instancia.Servidor();
+            }
+            else if(PlayerPrefs.GetInt("multijugador") == 2)
+            {
                 Jugador.Multijugador.instancia.Hospedador();
             }
-            else if (PlayerPrefs.GetInt("multijugador") == 2)
+            else if (PlayerPrefs.GetInt("multijugador") == 3)
             {
                 Jugador.Multijugador.instancia.Cliente();
             }
