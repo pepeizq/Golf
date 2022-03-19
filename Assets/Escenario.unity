@@ -183,7 +183,7 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: -3739768454185946720, guid: ac0726078a3bc3a41914c5c863caa66c,
+      - m_Target: {fileID: -1564655253345904998, guid: 8ab25d65c817b134597945174a62d604,
           type: 3}
         m_TargetAssemblyTypeName: Jugador.Bola, Assembly-CSharp
         m_MethodName: CamaraMovimientoInput
@@ -200,7 +200,7 @@ MonoBehaviour:
     m_ActionName: Principal/Movimiento[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: -3739768454185946720, guid: ac0726078a3bc3a41914c5c863caa66c,
+      - m_Target: {fileID: -1564655253345904998, guid: 8ab25d65c817b134597945174a62d604,
           type: 3}
         m_TargetAssemblyTypeName: Jugador.Bola, Assembly-CSharp
         m_MethodName: CamaraZoomInput
@@ -217,7 +217,7 @@ MonoBehaviour:
     m_ActionName: Principal/Zoom[/Mouse/scroll/y]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: -3739768454185946720, guid: ac0726078a3bc3a41914c5c863caa66c,
+      - m_Target: {fileID: -1564655253345904998, guid: 8ab25d65c817b134597945174a62d604,
           type: 3}
         m_TargetAssemblyTypeName: Jugador.Bola, Assembly-CSharp
         m_MethodName: PotenciaInput
@@ -234,7 +234,7 @@ MonoBehaviour:
     m_ActionName: Principal/Bola[/Keyboard/space]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: -3739768454185946720, guid: ac0726078a3bc3a41914c5c863caa66c,
+      - m_Target: {fileID: -1564655253345904998, guid: 8ab25d65c817b134597945174a62d604,
           type: 3}
         m_TargetAssemblyTypeName: Jugador.Bola, Assembly-CSharp
         m_MethodName: RotarIzquierdaInput
@@ -251,7 +251,7 @@ MonoBehaviour:
     m_ActionName: Principal/Bola Rotar Izquierda[/Keyboard/q]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: -3739768454185946720, guid: ac0726078a3bc3a41914c5c863caa66c,
+      - m_Target: {fileID: -1564655253345904998, guid: 8ab25d65c817b134597945174a62d604,
           type: 3}
         m_TargetAssemblyTypeName: Jugador.Bola, Assembly-CSharp
         m_MethodName: RotarDerechaInput
@@ -268,7 +268,7 @@ MonoBehaviour:
     m_ActionName: Principal/Bola Rotar Derecha[/Keyboard/e]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: -3739768454185946720, guid: ac0726078a3bc3a41914c5c863caa66c,
+      - m_Target: {fileID: -1564655253345904998, guid: 8ab25d65c817b134597945174a62d604,
           type: 3}
         m_TargetAssemblyTypeName: Jugador.Bola, Assembly-CSharp
         m_MethodName: CamaraModoInput
@@ -285,7 +285,7 @@ MonoBehaviour:
     m_ActionName: Principal/Camara Modo[/Keyboard/c]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: -3739768454185946720, guid: ac0726078a3bc3a41914c5c863caa66c,
+      - m_Target: {fileID: -1564655253345904998, guid: 8ab25d65c817b134597945174a62d604,
           type: 3}
         m_TargetAssemblyTypeName: Jugador.Bola, Assembly-CSharp
         m_MethodName: CambiarPaloInput
@@ -686,7 +686,7 @@ MonoBehaviour:
   NetworkConfig:
     ProtocolVersion: 0
     NetworkTransport: {fileID: 364287687}
-    PlayerPrefab: {fileID: 2940215367368277056, guid: ac0726078a3bc3a41914c5c863caa66c,
+    PlayerPrefab: {fileID: 6928494658373859896, guid: 8ab25d65c817b134597945174a62d604,
       type: 3}
     NetworkPrefabs: []
     TickRate: 30
@@ -2529,6 +2529,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b10b756b2fa80a408aa7f6cc3e93d80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  juegoModo: 0
   numeroPartida: 34
   campos:
   - {fileID: 11400000, guid: 5f1ea259c26884241980cf74c5b240b4, type: 2}

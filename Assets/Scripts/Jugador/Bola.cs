@@ -1,12 +1,13 @@
 using System;
 using System.Collections;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Jugador
 {
     //https://www.youtube.com/watch?v=rHM9bDgT2zQ
-    public class Bola : MonoBehaviour
+    public class Bola : NetworkBehaviour
     {
         private float angulo = 0;
         private float potencia = 0;
@@ -215,7 +216,7 @@ namespace Jugador
                         instancia.transform.GetChild(0).gameObject.transform.Translate(new Vector3(0, -Configuracion.instancia.velocidadLibre * Time.deltaTime * 10, 0));
                     }
 
-                    instancia.transform.GetChild(0).gameObject.transform.position = new Vector3(instancia.transform.GetChild(0).gameObject.transform.position.x, 60, instancia.transform.GetChild(0).gameObject.transform.position.z);
+                    instancia.transform.GetChild(0).gameObject.transform.position = new Vector3(instancia.transform.GetChild(0).gameObject.transform.position.x, 60, instancia.transform.GetChild(0).gameObject.transform.position.z);              
                 }
                 else if (Configuracion.instancia.camara == Configuracion.CamaraModos.Fija)
                 {
@@ -381,7 +382,7 @@ namespace Jugador
                     {
                         Configuracion.instancia.palos = Configuracion.Palos.Madera;
                     }
-
+                  
                     Objetos.instancia.textoPalos.text = Configuracion.instancia.palos.ToString();
                 }
             }              

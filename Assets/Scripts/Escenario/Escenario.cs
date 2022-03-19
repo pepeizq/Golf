@@ -25,79 +25,82 @@ namespace Escenario
 
         public void Start()
         {
-            casillasMapa = new Casilla[Configuracion.instancia.tamañoX, Configuracion.instancia.tamañoZ];
-        
-            if (Configuracion.instancia.aleatorio == true)
+            if (Configuracion.instancia.juegoModo != Configuracion.JuegoModos.MultiCliente)
             {
-                casillasIniciales = Vectores.instancia.GenerarCasillas(casillasMapa, Configuracion.instancia.alturaMaxima, limitesMapa);
-                Guardar.GuardarEscenario(casillasIniciales, Configuracion.instancia.tamañoX, Configuracion.instancia.tamañoZ);
-            }
-            else
-            {
-                casillasIniciales = Cargar.CargarEscenario();
-            }
+                casillasMapa = new Casilla[Configuracion.instancia.tamañoX, Configuracion.instancia.tamañoZ];
 
-            int k = 0;
-            float altura = Configuracion.instancia.alturaMaxima;
-            int tope = (int)Configuracion.instancia.alturaMaxima * 2;
-            while (k < tope)
-            {
-                altura -= 0.5f;
-
-                if (altura <= 1f)
+                if (Configuracion.instancia.aleatorio == true)
                 {
-                    break;
+                    casillasIniciales = Vectores.instancia.GenerarCasillas(casillasMapa, Configuracion.instancia.alturaMaxima, limitesMapa);
+                    Guardar.GuardarEscenario(casillasIniciales, Configuracion.instancia.tamañoX, Configuracion.instancia.tamañoZ);
                 }
-                
-                try
-                {          
-                    GenerarNivel(altura);
-                }
-                catch (Exception fallo)
+                else
                 {
-                    Debug.Log(fallo);
-                    k -= 1;
+                    casillasIniciales = Cargar.CargarEscenario();
                 }
 
-                k += 1;
-            }
+                int k = 0;
+                float altura = Configuracion.instancia.alturaMaxima;
+                int tope = (int)Configuracion.instancia.alturaMaxima * 2;
+                while (k < tope)
+                {
+                    altura -= 0.5f;
 
-            //----------------------------------------------------------
+                    if (altura <= 1f)
+                    {
+                        break;
+                    }
 
-            if (Configuracion.instancia.llano == true)
-            {
-                Llano.instancia.Generar(casillasMapa, altura, Configuracion.instancia.campo.casillas[0]);
-            }
+                    try
+                    {
+                        GenerarNivel(altura);
+                    }
+                    catch (Exception fallo)
+                    {
+                        Debug.Log(fallo);
+                        k -= 1;
+                    }
 
-            if (Configuracion.instancia.formar == true)
-            {
-                Forma.instancia.Formar(Configuracion.instancia.forma, casillasMapa);
-            }
+                    k += 1;
+                }
 
-            if (Configuracion.instancia.bola == true)
-            {
-                Bola.instancia.Colocar(casillasMapa);
-            }
+                //----------------------------------------------------------
 
-            if (Configuracion.instancia.hoyo == true)
-            {
-                Hoyo.instancia.Colocar(casillasMapa);
-            }
+                if (Configuracion.instancia.llano == true)
+                {
+                    Llano.instancia.Generar(casillasMapa, altura, Configuracion.instancia.campo.casillas[0]);
+                }
 
-            if (Configuracion.instancia.mordiscos == true)
-            {
-                Mordiscos.instancia.Colocar(casillasMapa);
-            }
+                if (Configuracion.instancia.formar == true)
+                {
+                    Forma.instancia.Formar(Configuracion.instancia.forma, casillasMapa);
+                }
 
-            if (Configuracion.instancia.muros == true)
-            {
-                Muros.instancia.Colocar(casillasMapa);
-            }
+                if (Configuracion.instancia.bola == true)
+                {
+                    Bola.instancia.Colocar(casillasMapa);
+                }
 
-            if (Configuracion.instancia.animacionHoyoBola == true)
-            {
-                AnimacionHoyoBola.instancia.Generar();
-            }
+                if (Configuracion.instancia.hoyo == true)
+                {
+                    Hoyo.instancia.Colocar(casillasMapa);
+                }
+
+                if (Configuracion.instancia.mordiscos == true)
+                {
+                    Mordiscos.instancia.Colocar(casillasMapa);
+                }
+
+                if (Configuracion.instancia.muros == true)
+                {
+                    Muros.instancia.Colocar(casillasMapa);
+                }
+
+                if (Configuracion.instancia.animacionHoyoBola == true)
+                {
+                    AnimacionHoyoBola.instancia.Generar();
+                }
+            }           
         }
 
         public void Update()

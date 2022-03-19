@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class Configuracion : MonoBehaviour
 {
     [Header("Partida")]
+    [HideInInspector] public JuegoModos juegoModo;
     [HideInInspector] public int numeroPartida = 0;
     public List<Campo> campos;
     [HideInInspector] public Campo campo;
@@ -74,18 +75,25 @@ public class Configuracion : MonoBehaviour
         {
             if (PlayerPrefs.GetInt("multijugador") == 1)
             {
+                juegoModo = JuegoModos.MultiServidor;
                 Jugador.Multijugador.instancia.Servidor();
             }
             else if(PlayerPrefs.GetInt("multijugador") == 2)
             {
+                juegoModo = JuegoModos.MultiServidor;
                 Jugador.Multijugador.instancia.Hospedador();
             }
             else if (PlayerPrefs.GetInt("multijugador") == 3)
             {
+                juegoModo = JuegoModos.MultiCliente;
                 Jugador.Multijugador.instancia.Cliente();
             }
 
             PlayerPrefs.SetInt("multijugador", 0);
+        }
+        else
+        {
+            juegoModo = JuegoModos.UnJugador;
         }
 
         if (campo != null)
@@ -115,6 +123,7 @@ public class Configuracion : MonoBehaviour
         SceneManager.LoadScene("Escenario");
     }
 
+    public enum JuegoModos { UnJugador, MultiServidor, MultiHospedador, MultiCliente }
     public enum CamaraModos { Libre, Fija }
     public enum Palos { Madera, Hierro }
 }
