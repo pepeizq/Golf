@@ -30,12 +30,12 @@ namespace Jugador
             NetworkManager.Singleton.StartClient();
         }
 
-        [ServerRpc]
-        public void GenerarBolaServidor(NetworkObject prefab, Vector3 posicion)
-        {
-            NetworkObject bola = Instantiate(prefab, posicion, Quaternion.identity);
-            bola.SpawnWithOwnership(OwnerClientId);
-        }
+        //[ServerRpc]
+        //public void GenerarBolaServidor(NetworkObject prefab, Vector3 posicion)
+        //{
+        //    NetworkObject bola = Instantiate(prefab, posicion, Quaternion.identity);
+        //    bola.SpawnWithOwnership(OwnerClientId);
+        //}
 
     }
 }
