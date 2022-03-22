@@ -33,6 +33,10 @@ namespace Canvas2
         public RectTransform panelPartidas;
         public GameObject prefabBotonCargarPartida;
 
+        [Header("Lobby")]
+        public TMP_InputField textoJugador;
+        public Canvas canvasLobby;
+
         private AsyncOperation cargando = null;
 
         public void Start()
@@ -65,6 +69,8 @@ namespace Canvas2
                 botonContinuarPartida.gameObject.SetActive(true);
                 botonCargarPartida.gameObject.SetActive(true);
             }
+
+            textoJugador.text = PlayerPrefs.GetString("nombreJugador");
         }
 
         public void Update()
@@ -198,52 +204,84 @@ namespace Canvas2
 
         //------------------------------------------------------------------
 
+        public void NombreJugador()
+        {
+            //if (PlayerPrefs.GetString("nombreJugador") != null)
+            //{
+            //    textoJugador.text = PlayerPrefs.GetString("nombreJugador");
+            //}
+
+            if (textoJugador.text.Length > 0)
+            {
+                PlayerPrefs.SetString("nombreJugador", textoJugador.text);
+            }           
+        }
+
         public void Servidor()
         {
-            totalPartidas += 1;
-            PlayerPrefs.SetInt("totalPartidas", totalPartidas);
+            //totalPartidas += 1;
+            //PlayerPrefs.SetInt("totalPartidas", totalPartidas);
 
-            PlayerPrefs.SetInt("numeroPartida", totalPartidas);
-            PlayerPrefs.SetInt(totalPartidas.ToString() + "campo", 0);
-            PlayerPrefs.SetInt("multijugador", 1);
+            //PlayerPrefs.SetInt("numeroPartida", totalPartidas);
+            //PlayerPrefs.SetInt(totalPartidas.ToString() + "campo", 0);
+            //PlayerPrefs.SetInt("multijugador", 1);
+
+            //canvasMenu.gameObject.SetActive(false);
+            //canvasCargando.gameObject.SetActive(true);
+            //sliderCargando.value = 0;
+
+            //cargando = SceneManager.LoadSceneAsync("Escenario");
 
             canvasMenu.gameObject.SetActive(false);
-            canvasCargando.gameObject.SetActive(true);
-            sliderCargando.value = 0;
+            canvasLobby.gameObject.SetActive(true);
 
-            cargando = SceneManager.LoadSceneAsync("Escenario");
+            //Jugador.Multijugador.instancia.Servidor();
+            //Jugador.Multijugador.instancia.CargarLobby();
+        
         }
 
         public void Hospedador()
         {
-            totalPartidas += 1;
-            PlayerPrefs.SetInt("totalPartidas", totalPartidas);
+            //totalPartidas += 1;
+            //PlayerPrefs.SetInt("totalPartidas", totalPartidas);
 
-            PlayerPrefs.SetInt("numeroPartida", totalPartidas);
-            PlayerPrefs.SetInt(totalPartidas.ToString() + "campo", 0);
-            PlayerPrefs.SetInt("multijugador", 2);
+            //PlayerPrefs.SetInt("numeroPartida", totalPartidas);
+            //PlayerPrefs.SetInt(totalPartidas.ToString() + "campo", 0);
+            //PlayerPrefs.SetInt("multijugador", 2);
+
+            //canvasMenu.gameObject.SetActive(false);
+            //canvasCargando.gameObject.SetActive(true);
+            //sliderCargando.value = 0;
+
+            //cargando = SceneManager.LoadSceneAsync("Escenario");
 
             canvasMenu.gameObject.SetActive(false);
-            canvasCargando.gameObject.SetActive(true);
-            sliderCargando.value = 0;
+            canvasLobby.gameObject.SetActive(true);
 
-            cargando = SceneManager.LoadSceneAsync("Escenario");
+            //Jugador.Multijugador.instancia.Hospedador();
+            //Jugador.Multijugador.instancia.CargarLobby();
         }
 
         public void Cliente()
         {
-            totalPartidas += 1;
-            PlayerPrefs.SetInt("totalPartidas", totalPartidas);
+            //totalPartidas += 1;
+            //PlayerPrefs.SetInt("totalPartidas", totalPartidas);
 
-            PlayerPrefs.SetInt("numeroPartida", totalPartidas);
-            PlayerPrefs.SetInt(totalPartidas.ToString() + "campo", 0);
-            PlayerPrefs.SetInt("multijugador", 3);
+            //PlayerPrefs.SetInt("numeroPartida", totalPartidas);
+            //PlayerPrefs.SetInt(totalPartidas.ToString() + "campo", 0);
+            //PlayerPrefs.SetInt("multijugador", 3);
+
+            //canvasMenu.gameObject.SetActive(false);
+            //canvasCargando.gameObject.SetActive(true);
+            //sliderCargando.value = 0;
+
+            //cargando = SceneManager.LoadSceneAsync("Escenario");
 
             canvasMenu.gameObject.SetActive(false);
-            canvasCargando.gameObject.SetActive(true);
-            sliderCargando.value = 0;
+            canvasLobby.gameObject.SetActive(true);
 
-            cargando = SceneManager.LoadSceneAsync("Escenario");
+            //Jugador.Multijugador.instancia.Cliente();
+            //Jugador.Multijugador.instancia.CargarLobby();
         }
     }
 }

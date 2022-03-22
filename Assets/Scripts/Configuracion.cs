@@ -76,17 +76,17 @@ public class Configuracion : MonoBehaviour
             if (PlayerPrefs.GetInt("multijugador") == 1)
             {
                 juegoModo = JuegoModos.MultiServidor;
-                Jugador.Multijugador.instancia.Servidor();
+                //Jugador.Multijugador.instancia.Servidor();
             }
             else if(PlayerPrefs.GetInt("multijugador") == 2)
             {
                 juegoModo = JuegoModos.MultiServidor;
-                Jugador.Multijugador.instancia.Hospedador();
+                //Jugador.Multijugador.instancia.Hospedador();
             }
             else if (PlayerPrefs.GetInt("multijugador") == 3)
             {
                 juegoModo = JuegoModos.MultiCliente;
-                Jugador.Multijugador.instancia.Cliente();
+                //Jugador.Multijugador.instancia.Cliente();
             }
 
             PlayerPrefs.SetInt("multijugador", 0);

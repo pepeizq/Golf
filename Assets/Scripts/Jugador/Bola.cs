@@ -1,13 +1,12 @@
 using System;
 using System.Collections;
-using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Jugador
 {
     //https://www.youtube.com/watch?v=rHM9bDgT2zQ
-    public class Bola : NetworkBehaviour
+    public class Bola : MonoBehaviour
     {
         private float angulo = 0;
         private float potencia = 0;
