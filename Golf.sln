@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{7BEDA7BF-E63F-971D-68D1-EF713C702F95}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotonUnityNetworking.Demos", "PhotonUnityNetworking.Demos.csproj", "{1157F5F4-D800-C208-D1F1-20733949AF52}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotonRealtime", "PhotonRealtime.csproj", "{579EB954-F9BB-DA76-7B6C-85A574579823}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{7BEDA7BF-E63F-971D-68D1-EF713C702F95}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotonUnityNetworking", "PhotonUnityNetworking.csproj", "{EC45A095-E895-E02D-CF52-3F485D15E925}"
 EndProject
@@ -29,6 +29,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7BEDA7BF-E63F-971D-68D1-EF713C702F95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BEDA7BF-E63F-971D-68D1-EF713C702F95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BEDA7BF-E63F-971D-68D1-EF713C702F95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BEDA7BF-E63F-971D-68D1-EF713C702F95}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1157F5F4-D800-C208-D1F1-20733949AF52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1157F5F4-D800-C208-D1F1-20733949AF52}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1157F5F4-D800-C208-D1F1-20733949AF52}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -37,10 +41,6 @@ Global
 		{579EB954-F9BB-DA76-7B6C-85A574579823}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{579EB954-F9BB-DA76-7B6C-85A574579823}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{579EB954-F9BB-DA76-7B6C-85A574579823}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7BEDA7BF-E63F-971D-68D1-EF713C702F95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7BEDA7BF-E63F-971D-68D1-EF713C702F95}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7BEDA7BF-E63F-971D-68D1-EF713C702F95}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7BEDA7BF-E63F-971D-68D1-EF713C702F95}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EC45A095-E895-E02D-CF52-3F485D15E925}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EC45A095-E895-E02D-CF52-3F485D15E925}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC45A095-E895-E02D-CF52-3F485D15E925}.Release|Any CPU.ActiveCfg = Release|Any CPU

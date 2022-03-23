@@ -56,6 +56,7 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Multijugador\Lobby.cs" />
     <Compile Include="Assets\Scripts\Configuracion.cs" />
     <Compile Include="Assets\Photon\PhotonLibs\WebSocket\SocketWebTcp.cs" />
     <Compile Include="Assets\Scripts\Partida\Guardar.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="Assets\Scripts\Escenario\Generacion\Vectores.cs" />
     <Compile Include="Assets\Photon\PhotonRealtime\Demos\DemoLoadBalancing\ConnectAndJoinRandomLb.cs" />
     <Compile Include="Assets\Scripts\Escenario\Colocar\Mordiscos.cs" />
+    <Compile Include="Assets\Scripts\Multijugador\Manejador.cs" />
     <Compile Include="Assets\Scripts\Escenario\Colocar\Muros.cs" />
     <Compile Include="Assets\Scripts\Escenario\Colocar\Hoyo.cs" />
     <Compile Include="Assets\Scripts\Recursos\CampoHoyo.cs" />
