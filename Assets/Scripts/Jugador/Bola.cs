@@ -1,3 +1,5 @@
+using Photon.Pun;
+using Photon.Realtime;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -8,6 +10,9 @@ namespace Jugador
     //https://www.youtube.com/watch?v=rHM9bDgT2zQ
     public class Bola : MonoBehaviour
     {
+        [HideInInspector] public int id;
+        public Player photonJugador;
+
         private float angulo = 0;
         private float potencia = 0;
         private bool potenciaDecrecer = false;
@@ -27,6 +32,15 @@ namespace Jugador
         private float camaraZoomInput;
 
         public static Bola instancia;
+
+        [PunRPC]
+        public void Arranque(Player jugador)
+        {
+            photonJugador = jugador;
+            id = jugador.ActorNumber;
+
+            Configuracion.instancia.jugadores[id - 1] = this;
+        }
 
         public void Awake()
         {

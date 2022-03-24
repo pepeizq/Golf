@@ -1,13 +1,20 @@
 using Escenario.Colocar;
+using Photon.Pun;
 using Recursos;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Configuracion : MonoBehaviour
+public class Configuracion : MonoBehaviourPunCallbacks
 {
+    [Header("Multijugador")]
+    public bool partidaTerminada = false;
+    public float tiempoTerminar = 0f;
+    public Jugador.Bola[] jugadores;
+    private int jugadoresDentro;
+
     [Header("Partida")]
-    [HideInInspector] public JuegoModos juegoModo;
+    [HideInInspector] public JuegoModo juegoModo;
     [HideInInspector] public int numeroPartida = 0;
     public List<Campo> campos;
     [HideInInspector] public Campo campo;
@@ -70,31 +77,6 @@ public class Configuracion : MonoBehaviour
         numeroPartida = PlayerPrefs.GetInt("numeroPartida");
         nivel = PlayerPrefs.GetInt(numeroPartida.ToString() + "nivel");
         campo = campos[PlayerPrefs.GetInt(numeroPartida.ToString() + "campo")];
-     
-        if (PlayerPrefs.GetInt("multijugador") > 0)
-        {
-            if (PlayerPrefs.GetInt("multijugador") == 1)
-            {
-                juegoModo = JuegoModos.MultiServidor;
-                //Jugador.Multijugador.instancia.Servidor();
-            }
-            else if(PlayerPrefs.GetInt("multijugador") == 2)
-            {
-                juegoModo = JuegoModos.MultiServidor;
-                //Jugador.Multijugador.instancia.Hospedador();
-            }
-            else if (PlayerPrefs.GetInt("multijugador") == 3)
-            {
-                juegoModo = JuegoModos.MultiCliente;
-                //Jugador.Multijugador.instancia.Cliente();
-            }
-
-            PlayerPrefs.SetInt("multijugador", 0);
-        }
-        else
-        {
-            juegoModo = JuegoModos.UnJugador;
-        }
 
         if (campo != null)
         {
@@ -111,6 +93,28 @@ public class Configuracion : MonoBehaviour
 
     public void Start()
     {
+        if (PhotonNetwork.IsConnected == true)
+        {
+            if (PhotonNetwork.IsMasterClient == true)
+            {
+                juegoModo = JuegoModo.MultiJugadorHost;
+            }
+            else
+            {
+                juegoModo = JuegoModo.MultiJugadorCliente;
+            }          
+        }
+        else
+        {
+            juegoModo = JuegoModo.UnJugador;
+        }
+
+        if (juegoModo == JuegoModo.MultiJugadorHost || juegoModo == JuegoModo.MultiJugadorCliente)
+        {
+            jugadores = new Jugador.Bola[PhotonNetwork.PlayerList.Length];
+            photonView.RPC("MultijugadorSumarJugador", RpcTarget.AllBuffered);
+        }
+
         Objetos.instancia.textoPartida.text = string.Format("Partida: {0}", numeroPartida.ToString());
         Objetos.instancia.textoHoyo.text = string.Format("Hoyo: {0}", (nivel + 1).ToString());
         Objetos.instancia.textoPalos.text = palos.ToString();
@@ -123,7 +127,22 @@ public class Configuracion : MonoBehaviour
         SceneManager.LoadScene("Escenario");
     }
 
-    public enum JuegoModos { UnJugador, MultiServidor, MultiHospedador, MultiCliente }
+    public void MultijugadorSumarJugador()
+    {
+        jugadoresDentro += 1;
+
+        if (jugadoresDentro == PhotonNetwork.PlayerList.Length)
+        {
+            MultijugadorGenerarJugador();
+        }
+    }
+
+    public void MultijugadorGenerarJugador()
+    {
+
+    }
+
+    public enum JuegoModo { UnJugador, MultiJugadorHost, MultiJugadorCliente }
     public enum CamaraModos { Libre, Fija }
     public enum Palos { Madera, Hierro }
 }

@@ -14,10 +14,9 @@ GameObject:
   - component: {fileID: 2109579424523070769}
   - component: {fileID: 6233252225502907601}
   - component: {fileID: 6307716939143863290}
-  - component: {fileID: 2557747383212208767}
   m_Layer: 13
   m_Name: Bola
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -224,22 +223,6 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
---- !u!114 &2557747383212208767
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5254376277288024930}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 951099334
-  AlwaysReplicateAsRoot: 0
-  DontDestroyWithOwner: 0
-  AutoObjectParentSync: 1
 --- !u!1 &6928494658373859896
 GameObject:
   m_ObjectHideFlags: 0
@@ -250,7 +233,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6928494658373859897}
   - component: {fileID: -1564655253345904998}
-  - component: {fileID: -5478625693549109784}
+  - component: {fileID: 6200019620088302036}
+  - component: {fileID: 5369768144498653334}
   m_Layer: 0
   m_Name: Prefab Bola
   m_TagString: Untagged
@@ -287,10 +271,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 564fe068a4d3f534d824d54baf3d3b67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bola: {fileID: 6928494658498962335}
-  camara: {fileID: 5254376277288024930}
   ultimaPosicion: {x: 0, y: 0, z: 0}
---- !u!114 &-5478625693549109784
+--- !u!114 &6200019620088302036
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -299,13 +281,36 @@ MonoBehaviour:
   m_GameObject: {fileID: 6928494658373859896}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 951099334
-  AlwaysReplicateAsRoot: 0
-  DontDestroyWithOwner: 0
-  AutoObjectParentSync: 1
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: 5369768144498653334}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &5369768144498653334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6928494658373859896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1 &6928494658498962335
 GameObject:
   m_ObjectHideFlags: 0

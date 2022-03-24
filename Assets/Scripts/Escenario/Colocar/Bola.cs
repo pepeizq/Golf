@@ -1,3 +1,4 @@
+using Photon.Pun;
 using Recursos;
 using UnityEngine;
 
@@ -61,18 +62,25 @@ namespace Escenario.Colocar
 
         private void InstanciarBola(Vector3 posicion)
         {          
-            GameObject bola = Instantiate(Objetos.instancia.bola);
-            bola.transform.position = posicion;
-
-            Vector3 posicion2 = bola.transform.position;
-
-            if (Configuracion.instancia.camara == Configuracion.CamaraModos.Libre)
+            if (Configuracion.instancia.juegoModo == Configuracion.JuegoModo.UnJugador)
             {
-                posicion2.x = posicion2.x - Configuracion.instancia.rotacionCamaraX;
-                posicion2.z = posicion2.z - Configuracion.instancia.rotacionCamaraZ;
-            }
+                GameObject bola = Instantiate(Objetos.instancia.bola);
+                bola.transform.position = posicion;
 
-            Jugador.Bola.instancia.transform.GetChild(0).gameObject.transform.position = posicion2;
+                Vector3 posicion2 = bola.transform.position;
+
+                if (Configuracion.instancia.camara == Configuracion.CamaraModos.Libre)
+                {
+                    posicion2.x = posicion2.x - Configuracion.instancia.rotacionCamaraX;
+                    posicion2.z = posicion2.z - Configuracion.instancia.rotacionCamaraZ;
+                }
+
+                Jugador.Bola.instancia.transform.GetChild(0).gameObject.transform.position = posicion2;
+            }
+            else
+            {
+                GameObject bola = PhotonNetwork.Instantiate("", posicion, Quaternion.identity);
+            }
         }
     }
 }
