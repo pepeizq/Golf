@@ -4,8 +4,9 @@ using UnityEngine;
 
 namespace Escenario.Colocar
 {
-    public class Bola : MonoBehaviour
+    public class Bola : MonoBehaviourPunCallbacks
     {
+        [HideInInspector] public Vector3 posicionMultijugador;
         public static Bola instancia;
 
         public void Awake()
@@ -36,7 +37,19 @@ namespace Escenario.Colocar
                                 if (casillas[x, z].id == 0 && casillas[x, z].modificable == true)
                                 {
                                     Vector3 posicion = casillas[x, z].prefab.gameObject.transform.position;
-                                    InstanciarBola(posicion);
+
+                                    if (PhotonNetwork.IsConnected == false)
+                                    {
+                                        InstanciarBola(posicion);
+                                    }
+                                    else
+                                    {
+                                        if (PhotonNetwork.IsMasterClient == true)
+                                        {
+                                            Configuracion.instancia.photonView.RPC("MultijugadorPosicionInicioBola", RpcTarget.All, posicion);
+                                        }                                           
+                                    }
+                                        
                                     casillas[x, z].modificable = false;
                                     break;
                                 }
@@ -54,15 +67,18 @@ namespace Escenario.Colocar
                     }
                     else
                     {
-                        InstanciarBola(Partida.Cargar.CargarBolaPosicion());
+                        if (Configuracion.instancia.juegoModo == Configuracion.JuegoModo.UnJugador)
+                        {
+                            InstanciarBola(Partida.Cargar.CargarBolaPosicion());
+                        }                            
                     }                       
                 }
             }
         }
 
-        private void InstanciarBola(Vector3 posicion)
+        public void InstanciarBola(Vector3 posicion)
         {          
-            if (Configuracion.instancia.juegoModo == Configuracion.JuegoModo.UnJugador)
+            if (PhotonNetwork.IsConnected == false)
             {
                 GameObject bola = Instantiate(Objetos.instancia.bola);
                 bola.transform.position = posicion;
@@ -79,8 +95,20 @@ namespace Escenario.Colocar
             }
             else
             {
-                GameObject bola = PhotonNetwork.Instantiate("", posicion, Quaternion.identity);
+                GameObject bola = PhotonNetwork.Instantiate("Prefab Bola", posicion, Quaternion.identity);
+                bola.transform.position = Configuracion.instancia.posicionInicioBola;
+
+                Jugador.Bola bola2 = bola.gameObject.GetComponent<Jugador.Bola>();
+                bola2.photonView.RPC("Arranque", RpcTarget.All, PhotonNetwork.LocalPlayer);
+
+                bola.transform.GetChild(0).gameObject.transform.position = bola.transform.position;
             }
+        }
+
+        [PunRPC]
+        public void PosicionMultijugador(Vector3 posicion)
+        {
+            posicionMultijugador = posicion;
         }
     }
 }

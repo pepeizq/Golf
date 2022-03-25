@@ -851,7 +851,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 565598171}
-  - component: {fileID: 565598182}
   - component: {fileID: 565598172}
   - component: {fileID: 565598173}
   - component: {fileID: 565598174}
@@ -862,6 +861,7 @@ GameObject:
   - component: {fileID: 565598178}
   - component: {fileID: 565598181}
   - component: {fileID: 565598180}
+  - component: {fileID: 565598182}
   m_Layer: 0
   m_Name: Escenario
   m_TagString: Untagged
@@ -997,6 +997,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e582ae6528f04e44a9b24e12719b4ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  posicionMultijugador: {x: 0, y: 0, z: 0}
 --- !u!114 &565598177
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1067,9 +1068,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 565598170}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1bb6e644f0009474594909a969fb7611, type: 3}
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 3
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &817381281
 GameObject:
   m_ObjectHideFlags: 0
@@ -2443,9 +2454,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b10b756b2fa80a408aa7f6cc3e93d80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  partidaTerminada: 0
   tiempoTerminar: 0
+  partidaTerminada: 0
   jugadores: []
+  posicionInicioBola: {x: 0, y: 0, z: 0}
   juegoModo: 0
   numeroPartida: 34
   campos:
@@ -2516,7 +2528,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
+  ObservedComponentsFoldoutOpen: 0
   Group: 0
   prefixField: -1
   Synchronization: 3

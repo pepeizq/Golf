@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 namespace Jugador
 {
     //https://www.youtube.com/watch?v=rHM9bDgT2zQ
-    public class Bola : MonoBehaviour
+    public class Bola : MonoBehaviourPunCallbacks
     {
         [HideInInspector] public int id;
         public Player photonJugador;
@@ -40,6 +40,11 @@ namespace Jugador
             id = jugador.ActorNumber;
 
             Configuracion.instancia.jugadores[id - 1] = this;
+
+            if (photonView.IsMine == false)
+            {
+                instancia.cuerpo.isKinematic = true;
+            }
         }
 
         public void Awake()

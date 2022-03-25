@@ -233,8 +233,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6928494658373859897}
   - component: {fileID: -1564655253345904998}
-  - component: {fileID: 6200019620088302036}
-  - component: {fileID: 5369768144498653334}
+  - component: {fileID: 1364285583390044618}
+  - component: {fileID: 1394491252147169292}
   m_Layer: 0
   m_Name: Prefab Bola
   m_TagString: Untagged
@@ -271,8 +271,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 564fe068a4d3f534d824d54baf3d3b67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
   ultimaPosicion: {x: 0, y: 0, z: 0}
---- !u!114 &6200019620088302036
+--- !u!114 &1364285583390044618
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -289,13 +290,13 @@ MonoBehaviour:
   prefixField: -1
   Synchronization: 3
   OwnershipTransfer: 0
-  observableSearch: 2
+  observableSearch: 0
   ObservedComponents:
-  - {fileID: 5369768144498653334}
+  - {fileID: 1394491252147169292}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &5369768144498653334
+--- !u!114 &1394491252147169292
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

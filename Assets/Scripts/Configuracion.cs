@@ -8,9 +8,10 @@ using UnityEngine.SceneManagement;
 public class Configuracion : MonoBehaviourPunCallbacks
 {
     [Header("Multijugador")]
-    public bool partidaTerminada = false;
     public float tiempoTerminar = 0f;
-    public Jugador.Bola[] jugadores;
+    [HideInInspector] public bool partidaTerminada = false;
+    [HideInInspector] public Jugador.Bola[] jugadores;
+    [HideInInspector] public Vector3 posicionInicioBola;
     private int jugadoresDentro;
 
     [Header("Partida")]
@@ -95,23 +96,7 @@ public class Configuracion : MonoBehaviourPunCallbacks
     {
         if (PhotonNetwork.IsConnected == true)
         {
-            if (PhotonNetwork.IsMasterClient == true)
-            {
-                juegoModo = JuegoModo.MultiJugadorHost;
-            }
-            else
-            {
-                juegoModo = JuegoModo.MultiJugadorCliente;
-            }          
-        }
-        else
-        {
-            juegoModo = JuegoModo.UnJugador;
-        }
-
-        if (juegoModo == JuegoModo.MultiJugadorHost || juegoModo == JuegoModo.MultiJugadorCliente)
-        {
-            jugadores = new Jugador.Bola[PhotonNetwork.PlayerList.Length];
+            instancia.jugadores = new Jugador.Bola[PhotonNetwork.PlayerList.Length];
             photonView.RPC("MultijugadorSumarJugador", RpcTarget.AllBuffered);
         }
 
@@ -127,19 +112,21 @@ public class Configuracion : MonoBehaviourPunCallbacks
         SceneManager.LoadScene("Escenario");
     }
 
+    [PunRPC]
     public void MultijugadorSumarJugador()
     {
         jugadoresDentro += 1;
-
+  
         if (jugadoresDentro == PhotonNetwork.PlayerList.Length)
         {
-            MultijugadorGenerarJugador();
+            Bola.instancia.InstanciarBola(posicionInicioBola);  
         }
     }
 
-    public void MultijugadorGenerarJugador()
+    [PunRPC]
+    public void MultijugadorPosicionInicioBola(Vector3 posicion)
     {
-
+        posicionInicioBola = posicion;
     }
 
     public enum JuegoModo { UnJugador, MultiJugadorHost, MultiJugadorCliente }
