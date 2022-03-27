@@ -31,7 +31,8 @@ public class Configuracion : MonoBehaviourPunCallbacks
     [HideInInspector] public bool poderMover = true;
 
     [Header("Camara")]
-    public CamaraModos camara;
+    public GameObject camaraObjeto;
+    public CamaraModos camaraModo;
     public int velocidadLibre = 20;
     public float zoomDefecto = 3.5f;
     public float zoomCerca = 0.5f;
@@ -97,7 +98,7 @@ public class Configuracion : MonoBehaviourPunCallbacks
         if (PhotonNetwork.IsConnected == true)
         {
             instancia.jugadores = new Jugador.Bola[PhotonNetwork.PlayerList.Length];
-            photonView.RPC("MultijugadorSumarJugador", RpcTarget.AllBuffered);
+            instancia.photonView.RPC("MultijugadorSumarJugador", RpcTarget.AllBuffered);
         }
 
         Objetos.instancia.textoPartida.text = string.Format("Partida: {0}", numeroPartida.ToString());
@@ -127,6 +128,32 @@ public class Configuracion : MonoBehaviourPunCallbacks
     public void MultijugadorPosicionInicioBola(Vector3 posicion)
     {
         posicionInicioBola = posicion;
+    }
+
+    public Jugador.Bola CogerBola(int idJugador)
+    {
+        foreach (var jugador in jugadores)
+        {
+            if (jugador.id == idJugador)
+            {
+                return jugador;
+            }
+        }
+
+        return null;
+    }
+
+    public Jugador.Bola CogerBola(GameObject jugador)
+    {
+        foreach (var jugador2 in jugadores)
+        {
+            if (jugador2.gameObject == jugador)
+            {
+                return jugador2;
+            }
+        }
+
+        return null;
     }
 
     public enum JuegoModo { UnJugador, MultiJugadorHost, MultiJugadorCliente }

@@ -11,7 +11,7 @@ namespace Jugador
     public class Bola : MonoBehaviourPunCallbacks
     {
         [HideInInspector] public int id;
-        public Player photonJugador;
+        [HideInInspector] public Player photonJugador;
 
         private float angulo = 0;
         private float potencia = 0;
@@ -43,7 +43,7 @@ namespace Jugador
 
             if (photonView.IsMine == false)
             {
-                instancia.cuerpo.isKinematic = true;
+                //instancia.cuerpo.isKinematic = true;
             }
         }
 
@@ -51,8 +51,8 @@ namespace Jugador
         {
             instancia = this;
 
-            instancia.linea = instancia.transform.GetChild(1).gameObject.GetComponent<LineRenderer>();
-            instancia.cuerpo = instancia.transform.GetChild(1).gameObject.GetComponent<Rigidbody>();
+            instancia.linea = instancia.gameObject.GetComponent<LineRenderer>();
+            instancia.cuerpo = instancia.gameObject.GetComponent<Rigidbody>();
             instancia.cuerpo.maxAngularVelocity = 1000;            
         }
 
@@ -62,8 +62,8 @@ namespace Jugador
 
             //--------------------------------------------------------------------
 
-            instancia.camaraOffset = instancia.transform.GetChild(0).gameObject.transform.position - instancia.transform.GetChild(1).gameObject.transform.position;
-            instancia.ultimaPosicion = instancia.transform.GetChild(1).gameObject.transform.localPosition;
+            instancia.camaraOffset = Configuracion.instancia.camaraObjeto.gameObject.transform.position - instancia.gameObject.transform.position;
+            instancia.ultimaPosicion = instancia.gameObject.transform.localPosition;
 
             //--------------------------------------------------------------------
 
@@ -83,7 +83,7 @@ namespace Jugador
            
             //--------------------------------------------------------------------
 
-            Renderer renderer = instancia.transform.GetChild(1).gameObject.GetComponent<Renderer>();
+            Renderer renderer = instancia.gameObject.GetComponent<Renderer>();
             renderer.material.shader = Shader.Find("HDRP/Lit");
             renderer.material.SetColor("_BaseColor", Configuracion.instancia.color);
 
@@ -110,7 +110,7 @@ namespace Jugador
                     instancia.cuerpo.angularVelocity = Vector3.zero;
 
                     instancia.linea.enabled = true;
-                    instancia.ultimaPosicion = instancia.transform.GetChild(1).gameObject.transform.localPosition;
+                    instancia.ultimaPosicion = instancia.gameObject.transform.localPosition;
             
                     Partida.Guardar.GuardarMaestro(instancia.ultimaPosicion, instancia.angulo, instancia.golpes, instancia.camaraZoom, DateTime.Now, Configuracion.instancia.campo.id, Configuracion.instancia.nivel, Configuracion.instancia.numeroPartida);
                     Transparentar.Casillas(instancia.ultimaPosicion, Transparentar.CasillasMaterial.Transparente);
@@ -188,16 +188,16 @@ namespace Jugador
 
                     //--------------------------------------------------------
 
-                    instancia.linea.SetPosition(0, instancia.transform.GetChild(1).gameObject.transform.position);
-                    instancia.linea.SetPosition(1, instancia.transform.GetChild(1).gameObject.transform.position + Quaternion.Euler(0, instancia.angulo, 0) * Vector3.forward * (Configuracion.instancia.lineaLongitud + instancia.potencia / 4));
+                    instancia.linea.SetPosition(0, instancia.gameObject.transform.position);
+                    instancia.linea.SetPosition(1, instancia.gameObject.transform.position + Quaternion.Euler(0, instancia.angulo, 0) * Vector3.forward * (Configuracion.instancia.lineaLongitud + instancia.potencia / 4));
                 }
                 else
                 {
                     instancia.linea.enabled = false;
 
-                    if (instancia.transform.GetChild(1).gameObject.transform.localPosition.y <= -5f)
+                    if (instancia.gameObject.transform.localPosition.y <= -5f)
                     {
-                        instancia.transform.GetChild(1).gameObject.transform.localPosition = instancia.ultimaPosicion;
+                        instancia.gameObject.transform.localPosition = instancia.ultimaPosicion;
                         instancia.cuerpo.velocity = Vector3.zero;
                         instancia.cuerpo.angularVelocity = Vector3.zero;
                     }
@@ -215,40 +215,40 @@ namespace Jugador
         {
             if (Configuracion.instancia.poderMover == true)
             {
-                if (Configuracion.instancia.camara == Configuracion.CamaraModos.Libre)
+                if (Configuracion.instancia.camaraModo == Configuracion.CamaraModos.Libre)
                 {
                     if (instancia.camaraMovimientoInput.x > 0 && instancia.camaraMovimientoInput.y == 0)
                     {
-                        instancia.transform.GetChild(0).gameObject.transform.Translate(new Vector3(Configuracion.instancia.velocidadLibre * Time.deltaTime * 10, 0, 0));
+                        Configuracion.instancia.camaraObjeto.transform.Translate(new Vector3(Configuracion.instancia.velocidadLibre * Time.deltaTime * 10, 0, 0));
                     }
                     else if (instancia.camaraMovimientoInput.x < 0 && instancia.camaraMovimientoInput.y == 0)
                     {
-                        instancia.transform.GetChild(0).gameObject.transform.Translate(new Vector3(-Configuracion.instancia.velocidadLibre * Time.deltaTime * 10, 0, 0));
+                        Configuracion.instancia.camaraObjeto.transform.Translate(new Vector3(-Configuracion.instancia.velocidadLibre * Time.deltaTime * 10, 0, 0));
                     }
                     else if (instancia.camaraMovimientoInput.x == 0 && instancia.camaraMovimientoInput.y > 0)
                     {
-                        instancia.transform.GetChild(0).gameObject.transform.Translate(new Vector3(0, Configuracion.instancia.velocidadLibre * Time.deltaTime * 10, 0));
+                        Configuracion.instancia.camaraObjeto.transform.Translate(new Vector3(0, Configuracion.instancia.velocidadLibre * Time.deltaTime * 10, 0));
                     }
                     else if (instancia.camaraMovimientoInput.x == 0 && instancia.camaraMovimientoInput.y < 0)
                     {
-                        instancia.transform.GetChild(0).gameObject.transform.Translate(new Vector3(0, -Configuracion.instancia.velocidadLibre * Time.deltaTime * 10, 0));
+                        Configuracion.instancia.camaraObjeto.transform.Translate(new Vector3(0, -Configuracion.instancia.velocidadLibre * Time.deltaTime * 10, 0));
                     }
 
-                    instancia.transform.GetChild(0).gameObject.transform.position = new Vector3(instancia.transform.GetChild(0).gameObject.transform.position.x, 60, instancia.transform.GetChild(0).gameObject.transform.position.z);              
+                    Configuracion.instancia.camaraObjeto.transform.position = new Vector3(Configuracion.instancia.camaraObjeto.transform.position.x, 60, Configuracion.instancia.camaraObjeto.transform.position.z);              
                 }
-                else if (Configuracion.instancia.camara == Configuracion.CamaraModos.Fija)
+                else if (Configuracion.instancia.camaraModo == Configuracion.CamaraModos.Fija)
                 {
-                    Vector3 posicion = instancia.transform.GetChild(1).position + instancia.camaraOffset;
-                    posicion.x -= Configuracion.instancia.rotacionCamaraX - (instancia.transform.GetChild(1).position.y - 1f) / 2;
+                    Vector3 posicion = instancia.transform.position + instancia.camaraOffset;
+                    posicion.x -= Configuracion.instancia.rotacionCamaraX - (instancia.transform.position.y - 1f) / 2;
                     posicion.y = 60;
-                    posicion.z -= Configuracion.instancia.rotacionCamaraZ - (instancia.transform.GetChild(1).position.y - 1f) / 2;
+                    posicion.z -= Configuracion.instancia.rotacionCamaraZ - (instancia.transform.position.y - 1f) / 2;
 
-                    instancia.transform.GetChild(0).gameObject.transform.position = posicion;
+                    Configuracion.instancia.camaraObjeto.transform.position = posicion;
                 }
 
                 //------------------------------------
 
-                Camera camara = instancia.transform.GetChild(0).gameObject.GetComponent<Camera>();
+                Camera camara = Configuracion.instancia.camaraObjeto.GetComponent<Camera>();
                 camara.orthographicSize = instancia.camaraZoom;
 
                 if (instancia.camaraZoomInput > 0)
@@ -374,13 +374,13 @@ namespace Jugador
             {
                 if (contexto.phase == InputActionPhase.Performed)
                 {
-                    if (Configuracion.instancia.camara == Configuracion.CamaraModos.Fija)
+                    if (Configuracion.instancia.camaraModo == Configuracion.CamaraModos.Fija)
                     {
-                        Configuracion.instancia.camara = Configuracion.CamaraModos.Libre;
+                        Configuracion.instancia.camaraModo = Configuracion.CamaraModos.Libre;
                     }
                     else
                     {
-                        Configuracion.instancia.camara = Configuracion.CamaraModos.Fija;
+                        Configuracion.instancia.camaraModo = Configuracion.CamaraModos.Fija;
                     }
                 }
             }              

@@ -85,23 +85,23 @@ namespace Escenario.Colocar
 
                 Vector3 posicion2 = bola.transform.position;
 
-                if (Configuracion.instancia.camara == Configuracion.CamaraModos.Libre)
+                if (Configuracion.instancia.camaraModo == Configuracion.CamaraModos.Libre)
                 {
                     posicion2.x = posicion2.x - Configuracion.instancia.rotacionCamaraX;
                     posicion2.z = posicion2.z - Configuracion.instancia.rotacionCamaraZ;
                 }
 
-                Jugador.Bola.instancia.transform.GetChild(0).gameObject.transform.position = posicion2;
+                Configuracion.instancia.camaraObjeto.transform.position = posicion2;
             }
             else
             {
-                GameObject bola = PhotonNetwork.Instantiate("Prefab Bola", posicion, Quaternion.identity);
+                GameObject bola = PhotonNetwork.Instantiate("Prefabs/Prefab Bola", posicion, Quaternion.identity);
                 bola.transform.position = Configuracion.instancia.posicionInicioBola;
 
                 Jugador.Bola bola2 = bola.gameObject.GetComponent<Jugador.Bola>();
                 bola2.photonView.RPC("Arranque", RpcTarget.All, PhotonNetwork.LocalPlayer);
 
-                bola.transform.GetChild(0).gameObject.transform.position = bola.transform.position;
+                Configuracion.instancia.camaraObjeto.transform.position = bola.transform.position;
             }
         }
 

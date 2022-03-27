@@ -1901,8 +1901,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   botonMultijugador: {fileID: 828390864}
-  botonCrearSala: {fileID: 213250842}
-  botonUnirseSala: {fileID: 1718091118}
+  panel1: {fileID: 289925669}
+  panel2: {fileID: 1261324252}
   textoJugadores: {fileID: 1144466322}
   botonEmpezarPartida: {fileID: 626189816}
 --- !u!1 &724025668

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1665946310997464875
+--- !u!1 &6690447837481679712
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,24 +8,25 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2041663331001961873}
-  - component: {fileID: 3169032678261326388}
-  - component: {fileID: 873237803453904638}
-  - component: {fileID: 2546679365048603425}
+  - component: {fileID: 6310368196189774298}
+  - component: {fileID: 6934758261197336191}
+  - component: {fileID: 5177383292303809205}
+  - component: {fileID: -7028718342718111048}
+  - component: {fileID: -8594655247509458594}
   m_Layer: 0
-  m_Name: Prefab Casilla 50
+  m_Name: Prefab Casilla 0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2041663331001961873
+--- !u!4 &6310368196189774298
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1665946310997464875}
+  m_GameObject: {fileID: 6690447837481679712}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
@@ -34,21 +35,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &3169032678261326388
+--- !u!33 &6934758261197336191
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1665946310997464875}
-  m_Mesh: {fileID: 3369316746193770658, guid: c54f4282faf8787409f7c837db2061e3, type: 3}
---- !u!23 &873237803453904638
+  m_GameObject: {fileID: 6690447837481679712}
+  m_Mesh: {fileID: 3369316746193770658, guid: 4c0a40727e3e49e498988b7deb5dc99a, type: 3}
+--- !u!23 &5177383292303809205
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1665946310997464875}
+  m_GameObject: {fileID: 6690447837481679712}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -62,8 +63,8 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 71306783159ea2c448d6b499539cd03a, type: 2}
-  - {fileID: 2100000, guid: ceadad0c0ffe6c84ebc40a9e36aec291, type: 2}
+  - {fileID: 5561349426305759274, guid: 4c0a40727e3e49e498988b7deb5dc99a, type: 3}
+  - {fileID: 8748892135801146194, guid: 4c0a40727e3e49e498988b7deb5dc99a, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -85,17 +86,39 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &2546679365048603425
+--- !u!64 &-7028718342718111048
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1665946310997464875}
+  m_GameObject: {fileID: 6690447837481679712}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 3369316746193770658, guid: c54f4282faf8787409f7c837db2061e3, type: 3}
+  m_Mesh: {fileID: 3369316746193770658, guid: 4c0a40727e3e49e498988b7deb5dc99a, type: 3}
+--- !u!114 &-8594655247509458594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6690447837481679712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0

@@ -2,20 +2,23 @@ using UnityEngine.UI;
 using TMPro;
 using Photon.Pun;
 using Photon.Realtime;
+using UnityEngine;
 
 namespace Multijugador
 {
     public class Lobby : MonoBehaviourPunCallbacks
     {
         public Button botonMultijugador;
-        public Button botonCrearSala;
-        public Button botonUnirseSala;
+        public GameObject panel1;
+        public GameObject panel2;
         public TextMeshProUGUI textoJugadores;
         public Button botonEmpezarPartida;
 
         public void Start()
         {
             botonMultijugador.interactable = false;
+
+            panel2.SetActive(false);
         }
 
         public override void OnConnectedToMaster()
@@ -26,11 +29,17 @@ namespace Multijugador
         public void CrearSala(TMP_InputField nombreSala)
         {
             Manejador.instancia.CrearSala(nombreSala.text);
+
+            panel1.SetActive(false);
+            panel2.SetActive(true);
         }
 
         public void UnirseSala(TMP_InputField nombreSala)
         {
             Manejador.instancia.UnirseSala(nombreSala.text);
+
+            panel1.SetActive(false);
+            panel2.SetActive(true);
         }
 
         public void CambiarNombreJugador(TMP_InputField nombreJugador)
@@ -71,10 +80,14 @@ namespace Multijugador
         public void DejarSala()
         {
             PhotonNetwork.LeaveRoom();
+
+            panel1.SetActive(true);
+            panel2.SetActive(false);
         }
 
         public void EmpezarPartida()
         {
+            botonEmpezarPartida.interactable = false;
             Manejador.instancia.photonView.RPC("CambiarEscena", RpcTarget.All, "Escenario");
         }
     }

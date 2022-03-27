@@ -1,14 +1,16 @@
 ﻿using Escenario.Colocar;
 using Escenario.Generacion;
 using Partida;
+using Photon.Pun;
 using Recursos;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Escenario
 {
-    public class Escenario : MonoBehaviour
+    public class Escenario : MonoBehaviourPunCallbacks
     {
         public List<Casilla> casillasDebug;
 
@@ -25,6 +27,11 @@ namespace Escenario
 
         public void Start()
         {
+            Arranque();
+        }
+
+        public void Arranque()
+        {
             casillasMapa = new Casilla[Configuracion.instancia.tamañoX, Configuracion.instancia.tamañoZ];
 
             if (Configuracion.instancia.aleatorio == true)
@@ -35,6 +42,14 @@ namespace Escenario
             else
             {
                 casillasIniciales = Cargar.CargarEscenario();
+            }
+
+            if (PhotonNetwork.IsConnected == true)
+            {
+                if (PhotonNetwork.IsMasterClient == true)
+                {
+                    photonView.RPC("MultijugadorCasillasIniciales", RpcTarget.AllBuffered, casillasIniciales.ToArray());
+                }
             }
 
             int k = 0;
@@ -238,7 +253,7 @@ namespace Escenario
         }
 
         //------------------------------------------------------------------------------------------------------------------------------------
-
+     
         public void PonerCasilla(Casilla casilla)
         {
             List<Casilla> casillasFinal2;
@@ -280,8 +295,21 @@ namespace Escenario
                 if (casillasMapa[x, z] == null)
                 {
                     Vector3 posicionFinal = casilla.posicion;
-                 
-                    GameObject casilla2 = Instantiate(casillasFinal2[id].prefab, posicionFinal, Quaternion.identity);
+
+                    GameObject casilla2 = null;
+                    
+                    if (PhotonNetwork.IsConnected == true)
+                    {
+                        if (PhotonNetwork.IsMasterClient == true)
+                        {
+                            casilla2 = PhotonNetwork.Instantiate("Prefabs/Casillas/" + casillasFinal2[id].prefab.name, posicionFinal, Quaternion.identity);
+                        }
+                    }
+                    else
+                    {
+                        casilla2 = Instantiate(casillasFinal2[id].prefab, posicionFinal, Quaternion.identity);
+                    }
+
                     casilla2.gameObject.transform.Rotate(Vector3.up, casilla.rotacion, Space.World);
 
                     Casilla casilla3 = new Casilla(id, casilla.rotacion, casilla.posicion);
@@ -531,6 +559,12 @@ namespace Escenario
             {
                 return false;
             }
+        }
+
+        [PunRPC]
+        public void MultijugadorCasillasIniciales(Vector3[] casillasServidor)
+        {
+            casillasIniciales = casillasServidor.ToList();
         }
     }
 }
