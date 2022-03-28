@@ -146,14 +146,29 @@ namespace Jugador
                     {
                         if (instancia.potencia != 0)
                         {
-                            if (Configuracion.instancia.palos == Configuracion.Palos.Madera)
+                            if (PhotonNetwork.IsConnected == false)
                             {
-                                instancia.cuerpo.AddForce(Quaternion.Euler(0, instancia.angulo, 0) * Vector3.up * (instancia.potencia * 2), ForceMode.Impulse);
-                                instancia.cuerpo.AddForce(Quaternion.Euler(0, instancia.angulo, 0) * Vector3.forward * (instancia.potencia * 2), ForceMode.Impulse);
+                                if (Configuracion.instancia.palos == Configuracion.Palos.Madera)
+                                {
+                                    instancia.cuerpo.AddForce(Quaternion.Euler(0, instancia.angulo, 0) * Vector3.up * (instancia.potencia * 2), ForceMode.Impulse);
+                                    instancia.cuerpo.AddForce(Quaternion.Euler(0, instancia.angulo, 0) * Vector3.forward * (instancia.potencia * 2), ForceMode.Impulse);
+                                }
+                                else
+                                {
+                                    instancia.cuerpo.AddForce(Quaternion.Euler(0, instancia.angulo, 0) * Vector3.forward * instancia.potencia, ForceMode.Impulse);
+                                }
                             }
                             else
                             {
-                                instancia.cuerpo.AddForce(Quaternion.Euler(0, instancia.angulo, 0) * Vector3.forward * instancia.potencia, ForceMode.Impulse);
+                                if (Configuracion.instancia.palos == Configuracion.Palos.Madera)
+                                {
+                                    cuerpo.AddForce(Quaternion.Euler(0, instancia.angulo, 0) * Vector3.up * (instancia.potencia * 2), ForceMode.Impulse);
+                                    cuerpo.AddForce(Quaternion.Euler(0, instancia.angulo, 0) * Vector3.forward * (instancia.potencia * 2), ForceMode.Impulse);
+                                }
+                                else
+                                {
+                                    cuerpo.AddForce(Quaternion.Euler(0, instancia.angulo, 0) * Vector3.forward * instancia.potencia, ForceMode.Impulse);
+                                }
                             }
 
                             instancia.potencia = 0;
