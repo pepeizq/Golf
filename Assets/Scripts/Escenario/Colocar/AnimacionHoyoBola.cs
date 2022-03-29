@@ -17,7 +17,7 @@ namespace Escenario.Colocar
         public void Generar()
         {
             Configuracion.instancia.poderMover = false;
-            instancia.animacion = true;
+            animacion = true;
         }
 
         public void Update()
@@ -28,18 +28,18 @@ namespace Escenario.Colocar
                 Vector3 posicionHoyo = Configuracion.instancia.posicionHoyo;
                 GameObject camara = Jugador.Bola.instancia.transform.GetChild(0).gameObject;
 
-                instancia.pasos += Time.deltaTime * 5;
-             
-                Vector3 posicionNueva = Vector3.MoveTowards(posicionHoyo, posicionBola, instancia.pasos);
+                pasos += Time.deltaTime * 5;
+
+                Vector3 posicionNueva = Vector3.MoveTowards(posicionHoyo, posicionBola, pasos);
                 posicionNueva.x -= Configuracion.instancia.rotacionCamaraX;
                 posicionNueva.y = Configuracion.instancia.rotacionCamaraY;
                 posicionNueva.z -= Configuracion.instancia.rotacionCamaraZ;
                 camara.transform.position = posicionNueva;
 
-                if (Vector3.Distance(posicionHoyo, posicionBola) <= instancia.pasos)
-                {             
+                if (Vector3.Distance(posicionHoyo, posicionBola) <= pasos)
+                {
                     Configuracion.instancia.poderMover = true;
-                    instancia.animacion = false;                  
+                    animacion = false;
                 }
             }           
         }

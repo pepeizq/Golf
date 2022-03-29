@@ -9,6 +9,8 @@ namespace Multijugador
     public class Lobby : MonoBehaviourPunCallbacks
     {
         public Button botonMultijugador;
+        public TMP_InputField textoJugador;
+        public TMP_InputField textoSala;
         public GameObject panel1;
         public GameObject panel2;
         public TextMeshProUGUI textoJugadores;
@@ -26,25 +28,46 @@ namespace Multijugador
             botonMultijugador.interactable = true;
         }
 
-        public void CrearSala(TMP_InputField nombreSala)
+        public void CrearSala()
         {
-            Manejador.instancia.CrearSala(nombreSala.text);
+            if (textoSala.text.Length == 0)
+            {
+                textoJugador.text = "testJugador" + PhotonNetwork.LocalPlayer.UserId; 
+                textoSala.text = "testSala"; 
+            }
 
-            panel1.SetActive(false);
-            panel2.SetActive(true);
+            if (textoSala.text.Length > 0)
+            {
+                Manejador.instancia.CrearSala(textoSala.text);
+
+                panel1.SetActive(false);
+                panel2.SetActive(true);
+            }
         }
 
-        public void UnirseSala(TMP_InputField nombreSala)
+        public void UnirseSala()
         {
-            Manejador.instancia.UnirseSala(nombreSala.text);
+            if (textoSala.text.Length == 0)
+            {
+                textoJugador.text = "testJugador" + PhotonNetwork.LocalPlayer.UserId;
+                textoSala.text = "testSala";
+            }
 
-            panel1.SetActive(false);
-            panel2.SetActive(true);
+            if (textoSala.text.Length > 0)
+            {
+                Manejador.instancia.UnirseSala(textoSala.text);
+
+                panel1.SetActive(false);
+                panel2.SetActive(true);
+            }               
         }
 
-        public void CambiarNombreJugador(TMP_InputField nombreJugador)
+        public void CambiarNombreJugador()
         {
-            PhotonNetwork.NickName = nombreJugador.text;
+            if (textoJugador.text.Length > 0)
+            {
+                PhotonNetwork.NickName = textoJugador.text;
+            }            
         }
 
         public override void OnJoinedRoom()

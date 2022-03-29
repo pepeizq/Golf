@@ -7,6 +7,7 @@ namespace Escenario.Colocar
     public class Bola : MonoBehaviourPunCallbacks
     {
         [HideInInspector] public Vector3 posicionMultijugador;
+
         public static Bola instancia;
 
         public void Awake()
@@ -16,7 +17,14 @@ namespace Escenario.Colocar
 
         public void Colocar(Casilla[,] casillas)
         {
-            if (Objetos.instancia.bola != null)
+            bool buscarPosicion = true;
+
+            if (PhotonNetwork.IsConnected == true && PhotonNetwork.IsMasterClient == false)
+            {
+                buscarPosicion = false;
+            }
+
+            if (buscarPosicion == true && Objetos.instancia.bola != null)
             {
                 if (casillas != null)
                 {
@@ -67,10 +75,7 @@ namespace Escenario.Colocar
                     }
                     else
                     {
-                        if (Configuracion.instancia.juegoModo == Configuracion.JuegoModo.UnJugador)
-                        {
-                            InstanciarBola(Partida.Cargar.CargarBolaPosicion());
-                        }                            
+                        InstanciarBola(Partida.Cargar.CargarBolaPosicion());
                     }                       
                 }
             }
@@ -96,7 +101,9 @@ namespace Escenario.Colocar
             else
             {
                 GameObject bola = PhotonNetwork.Instantiate("Prefabs/Prefab Bola", posicion, Quaternion.identity);
-                bola.transform.position = Configuracion.instancia.posicionInicioBola;
+                Vector3 nuevaPosicion = Configuracion.instancia.posicionInicioBola;
+                nuevaPosicion.y = nuevaPosicion.y + 10f;
+                bola.transform.position = nuevaPosicion;
 
                 Jugador.Bola bola2 = bola.gameObject.GetComponent<Jugador.Bola>();
                 bola2.photonView.RPC("Arranque", RpcTarget.All, PhotonNetwork.LocalPlayer);

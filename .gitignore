@@ -376,6 +376,7 @@ FodyWeavers.xsd
 /Assets/TextMesh Pro
 /Assets/Photon
 /Assets/Modelos/Maya/.mayaSwatches
+/Build
 Settings
 Settings/HDRPDefaultResources
 Photon*

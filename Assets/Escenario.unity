@@ -2677,7 +2677,7 @@ MonoBehaviour:
   potenciaMaxima: 10
   anguloVelocidad: 100
   lineaLongitud: 2
-  color: {r: 0.49798858, g: 0.75999415, b: 0.9528302, a: 1}
+  color: {r: 0.6981132, g: 0.03149697, b: 0, a: 1}
   transparencias: 0
   poderMover: 1
   camaraObjeto: {fileID: 967383142}

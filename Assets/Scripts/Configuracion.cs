@@ -76,6 +76,7 @@ public class Configuracion : MonoBehaviourPunCallbacks
             PlayerPrefs.SetString("continuarPartida", "no");
         }
 
+        color = Random.ColorHSV();
         numeroPartida = PlayerPrefs.GetInt("numeroPartida");
         nivel = PlayerPrefs.GetInt(numeroPartida.ToString() + "nivel");
         campo = campos[PlayerPrefs.GetInt(numeroPartida.ToString() + "campo")];
@@ -90,15 +91,15 @@ public class Configuracion : MonoBehaviourPunCallbacks
             alturaMaxima = campo.hoyos[nivel].alturaMaxima;
 
             Mordiscos.instancia.intentos = campo.hoyos[nivel].intentosMordiscos;
-        }    
+        }
     }
 
     public void Start()
     {
         if (PhotonNetwork.IsConnected == true)
         {
-            instancia.jugadores = new Jugador.Bola[PhotonNetwork.PlayerList.Length];
-            instancia.photonView.RPC("MultijugadorSumarJugador", RpcTarget.AllBuffered);
+            jugadores = new Jugador.Bola[PhotonNetwork.PlayerList.Length];
+            photonView.RPC("MultijugadorSumarJugador", RpcTarget.AllBuffered);
         }
 
         Objetos.instancia.textoPartida.text = string.Format("Partida: {0}", numeroPartida.ToString());
@@ -120,7 +121,7 @@ public class Configuracion : MonoBehaviourPunCallbacks
   
         if (jugadoresDentro == PhotonNetwork.PlayerList.Length)
         {
-            Bola.instancia.InstanciarBola(posicionInicioBola);  
+            Bola.instancia.InstanciarBola(posicionInicioBola);
         }
     }
 

@@ -21,7 +21,7 @@ namespace Multijugador
 
         public void Start()
         {
-            PhotonNetwork.ConnectUsingSettings();
+            //PhotonNetwork.ConnectUsingSettings();
         }
 
         public void CrearSala(string nombreSala)

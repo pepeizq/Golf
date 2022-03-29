@@ -310,15 +310,18 @@ namespace Escenario
                         casilla2 = Instantiate(casillasFinal2[id].prefab, posicionFinal, Quaternion.identity);
                     }
 
-                    casilla2.gameObject.transform.Rotate(Vector3.up, casilla.rotacion, Space.World);
+                    if (casilla2 != null)
+                    {
+                        casilla2.gameObject.transform.Rotate(Vector3.up, casilla.rotacion, Space.World);
 
-                    Casilla casilla3 = new Casilla(id, casilla.rotacion, casilla.posicion);
-                    casilla3.id = id;
-                    casilla3.idDebug = idDebug;
-                    casilla3.prefab = casilla2;
-                    casilla3.prefab.gameObject.layer = LayerMask.NameToLayer("Terreno");
+                        Casilla casilla3 = new Casilla(id, casilla.rotacion, casilla.posicion);
+                        casilla3.id = id;
+                        casilla3.idDebug = idDebug;
+                        casilla3.prefab = casilla2;
+                        casilla3.prefab.gameObject.layer = LayerMask.NameToLayer("Terreno");
 
-                    casillasMapa[x, z] = casilla3;
+                        casillasMapa[x, z] = casilla3;
+                    }                    
                 }
             }
         }
