@@ -2680,7 +2680,6 @@ MonoBehaviour:
   color: {r: 0.6981132, g: 0.03149697, b: 0, a: 1}
   transparencias: 0
   poderMover: 1
-  camaraObjeto: {fileID: 967383142}
   camaraModo: 0
   velocidadLibre: 20
   zoomDefecto: 3.5
@@ -2719,6 +2718,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bola: {fileID: 684591360240110550, guid: 4875ca14b8175b3499d6babc6ada3e9a, type: 3}
+  camara: {fileID: 967383142}
   canvasPartida: {fileID: 436698342}
   textoPartida: {fileID: 260772670}
   textoHoyo: {fileID: 917129064}

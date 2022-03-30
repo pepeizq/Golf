@@ -33,8 +33,8 @@ namespace Canvas2
         public RectTransform panelPartidas;
         public GameObject prefabBotonCargarPartida;
 
-        [Header("Lobby")]
-        public Canvas canvasLobby;
+        [Header("Multijugador")]
+        public Canvas canvasConexion;
 
         private AsyncOperation cargando = null;
 
@@ -204,14 +204,9 @@ namespace Canvas2
         public void MultijugadorMostrar()
         {
             canvasMenu.gameObject.SetActive(false);
-            canvasLobby.gameObject.SetActive(true);
+            canvasConexion.gameObject.SetActive(true);
 
-        }
-
-        public void MultijugadorVolver()
-        {
-            canvasLobby.gameObject.SetActive(false);
-            canvasMenu.gameObject.SetActive(true);
+            MultiConexion.instancia.Conectar();
         }
     }
 }

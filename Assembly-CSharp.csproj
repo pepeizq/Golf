@@ -56,7 +56,7 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Multijugador\Lobby.cs" />
+    <Compile Include="Assets\Scripts\Canvas\MultiLobby.cs" />
     <Compile Include="Assets\Scripts\Configuracion.cs" />
     <Compile Include="Assets\Photon\PhotonLibs\WebSocket\SocketWebTcp.cs" />
     <Compile Include="Assets\Scripts\Partida\Guardar.cs" />
@@ -66,6 +66,7 @@
     <Compile Include="Assets\Scripts\Jugador\Bola.cs" />
     <Compile Include="Assets\Scripts\Escenario\Generacion\Llano.cs" />
     <Compile Include="Assets\Scripts\Jugador\Transparentar.cs" />
+    <Compile Include="Assets\Scripts\Canvas\MultiConexion.cs" />
     <Compile Include="Assets\Scripts\Escenario\Colocar\Forma.cs" />
     <Compile Include="Assets\Scripts\Canvas\Escenario.cs" />
     <Compile Include="Assets\Scripts\Escenario\Colocar\AnimacionHoyoBola.cs" />
@@ -73,19 +74,20 @@
     <Compile Include="Assets\Scripts\Escenario\Generacion\Vectores.cs" />
     <Compile Include="Assets\Photon\PhotonRealtime\Demos\DemoLoadBalancing\ConnectAndJoinRandomLb.cs" />
     <Compile Include="Assets\Scripts\Escenario\Colocar\Mordiscos.cs" />
-    <Compile Include="Assets\Scripts\Multijugador\Manejador.cs" />
+    <Compile Include="Assets\Scripts\Multijugador\Conexiones.cs" />
     <Compile Include="Assets\Scripts\Escenario\Colocar\Muros.cs" />
+    <Compile Include="Assets\Scripts\Jugador\Color.cs" />
     <Compile Include="Assets\Scripts\Escenario\Colocar\Hoyo.cs" />
     <Compile Include="Assets\Scripts\Recursos\CampoHoyo.cs" />
     <Compile Include="Assets\Scripts\Recursos\Campo.cs" />
     <Compile Include="Assets\Photon\PhotonLibs\WebSocket\WebSocket.cs" />
+    <Compile Include="Assets\Scripts\Jugador\Controles.cs" />
     <Compile Include="Assets\Scripts\Escenario\Escenario.cs" />
     <Compile Include="Assets\Scripts\Recursos\Casilla.cs" />
     <Compile Include="Assets\Scripts\Canvas\Principal.cs" />
     <Compile Include="Assets\Scripts\Elementos\HoyoPalo.cs" />
     <Compile Include="Assets\Scripts\Escenario\Generacion\Colores.cs" />
     <Compile Include="Assets\Scripts\Escenario\Colocar\Bola.cs" />
-    <Compile Include="Assets\Scripts\Jugador\Controles.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

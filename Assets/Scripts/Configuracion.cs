@@ -31,7 +31,6 @@ public class Configuracion : MonoBehaviourPunCallbacks
     [HideInInspector] public bool poderMover = true;
 
     [Header("Camara")]
-    public GameObject camaraObjeto;
     public CamaraModos camaraModo;
     public int velocidadLibre = 20;
     public float zoomDefecto = 3.5f;

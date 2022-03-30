@@ -10,8 +10,8 @@ namespace Jugador
     //https://www.youtube.com/watch?v=rHM9bDgT2zQ
     public class Bola : MonoBehaviourPunCallbacks
     {
-        [HideInInspector] public int id;
         [HideInInspector] public Player photonJugador;
+        [HideInInspector] public int id;
 
         private float angulo = 0;
         private float potencia = 0;
@@ -36,8 +36,10 @@ namespace Jugador
         {
             photonJugador = jugador;
             id = jugador.ActorNumber;
-      
+
             Configuracion.instancia.jugadores[id - 1] = this;
+
+            //Color.Cambiar(gameObject, linea, color);
 
             if (photonView.IsMine == false)
             {
@@ -63,7 +65,7 @@ namespace Jugador
 
             //--------------------------------------------------------------------
 
-            camaraOffset = Configuracion.instancia.camaraObjeto.gameObject.transform.position - gameObject.transform.position;
+            camaraOffset = Objetos.instancia.camara.gameObject.transform.position - gameObject.transform.position;
             ultimaPosicion = gameObject.transform.localPosition;
 
             //--------------------------------------------------------------------
@@ -81,20 +83,10 @@ namespace Jugador
             }
 
             Objetos.instancia.textoGolpes.text = string.Format("Golpes: {0}", golpes.ToString());
-           
+
             //--------------------------------------------------------------------
 
-            Renderer renderer = gameObject.GetComponent<Renderer>();
-            renderer.material.shader = Shader.Find("HDRP/Lit");
-            renderer.material.SetColor("_BaseColor", Configuracion.instancia.color);
-
-            linea.material = new Material(Shader.Find("Sprites/Default"));
-            Gradient gradiente = new Gradient();
-            gradiente.SetKeys(
-                new GradientColorKey[] { new GradientColorKey(Configuracion.instancia.color, 0.0f), new GradientColorKey(Configuracion.instancia.color, 1.0f) },
-                new GradientAlphaKey[] { new GradientAlphaKey(0.5f, 0.0f), new GradientAlphaKey(0.5f, 1.0f) }
-            );
-            linea.colorGradient = gradiente;
+            Color.Cambiar(gameObject, linea, Configuracion.instancia.color);
         }
 
         public void Update()
@@ -229,7 +221,21 @@ namespace Jugador
 
         public void FixedUpdate()
         {
-            if (Configuracion.instancia.poderMover == true)
+            bool jugadorAsignado = false;
+
+            if (PhotonNetwork.IsConnected == true)
+            {
+                if (photonView.IsMine == true)
+                {
+                    jugadorAsignado = true;
+                }
+            }
+            else
+            {
+                jugadorAsignado = true;
+            }
+
+            if (Configuracion.instancia.poderMover == true && jugadorAsignado == true)
             {
                 if (Configuracion.instancia.camaraModo == Configuracion.CamaraModos.Libre)
                 {
@@ -237,36 +243,36 @@ namespace Jugador
 
                     if (camaraMovimientoInput.x > 0 && camaraMovimientoInput.y == 0)
                     {
-                        Configuracion.instancia.camaraObjeto.transform.Translate(new Vector3(Configuracion.instancia.velocidadLibre * Time.deltaTime * 10, 0, 0));
+                        Objetos.instancia.camara.transform.Translate(new Vector3(Configuracion.instancia.velocidadLibre * Time.deltaTime * 10, 0, 0));
                     }
                     else if (camaraMovimientoInput.x < 0 && camaraMovimientoInput.y == 0)
                     {
-                        Configuracion.instancia.camaraObjeto.transform.Translate(new Vector3(-Configuracion.instancia.velocidadLibre * Time.deltaTime * 10, 0, 0));
+                        Objetos.instancia.camara.transform.Translate(new Vector3(-Configuracion.instancia.velocidadLibre * Time.deltaTime * 10, 0, 0));
                     }
                     else if (camaraMovimientoInput.x == 0 && camaraMovimientoInput.y > 0)
                     {
-                        Configuracion.instancia.camaraObjeto.transform.Translate(new Vector3(0, Configuracion.instancia.velocidadLibre * Time.deltaTime * 10, 0));
+                        Objetos.instancia.camara.transform.Translate(new Vector3(0, Configuracion.instancia.velocidadLibre * Time.deltaTime * 10, 0));
                     }
                     else if (camaraMovimientoInput.x == 0 && camaraMovimientoInput.y < 0)
                     {
-                        Configuracion.instancia.camaraObjeto.transform.Translate(new Vector3(0, -Configuracion.instancia.velocidadLibre * Time.deltaTime * 10, 0));
+                        Objetos.instancia.camara.transform.Translate(new Vector3(0, -Configuracion.instancia.velocidadLibre * Time.deltaTime * 10, 0));
                     }
 
-                    Configuracion.instancia.camaraObjeto.transform.position = new Vector3(Configuracion.instancia.camaraObjeto.transform.position.x, 60, Configuracion.instancia.camaraObjeto.transform.position.z);              
+                    Objetos.instancia.camara.transform.position = new Vector3(Objetos.instancia.camara.transform.position.x, 60, Objetos.instancia.camara.transform.position.z);              
                 }
                 else if (Configuracion.instancia.camaraModo == Configuracion.CamaraModos.Fija)
                 {
                     Vector3 posicion = transform.position + camaraOffset;
-                    posicion.x -= (transform.position.y - 1f) / 2;
+                    posicion.x -= Configuracion.instancia.rotacionCamaraX + (transform.position.y - 1f) / 2;
                     posicion.y = 60;
-                    posicion.z -= (transform.position.y - 1f) / 2;
+                    posicion.z -= Configuracion.instancia.rotacionCamaraZ + (transform.position.y - 1f) / 2;
 
-                    Configuracion.instancia.camaraObjeto.transform.position = posicion;
+                    Objetos.instancia.camara.transform.position = posicion;
                 }
 
                 //------------------------------------
 
-                Camera camara = Configuracion.instancia.camaraObjeto.GetComponent<Camera>();
+                Camera camara = Objetos.instancia.camara.GetComponent<Camera>();
                 camara.orthographicSize = camaraZoom;
 
                 camaraZoomInput = controles.Principal.CamaraZoom.ReadValue<float>();

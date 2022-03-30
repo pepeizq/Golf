@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8870719559201536761}
   - component: {fileID: 8474228062881500988}
   m_Layer: 5
-  m_Name: BotonPartida
+  m_Name: BotonCargarPartida
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

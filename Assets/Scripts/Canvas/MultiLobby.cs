@@ -3,12 +3,15 @@ using TMPro;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
+using System.Collections.Generic;
 
-namespace Multijugador
+namespace Canvas2
 {
-    public class Lobby : MonoBehaviourPunCallbacks
+    public class MultiLobby : MonoBehaviourPunCallbacks
     {
-        public Button botonMultijugador;
+        public RectTransform panelSalas;
+        public GameObject prefabBotonSala;
+
         public TMP_InputField textoJugador;
         public TMP_InputField textoSala;
         public GameObject panel1;
@@ -18,14 +21,30 @@ namespace Multijugador
 
         public void Start()
         {
-            botonMultijugador.interactable = false;
+
 
             panel2.SetActive(false);
         }
 
         public override void OnConnectedToMaster()
         {
-            botonMultijugador.interactable = true;
+
+        }
+
+        public override void OnRoomListUpdate(List<RoomInfo> listaSalas)
+        {
+            foreach (RoomInfo sala in listaSalas)
+            {
+                GameObject boton = Instantiate(prefabBotonSala, new Vector3(0, 0, 0), Quaternion.identity);
+                boton.transform.SetParent(panelSalas.gameObject.transform);
+
+                TextMeshProUGUI texto = boton.GetComponentInChildren<TextMeshProUGUI>();
+                texto.text = string.Format("{0} - Jugadores: {1}/{2}", sala.Name, sala.PlayerCount, sala.MaxPlayers);
+
+                Button boton2 = boton.GetComponent<Button>();
+                boton2.onClick.RemoveAllListeners();
+                //boton2.onClick.AddListener(() => NuevaPartida(campo.id));
+            }
         }
 
         public void CrearSala()
@@ -38,7 +57,7 @@ namespace Multijugador
 
             if (textoSala.text.Length > 0)
             {
-                Manejador.instancia.CrearSala(textoSala.text);
+                Multijugador.Conexiones.instancia.CrearSala(textoSala.text);
 
                 panel1.SetActive(false);
                 panel2.SetActive(true);
@@ -55,7 +74,7 @@ namespace Multijugador
 
             if (textoSala.text.Length > 0)
             {
-                Manejador.instancia.UnirseSala(textoSala.text);
+                Multijugador.Conexiones.instancia.UnirseSala(textoSala.text);
 
                 panel1.SetActive(false);
                 panel2.SetActive(true);
@@ -111,7 +130,7 @@ namespace Multijugador
         public void EmpezarPartida()
         {
             botonEmpezarPartida.interactable = false;
-            Manejador.instancia.photonView.RPC("CambiarEscena", RpcTarget.All, "Escenario");
+            Multijugador.Conexiones.instancia.photonView.RPC("CambiarEscena", RpcTarget.All, "Escenario");
         }
     }
 }
