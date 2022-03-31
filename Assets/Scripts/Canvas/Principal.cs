@@ -1,5 +1,6 @@
 using Partida;
 using Recursos;
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -55,7 +56,7 @@ namespace Canvas2
 
             if (partidas.Count > 0)
             {
-                partidas.Sort((i, j) => i.fecha.CompareTo(j.fecha));
+                partidas.Sort((i, j) => Convert.ToDateTime(j.fecha).CompareTo(Convert.ToDateTime(i.fecha)));
             }
             
             if (partidas.Count == 0)
@@ -158,6 +159,7 @@ namespace Canvas2
             {
                 GameObject boton = Instantiate(prefabBotonCargarPartida, new Vector3(0, 0, 0), Quaternion.identity);
                 boton.transform.SetParent(panelPartidas.gameObject.transform);
+                boton.transform.localScale = Vector3.one;
 
                 TextMeshProUGUI texto = boton.GetComponentInChildren<TextMeshProUGUI>();
                 texto.text = string.Format("ID: {0} - Campo: {1} - Hoyo: {2} - {3}", partida.numeroPartida.ToString(), partida.campo.ToString(), (partida.hoyo + 1).ToString(), partida.fecha.ToString());

@@ -9,30 +9,36 @@ namespace Canvas2
 {
     public class MultiLobby : MonoBehaviourPunCallbacks
     {
+        public Canvas canvasPrincipal;
+        public Canvas canvasLobby;
+        public Canvas canvasSala;
+
+        [Header("Lobby")]
         public RectTransform panelSalas;
         public GameObject prefabBotonSala;
 
         public TMP_InputField textoJugador;
         public TMP_InputField textoSala;
-        public GameObject panel1;
-        public GameObject panel2;
-        public TextMeshProUGUI textoJugadores;
+
+        [Header("Sala")]
+        public RectTransform panelJugadores;
+        public GameObject prefabJugador;
+
         public Button botonEmpezarPartida;
 
-        public void Start()
+        public void VolverPrincipal()
         {
-
-
-            panel2.SetActive(false);
-        }
-
-        public override void OnConnectedToMaster()
-        {
-
+            canvasLobby.gameObject.SetActive(false);
+            canvasPrincipal.gameObject.SetActive(true);
         }
 
         public override void OnRoomListUpdate(List<RoomInfo> listaSalas)
         {
+            foreach (Transform sala in panelSalas.gameObject.transform)
+            {
+                Destroy(sala.gameObject);
+            }
+       
             foreach (RoomInfo sala in listaSalas)
             {
                 GameObject boton = Instantiate(prefabBotonSala, new Vector3(0, 0, 0), Quaternion.identity);
@@ -43,7 +49,7 @@ namespace Canvas2
 
                 Button boton2 = boton.GetComponent<Button>();
                 boton2.onClick.RemoveAllListeners();
-                //boton2.onClick.AddListener(() => NuevaPartida(campo.id));
+                boton2.onClick.AddListener(() => UnirseSala(sala.Name));
             }
         }
 
@@ -59,25 +65,19 @@ namespace Canvas2
             {
                 Multijugador.Conexiones.instancia.CrearSala(textoSala.text);
 
-                panel1.SetActive(false);
-                panel2.SetActive(true);
+                canvasLobby.gameObject.SetActive(false);
+                canvasSala.gameObject.SetActive(true);
             }
         }
 
-        public void UnirseSala()
+        public void UnirseSala(string nombreSala)
         {
-            if (textoSala.text.Length == 0)
-            {
-                textoJugador.text = "testJugador" + PhotonNetwork.LocalPlayer.UserId;
-                textoSala.text = "testSala";
-            }
-
             if (textoSala.text.Length > 0)
             {
                 Multijugador.Conexiones.instancia.UnirseSala(textoSala.text);
 
-                panel1.SetActive(false);
-                panel2.SetActive(true);
+                canvasLobby.gameObject.SetActive(false);
+                canvasSala.gameObject.SetActive(true);
             }               
         }
 
@@ -102,11 +102,19 @@ namespace Canvas2
         [PunRPC]
         public void ActualizarLobby()
         {
-            textoJugadores.text = string.Empty;
+            foreach (Transform jugador in panelJugadores.gameObject.transform)
+            {
+                Destroy(jugador.gameObject);
+            }
 
             foreach (Player jugador in PhotonNetwork.PlayerList)
             {
-                textoJugadores.text = textoJugadores.text + jugador.NickName + "\n";
+                GameObject boton = Instantiate(prefabJugador, new Vector3(0, 0, 0), Quaternion.identity);
+                boton.transform.SetParent(panelJugadores.gameObject.transform);
+                boton.transform.localScale = Vector3.one;
+
+                TextMeshProUGUI texto = boton.GetComponentInChildren<TextMeshProUGUI>();
+                texto.text = string.Format("{0}", jugador.NickName);
             }
 
             if (PhotonNetwork.IsMasterClient == true)
@@ -123,8 +131,8 @@ namespace Canvas2
         {
             PhotonNetwork.LeaveRoom();
 
-            panel1.SetActive(true);
-            panel2.SetActive(false);
+            canvasSala.gameObject.SetActive(false);
+            canvasLobby.gameObject.SetActive(true);
         }
 
         public void EmpezarPartida()

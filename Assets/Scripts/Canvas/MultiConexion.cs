@@ -44,6 +44,8 @@ namespace Canvas2
         {
             canvasConexion.gameObject.SetActive(false);
             canvasLobby.gameObject.SetActive(true);
+
+            Multijugador.Conexiones.instancia.UnirseLobby();
         }
 
         public void VolverPrincipal()

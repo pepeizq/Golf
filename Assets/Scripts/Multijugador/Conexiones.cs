@@ -27,6 +27,11 @@ namespace Multijugador
             PhotonNetwork.Disconnect();
         }
 
+        public void UnirseLobby()
+        {
+            PhotonNetwork.JoinLobby();
+        }
+
         public void CrearSala(string nombreSala)
         {
             PhotonNetwork.CreateRoom(nombreSala);
