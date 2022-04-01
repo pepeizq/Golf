@@ -8,14 +8,15 @@ using UnityEngine.SceneManagement;
 public class Configuracion : MonoBehaviourPunCallbacks
 {
     [Header("Multijugador")]
-    public float tiempoTerminar = 0f;
+    [HideInInspector] public float tiempoTerminar = 0f;
     [HideInInspector] public bool partidaTerminada = false;
     [HideInInspector] public Jugador.Bola[] jugadores;
-    [HideInInspector] public Vector3 posicionInicioBola;
+    [HideInInspector] public Vector3 multiPosicionBolaInicio;
+    [HideInInspector] public int multiPosicionXHoyo;
+    [HideInInspector] public int multiPosicionZHoyo;
     private int jugadoresDentro;
 
     [Header("Partida")]
-    [HideInInspector] public JuegoModo juegoModo;
     [HideInInspector] public int numeroPartida = 0;
     public List<Campo> campos;
     [HideInInspector] public Campo campo;
@@ -31,7 +32,7 @@ public class Configuracion : MonoBehaviourPunCallbacks
     [HideInInspector] public bool poderMover = true;
 
     [Header("Camara")]
-    public CamaraModos camaraModo;
+    public CamaraModos camaraModo = CamaraModos.Fija;
     public int velocidadLibre = 20;
     public float zoomDefecto = 3.5f;
     public float zoomCerca = 0.5f;
@@ -120,43 +121,49 @@ public class Configuracion : MonoBehaviourPunCallbacks
   
         if (jugadoresDentro == PhotonNetwork.PlayerList.Length)
         {
-            Bola.instancia.InstanciarBola(posicionInicioBola);
+            Bola.instancia.InstanciarBola(multiPosicionBolaInicio);
         }
     }
 
     [PunRPC]
     public void MultijugadorPosicionInicioBola(Vector3 posicion)
     {
-        posicionInicioBola = posicion;
+        multiPosicionBolaInicio = posicion;
     }
 
-    public Jugador.Bola CogerBola(int idJugador)
+    [PunRPC]
+    public void MultijugadorPosicionInicioHoyo(int[] posiciones)
     {
-        foreach (var jugador in jugadores)
-        {
-            if (jugador.id == idJugador)
-            {
-                return jugador;
-            }
-        }
-
-        return null;
+        multiPosicionXHoyo = posiciones[0];
+        multiPosicionZHoyo = posiciones[1];
     }
 
-    public Jugador.Bola CogerBola(GameObject jugador)
-    {
-        foreach (var jugador2 in jugadores)
-        {
-            if (jugador2.gameObject == jugador)
-            {
-                return jugador2;
-            }
-        }
+    //public Jugador.Bola CogerBola(int idJugador)
+    //{
+    //    foreach (var jugador in jugadores)
+    //    {
+    //        if (jugador.id == idJugador)
+    //        {
+    //            return jugador;
+    //        }
+    //    }
 
-        return null;
-    }
+    //    return null;
+    //}
 
-    public enum JuegoModo { UnJugador, MultiJugadorHost, MultiJugadorCliente }
+    //public Jugador.Bola CogerBola(GameObject jugador)
+    //{
+    //    foreach (var jugador2 in jugadores)
+    //    {
+    //        if (jugador2.gameObject == jugador)
+    //        {
+    //            return jugador2;
+    //        }
+    //    }
+
+    //    return null;
+    //}
+
     public enum CamaraModos { Libre, Fija }
     public enum Palos { Madera, Hierro }
 }

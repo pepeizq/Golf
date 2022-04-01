@@ -30,6 +30,8 @@ namespace Canvas2
         {
             canvasLobby.gameObject.SetActive(false);
             canvasPrincipal.gameObject.SetActive(true);
+
+            Multijugador.Conexiones.instancia.Desconectar();
         }
 
         public override void OnRoomListUpdate(List<RoomInfo> listaSalas)
@@ -57,7 +59,7 @@ namespace Canvas2
         {
             if (textoSala.text.Length == 0)
             {
-                textoJugador.text = "testJugador" + PhotonNetwork.LocalPlayer.UserId; 
+                textoJugador.text = "testJugadorServidor-" + PhotonNetwork.LocalPlayer.UserId; 
                 textoSala.text = "testSala"; 
             }
 
@@ -72,9 +74,14 @@ namespace Canvas2
 
         public void UnirseSala(string nombreSala)
         {
-            if (textoSala.text.Length > 0)
+            if (textoJugador.text.Length == 0)
             {
-                Multijugador.Conexiones.instancia.UnirseSala(textoSala.text);
+                textoJugador.text = "testJugador-" + PhotonNetwork.LocalPlayer.UserId;
+            }
+
+            if (nombreSala.Length > 0)
+            {
+                Multijugador.Conexiones.instancia.UnirseSala(nombreSala);
 
                 canvasLobby.gameObject.SetActive(false);
                 canvasSala.gameObject.SetActive(true);

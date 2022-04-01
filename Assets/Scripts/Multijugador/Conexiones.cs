@@ -1,4 +1,5 @@
 using Photon.Pun;
+using Photon.Realtime;
 
 namespace Multijugador
 {
@@ -24,6 +25,7 @@ namespace Multijugador
 
         public void Desconectar()
         {
+            PhotonNetwork.LeaveLobby();
             PhotonNetwork.Disconnect();
         }
 
@@ -34,7 +36,13 @@ namespace Multijugador
 
         public void CrearSala(string nombreSala)
         {
-            PhotonNetwork.CreateRoom(nombreSala);
+            RoomOptions opciones = new RoomOptions
+            {
+                MaxPlayers = 4,
+                CleanupCacheOnLeave = true
+            };
+
+            PhotonNetwork.CreateRoom(nombreSala, opciones);
         }
 
         public void UnirseSala(string nombreSala)

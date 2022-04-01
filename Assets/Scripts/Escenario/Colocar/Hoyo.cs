@@ -1,10 +1,11 @@
 using Partida;
+using Photon.Pun;
 using Recursos;
 using UnityEngine;
 
 namespace Escenario.Colocar
 {
-    public class Hoyo : MonoBehaviour
+    public class Hoyo : MonoBehaviourPunCallbacks
     {
         public static Hoyo instancia;
 
@@ -15,7 +16,14 @@ namespace Escenario.Colocar
 
         public void Colocar(Casilla[,] casillas)
         {
-            if (Configuracion.instancia.campo.hoyo != null)
+            bool buscarPosicion = true;
+
+            if (PhotonNetwork.IsConnected == true && PhotonNetwork.IsMasterClient == false)
+            {
+                buscarPosicion = false;
+            }
+
+            if (buscarPosicion == true && Configuracion.instancia.campo.hoyo != null)
             {
                 if (casillas != null)
                 {
@@ -35,7 +43,24 @@ namespace Escenario.Colocar
                             {
                                 if (casillas[x, z].id == 0 && casillas[x, z].modificable == true)
                                 {
-                                    InstanciarHoyo(casillas, x, z);
+                                    if (PhotonNetwork.IsConnected == false)
+                                    {
+                                        InstanciarHoyo(casillas, x, z);
+                                    }
+                                    else
+                                    {
+                                        if (PhotonNetwork.IsMasterClient == true)
+                                        {
+                                            int[] posiciones = new int[2];
+                                            posiciones[0] = x;
+                                            posiciones[1] = z;
+                                        
+                                            Configuracion.instancia.photonView.RPC("MultijugadorPosicionInicioHoyo", RpcTarget.All, posiciones);
+                                        }
+
+                                        InstanciarHoyo(casillas, x, z);
+                                    }
+
                                     Guardar.GuardarHoyo(x, z);
                                     break;
                                 }
@@ -60,18 +85,35 @@ namespace Escenario.Colocar
             }
         }
 
-        private void InstanciarHoyo(Casilla[,] casillas, int casillaX, int casillaZ)
+  
+        public void InstanciarHoyo(Casilla[,] casillas, int casillaX, int casillaZ)
         {
-            GameObject hoyo = Instantiate(Configuracion.instancia.campo.hoyo);
-            hoyo.transform.position = casillas[casillaX, casillaZ].prefab.transform.position;
+            if (PhotonNetwork.IsConnected == false)
+            {
+                GameObject hoyo = Instantiate(Configuracion.instancia.campo.hoyo);
+                hoyo.transform.position = casillas[casillaX, casillaZ].prefab.transform.position;
 
-            Configuracion.instancia.posicionHoyo = hoyo.transform.localPosition;
-            Configuracion.instancia.posicionHoyoX = casillaX;
-            Configuracion.instancia.posicionHoyoZ = casillaZ;
+                Configuracion.instancia.posicionHoyo = hoyo.transform.localPosition;
+                Configuracion.instancia.posicionHoyoX = casillaX;
+                Configuracion.instancia.posicionHoyoZ = casillaZ;
 
-            Destroy(casillas[casillaX, casillaZ].prefab);
-            casillas[casillaX, casillaZ].prefab = hoyo;
-            casillas[casillaX, casillaZ].modificable = false;
+                Destroy(casillas[casillaX, casillaZ].prefab);
+                casillas[casillaX, casillaZ].prefab = hoyo;
+                casillas[casillaX, casillaZ].modificable = false;
+            }
+            else
+            {
+                Vector3 posicion = casillas[Configuracion.instancia.multiPosicionXHoyo, Configuracion.instancia.multiPosicionZHoyo].posicion;
+                GameObject hoyo = PhotonNetwork.Instantiate("Prefabs/Prefab Hoyo 1", posicion, Quaternion.identity);
+           
+                Configuracion.instancia.posicionHoyo = hoyo.transform.localPosition;
+                Configuracion.instancia.posicionHoyoX = Configuracion.instancia.multiPosicionXHoyo;
+                Configuracion.instancia.posicionHoyoZ = Configuracion.instancia.multiPosicionZHoyo;
+
+                PhotonNetwork.Destroy(casillas[casillaX, casillaZ].prefab);
+                casillas[casillaX, casillaZ].prefab = hoyo;
+                casillas[casillaX, casillaZ].modificable = false;
+            }
         }
     }
 }

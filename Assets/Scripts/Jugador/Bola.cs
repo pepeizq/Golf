@@ -86,6 +86,7 @@ namespace Jugador
 
             //--------------------------------------------------------------------
 
+            Configuracion.instancia.camaraModo = Configuracion.CamaraModos.Fija;
             Color.Cambiar(gameObject, linea, Configuracion.instancia.color);
         }
 

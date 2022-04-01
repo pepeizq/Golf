@@ -14,7 +14,7 @@ namespace Escenario
     {
         public List<Casilla> casillasDebug;
 
-        [HideInInspector] public Casilla[,] casillasMapa = new Casilla[1, 1];
+        [HideInInspector] public Casilla[,] casillasMapa;
         [HideInInspector] public List<Vector3> casillasIniciales;
         [HideInInspector] public int limitesMapa = 3;
 
