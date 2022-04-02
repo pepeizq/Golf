@@ -18,6 +18,11 @@ namespace Multijugador
          
         }
 
+        public bool Conectado()
+        {
+            return PhotonNetwork.IsConnected;
+        }
+
         public void Conectar()
         {
             PhotonNetwork.ConnectUsingSettings();

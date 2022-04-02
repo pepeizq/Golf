@@ -1,3 +1,4 @@
+using Escenario;
 using Photon.Pun;
 using Photon.Realtime;
 using System;
@@ -87,7 +88,7 @@ namespace Jugador
             //--------------------------------------------------------------------
 
             Configuracion.instancia.camaraModo = Configuracion.CamaraModos.Fija;
-            Color.Cambiar(gameObject, linea, Configuracion.instancia.color);
+            Color.Cambiar(gameObject, linea, Atributos.instancia.color);
         }
 
         public void Update()

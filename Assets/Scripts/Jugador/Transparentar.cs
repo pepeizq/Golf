@@ -1,3 +1,4 @@
+using Escenario;
 using Escenario.Generacion;
 using System.Collections.Generic;
 using UnityEngine;

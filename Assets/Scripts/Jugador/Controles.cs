@@ -91,6 +91,15 @@ namespace Jugador
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Enseñar Menu"",
+                    ""type"": ""Button"",
+                    ""id"": ""b4e32e01-b103-41a7-a725-c60763543c4f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -214,6 +223,17 @@ namespace Jugador
                     ""action"": ""Cambiar Palo"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fb5778c9-c3ed-45e7-b373-a2880325e133"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Enseñar Menu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -229,6 +249,7 @@ namespace Jugador
             m_Principal_BolaRotarDerecha = m_Principal.FindAction("Bola Rotar Derecha", throwIfNotFound: true);
             m_Principal_CamaraModo = m_Principal.FindAction("Camara Modo", throwIfNotFound: true);
             m_Principal_CambiarPalo = m_Principal.FindAction("Cambiar Palo", throwIfNotFound: true);
+            m_Principal_EnseñarMenu = m_Principal.FindAction("Enseñar Menu", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -295,6 +316,7 @@ namespace Jugador
         private readonly InputAction m_Principal_BolaRotarDerecha;
         private readonly InputAction m_Principal_CamaraModo;
         private readonly InputAction m_Principal_CambiarPalo;
+        private readonly InputAction m_Principal_EnseñarMenu;
         public struct PrincipalActions
         {
             private @Controles m_Wrapper;
@@ -306,6 +328,7 @@ namespace Jugador
             public InputAction @BolaRotarDerecha => m_Wrapper.m_Principal_BolaRotarDerecha;
             public InputAction @CamaraModo => m_Wrapper.m_Principal_CamaraModo;
             public InputAction @CambiarPalo => m_Wrapper.m_Principal_CambiarPalo;
+            public InputAction @EnseñarMenu => m_Wrapper.m_Principal_EnseñarMenu;
             public InputActionMap Get() { return m_Wrapper.m_Principal; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -336,6 +359,9 @@ namespace Jugador
                     @CambiarPalo.started -= m_Wrapper.m_PrincipalActionsCallbackInterface.OnCambiarPalo;
                     @CambiarPalo.performed -= m_Wrapper.m_PrincipalActionsCallbackInterface.OnCambiarPalo;
                     @CambiarPalo.canceled -= m_Wrapper.m_PrincipalActionsCallbackInterface.OnCambiarPalo;
+                    @EnseñarMenu.started -= m_Wrapper.m_PrincipalActionsCallbackInterface.OnEnseñarMenu;
+                    @EnseñarMenu.performed -= m_Wrapper.m_PrincipalActionsCallbackInterface.OnEnseñarMenu;
+                    @EnseñarMenu.canceled -= m_Wrapper.m_PrincipalActionsCallbackInterface.OnEnseñarMenu;
                 }
                 m_Wrapper.m_PrincipalActionsCallbackInterface = instance;
                 if (instance != null)
@@ -361,6 +387,9 @@ namespace Jugador
                     @CambiarPalo.started += instance.OnCambiarPalo;
                     @CambiarPalo.performed += instance.OnCambiarPalo;
                     @CambiarPalo.canceled += instance.OnCambiarPalo;
+                    @EnseñarMenu.started += instance.OnEnseñarMenu;
+                    @EnseñarMenu.performed += instance.OnEnseñarMenu;
+                    @EnseñarMenu.canceled += instance.OnEnseñarMenu;
                 }
             }
         }
@@ -374,6 +403,7 @@ namespace Jugador
             void OnBolaRotarDerecha(InputAction.CallbackContext context);
             void OnCamaraModo(InputAction.CallbackContext context);
             void OnCambiarPalo(InputAction.CallbackContext context);
+            void OnEnseñarMenu(InputAction.CallbackContext context);
         }
     }
 }
