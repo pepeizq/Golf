@@ -2766,9 +2766,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8034354dbb0cce740bcdbb108a8641c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  campos:
-  - {fileID: 11400000, guid: 5f1ea259c26884241980cf74c5b240b4, type: 2}
-  - {fileID: 11400000, guid: ba7066a9107a0ad4884bd930839a9483, type: 2}
   canvasMenu: {fileID: 2140883962}
   botonContinuarPartida: {fileID: 2042912869}
   botonCargarPartida: {fileID: 1218066936}
@@ -3925,6 +3922,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 914130994}
   m_CullTransparentMesh: 1
+--- !u!1 &920613795
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 920613797}
+  - component: {fileID: 920613796}
+  m_Layer: 0
+  m_Name: Campos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &920613796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 920613795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f672ccd754f4c1945ad35e0a5c78491e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  campos:
+  - {fileID: 11400000, guid: 5f1ea259c26884241980cf74c5b240b4, type: 2}
+  - {fileID: 11400000, guid: ba7066a9107a0ad4884bd930839a9483, type: 2}
+--- !u!4 &920613797
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 920613795}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &931755780
 GameObject:
   m_ObjectHideFlags: 0

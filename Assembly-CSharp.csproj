@@ -73,6 +73,7 @@
     <Compile Include="Assets\Scripts\Escenario\Generacion\Limites.cs" />
     <Compile Include="Assets\Scripts\Escenario\Generacion\Vectores.cs" />
     <Compile Include="Assets\Photon\PhotonRealtime\Demos\DemoLoadBalancing\ConnectAndJoinRandomLb.cs" />
+    <Compile Include="Assets\Scripts\Partida\Campos.cs" />
     <Compile Include="Assets\Scripts\Escenario\Colocar\Mordiscos.cs" />
     <Compile Include="Assets\Scripts\Multijugador\Conexiones.cs" />
     <Compile Include="Assets\Scripts\Escenario\Colocar\Muros.cs" />

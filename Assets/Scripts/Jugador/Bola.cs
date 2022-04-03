@@ -9,7 +9,7 @@ using UnityEngine.InputSystem;
 namespace Jugador
 {
     //https://www.youtube.com/watch?v=rHM9bDgT2zQ
-    public class Bola : MonoBehaviourPunCallbacks
+    public class Bola : MonoBehaviourPunCallbacks, IPunObservable
     {
         [HideInInspector] public Player photonJugador;
         [HideInInspector] public int id;
@@ -363,6 +363,17 @@ namespace Jugador
             }              
         }
 
+        public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo mensaje)
+        {
+            if (stream.IsWriting == true)
+            {
+
+            }
+            else if (stream.IsReading == true)
+            {
+
+            }
+        }
     }
 }
 

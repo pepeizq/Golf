@@ -11,7 +11,6 @@ namespace Canvas2
 {
     public class Principal : MonoBehaviour
     {
-        public List<Campo> campos;
         private int totalPartidas = 0;
         private List<PartidaMaestro> partidas = new List<PartidaMaestro>();
 
@@ -91,7 +90,7 @@ namespace Canvas2
                 Destroy(boton.gameObject);
             }
 
-            foreach (Campo campo in campos)
+            foreach (Campo campo in Campos.instancia.campos)
             {
                 GameObject boton = Instantiate(prefabBotonCampo, new Vector3(0, 0, 0), Quaternion.identity);
                 boton.transform.SetParent(panelCampos.gameObject.transform);

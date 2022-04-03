@@ -80,34 +80,32 @@ namespace Escenario.Colocar
         }
 
         public void InstanciarBola(Vector3 posicion)
-        {          
-            if (PhotonNetwork.IsConnected == false)
+        {
+            GameObject bola = Instantiate(Objetos.instancia.bola);
+            bola.transform.position = posicion;
+
+            Vector3 posicion2 = bola.transform.position;
+
+            if (Configuracion.instancia.camaraModo == Configuracion.CamaraModos.Libre)
             {
-                GameObject bola = Instantiate(Objetos.instancia.bola);
-                bola.transform.position = posicion;
-
-                Vector3 posicion2 = bola.transform.position;
-
-                if (Configuracion.instancia.camaraModo == Configuracion.CamaraModos.Libre)
-                {
-                    posicion2.x = posicion2.x - Configuracion.instancia.rotacionCamaraX;
-                    posicion2.z = posicion2.z - Configuracion.instancia.rotacionCamaraZ;
-                }
-
-                Objetos.instancia.camara.transform.position = posicion2;
+                posicion2.x = posicion2.x - Configuracion.instancia.rotacionCamaraX;
+                posicion2.z = posicion2.z - Configuracion.instancia.rotacionCamaraZ;
             }
-            else
-            {
-                GameObject bola = PhotonNetwork.Instantiate("Prefabs/Prefab Bola", posicion, Quaternion.identity);
-                Vector3 nuevaPosicion = Configuracion.instancia.multiPosicionBolaInicio;
-                nuevaPosicion.y = nuevaPosicion.y + Random.Range(1, 10);
-                bola.transform.position = nuevaPosicion;
 
-                Jugador.Bola bola2 = bola.gameObject.GetComponent<Jugador.Bola>();
-                bola2.photonView.RPC("Arranque", RpcTarget.All, PhotonNetwork.LocalPlayer);
+            Objetos.instancia.camara.transform.position = posicion2;
+        }
 
-                Objetos.instancia.camara.transform.position = bola.transform.position;
-            }
+        public void InstanciarBolaMulti(Vector3 posicion)
+        {
+            GameObject bola = PhotonNetwork.Instantiate("Prefabs/Prefab Bola", posicion, Quaternion.identity);
+            Vector3 nuevaPosicion = Configuracion.instancia.multiPosicionBolaInicio;
+            nuevaPosicion.y = nuevaPosicion.y + Random.Range(1, 10);
+            bola.transform.position = nuevaPosicion;
+
+            Jugador.Bola bola2 = bola.gameObject.GetComponent<Jugador.Bola>();
+            bola2.photonView.RPC("Arranque", RpcTarget.All, PhotonNetwork.LocalPlayer);
+
+            Objetos.instancia.camara.transform.position = bola.transform.position;
         }
     }
 }

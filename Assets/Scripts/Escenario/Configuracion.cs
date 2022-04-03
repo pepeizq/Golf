@@ -1,7 +1,7 @@
 using Escenario.Colocar;
+using Partida;
 using Photon.Pun;
 using Recursos;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -20,7 +20,6 @@ namespace Escenario
 
         [Header("Partida")]
         [HideInInspector] public int numeroPartida = 0;
-        public List<Campo> campos;
         [HideInInspector] public Campo campo;
         public Palos palos;
 
@@ -79,7 +78,7 @@ namespace Escenario
 
             numeroPartida = PlayerPrefs.GetInt("numeroPartida");
             nivel = PlayerPrefs.GetInt(numeroPartida.ToString() + "nivel");
-            campo = campos[PlayerPrefs.GetInt(numeroPartida.ToString() + "campo")];
+            campo = Campos.instancia.campos[PlayerPrefs.GetInt(numeroPartida.ToString() + "campo")];
 
             if (campo != null)
             {
@@ -121,7 +120,7 @@ namespace Escenario
 
             if (jugadoresDentro == PhotonNetwork.PlayerList.Length)
             {
-                Bola.instancia.InstanciarBola(multiPosicionBolaInicio);
+                Bola.instancia.InstanciarBolaMulti(multiPosicionBolaInicio);
             }
         }
 
