@@ -239,42 +239,55 @@ namespace Jugador
 
             if (Configuracion.instancia.poderMover == true && jugadorAsignado == true)
             {
-                if (Configuracion.instancia.camaraModo == Configuracion.CamaraModos.Libre)
-                {
-                    camaraMovimientoInput = controles.Principal.CamaraLibreMovimiento.ReadValue<Vector2>();
+                Camera camara = Objetos.instancia.camara.GetComponent<Camera>();
 
+                camaraMovimientoInput = controles.Principal.CamaraLibreMovimiento.ReadValue<Vector2>();
+
+                if (camaraMovimientoInput.x != 0 || camaraMovimientoInput.y != 0)
+                {
                     if (camaraMovimientoInput.x > 0 && camaraMovimientoInput.y == 0)
                     {
-                        Objetos.instancia.camara.transform.Translate(new Vector3(Configuracion.instancia.velocidadLibre * Time.deltaTime * 10, 0, 0));
+                        camara.transform.Translate(new Vector3(Configuracion.instancia.velocidadLibre * Time.deltaTime * 10, 0, 0));
                     }
                     else if (camaraMovimientoInput.x < 0 && camaraMovimientoInput.y == 0)
                     {
-                        Objetos.instancia.camara.transform.Translate(new Vector3(-Configuracion.instancia.velocidadLibre * Time.deltaTime * 10, 0, 0));
+                        camara.transform.Translate(new Vector3(-Configuracion.instancia.velocidadLibre * Time.deltaTime * 10, 0, 0));
                     }
                     else if (camaraMovimientoInput.x == 0 && camaraMovimientoInput.y > 0)
                     {
-                        Objetos.instancia.camara.transform.Translate(new Vector3(0, Configuracion.instancia.velocidadLibre * Time.deltaTime * 10, 0));
+                        camara.transform.Translate(new Vector3(0, Configuracion.instancia.velocidadLibre * Time.deltaTime * 10, 0));
                     }
                     else if (camaraMovimientoInput.x == 0 && camaraMovimientoInput.y < 0)
                     {
-                        Objetos.instancia.camara.transform.Translate(new Vector3(0, -Configuracion.instancia.velocidadLibre * Time.deltaTime * 10, 0));
+                        camara.transform.Translate(new Vector3(0, -Configuracion.instancia.velocidadLibre * Time.deltaTime * 10, 0));
                     }
 
-                    Objetos.instancia.camara.transform.position = new Vector3(Objetos.instancia.camara.transform.position.x, 60, Objetos.instancia.camara.transform.position.z);              
+                    camara.transform.position = new Vector3(camara.transform.position.x, 60, camara.transform.position.z);
                 }
-                else if (Configuracion.instancia.camaraModo == Configuracion.CamaraModos.Fija)
+                else
                 {
                     Vector3 posicion = transform.position + camaraOffset;
                     posicion.x -= Configuracion.instancia.rotacionCamaraX + (transform.position.y - 1f) / 2;
                     posicion.y = 60;
                     posicion.z -= Configuracion.instancia.rotacionCamaraZ + (transform.position.y - 1f) / 2;
 
-                    Objetos.instancia.camara.transform.position = posicion;
+                    camara.transform.position = posicion;
                 }
 
-                //------------------------------------
+                //if (Configuracion.instancia.camaraModo == Configuracion.CamaraModos.Libre)
+                //{
+                    
+                    
 
-                Camera camara = Objetos.instancia.camara.GetComponent<Camera>();
+                             
+                //}
+                //else if (Configuracion.instancia.camaraModo == Configuracion.CamaraModos.Fija)
+                //{
+                    
+                //}
+
+                //------------------------------------
+                
                 camara.orthographicSize = camaraZoom;
 
                 camaraZoomInput = controles.Principal.CamaraZoom.ReadValue<float>();
