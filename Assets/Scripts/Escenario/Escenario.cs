@@ -1,4 +1,5 @@
-﻿using Escenario.Colocar;
+﻿using Escenario.Animaciones;
+using Escenario.Colocar;
 using Escenario.Generacion;
 using Partida;
 using Photon.Pun;
@@ -111,7 +112,7 @@ namespace Escenario
 
             if (Configuracion.instancia.animacionHoyoBola == true)
             {
-                AnimacionHoyoBola.instancia.Generar();
+                HoyoBola.instancia.Generar();
             }
         }
 

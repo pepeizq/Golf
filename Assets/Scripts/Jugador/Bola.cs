@@ -16,6 +16,7 @@ namespace Jugador
 
         private float angulo = 0;
         private float potencia = 0;
+        private float potenciaUltima = 0;
         private bool potenciaDecrecer = false;
         private int golpes = 0;
 
@@ -27,6 +28,8 @@ namespace Jugador
         private Vector2 camaraMovimientoInput;
         private float camaraZoom;
         private float camaraZoomInput;
+        private bool camaraVolver;
+        private float camaraVolverPasos = 0f;
 
         private Controles controles;
 
@@ -39,7 +42,7 @@ namespace Jugador
             id = jugador.ActorNumber;
 
             Configuracion.instancia.jugadores[id - 1] = this;
-
+ 
             //Color.Cambiar(gameObject, linea, color);
 
             if (photonView.IsMine == false)
@@ -87,7 +90,6 @@ namespace Jugador
 
             //--------------------------------------------------------------------
 
-            Configuracion.instancia.camaraModo = Configuracion.CamaraModos.Fija;
             Color.Cambiar(gameObject, linea, Atributos.instancia.color);
         }
 
@@ -165,6 +167,7 @@ namespace Jugador
                                 cuerpo.AddForce(Quaternion.Euler(0, angulo, 0) * Vector3.forward * potencia, ForceMode.Impulse);
                             }
 
+                            potenciaUltima = potencia;
                             potencia = 0;
 
                             golpes += 1;
@@ -225,7 +228,7 @@ namespace Jugador
         {
             bool jugadorAsignado = false;
 
-            if (PhotonNetwork.IsConnected == true)
+            if (Multijugador.Conexiones.instancia.Conectado() == true)
             {
                 if (photonView.IsMine == true)
                 {
@@ -245,46 +248,76 @@ namespace Jugador
 
                 if (camaraMovimientoInput.x != 0 || camaraMovimientoInput.y != 0)
                 {
-                    if (camaraMovimientoInput.x > 0 && camaraMovimientoInput.y == 0)
+                    if (camaraVolverPasos == 0f)
                     {
-                        camara.transform.Translate(new Vector3(Configuracion.instancia.velocidadLibre * Time.deltaTime * 10, 0, 0));
-                    }
-                    else if (camaraMovimientoInput.x < 0 && camaraMovimientoInput.y == 0)
-                    {
-                        camara.transform.Translate(new Vector3(-Configuracion.instancia.velocidadLibre * Time.deltaTime * 10, 0, 0));
-                    }
-                    else if (camaraMovimientoInput.x == 0 && camaraMovimientoInput.y > 0)
-                    {
-                        camara.transform.Translate(new Vector3(0, Configuracion.instancia.velocidadLibre * Time.deltaTime * 10, 0));
-                    }
-                    else if (camaraMovimientoInput.x == 0 && camaraMovimientoInput.y < 0)
-                    {
-                        camara.transform.Translate(new Vector3(0, -Configuracion.instancia.velocidadLibre * Time.deltaTime * 10, 0));
-                    }
+                        if (camaraMovimientoInput.x > 0 && camaraMovimientoInput.y == 0)
+                        {
+                            camara.transform.Translate(new Vector3(Configuracion.instancia.velocidadLibre * Time.deltaTime * 2, 0, 0));
+                        }
+                        else if (camaraMovimientoInput.x < 0 && camaraMovimientoInput.y == 0)
+                        {
+                            camara.transform.Translate(new Vector3(-Configuracion.instancia.velocidadLibre * Time.deltaTime * 2, 0, 0));
+                        }
+                        else if (camaraMovimientoInput.x == 0 && camaraMovimientoInput.y > 0)
+                        {
+                            camara.transform.Translate(new Vector3(0, Configuracion.instancia.velocidadLibre * Time.deltaTime * 2, 0));
+                        }
+                        else if (camaraMovimientoInput.x == 0 && camaraMovimientoInput.y < 0)
+                        {
+                            camara.transform.Translate(new Vector3(0, -Configuracion.instancia.velocidadLibre * Time.deltaTime * 2, 0));
+                        }
+                        else if (camaraMovimientoInput.x < 0 && camaraMovimientoInput.y < 0)
+                        {
+                            camara.transform.Translate(new Vector3(0, -Configuracion.instancia.velocidadLibre * Time.deltaTime * 2, 0));
+                            camara.transform.Translate(new Vector3(-Configuracion.instancia.velocidadLibre * Time.deltaTime * 2, 0, 0));
+                        }
+                        else if (camaraMovimientoInput.x > 0 && camaraMovimientoInput.y < 0)
+                        {
+                            camara.transform.Translate(new Vector3(Configuracion.instancia.velocidadLibre * Time.deltaTime * 2, 0, 0));
+                            camara.transform.Translate(new Vector3(0, -Configuracion.instancia.velocidadLibre * Time.deltaTime * 2, 0));
+                        }
+                        else if (camaraMovimientoInput.x > 0 && camaraMovimientoInput.y > 0)
+                        {
+                            camara.transform.Translate(new Vector3(Configuracion.instancia.velocidadLibre * Time.deltaTime * 2, 0, 0));
+                            camara.transform.Translate(new Vector3(0, Configuracion.instancia.velocidadLibre * Time.deltaTime * 2, 0));
+                        }
+                        else if (camaraMovimientoInput.x < 0 && camaraMovimientoInput.y > 0)
+                        {
+                            camara.transform.Translate(new Vector3(-Configuracion.instancia.velocidadLibre * Time.deltaTime * 2, 0, 0));
+                            camara.transform.Translate(new Vector3(0, Configuracion.instancia.velocidadLibre * Time.deltaTime * 2, 0));
+                        }
 
-                    camara.transform.position = new Vector3(camara.transform.position.x, 60, camara.transform.position.z);
+                        camara.transform.position = new Vector3(camara.transform.position.x, 60, camara.transform.position.z);
+                        camaraVolver = true;
+                    }                       
                 }
                 else
                 {
-                    Vector3 posicion = transform.position + camaraOffset;
-                    posicion.x -= Configuracion.instancia.rotacionCamaraX + (transform.position.y - 1f) / 2;
-                    posicion.y = 60;
-                    posicion.z -= Configuracion.instancia.rotacionCamaraZ + (transform.position.y - 1f) / 2;
+                    if (camaraVolver == true)
+                    {
+                        Vector3 posicionBola = instancia.ultimaPosicion;
 
-                    camara.transform.position = posicion;
+                        camaraVolverPasos += Time.deltaTime * 2;
+
+                        Vector3 posicionNueva = Vector3.MoveTowards(camara.transform.position, posicionBola, camaraVolverPasos);
+                        camara.transform.position = posicionNueva;
+
+                        if (Vector3.Distance(camara.transform.position, posicionBola) <= camaraVolverPasos)
+                        {
+                            camaraVolverPasos = 0f;
+                            camaraVolver = false;
+                        }
+                    }
+                    else
+                    {                       
+                        Vector3 posicion = transform.position + camaraOffset;
+                        posicion.x -= Configuracion.instancia.rotacionCamaraX + (transform.position.y - 1f) / 2;
+                        posicion.y = 60;
+                        posicion.z -= Configuracion.instancia.rotacionCamaraZ + (transform.position.y - 1f) / 2;
+
+                        camara.transform.position = posicion;
+                    }               
                 }
-
-                //if (Configuracion.instancia.camaraModo == Configuracion.CamaraModos.Libre)
-                //{
-                    
-                    
-
-                             
-                //}
-                //else if (Configuracion.instancia.camaraModo == Configuracion.CamaraModos.Fija)
-                //{
-                    
-                //}
 
                 //------------------------------------
                 
@@ -328,7 +361,23 @@ namespace Jugador
             if (colision.gameObject.name == "FondoHoyo")
             {
                 StopCoroutine(TerminarHoyo());
-            }           
+            }
+        }
+
+        private void OnCollisionEnter(Collision colision)
+        {
+            if (colision.gameObject.name.Contains("Prefab Bola"))
+            {
+                Physics.IgnoreCollision(GetComponent<Collider>(), colision.gameObject.GetComponent<Collider>(), true);
+            }
+        }
+
+        private void OnCollisionExit(Collision colision)
+        {
+            if (colision.gameObject.name.Contains("Prefab Bola"))
+            {
+                Physics.IgnoreCollision(GetComponent<Collider>(), colision.gameObject.GetComponent<Collider>(), false);
+            }
         }
 
         IEnumerator TerminarHoyo()
@@ -336,24 +385,6 @@ namespace Jugador
             yield return new WaitForSeconds(5);
             Destroy(gameObject);
             Configuracion.instancia.NuevoNivel(Configuracion.instancia.nivel += 1);
-        }
-
-        public void CamaraModoInput(InputAction.CallbackContext contexto)
-        {
-            if (Configuracion.instancia.poderMover == true)
-            {
-                if (contexto.phase == InputActionPhase.Performed)
-                {
-                    if (Configuracion.instancia.camaraModo == Configuracion.CamaraModos.Fija)
-                    {
-                        Configuracion.instancia.camaraModo = Configuracion.CamaraModos.Libre;
-                    }
-                    else
-                    {
-                        Configuracion.instancia.camaraModo = Configuracion.CamaraModos.Fija;
-                    }
-                }
-            }              
         }
 
         public void CambiarPaloInput(InputAction.CallbackContext contexto)

@@ -1,13 +1,13 @@
 using UnityEngine;
 
-namespace Escenario.Colocar
+namespace Escenario.Animaciones
 {
-    public class AnimacionHoyoBola : MonoBehaviour
+    public class HoyoBola : MonoBehaviour
     {
         private float pasos = 0f;
         private bool animacion = false;
 
-        public static AnimacionHoyoBola instancia;
+        public static HoyoBola instancia;
 
         public void Awake()
         {

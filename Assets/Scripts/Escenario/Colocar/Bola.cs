@@ -85,13 +85,6 @@ namespace Escenario.Colocar
             bola.transform.position = posicion;
 
             Vector3 posicion2 = bola.transform.position;
-
-            if (Configuracion.instancia.camaraModo == Configuracion.CamaraModos.Libre)
-            {
-                posicion2.x = posicion2.x - Configuracion.instancia.rotacionCamaraX;
-                posicion2.z = posicion2.z - Configuracion.instancia.rotacionCamaraZ;
-            }
-
             Objetos.instancia.camara.transform.position = posicion2;
         }
 

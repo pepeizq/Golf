@@ -75,15 +75,6 @@ namespace Jugador
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Camara Modo"",
-                    ""type"": ""Button"",
-                    ""id"": ""87f48b90-af73-45a1-a37e-cc6a55574d1a"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Cambiar Palo"",
                     ""type"": ""Button"",
                     ""id"": ""cf348f9f-c0ff-4b8d-a5c7-c9c8095b9a8b"",
@@ -204,17 +195,6 @@ namespace Jugador
                 },
                 {
                     ""name"": """",
-                    ""id"": ""3fba34e4-2129-405a-8c1d-c430e65d05d8"",
-                    ""path"": ""<Keyboard>/c"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Camara Modo"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""b9f71d36-7b2f-4ad1-8fea-1c2541ab89d8"",
                     ""path"": ""<Keyboard>/x"",
                     ""interactions"": """",
@@ -247,7 +227,6 @@ namespace Jugador
             m_Principal_BolaPotencia = m_Principal.FindAction("Bola Potencia", throwIfNotFound: true);
             m_Principal_BolaRotarIzquierda = m_Principal.FindAction("Bola Rotar Izquierda", throwIfNotFound: true);
             m_Principal_BolaRotarDerecha = m_Principal.FindAction("Bola Rotar Derecha", throwIfNotFound: true);
-            m_Principal_CamaraModo = m_Principal.FindAction("Camara Modo", throwIfNotFound: true);
             m_Principal_CambiarPalo = m_Principal.FindAction("Cambiar Palo", throwIfNotFound: true);
             m_Principal_EnseñarMenu = m_Principal.FindAction("Enseñar Menu", throwIfNotFound: true);
         }
@@ -314,7 +293,6 @@ namespace Jugador
         private readonly InputAction m_Principal_BolaPotencia;
         private readonly InputAction m_Principal_BolaRotarIzquierda;
         private readonly InputAction m_Principal_BolaRotarDerecha;
-        private readonly InputAction m_Principal_CamaraModo;
         private readonly InputAction m_Principal_CambiarPalo;
         private readonly InputAction m_Principal_EnseñarMenu;
         public struct PrincipalActions
@@ -326,7 +304,6 @@ namespace Jugador
             public InputAction @BolaPotencia => m_Wrapper.m_Principal_BolaPotencia;
             public InputAction @BolaRotarIzquierda => m_Wrapper.m_Principal_BolaRotarIzquierda;
             public InputAction @BolaRotarDerecha => m_Wrapper.m_Principal_BolaRotarDerecha;
-            public InputAction @CamaraModo => m_Wrapper.m_Principal_CamaraModo;
             public InputAction @CambiarPalo => m_Wrapper.m_Principal_CambiarPalo;
             public InputAction @EnseñarMenu => m_Wrapper.m_Principal_EnseñarMenu;
             public InputActionMap Get() { return m_Wrapper.m_Principal; }
@@ -353,9 +330,6 @@ namespace Jugador
                     @BolaRotarDerecha.started -= m_Wrapper.m_PrincipalActionsCallbackInterface.OnBolaRotarDerecha;
                     @BolaRotarDerecha.performed -= m_Wrapper.m_PrincipalActionsCallbackInterface.OnBolaRotarDerecha;
                     @BolaRotarDerecha.canceled -= m_Wrapper.m_PrincipalActionsCallbackInterface.OnBolaRotarDerecha;
-                    @CamaraModo.started -= m_Wrapper.m_PrincipalActionsCallbackInterface.OnCamaraModo;
-                    @CamaraModo.performed -= m_Wrapper.m_PrincipalActionsCallbackInterface.OnCamaraModo;
-                    @CamaraModo.canceled -= m_Wrapper.m_PrincipalActionsCallbackInterface.OnCamaraModo;
                     @CambiarPalo.started -= m_Wrapper.m_PrincipalActionsCallbackInterface.OnCambiarPalo;
                     @CambiarPalo.performed -= m_Wrapper.m_PrincipalActionsCallbackInterface.OnCambiarPalo;
                     @CambiarPalo.canceled -= m_Wrapper.m_PrincipalActionsCallbackInterface.OnCambiarPalo;
@@ -381,9 +355,6 @@ namespace Jugador
                     @BolaRotarDerecha.started += instance.OnBolaRotarDerecha;
                     @BolaRotarDerecha.performed += instance.OnBolaRotarDerecha;
                     @BolaRotarDerecha.canceled += instance.OnBolaRotarDerecha;
-                    @CamaraModo.started += instance.OnCamaraModo;
-                    @CamaraModo.performed += instance.OnCamaraModo;
-                    @CamaraModo.canceled += instance.OnCamaraModo;
                     @CambiarPalo.started += instance.OnCambiarPalo;
                     @CambiarPalo.performed += instance.OnCambiarPalo;
                     @CambiarPalo.canceled += instance.OnCambiarPalo;
@@ -401,7 +372,6 @@ namespace Jugador
             void OnBolaPotencia(InputAction.CallbackContext context);
             void OnBolaRotarIzquierda(InputAction.CallbackContext context);
             void OnBolaRotarDerecha(InputAction.CallbackContext context);
-            void OnCamaraModo(InputAction.CallbackContext context);
             void OnCambiarPalo(InputAction.CallbackContext context);
             void OnEnseñarMenu(InputAction.CallbackContext context);
         }

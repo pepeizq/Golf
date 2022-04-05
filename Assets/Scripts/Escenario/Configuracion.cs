@@ -32,7 +32,6 @@ namespace Escenario
         [HideInInspector] public bool poderMover = true;
 
         [Header("Camara")]
-        public CamaraModos camaraModo = CamaraModos.Fija;
         public int velocidadLibre = 20;
         public float zoomDefecto = 3.5f;
         public float zoomCerca = 0.5f;
@@ -137,7 +136,6 @@ namespace Escenario
             multiPosicionZHoyo = posiciones[1];
         }
 
-        public enum CamaraModos { Libre, Fija }
         public enum Palos { Madera, Hierro }
     }
 }

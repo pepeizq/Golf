@@ -69,7 +69,7 @@
     <Compile Include="Assets\Scripts\Canvas\MultiConexion.cs" />
     <Compile Include="Assets\Scripts\Escenario\Colocar\Forma.cs" />
     <Compile Include="Assets\Scripts\Canvas\Escenario.cs" />
-    <Compile Include="Assets\Scripts\Escenario\Colocar\AnimacionHoyoBola.cs" />
+    <Compile Include="Assets\Scripts\Escenario\Animaciones\HoyoBola.cs" />
     <Compile Include="Assets\Scripts\Escenario\Generacion\Limites.cs" />
     <Compile Include="Assets\Scripts\Escenario\Generacion\Vectores.cs" />
     <Compile Include="Assets\Photon\PhotonRealtime\Demos\DemoLoadBalancing\ConnectAndJoinRandomLb.cs" />
