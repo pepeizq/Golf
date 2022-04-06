@@ -13,5 +13,10 @@ namespace Jugador
             instancia = this;
             DontDestroyOnLoad(instancia);
         }
+
+        public void Start()
+        {
+            color = Random.ColorHSV();
+        }
     }
 }

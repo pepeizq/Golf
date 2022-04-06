@@ -136,6 +136,12 @@ namespace Escenario
             multiPosicionZHoyo = posiciones[1];
         }
 
+        [PunRPC]
+        public void MultijugadorNuevoNivel()
+        {
+            Debug.Log("test cambio nivel");
+        }
+
         public enum Palos { Madera, Hierro }
     }
 }

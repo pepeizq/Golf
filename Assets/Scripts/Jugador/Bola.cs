@@ -13,6 +13,7 @@ namespace Jugador
     {
         [HideInInspector] public Player photonJugador;
         [HideInInspector] public int id;
+        [HideInInspector] public UnityEngine.Color color;
 
         private float angulo = 0;
         private float potencia = 0;
@@ -40,14 +41,22 @@ namespace Jugador
         {
             photonJugador = jugador;
             id = jugador.ActorNumber;
+            color = Atributos.instancia.color;
 
             Configuracion.instancia.jugadores[id - 1] = this;
- 
-            //Color.Cambiar(gameObject, linea, color);
 
             if (photonView.IsMine == false)
             {
                 cuerpo.isKinematic = true;
+            }
+
+            foreach (Bola bola3 in FindObjectsOfType(typeof(Bola)) as Bola[])
+            {
+                if (bola3.id == id)
+                {
+                    
+                }
+                Color.Cambiar(bola3.gameObject, bola3.GetComponent<LineRenderer>(), bola3.color);
             }
         }
 
@@ -376,15 +385,22 @@ namespace Jugador
         {
             if (colision.gameObject.name.Contains("Prefab Bola"))
             {
-                Physics.IgnoreCollision(GetComponent<Collider>(), colision.gameObject.GetComponent<Collider>(), false);
+                //Physics.IgnoreCollision(GetComponent<Collider>(), colision.gameObject.GetComponent<Collider>(), false);
             }
         }
 
         IEnumerator TerminarHoyo()
         {            
-            yield return new WaitForSeconds(5);
-            Destroy(gameObject);
-            Configuracion.instancia.NuevoNivel(Configuracion.instancia.nivel += 1);
+            if (Multijugador.Conexiones.instancia.Conectado() == false)
+            {
+                yield return new WaitForSeconds(5);
+                Destroy(gameObject);
+                Configuracion.instancia.NuevoNivel(Configuracion.instancia.nivel += 1);
+            }
+            else
+            {
+                photonView.RPC("MultijugadorNuevoNivel", RpcTarget.All);
+            }
         }
 
         public void CambiarPaloInput(InputAction.CallbackContext contexto)
