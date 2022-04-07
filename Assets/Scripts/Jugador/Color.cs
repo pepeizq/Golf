@@ -4,12 +4,14 @@ namespace Jugador
 {
     public static class Color 
     {
-        public static void Cambiar(GameObject bola, LineRenderer linea, UnityEngine.Color color)
+        public static void Cambiar(GameObject bola, UnityEngine.Color color)
         {
-            Renderer renderer = bola.gameObject.GetComponent<Renderer>();
-            renderer.material.shader = Shader.Find("HDRP/Lit");
-            renderer.material.SetColor("_BaseColor", color);
+            MeshRenderer renderer = bola.gameObject.GetComponent<MeshRenderer>();
+            Material material = new Material(Shader.Find("HDRP/Lit"));
+            material.SetColor("_BaseColor", color);
+            renderer.material = material;
 
+            LineRenderer linea = bola.GetComponent<LineRenderer>();
             linea.material = new Material(Shader.Find("Sprites/Default"));
             Gradient gradiente = new Gradient();
             gradiente.SetKeys(

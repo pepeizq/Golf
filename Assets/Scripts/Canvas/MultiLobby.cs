@@ -45,6 +45,7 @@ namespace Canvas2
             {
                 GameObject boton = Instantiate(prefabBotonSala, new Vector3(0, 0, 0), Quaternion.identity);
                 boton.transform.SetParent(panelSalas.gameObject.transform);
+                boton.transform.localScale = Vector3.one;
 
                 TextMeshProUGUI texto = boton.GetComponentInChildren<TextMeshProUGUI>();
                 texto.text = string.Format("{0} - Jugadores: {1}/{2}", sala.Name, sala.PlayerCount, sala.MaxPlayers);
@@ -98,16 +99,42 @@ namespace Canvas2
 
         public override void OnJoinedRoom()
         {
-            photonView.RPC("ActualizarLobby", RpcTarget.All);
+            photonView.RPC("ActualizarSala", RpcTarget.All);
+        }
+
+        public override void OnDisconnected(DisconnectCause cause)
+        {
+          
         }
 
         public override void OnPlayerLeftRoom(Player jugador)
         {
-            ActualizarLobby();
+            if (canvasSala != null)
+            {
+                if (canvasSala.isActiveAndEnabled == true)
+                {
+                    if (jugador.IsMasterClient == false)
+                    {
+                        ActualizarSala();
+                    }
+                    else
+                    {
+                        DejarSala();
+                    }              
+                }
+            }     
+            else
+            {
+                if (jugador.IsMasterClient == true)
+                {
+                    PhotonNetwork.LeaveRoom();
+                    Multijugador.Conexiones.instancia.photonView.RPC("CambiarEscena", RpcTarget.All, "Principal");
+                }
+            }
         }
 
         [PunRPC]
-        public void ActualizarLobby()
+        public void ActualizarSala()
         {
             foreach (Transform jugador in panelJugadores.gameObject.transform)
             {

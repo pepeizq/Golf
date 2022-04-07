@@ -13,7 +13,6 @@ namespace Jugador
     {
         [HideInInspector] public Player photonJugador;
         [HideInInspector] public int id;
-        [HideInInspector] public UnityEngine.Color color;
 
         private float angulo = 0;
         private float potencia = 0;
@@ -41,7 +40,6 @@ namespace Jugador
         {
             photonJugador = jugador;
             id = jugador.ActorNumber;
-            color = Atributos.instancia.color;
 
             Configuracion.instancia.jugadores[id - 1] = this;
 
@@ -50,13 +48,21 @@ namespace Jugador
                 cuerpo.isKinematic = true;
             }
 
-            foreach (Bola bola3 in FindObjectsOfType(typeof(Bola)) as Bola[])
+            foreach (Player jugador2 in PhotonNetwork.PlayerList)
             {
-                if (bola3.id == id)
+                UnityEngine.Color color2 = new UnityEngine.Color((float)jugador2.CustomProperties["BolaColorRojo"], (float)jugador2.CustomProperties["BolaColorVerde"], (float)jugador2.CustomProperties["BolaColorAzul"]);
+
+                GameObject[] bolas = GameObject.FindGameObjectsWithTag("Player");
+
+                foreach (GameObject bola in bolas)
                 {
-                    
+                    int id = bola.GetComponent<Bola>().id;
+
+                    if (id == jugador2.ActorNumber)
+                    {
+                        Color.Cambiar(bola.gameObject, color2);
+                    }
                 }
-                Color.Cambiar(bola3.gameObject, bola3.GetComponent<LineRenderer>(), bola3.color);
             }
         }
 
@@ -99,14 +105,17 @@ namespace Jugador
 
             //--------------------------------------------------------------------
 
-            Color.Cambiar(gameObject, linea, Atributos.instancia.color);
+            if (Multijugador.Conexiones.instancia.Conectado() == false)
+            {
+                Color.Cambiar(gameObject, Atributos.instancia.color);
+            }            
         }
 
         public void Update()
         {
             bool jugadorAsignado = false;
 
-            if (PhotonNetwork.IsConnected == true)
+            if (Multijugador.Conexiones.instancia.Conectado() == true)
             {
                 if (photonView.IsMine == true)
                 {

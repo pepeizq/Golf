@@ -1,6 +1,7 @@
 using Escenario.Colocar;
 using Partida;
 using Photon.Pun;
+using Photon.Realtime;
 using Recursos;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -94,7 +95,7 @@ namespace Escenario
 
         public void Start()
         {
-            if (PhotonNetwork.IsConnected == true)
+            if (Multijugador.Conexiones.instancia.Conectado() == true)
             {
                 jugadores = new Jugador.Bola[PhotonNetwork.PlayerList.Length];
                 photonView.RPC("MultijugadorSumarJugador", RpcTarget.AllBuffered);
@@ -120,6 +121,11 @@ namespace Escenario
             if (jugadoresDentro == PhotonNetwork.PlayerList.Length)
             {
                 Bola.instancia.InstanciarBolaMulti(multiPosicionBolaInicio);
+            }
+
+            if (jugadoresDentro == Multijugador.Conexiones.instancia.Sala().PlayerCount)
+            {
+
             }
         }
 

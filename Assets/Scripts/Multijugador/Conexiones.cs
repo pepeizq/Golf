@@ -55,6 +55,11 @@ namespace Multijugador
             PhotonNetwork.JoinRoom(nombreSala);
         }
 
+        public Room Sala()
+        {
+            return PhotonNetwork.CurrentRoom;
+        }
+
         [PunRPC]
         public void CambiarEscena(string nombreEscena)
         {

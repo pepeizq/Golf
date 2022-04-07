@@ -1,4 +1,6 @@
-﻿using Photon.Pun;
+﻿using ExitGames.Client.Photon;
+using Jugador;
+using Photon.Pun;
 using Photon.Realtime;
 using TMPro;
 using UnityEngine;
@@ -46,6 +48,12 @@ namespace Canvas2
             canvasLobby.gameObject.SetActive(true);
 
             Multijugador.Conexiones.instancia.UnirseLobby();
+
+            Hashtable hash = new Hashtable();
+            hash["BolaColorRojo"] = Atributos.instancia.color.r;
+            hash["BolaColorVerde"] = Atributos.instancia.color.g;
+            hash["BolaColorAzul"] = Atributos.instancia.color.b;
+            PhotonNetwork.LocalPlayer.CustomProperties = hash;
         }
 
         public void VolverPrincipal()

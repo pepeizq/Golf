@@ -16,7 +16,7 @@ namespace Jugador
 
         public void Start()
         {
-            color = Random.ColorHSV();
+       
         }
     }
 }

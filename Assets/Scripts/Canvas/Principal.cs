@@ -18,6 +18,7 @@ namespace Canvas2
         public Canvas canvasMenu;
         public Button botonContinuarPartida;
         public Button botonCargarPartida;
+        public TMP_Dropdown dropdownColor;
 
         [Header("Cargando")]
         public Canvas canvasCargando;
@@ -68,6 +69,18 @@ namespace Canvas2
                 botonContinuarPartida.gameObject.SetActive(true);
                 botonCargarPartida.gameObject.SetActive(true);
             }
+
+            //----------------------------------------
+
+            dropdownColor.ClearOptions();
+
+            List<string> opciones = new List<string>();
+            opciones.Add("Rojo");
+            opciones.Add("Verde");
+            opciones.Add("Azul");
+
+            dropdownColor.AddOptions(opciones);
+            dropdownColor.value = PlayerPrefs.GetInt("colorJugador");
         }
 
         public void Update()
@@ -208,6 +221,26 @@ namespace Canvas2
             canvasConexion.gameObject.SetActive(true);
 
             MultiConexion.instancia.Conectar();
+        }
+
+        //------------------------------------------------------------------
+
+        public void CambiarColorJugador()
+        {
+            if (dropdownColor.value == 0)
+            {
+                Jugador.Atributos.instancia.color = Color.red;
+            }
+            else if (dropdownColor.value == 1)
+            {
+                Jugador.Atributos.instancia.color = Color.green;
+            }
+            else if (dropdownColor.value == 2)
+            {
+                Jugador.Atributos.instancia.color = Color.blue;
+            }
+
+            PlayerPrefs.SetInt("colorJugador", dropdownColor.value);
         }
     }
 }
