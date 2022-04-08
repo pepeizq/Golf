@@ -92,7 +92,6 @@ namespace Escenario.Colocar
         {
             GameObject bola = PhotonNetwork.Instantiate("Prefabs/Prefab Bola", posicion, Quaternion.identity);
             Vector3 nuevaPosicion = Configuracion.instancia.multiPosicionBolaInicio;
-            nuevaPosicion.y = nuevaPosicion.y + Random.Range(1, 10);
             bola.transform.position = nuevaPosicion;
 
             Jugador.Bola bola2 = bola.gameObject.GetComponent<Jugador.Bola>();

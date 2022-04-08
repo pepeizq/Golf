@@ -75,7 +75,7 @@
     <Compile Include="Assets\Photon\PhotonRealtime\Demos\DemoLoadBalancing\ConnectAndJoinRandomLb.cs" />
     <Compile Include="Assets\Scripts\Partida\Campos.cs" />
     <Compile Include="Assets\Scripts\Escenario\Colocar\Mordiscos.cs" />
-    <Compile Include="Assets\Scripts\Multijugador\Conexiones.cs" />
+    <Compile Include="Assets\Scripts\Jugador\Multijugador.cs" />
     <Compile Include="Assets\Scripts\Escenario\Colocar\Muros.cs" />
     <Compile Include="Assets\Scripts\Jugador\Color.cs" />
     <Compile Include="Assets\Scripts\Escenario\Colocar\Hoyo.cs" />

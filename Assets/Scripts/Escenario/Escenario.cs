@@ -45,7 +45,7 @@ namespace Escenario
                 casillasIniciales = Cargar.CargarEscenario();
             }
 
-            if (PhotonNetwork.IsConnected == true)
+            if (Jugador.Multijugador.instancia.Conectado() == true)
             {
                 if (PhotonNetwork.IsMasterClient == true)
                 {
@@ -112,7 +112,10 @@ namespace Escenario
 
             if (Configuracion.instancia.animacionHoyoBola == true)
             {
-                HoyoBola.instancia.Generar();
+                if (Jugador.Multijugador.instancia.Conectado() == false)
+                {
+                    HoyoBola.instancia.Generar();
+                }               
             }
         }
 

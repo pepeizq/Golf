@@ -1,11 +1,11 @@
 using Photon.Pun;
 using Photon.Realtime;
 
-namespace Multijugador
+namespace Jugador
 {
-    public class Conexiones : MonoBehaviourPunCallbacks
+    public class Multijugador : MonoBehaviourPunCallbacks
     {
-        public static Conexiones instancia;
+        public static Multijugador instancia;
 
         public void Awake()
         {

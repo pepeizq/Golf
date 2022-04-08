@@ -11,6 +11,8 @@ namespace Escenario
 
         [Header("Canvas Partida")]
         public Canvas canvasPartida;
+        public GameObject panelMensaje;
+        public TextMeshProUGUI textoMensaje;
         public TextMeshProUGUI textoPartida;
         public TextMeshProUGUI textoHoyo;
         public TextMeshProUGUI textoGolpes;

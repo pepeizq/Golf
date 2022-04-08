@@ -1,3 +1,4 @@
+using Jugador;
 using UnityEngine;
 
 namespace Escenario.Animaciones
@@ -22,11 +23,18 @@ namespace Escenario.Animaciones
 
         public void Update()
         {
-            if (instancia.animacion == true)
+            if (animacion == true)
             {
-                Vector3 posicionBola = Jugador.Bola.instancia.ultimaPosicion;
+                Vector3 posicionBola = Bola.instancia.ultimaPosicion;
                 Vector3 posicionHoyo = Configuracion.instancia.posicionHoyo;
-                GameObject camara = Jugador.Bola.instancia.transform.GetChild(0).gameObject;
+
+                if (Multijugador.instancia.Conectado() == true)
+                {
+                    posicionHoyo.x = Configuracion.instancia.multiPosicionXHoyo;
+                    posicionHoyo.z = Configuracion.instancia.multiPosicionZHoyo;
+                }
+
+                GameObject camara = Objetos.instancia.camara.gameObject;
 
                 pasos += Time.deltaTime * 5;
 

@@ -4,6 +4,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
 using System.Collections.Generic;
+using Jugador;
 
 namespace Canvas2
 {
@@ -31,7 +32,7 @@ namespace Canvas2
             canvasLobby.gameObject.SetActive(false);
             canvasPrincipal.gameObject.SetActive(true);
 
-            Multijugador.Conexiones.instancia.Desconectar();
+            Multijugador.instancia.Desconectar();
         }
 
         public override void OnRoomListUpdate(List<RoomInfo> listaSalas)
@@ -66,7 +67,7 @@ namespace Canvas2
 
             if (textoSala.text.Length > 0)
             {
-                Multijugador.Conexiones.instancia.CrearSala(textoSala.text);
+                Multijugador.instancia.CrearSala(textoSala.text);
 
                 canvasLobby.gameObject.SetActive(false);
                 canvasSala.gameObject.SetActive(true);
@@ -82,7 +83,7 @@ namespace Canvas2
 
             if (nombreSala.Length > 0)
             {
-                Multijugador.Conexiones.instancia.UnirseSala(nombreSala);
+                Multijugador.instancia.UnirseSala(nombreSala);
 
                 canvasLobby.gameObject.SetActive(false);
                 canvasSala.gameObject.SetActive(true);
@@ -128,7 +129,7 @@ namespace Canvas2
                 if (jugador.IsMasterClient == true)
                 {
                     PhotonNetwork.LeaveRoom();
-                    Multijugador.Conexiones.instancia.photonView.RPC("CambiarEscena", RpcTarget.All, "Principal");
+                    Multijugador.instancia.photonView.RPC("CambiarEscena", RpcTarget.All, "Principal");
                 }
             }
         }
@@ -172,7 +173,7 @@ namespace Canvas2
         public void EmpezarPartida()
         {
             botonEmpezarPartida.interactable = false;
-            Multijugador.Conexiones.instancia.photonView.RPC("CambiarEscena", RpcTarget.All, "Escenario");
+            Multijugador.instancia.photonView.RPC("CambiarEscena", RpcTarget.All, "Escenario");
         }
     }
 }

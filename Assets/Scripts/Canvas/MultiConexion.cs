@@ -25,7 +25,7 @@ namespace Canvas2
 
         public void Conectar()
         {
-            Multijugador.Conexiones.instancia.Conectar();
+            Multijugador.instancia.Conectar();
 
             textoMensaje.text = "Conectando";
 
@@ -47,7 +47,7 @@ namespace Canvas2
             canvasConexion.gameObject.SetActive(false);
             canvasLobby.gameObject.SetActive(true);
 
-            Multijugador.Conexiones.instancia.UnirseLobby();
+            Multijugador.instancia.UnirseLobby();
 
             Hashtable hash = new Hashtable();
             hash["BolaColorRojo"] = Atributos.instancia.color.r;

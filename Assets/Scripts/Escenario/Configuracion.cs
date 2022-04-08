@@ -1,4 +1,5 @@
 using Escenario.Colocar;
+using Jugador;
 using Partida;
 using Photon.Pun;
 using Photon.Realtime;
@@ -95,7 +96,7 @@ namespace Escenario
 
         public void Start()
         {
-            if (Multijugador.Conexiones.instancia.Conectado() == true)
+            if (Multijugador.instancia.Conectado() == true)
             {
                 jugadores = new Jugador.Bola[PhotonNetwork.PlayerList.Length];
                 photonView.RPC("MultijugadorSumarJugador", RpcTarget.AllBuffered);
@@ -120,10 +121,10 @@ namespace Escenario
 
             if (jugadoresDentro == PhotonNetwork.PlayerList.Length)
             {
-                Bola.instancia.InstanciarBolaMulti(multiPosicionBolaInicio);
+                Colocar.Bola.instancia.InstanciarBolaMulti(multiPosicionBolaInicio);
             }
 
-            if (jugadoresDentro == Multijugador.Conexiones.instancia.Sala().PlayerCount)
+            if (jugadoresDentro == Multijugador.instancia.Sala().PlayerCount)
             {
 
             }

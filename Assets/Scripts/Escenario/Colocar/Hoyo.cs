@@ -1,3 +1,4 @@
+using Jugador;
 using Partida;
 using Photon.Pun;
 using Recursos;
@@ -43,9 +44,10 @@ namespace Escenario.Colocar
                             {
                                 if (casillas[x, z].id == 0 && casillas[x, z].modificable == true)
                                 {
-                                    if (PhotonNetwork.IsConnected == false)
+                                    if (Multijugador.instancia.Conectado() == false)
                                     {
                                         InstanciarHoyo(casillas, x, z);
+                                        Guardar.GuardarHoyo(x, z);
                                     }
                                     else
                                     {
@@ -60,8 +62,7 @@ namespace Escenario.Colocar
 
                                         InstanciarHoyo(casillas, x, z);
                                     }
-
-                                    Guardar.GuardarHoyo(x, z);
+       
                                     break;
                                 }
                             }
@@ -106,7 +107,7 @@ namespace Escenario.Colocar
                 Vector3 posicion = casillas[Configuracion.instancia.multiPosicionXHoyo, Configuracion.instancia.multiPosicionZHoyo].posicion;
                 GameObject hoyo = PhotonNetwork.Instantiate("Prefabs/Prefab Hoyo 1", posicion, Quaternion.identity);
            
-                Configuracion.instancia.posicionHoyo = hoyo.transform.localPosition;
+                Configuracion.instancia.posicionHoyo = posicion;
                 Configuracion.instancia.posicionHoyoX = Configuracion.instancia.multiPosicionXHoyo;
                 Configuracion.instancia.posicionHoyoZ = Configuracion.instancia.multiPosicionZHoyo;
 

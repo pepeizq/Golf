@@ -1,4 +1,5 @@
 using Escenario;
+using Jugador;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,7 +17,7 @@ namespace Partida
 
         public static void GuardarEscenario(List<Vector3> listado, int tamañoX, int tamañoZ)
         {
-            if (Multijugador.Conexiones.instancia.Conectado() == false)
+            if (Multijugador.instancia.Conectado() == false)
             {
                 if (listado != null)
                 {
@@ -52,7 +53,7 @@ namespace Partida
 
         public static void GuardarForma(List<Vector2> casillas)
         {
-            if (Multijugador.Conexiones.instancia.Conectado() == false)
+            if (Multijugador.instancia.Conectado() == false)
             {
                 if (casillas != null)
                 {
@@ -80,7 +81,7 @@ namespace Partida
 
         public static void GuardarMaestro(Vector3 posicion, float angulo, int golpes, float zoom, DateTime fecha, int campo, int hoyo, int numeroPartida)
         {
-            if (Multijugador.Conexiones.instancia.Conectado() == false)
+            if (Multijugador.instancia.Conectado() == false)
             {
                 VectorTres posicion2 = new VectorTres(posicion);
 
@@ -103,7 +104,7 @@ namespace Partida
 
         public static void GuardarHoyo(int casillaX, int casillaZ)
         {
-            if (Multijugador.Conexiones.instancia.Conectado() == false)
+            if (Multijugador.instancia.Conectado() == false)
             {
                 PartidaHoyo hoyo = new PartidaHoyo
                 {
@@ -118,7 +119,7 @@ namespace Partida
 
         public static void GuardarMordiscos(List<Vector2> casillas)
         {
-            if (Multijugador.Conexiones.instancia.Conectado() == false)
+            if (Multijugador.instancia.Conectado() == false)
             {
                 if (casillas != null)
                 {

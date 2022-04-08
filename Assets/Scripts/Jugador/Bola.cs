@@ -1,8 +1,10 @@
 using Escenario;
+using Escenario.Animaciones;
 using Photon.Pun;
 using Photon.Realtime;
 using System;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -48,11 +50,13 @@ namespace Jugador
                 cuerpo.isKinematic = true;
             }
 
+            //----------------------------------------
+
+            GameObject[] bolas = GameObject.FindGameObjectsWithTag("Player");
+
             foreach (Player jugador2 in PhotonNetwork.PlayerList)
             {
                 UnityEngine.Color color2 = new UnityEngine.Color((float)jugador2.CustomProperties["BolaColorRojo"], (float)jugador2.CustomProperties["BolaColorVerde"], (float)jugador2.CustomProperties["BolaColorAzul"]);
-
-                GameObject[] bolas = GameObject.FindGameObjectsWithTag("Player");
 
                 foreach (GameObject bola in bolas)
                 {
@@ -61,7 +65,32 @@ namespace Jugador
                     if (id == jugador2.ActorNumber)
                     {
                         Color.Cambiar(bola.gameObject, color2);
+
+                        TextMeshPro texto = bola.GetComponentInChildren<TextMeshPro>();
+                        texto.text = jugador2.NickName;
+
                     }
+                }
+            }
+
+            //----------------------------------------
+            
+            if (bolas.Length != Multijugador.instancia.Sala().PlayerCount)
+            {
+                Objetos.instancia.panelMensaje.SetActive(true);
+                Configuracion.instancia.poderMover = false;
+            }
+            else
+            {
+                Objetos.instancia.panelMensaje.SetActive(false);
+
+                if (Configuracion.instancia.animacionHoyoBola == true)
+                {
+                    HoyoBola.instancia.Generar();
+                }
+                else
+                {
+                    Configuracion.instancia.poderMover = true;
                 }
             }
         }
@@ -105,7 +134,7 @@ namespace Jugador
 
             //--------------------------------------------------------------------
 
-            if (Multijugador.Conexiones.instancia.Conectado() == false)
+            if (Multijugador.instancia.Conectado() == false)
             {
                 Color.Cambiar(gameObject, Atributos.instancia.color);
             }            
@@ -115,7 +144,7 @@ namespace Jugador
         {
             bool jugadorAsignado = false;
 
-            if (Multijugador.Conexiones.instancia.Conectado() == true)
+            if (Multijugador.instancia.Conectado() == true)
             {
                 if (photonView.IsMine == true)
                 {
@@ -246,7 +275,7 @@ namespace Jugador
         {
             bool jugadorAsignado = false;
 
-            if (Multijugador.Conexiones.instancia.Conectado() == true)
+            if (Multijugador.instancia.Conectado() == true)
             {
                 if (photonView.IsMine == true)
                 {
@@ -400,7 +429,7 @@ namespace Jugador
 
         IEnumerator TerminarHoyo()
         {            
-            if (Multijugador.Conexiones.instancia.Conectado() == false)
+            if (Multijugador.instancia.Conectado() == false)
             {
                 yield return new WaitForSeconds(5);
                 Destroy(gameObject);
