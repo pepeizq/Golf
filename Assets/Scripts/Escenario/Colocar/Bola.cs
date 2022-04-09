@@ -94,7 +94,7 @@ namespace Escenario.Colocar
             Vector3 nuevaPosicion = Configuracion.instancia.multiPosicionBolaInicio;
             bola.transform.position = nuevaPosicion;
 
-            Jugador.Bola bola2 = bola.gameObject.GetComponent<Jugador.Bola>();
+            Jugador.Bola bola2 = bola.transform.GetChild(0).gameObject.GetComponent<Jugador.Bola>();
             bola2.photonView.RPC("Arranque", RpcTarget.All, PhotonNetwork.LocalPlayer);
 
             Objetos.instancia.camara.transform.position = bola.transform.position;

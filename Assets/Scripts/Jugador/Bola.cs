@@ -33,6 +33,8 @@ namespace Jugador
         private bool camaraVolver;
         private float camaraVolverPasos = 0f;
 
+        private bool cambiarPalo = true;
+
         private Controles controles;
 
         public static Bola instancia;
@@ -60,15 +62,11 @@ namespace Jugador
 
                 foreach (GameObject bola in bolas)
                 {
-                    int id = bola.GetComponent<Bola>().id;
+                    int id = bola.transform.GetChild(0).gameObject.GetComponent<Bola>().id;
 
                     if (id == jugador2.ActorNumber)
                     {
                         Color.Cambiar(bola.gameObject, color2);
-
-                        TextMeshPro texto = bola.GetComponentInChildren<TextMeshPro>();
-                        texto.text = jugador2.NickName;
-
                     }
                 }
             }
@@ -250,6 +248,21 @@ namespace Jugador
 
                     linea.SetPosition(0, gameObject.transform.position);
                     linea.SetPosition(1, gameObject.transform.position + Quaternion.Euler(0, angulo, 0) * Vector3.forward * (Configuracion.instancia.lineaLongitud + potencia / 4));
+
+                    //--------------------------------------------------------
+
+                    if (controles.Principal.CambiarPalo.phase == InputActionPhase.Performed)
+                    {
+                        StartCoroutine(CambiarPalo());
+                    }
+
+                    if (Multijugador.instancia.Conectado() == true)
+                    {
+                        if (controles.Principal.EnseñarNombresMulti.phase == InputActionPhase.Performed)
+                        {
+                            MultiNombres.instancia.Enseñar();
+                        }
+                    }       
                 }
                 else
                 {
@@ -413,7 +426,7 @@ namespace Jugador
 
         private void OnCollisionEnter(Collision colision)
         {
-            if (colision.gameObject.name.Contains("Prefab Bola"))
+            if (colision.gameObject.name.Contains("Bola"))
             {
                 Physics.IgnoreCollision(GetComponent<Collider>(), colision.gameObject.GetComponent<Collider>(), true);
             }
@@ -421,7 +434,7 @@ namespace Jugador
 
         private void OnCollisionExit(Collision colision)
         {
-            if (colision.gameObject.name.Contains("Prefab Bola"))
+            if (colision.gameObject.name.Contains("Bola"))
             {
                 //Physics.IgnoreCollision(GetComponent<Collider>(), colision.gameObject.GetComponent<Collider>(), false);
             }
@@ -441,24 +454,27 @@ namespace Jugador
             }
         }
 
-        public void CambiarPaloInput(InputAction.CallbackContext contexto)
+        IEnumerator CambiarPalo()
         {
-            if (Configuracion.instancia.poderMover == true)
+            if (cambiarPalo == true)
             {
-                if (contexto.phase == InputActionPhase.Performed)
+                cambiarPalo = false;
+
+                if (Configuracion.instancia.palos == Configuracion.Palos.Madera)
                 {
-                    if (Configuracion.instancia.palos == Configuracion.Palos.Madera)
-                    {
-                        Configuracion.instancia.palos = Configuracion.Palos.Hierro;
-                    }
-                    else
-                    {
-                        Configuracion.instancia.palos = Configuracion.Palos.Madera;
-                    }
-                  
-                    Objetos.instancia.textoPalos.text = Configuracion.instancia.palos.ToString();
+                    Configuracion.instancia.palos = Configuracion.Palos.Hierro;
                 }
-            }              
+                else
+                {
+                    Configuracion.instancia.palos = Configuracion.Palos.Madera;
+                }
+
+                Objetos.instancia.textoPalos.text = Configuracion.instancia.palos.ToString();
+
+                yield return new WaitForSeconds(0.5f);
+
+                cambiarPalo = true;
+            }         
         }
 
         public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo mensaje)

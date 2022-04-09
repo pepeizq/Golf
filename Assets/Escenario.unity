@@ -316,7 +316,7 @@ GameObject:
   - component: {fileID: 160954262}
   - component: {fileID: 160954264}
   - component: {fileID: 160954263}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -392,7 +392,7 @@ GameObject:
   - component: {fileID: 260772669}
   - component: {fileID: 260772671}
   - component: {fileID: 260772670}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: TextoPartida
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -528,7 +528,7 @@ GameObject:
   - component: {fileID: 277127580}
   - component: {fileID: 277127582}
   - component: {fileID: 277127581}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Texto
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -765,7 +765,7 @@ GameObject:
   m_Component:
   - component: {fileID: 440376283}
   - component: {fileID: 440376284}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: SliderPotencia
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -864,6 +864,7 @@ GameObject:
   - component: {fileID: 565598178}
   - component: {fileID: 565598181}
   - component: {fileID: 565598180}
+  - component: {fileID: 565598183}
   - component: {fileID: 565598182}
   m_Layer: 0
   m_Name: Escenario
@@ -1083,6 +1084,18 @@ MonoBehaviour:
   sceneViewId: 3
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &565598183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 565598170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7cbcd079167be14a8dde6f6ac944a76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &817381281
 GameObject:
   m_ObjectHideFlags: 0
@@ -1199,7 +1212,7 @@ GameObject:
   - component: {fileID: 917129063}
   - component: {fileID: 917129065}
   - component: {fileID: 917129064}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: TextoHoyo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1544,7 +1557,7 @@ GameObject:
   - component: {fileID: 1019860586}
   - component: {fileID: 1019860588}
   - component: {fileID: 1019860587}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: TextoMensaje
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1566,10 +1579,10 @@ RectTransform:
   m_Father: {fileID: 1077870874}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 50}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 100, y: -25}
+  m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1019860587
 MonoBehaviour:
@@ -1681,13 +1694,13 @@ GameObject:
   - component: {fileID: 1077870877}
   - component: {fileID: 1077870876}
   - component: {fileID: 1077870875}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: PanelMensaje
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1077870874
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1919,7 +1932,7 @@ GameObject:
   - component: {fileID: 1183350183}
   - component: {fileID: 1183350182}
   - component: {fileID: 1183350181}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: BotonMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2139,7 +2152,7 @@ GameObject:
   - component: {fileID: 1207260764}
   - component: {fileID: 1207260766}
   - component: {fileID: 1207260765}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: TextoGolpes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2548,7 +2561,7 @@ GameObject:
   - component: {fileID: 1420913257}
   - component: {fileID: 1420913256}
   - component: {fileID: 1420913255}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: PanelAbajo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2959,7 +2972,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c4bf8eac5cd2ba49993c4e92352d9a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bola: {fileID: 684591360240110550, guid: 4875ca14b8175b3499d6babc6ada3e9a, type: 3}
+  bola: {fileID: 423153653864952199, guid: 98ff6fc8d1104d240844948f96fd5ce4, type: 3}
   camara: {fileID: 967383142}
   canvasPartida: {fileID: 436698342}
   panelMensaje: {fileID: 1077870873}
@@ -3003,7 +3016,7 @@ GameObject:
   - component: {fileID: 1788695732}
   - component: {fileID: 1788695734}
   - component: {fileID: 1788695733}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3314,7 +3327,7 @@ GameObject:
   - component: {fileID: 2018059111}
   - component: {fileID: 2018059113}
   - component: {fileID: 2018059112}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: TextoPalos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3494,7 +3507,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2128774810}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -18,10 +18,13 @@ namespace Canvas2
 
         public void Update()
         {
-            if (controles.Principal.EnseñarMenu.phase == InputActionPhase.Performed)
+            if (controles != null)
             {
-                EnseñarMenu();
-            }
+                if (controles.Principal.EnseñarMenu.phase == InputActionPhase.Performed)
+                {
+                    EnseñarMenu();
+                }
+            }         
         }
 
         public void EnseñarMenu()

@@ -6,12 +6,32 @@ namespace Jugador
     {
         public static void Cambiar(GameObject bola, UnityEngine.Color color)
         {
-            MeshRenderer renderer = bola.gameObject.GetComponent<MeshRenderer>();
+            MeshRenderer renderer = new MeshRenderer();
+
+            if (Multijugador.instancia.Conectado() == true)
+            {
+                renderer = bola.transform.GetChild(0).gameObject.GetComponent<MeshRenderer>();
+            }
+            else
+            {
+                renderer = bola.gameObject.GetComponent<MeshRenderer>();
+            }
+
             Material material = new Material(Shader.Find("HDRP/Lit"));
             material.SetColor("_BaseColor", color);
             renderer.material = material;
 
-            LineRenderer linea = bola.GetComponent<LineRenderer>();
+            LineRenderer linea = new LineRenderer();
+
+            if (Multijugador.instancia.Conectado() == true)
+            {
+                linea = bola.transform.GetChild(0).gameObject.GetComponent<LineRenderer>();
+            }
+            else
+            {
+                linea = bola.gameObject.GetComponent<LineRenderer>();
+            }
+
             linea.material = new Material(Shader.Find("Sprites/Default"));
             Gradient gradiente = new Gradient();
             gradiente.SetKeys(
