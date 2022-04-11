@@ -76,6 +76,7 @@
     <Compile Include="Assets\Scripts\Partida\Campos.cs" />
     <Compile Include="Assets\Scripts\Escenario\Colocar\Mordiscos.cs" />
     <Compile Include="Assets\Scripts\Jugador\Multijugador.cs" />
+    <Compile Include="Assets\Scripts\Jugador\MultiNombres.cs" />
     <Compile Include="Assets\Scripts\Escenario\Colocar\Muros.cs" />
     <Compile Include="Assets\Scripts\Jugador\Color.cs" />
     <Compile Include="Assets\Scripts\Escenario\Colocar\Hoyo.cs" />
@@ -90,7 +91,6 @@
     <Compile Include="Assets\Scripts\Elementos\HoyoPalo.cs" />
     <Compile Include="Assets\Scripts\Escenario\Generacion\Colores.cs" />
     <Compile Include="Assets\Scripts\Escenario\Colocar\Bola.cs" />
-    <Compile Include="Assets\Scripts\Jugador\MultiNombres.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
