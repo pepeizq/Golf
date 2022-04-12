@@ -61,7 +61,7 @@ namespace Canvas2
         {
             if (textoSala.text.Length == 0)
             {
-                textoJugador.text = "testJugadorServidor-" + PhotonNetwork.LocalPlayer.UserId; 
+                textoJugador.text = "testJugadorServidor"; 
                 textoSala.text = "testSala"; 
             }
 

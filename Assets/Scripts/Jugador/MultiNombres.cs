@@ -89,12 +89,15 @@ namespace Jugador
                 {
                     if (bola != null)
                     {
-                        GameObject objetoNombre = bola.transform.GetChild(1).gameObject;
-
-                        if (objetoNombre.gameObject.activeSelf == true)
+                        if (bola.transform.GetChild(1) != null)
                         {
-                            objetoNombre.gameObject.SetActive(false);
-                        }
+                            GameObject objetoNombre = bola.transform.GetChild(1).gameObject;
+
+                            if (objetoNombre.gameObject.activeSelf == true)
+                            {
+                                objetoNombre.gameObject.SetActive(false);
+                            }
+                        }    
                     }      
                 }
             }

@@ -76,6 +76,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Enseñar Tabla Golpes Multi",
+                    "type": "Button",
+                    "id": "a8052456-5674-4993-85c6-d8e241b7e938",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -208,6 +217,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Enseñar Nombres Multi",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8fcd940a-abcc-40e5-b60c-7ffbf65b2474",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Enseñar Tabla Golpes Multi",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

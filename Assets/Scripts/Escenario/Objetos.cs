@@ -9,18 +9,24 @@ namespace Escenario
         public GameObject bola;
         public GameObject camara;
 
-        [Header("Canvas Partida")]
+        [Header("Canvas")]
         public Canvas canvasPartida;
+        public Canvas canvasMenu;
+
+        [Header("Mensaje")]
         public GameObject panelMensaje;
         public TextMeshProUGUI textoMensaje;
+
+        [Header("Multijugador")]
+        public GameObject panelTabla;
+        public GameObject prefabTablaJugador;
+
+        [Header("Jugador")]
         public TextMeshProUGUI textoPartida;
         public TextMeshProUGUI textoHoyo;
         public TextMeshProUGUI textoGolpes;
         public TextMeshProUGUI textoPalos;
         public Slider sliderPotencia;
-
-        [Header("Canvas Menu")]
-        public Canvas canvasMenu;
 
         public static Objetos instancia;
 

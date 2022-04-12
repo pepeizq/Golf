@@ -254,15 +254,7 @@ namespace Jugador
                     if (controles.Principal.CambiarPalo.phase == InputActionPhase.Performed)
                     {
                         StartCoroutine(CambiarPalo());
-                    }
-
-                    if (Multijugador.instancia.Conectado() == true)
-                    {
-                        if (controles.Principal.EnseñarNombresMulti.phase == InputActionPhase.Performed)
-                        {
-                            MultiNombres.instancia.Enseñar();
-                        }
-                    }       
+                    }   
                 }
                 else
                 {
@@ -281,6 +273,14 @@ namespace Jugador
             else
             {
                 linea.enabled = false;
+            }
+
+            if (Multijugador.instancia.Conectado() == true)
+            {
+                if (controles.Principal.EnseñarNombresMulti.phase == InputActionPhase.Performed)
+                {
+                    MultiNombres.instancia.Enseñar();
+                }
             }
         }
 
