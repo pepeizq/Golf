@@ -13,7 +13,10 @@ namespace Jugador
 
         public void Enseñar()
         {
-            
+            if (Escenario.Objetos.instancia.panelTabla.activeSelf == true)
+            {
+
+            }
         }
     }
 }

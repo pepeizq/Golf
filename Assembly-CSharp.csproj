@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scripts\Canvas\MultiConexion.cs" />
     <Compile Include="Assets\Scripts\Escenario\Colocar\Forma.cs" />
     <Compile Include="Assets\Scripts\Canvas\Escenario.cs" />
+    <Compile Include="Assets\Scripts\Jugador\MultiTablaGolpes.cs" />
     <Compile Include="Assets\Scripts\Escenario\Animaciones\HoyoBola.cs" />
     <Compile Include="Assets\Scripts\Escenario\Generacion\Limites.cs" />
     <Compile Include="Assets\Scripts\Escenario\Generacion\Vectores.cs" />
@@ -91,7 +92,6 @@
     <Compile Include="Assets\Scripts\Elementos\HoyoPalo.cs" />
     <Compile Include="Assets\Scripts\Escenario\Generacion\Colores.cs" />
     <Compile Include="Assets\Scripts\Escenario\Colocar\Bola.cs" />
-    <Compile Include="Assets\Scripts\Jugador\MultiTablaGolpes.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
