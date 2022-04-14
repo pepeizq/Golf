@@ -15,7 +15,16 @@ namespace Jugador
         {
             if (Escenario.Objetos.instancia.panelTabla.activeSelf == true)
             {
+                Escenario.Objetos.instancia.panelTabla.SetActive(false);
+            }
+            else
+            {
+                Escenario.Objetos.instancia.panelTabla.SetActive(true);
+            }
 
+            if (Escenario.Objetos.instancia.panelTabla.activeSelf == true)
+            {
+                
             }
         }
     }
