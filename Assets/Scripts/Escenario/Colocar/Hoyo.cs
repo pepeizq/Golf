@@ -89,7 +89,7 @@ namespace Escenario.Colocar
   
         public void InstanciarHoyo(Casilla[,] casillas, int casillaX, int casillaZ)
         {
-            if (PhotonNetwork.IsConnected == false)
+            if (Multijugador.instancia.Conectado() == false)
             {
                 GameObject hoyo = Instantiate(Configuracion.instancia.campo.hoyo);
                 hoyo.transform.position = casillas[casillaX, casillaZ].prefab.transform.position;
