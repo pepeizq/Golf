@@ -91,6 +91,7 @@
     <Compile Include="Assets\Scripts\Canvas\Principal.cs" />
     <Compile Include="Assets\Scripts\Elementos\HoyoPalo.cs" />
     <Compile Include="Assets\Scripts\Escenario\Generacion\Colores.cs" />
+    <Compile Include="Assets\Scripts\Jugador\Unjugador.cs" />
     <Compile Include="Assets\Scripts\Escenario\Colocar\Bola.cs" />
   </ItemGroup>
   <ItemGroup>

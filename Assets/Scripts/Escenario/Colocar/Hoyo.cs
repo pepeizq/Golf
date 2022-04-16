@@ -19,7 +19,7 @@ namespace Escenario.Colocar
         {
             bool buscarPosicion = true;
 
-            if (PhotonNetwork.IsConnected == true && PhotonNetwork.IsMasterClient == false)
+            if (Multijugador.instancia.Conectado() == true && Multijugador.instancia.Maestro() == false)
             {
                 buscarPosicion = false;
             }
@@ -93,7 +93,7 @@ namespace Escenario.Colocar
             {
                 GameObject hoyo = Instantiate(Configuracion.instancia.campo.hoyo);
                 hoyo.transform.position = casillas[casillaX, casillaZ].prefab.transform.position;
-
+           
                 Configuracion.instancia.posicionHoyo = hoyo.transform.localPosition;
                 Configuracion.instancia.posicionHoyoX = casillaX;
                 Configuracion.instancia.posicionHoyoZ = casillaZ;

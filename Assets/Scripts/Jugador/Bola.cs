@@ -112,20 +112,23 @@ namespace Jugador
             //--------------------------------------------------------------------
 
             camaraOffset = Objetos.instancia.camara.gameObject.transform.position - gameObject.transform.position;
-            ultimaPosicion = gameObject.transform.localPosition;
-
+            ultimaPosicion = transform.parent.localPosition;
+           
             //--------------------------------------------------------------------
 
-            if (Configuracion.instancia.aleatorio == false)
+            camaraZoom = Configuracion.instancia.zoomDefecto;
+            angulo = 90;
+
+            if (Multijugador.instancia.Conectado() == false)
             {
-                camaraZoom = Partida.Cargar.CargarBolaZoom();
-                angulo = Partida.Cargar.CargarBolaRotacion();
-                golpes = Partida.Cargar.CargarBolaGolpes();
-            }
-            else
-            {
-                camaraZoom = Configuracion.instancia.zoomDefecto;
-                angulo = 90;
+                if (Unjugador.instancia.nuevaPartida == false)
+                {
+                    camaraZoom = Partida.Cargar.CargarBola(Unjugador.instancia.partida.numeroPartida).zoom;
+                    angulo = Partida.Cargar.CargarBola(Unjugador.instancia.partida.numeroPartida).angulo;
+                    golpes = Partida.Cargar.CargarBola(Unjugador.instancia.partida.numeroPartida).golpes;
+                }
+
+                Color.Cambiar(gameObject, Atributos.instancia.color);
             }
 
             Objetos.instancia.textoGolpes.text = string.Format("Golpes: {0}", golpes.ToString());
@@ -134,7 +137,7 @@ namespace Jugador
 
             if (Multijugador.instancia.Conectado() == false)
             {
-                Color.Cambiar(gameObject, Atributos.instancia.color);
+                Partida.Guardar.GuardarMaestro(ultimaPosicion, angulo, golpes, camaraZoom, DateTime.Now, Configuracion.instancia.campo.id, Configuracion.instancia.nivel, Configuracion.instancia.numeroPartida);
             }            
         }
 
@@ -166,7 +169,7 @@ namespace Jugador
                     cuerpo.angularVelocity = Vector3.zero;
 
                     linea.enabled = true;
-                    ultimaPosicion = gameObject.transform.localPosition;
+                    ultimaPosicion = transform.parent.localPosition;
             
                     Partida.Guardar.GuardarMaestro(ultimaPosicion, angulo, golpes, camaraZoom, DateTime.Now, Configuracion.instancia.campo.id, Configuracion.instancia.nivel, Configuracion.instancia.numeroPartida);
                     Transparentar.Casillas(ultimaPosicion, Transparentar.CasillasMaterial.Transparente);

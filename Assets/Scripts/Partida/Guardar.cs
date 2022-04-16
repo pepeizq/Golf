@@ -79,7 +79,7 @@ namespace Partida
             }               
         }
 
-        public static void GuardarMaestro(Vector3 posicion, float angulo, int golpes, float zoom, DateTime fecha, int campo, int hoyo, int numeroPartida)
+        public static void GuardarMaestro(Vector3 posicion, float angulo, int golpes, float zoom, DateTime fecha, int campo, int nivel, int numeroPartida)
         {
             if (Multijugador.instancia.Conectado() == false)
             {
@@ -93,12 +93,13 @@ namespace Partida
                     zoom = zoom,
                     fecha = fecha.ToString(),
                     campo = campo,
-                    hoyo = hoyo,
+                    nivel = nivel,
                     numeroPartida = numeroPartida
                 };
-
+                
                 string datos = JsonUtility.ToJson(bola);
                 PlayerPrefs.SetString(Configuracion.instancia.numeroPartida.ToString() + "bola", datos);
+                Unjugador.instancia.partida = bola;
             }                
         }
 

@@ -35,19 +35,25 @@ namespace Escenario
         {
             casillasMapa = new Casilla[Configuracion.instancia.tamañoX, Configuracion.instancia.tamañoZ];
 
-            if (Configuracion.instancia.aleatorio == true)
+            if (Jugador.Multijugador.instancia.Conectado() == false)
             {
-                casillasIniciales = Vectores.instancia.GenerarCasillas(casillasMapa, Configuracion.instancia.alturaMaxima, limitesMapa);
-                Guardar.GuardarEscenario(casillasIniciales, Configuracion.instancia.tamañoX, Configuracion.instancia.tamañoZ);
+                if (Jugador.Unjugador.instancia.nuevaPartida == true)
+                {
+                    casillasIniciales = Vectores.instancia.GenerarCasillas(casillasMapa, Configuracion.instancia.alturaMaxima, limitesMapa);
+                    Guardar.GuardarEscenario(casillasIniciales, Configuracion.instancia.tamañoX, Configuracion.instancia.tamañoZ);
+                }
+                else
+                {
+                    casillasIniciales = Cargar.CargarEscenario();
+                }
             }
-            else
+            else if (Jugador.Multijugador.instancia.Conectado() == true)
             {
-                casillasIniciales = Cargar.CargarEscenario();
-            }
-
-            if (Jugador.Multijugador.instancia.Conectado() == true)
-            {
-                if (PhotonNetwork.IsMasterClient == true)
+                if (Jugador.Multijugador.instancia.Maestro() == true)
+                {
+                    casillasIniciales = Vectores.instancia.GenerarCasillas(casillasMapa, Configuracion.instancia.alturaMaxima, limitesMapa);
+                }
+                else
                 {
                     photonView.RPC("MultijugadorCasillasIniciales", RpcTarget.AllBuffered, casillasIniciales.ToArray());
                 }

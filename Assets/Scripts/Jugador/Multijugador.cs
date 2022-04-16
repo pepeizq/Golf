@@ -23,6 +23,11 @@ namespace Jugador
             return PhotonNetwork.IsConnected;
         }
 
+        public bool Maestro()
+        {
+            return PhotonNetwork.IsMasterClient;
+        }
+
         public void Conectar()
         {
             PhotonNetwork.ConnectUsingSettings();

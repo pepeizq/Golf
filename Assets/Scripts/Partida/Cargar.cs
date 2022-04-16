@@ -55,31 +55,6 @@ namespace Partida
             return bola;
         }
 
-        public static Vector3 CargarBolaPosicion()
-        {
-            PartidaMaestro bola = JsonUtility.FromJson<PartidaMaestro>(PlayerPrefs.GetString(Configuracion.instancia.numeroPartida.ToString() + "bola"));
-            Vector3 posicion2 = bola.posicion.ObtenerVector3();
-            return posicion2;
-        }
-
-        public static float CargarBolaRotacion()
-        {
-            PartidaMaestro bola = JsonUtility.FromJson<PartidaMaestro>(PlayerPrefs.GetString(Configuracion.instancia.numeroPartida.ToString() + "bola"));
-            return bola.angulo;
-        }
-
-        public static int CargarBolaGolpes()
-        {
-            PartidaMaestro bola = JsonUtility.FromJson<PartidaMaestro>(PlayerPrefs.GetString(Configuracion.instancia.numeroPartida.ToString() + "bola"));
-            return bola.golpes;
-        }
-
-        public static float CargarBolaZoom()
-        {
-            PartidaMaestro bola = JsonUtility.FromJson<PartidaMaestro>(PlayerPrefs.GetString(Configuracion.instancia.numeroPartida.ToString() + "bola"));
-            return bola.zoom;
-        }
-
         public static PartidaHoyo CargarHoyo()
         {
             return JsonUtility.FromJson<PartidaHoyo>(PlayerPrefs.GetString(Configuracion.instancia.numeroPartida.ToString() + "hoyo" + Configuracion.instancia.nivel.ToString()));

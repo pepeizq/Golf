@@ -1,3 +1,4 @@
+using Jugador;
 using Partida;
 using Recursos;
 using System;
@@ -125,6 +126,8 @@ namespace Canvas2
             PlayerPrefs.SetInt("numeroPartida", totalPartidas);
             PlayerPrefs.SetInt(totalPartidas.ToString() + "campo", campo);
 
+            Unjugador.instancia.nuevaPartida = true;
+
             canvasNuevaPartida.gameObject.SetActive(false);
             canvasCargando.gameObject.SetActive(true);
             sliderCargando.value = 0;
@@ -143,10 +146,8 @@ namespace Canvas2
         public void ContinuarPartida()
         {
             PartidaMaestro ultimaPartida = partidas[partidas.Count - 1];
-
-            PlayerPrefs.SetString("continuarPartida", "si");
-            PlayerPrefs.SetInt("numeroPartida", ultimaPartida.numeroPartida);
-            PlayerPrefs.SetInt(ultimaPartida.numeroPartida.ToString() + "campo", ultimaPartida.campo);
+            Unjugador.instancia.partida = ultimaPartida;
+            Unjugador.instancia.nuevaPartida = false;
 
             canvasMenu.gameObject.SetActive(false);
             canvasCargando.gameObject.SetActive(true);
@@ -174,19 +175,18 @@ namespace Canvas2
                 boton.transform.localScale = Vector3.one;
 
                 TextMeshProUGUI texto = boton.GetComponentInChildren<TextMeshProUGUI>();
-                texto.text = string.Format("ID: {0} - Campo: {1} - Hoyo: {2} - {3}", partida.numeroPartida.ToString(), partida.campo.ToString(), (partida.hoyo + 1).ToString(), partida.fecha.ToString());
+                texto.text = string.Format("ID: {0} - Campo: {1} - Hoyo: {2} - {3}", partida.numeroPartida.ToString(), partida.campo.ToString(), (partida.nivel + 1).ToString(), partida.fecha.ToString());
 
                 Button boton2 = boton.GetComponent<Button>();
                 boton2.onClick.RemoveAllListeners();
-                boton2.onClick.AddListener(() => CargarPartida(partida.numeroPartida, partida.campo));
+                boton2.onClick.AddListener(() => CargarPartida(partida));
             }
         }
 
-        private void CargarPartida(int id, int campo)
+        private void CargarPartida(PartidaMaestro partida)
         {
-            PlayerPrefs.SetString("continuarPartida", "si");
-            PlayerPrefs.SetInt("numeroPartida", id);
-            PlayerPrefs.SetInt(id.ToString() + "campo", campo);
+            Unjugador.instancia.partida = partida;
+            Unjugador.instancia.nuevaPartida = false;
 
             canvasCargarPartida.gameObject.SetActive(false);
             canvasCargando.gameObject.SetActive(true);
@@ -229,15 +229,15 @@ namespace Canvas2
         {
             if (dropdownColor.value == 0)
             {
-                Jugador.Atributos.instancia.color = Color.red;
+                Atributos.instancia.color = UnityEngine.Color.red;
             }
             else if (dropdownColor.value == 1)
             {
-                Jugador.Atributos.instancia.color = Color.green;
+                Atributos.instancia.color = UnityEngine.Color.green;
             }
             else if (dropdownColor.value == 2)
             {
-                Jugador.Atributos.instancia.color = Color.blue;
+                Atributos.instancia.color = UnityEngine.Color.blue;
             }
 
             PlayerPrefs.SetInt("colorJugador", dropdownColor.value);

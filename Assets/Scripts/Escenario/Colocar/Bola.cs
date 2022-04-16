@@ -1,3 +1,4 @@
+using Jugador;
 using Photon.Pun;
 using Recursos;
 using UnityEngine;
@@ -17,7 +18,7 @@ namespace Escenario.Colocar
         {
             bool buscarPosicion = true;
 
-            if (PhotonNetwork.IsConnected == true && PhotonNetwork.IsMasterClient == false)
+            if (Multijugador.instancia.Conectado() == true && PhotonNetwork.IsMasterClient == false)
             {
                 buscarPosicion = false;
             }
@@ -73,7 +74,7 @@ namespace Escenario.Colocar
                     }
                     else
                     {
-                        InstanciarBola(Partida.Cargar.CargarBolaPosicion());
+                        InstanciarBola(Unjugador.instancia.partida.posicion.ObtenerVector3());
                     }                       
                 }
             }
@@ -83,7 +84,7 @@ namespace Escenario.Colocar
         {
             GameObject bola = Instantiate(Objetos.instancia.bola);
             bola.transform.position = posicion;
-
+            
             Vector3 posicion2 = bola.transform.position;
             Objetos.instancia.camara.transform.position = posicion2;
         }

@@ -77,7 +77,7 @@ namespace Partida
         public float zoom;
         public string fecha;
         public int campo;
-        public int hoyo;
+        public int nivel;
         public int numeroPartida;
     }
 
