@@ -79,6 +79,7 @@ namespace Partida
         public int campo;
         public int nivel;
         public int numeroPartida;
+        public PartidaEscenario escenario;
     }
 
     //-----------------------------------------------------------------------

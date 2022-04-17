@@ -145,7 +145,7 @@ namespace Canvas2
 
         public void ContinuarPartida()
         {
-            PartidaMaestro ultimaPartida = partidas[partidas.Count - 1];
+            PartidaMaestro ultimaPartida = partidas[0];
             Unjugador.instancia.partida = ultimaPartida;
             Unjugador.instancia.nuevaPartida = false;
 

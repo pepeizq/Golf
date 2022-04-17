@@ -1,5 +1,6 @@
 using Escenario;
 using Escenario.Animaciones;
+using Partida;
 using Photon.Pun;
 using Photon.Realtime;
 using System;
@@ -123,9 +124,9 @@ namespace Jugador
             {
                 if (Unjugador.instancia.nuevaPartida == false)
                 {
-                    camaraZoom = Partida.Cargar.CargarBola(Unjugador.instancia.partida.numeroPartida).zoom;
-                    angulo = Partida.Cargar.CargarBola(Unjugador.instancia.partida.numeroPartida).angulo;
-                    golpes = Partida.Cargar.CargarBola(Unjugador.instancia.partida.numeroPartida).golpes;
+                    camaraZoom = Cargar.CargarBola(Unjugador.instancia.partida.numeroPartida).zoom;
+                    angulo = Cargar.CargarBola(Unjugador.instancia.partida.numeroPartida).angulo;
+                    golpes = Cargar.CargarBola(Unjugador.instancia.partida.numeroPartida).golpes;
                 }
 
                 Color.Cambiar(gameObject, Atributos.instancia.color);
@@ -137,7 +138,7 @@ namespace Jugador
 
             if (Multijugador.instancia.Conectado() == false)
             {
-                Partida.Guardar.GuardarMaestro(ultimaPosicion, angulo, golpes, camaraZoom, DateTime.Now, Configuracion.instancia.campo.id, Configuracion.instancia.nivel, Configuracion.instancia.numeroPartida);
+                Guardar.GuardarMaestro(ultimaPosicion, angulo, golpes, camaraZoom, DateTime.Now, Configuracion.instancia.campo.id, Configuracion.instancia.nivel, Configuracion.instancia.numeroPartida, Escenario.Escenario.instancia.casillasIniciales, Configuracion.instancia.tamañoX, Configuracion.instancia.tamañoZ);
             }            
         }
 
@@ -163,7 +164,7 @@ namespace Jugador
 
                 Vector3 velocidad = cuerpo.velocity;
 
-                if (velocidad.magnitude <= 0.001f)
+                if (velocidad.magnitude <= 0.0005f)
                 {
                     cuerpo.velocity = Vector3.zero;
                     cuerpo.angularVelocity = Vector3.zero;
@@ -171,7 +172,7 @@ namespace Jugador
                     linea.enabled = true;
                     ultimaPosicion = transform.parent.localPosition;
             
-                    Partida.Guardar.GuardarMaestro(ultimaPosicion, angulo, golpes, camaraZoom, DateTime.Now, Configuracion.instancia.campo.id, Configuracion.instancia.nivel, Configuracion.instancia.numeroPartida);
+                    Guardar.GuardarMaestro(ultimaPosicion, angulo, golpes, camaraZoom, DateTime.Now, Configuracion.instancia.campo.id, Configuracion.instancia.nivel, Configuracion.instancia.numeroPartida, Escenario.Escenario.instancia.casillasIniciales, Configuracion.instancia.tamañoX, Configuracion.instancia.tamañoZ);
                     Transparentar.Casillas(ultimaPosicion, Transparentar.CasillasMaterial.Transparente);
 
                     if (controles.Principal.BolaPotencia.phase == InputActionPhase.Performed)

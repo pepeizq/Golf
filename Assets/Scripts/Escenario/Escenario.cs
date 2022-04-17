@@ -40,11 +40,10 @@ namespace Escenario
                 if (Jugador.Unjugador.instancia.nuevaPartida == true)
                 {
                     casillasIniciales = Vectores.instancia.GenerarCasillas(casillasMapa, Configuracion.instancia.alturaMaxima, limitesMapa);
-                    Guardar.GuardarEscenario(casillasIniciales, Configuracion.instancia.tamañoX, Configuracion.instancia.tamañoZ);
                 }
                 else
                 {
-                    casillasIniciales = Cargar.CargarEscenario();
+                    casillasIniciales = Cargar.CargarEscenario(Jugador.Unjugador.instancia.partida.escenario);
                 }
             }
             else if (Jugador.Multijugador.instancia.Conectado() == true)
