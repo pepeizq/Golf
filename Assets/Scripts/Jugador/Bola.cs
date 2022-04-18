@@ -23,7 +23,8 @@ namespace Jugador
         private bool potenciaDecrecer = false;
         private int golpes = 0;
 
-        [HideInInspector] public Vector3 ultimaPosicion;
+        [HideInInspector] public Vector3 ultimaPosicionBola;
+        private Vector3 ultimaPosicionCuerpo;
         private LineRenderer linea;
         private Rigidbody cuerpo;
 
@@ -113,8 +114,9 @@ namespace Jugador
             //--------------------------------------------------------------------
 
             camaraOffset = Objetos.instancia.camara.gameObject.transform.position - gameObject.transform.position;
-            ultimaPosicion = transform.parent.localPosition;
-           
+            ultimaPosicionBola = transform.parent.localPosition + cuerpo.transform.localPosition;
+            ultimaPosicionCuerpo = cuerpo.transform.localPosition;
+
             //--------------------------------------------------------------------
 
             camaraZoom = Configuracion.instancia.zoomDefecto;
@@ -138,7 +140,7 @@ namespace Jugador
 
             if (Multijugador.instancia.Conectado() == false)
             {
-                Guardar.GuardarMaestro(ultimaPosicion, angulo, golpes, camaraZoom, DateTime.Now, Configuracion.instancia.campo.id, Configuracion.instancia.nivel, Configuracion.instancia.numeroPartida, Escenario.Escenario.instancia.casillasIniciales, Configuracion.instancia.tamañoX, Configuracion.instancia.tamañoZ);
+                Guardar.GuardarMaestro(ultimaPosicionBola, angulo, golpes, camaraZoom, DateTime.Now, Configuracion.instancia.campo.id, Configuracion.instancia.nivel, Configuracion.instancia.numeroPartida, Escenario.Escenario.instancia.casillasIniciales, Configuracion.instancia.tamañoX, Configuracion.instancia.tamañoZ);
             }            
         }
 
@@ -164,16 +166,17 @@ namespace Jugador
 
                 Vector3 velocidad = cuerpo.velocity;
 
-                if (velocidad.magnitude <= 0.0005f)
+                if (velocidad.magnitude <= 0.005f)
                 {
                     cuerpo.velocity = Vector3.zero;
                     cuerpo.angularVelocity = Vector3.zero;
 
                     linea.enabled = true;
-                    ultimaPosicion = transform.parent.localPosition;
-            
-                    Guardar.GuardarMaestro(ultimaPosicion, angulo, golpes, camaraZoom, DateTime.Now, Configuracion.instancia.campo.id, Configuracion.instancia.nivel, Configuracion.instancia.numeroPartida, Escenario.Escenario.instancia.casillasIniciales, Configuracion.instancia.tamañoX, Configuracion.instancia.tamañoZ);
-                    Transparentar.Casillas(ultimaPosicion, Transparentar.CasillasMaterial.Transparente);
+                    ultimaPosicionBola = transform.parent.localPosition + cuerpo.transform.localPosition;
+                    ultimaPosicionCuerpo = cuerpo.transform.localPosition;
+                   
+                    Guardar.GuardarMaestro(ultimaPosicionBola, angulo, golpes, camaraZoom, DateTime.Now, Configuracion.instancia.campo.id, Configuracion.instancia.nivel, Configuracion.instancia.numeroPartida, Escenario.Escenario.instancia.casillasIniciales, Configuracion.instancia.tamañoX, Configuracion.instancia.tamañoZ);
+                    Transparentar.Casillas(ultimaPosicionBola, Transparentar.CasillasMaterial.Transparente);
 
                     if (controles.Principal.BolaPotencia.phase == InputActionPhase.Performed)
                     {
@@ -264,14 +267,14 @@ namespace Jugador
                 {
                     linea.enabled = false;
 
-                    if (gameObject.transform.localPosition.y <= -5f)
+                    if (transform.localPosition.y <= -5f)
                     {
-                        gameObject.transform.localPosition = ultimaPosicion;
+                        transform.localPosition = ultimaPosicionCuerpo;
                         cuerpo.velocity = Vector3.zero;
                         cuerpo.angularVelocity = Vector3.zero;
                     }
 
-                    Transparentar.Casillas(ultimaPosicion, Transparentar.CasillasMaterial.Opaco);
+                    Transparentar.Casillas(ultimaPosicionBola, Transparentar.CasillasMaterial.Opaco);
                 }
             }     
             else
@@ -359,7 +362,7 @@ namespace Jugador
                 {
                     if (camaraVolver == true)
                     {
-                        Vector3 posicionBola = instancia.ultimaPosicion;
+                        Vector3 posicionBola = instancia.ultimaPosicionBola;
 
                         camaraVolverPasos += Time.deltaTime * 2;
 
