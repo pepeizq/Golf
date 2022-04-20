@@ -47,7 +47,6 @@ namespace Escenario.Colocar
                                     if (Multijugador.instancia.Conectado() == false)
                                     {
                                         InstanciarHoyo(casillas, x, z);
-                                        Guardar.GuardarHoyo(x, z);
                                     }
                                     else
                                     {
@@ -79,7 +78,7 @@ namespace Escenario.Colocar
                     }
                     else
                     {
-                        PartidaHoyo hoyo = Cargar.CargarHoyo();
+                        PartidaHoyo hoyo = Cargar.CargarPartida(Unjugador.instancia.partida.numeroPartida).hoyo;
                         InstanciarHoyo(casillas, hoyo.casillaX, hoyo.casillaZ);
                     }                       
                 }

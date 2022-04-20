@@ -47,9 +47,9 @@ namespace Canvas2
             int i = 0;
             while (i <= totalPartidas)
             {
-                if (Cargar.CargarBola(i) != null)
+                if (Cargar.CargarPartida(i) != null)
                 {
-                    PartidaMaestro partida = Cargar.CargarBola(i);
+                    PartidaMaestro partida = Cargar.CargarPartida(i);
                     partidas.Add(partida);
                 }
                 i += 1;

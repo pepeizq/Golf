@@ -12,8 +12,15 @@ namespace Jugador
 
         public void Awake()
         {
-            instancia = this;
-            DontDestroyOnLoad(gameObject);
+            if (instancia == null)
+            {
+                instancia = this;
+                DontDestroyOnLoad(this);
+            }
+            else if (this != instancia)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }

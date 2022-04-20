@@ -5,7 +5,6 @@ using Photon.Pun;
 using Photon.Realtime;
 using System;
 using System.Collections;
-using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -126,9 +125,9 @@ namespace Jugador
             {
                 if (Unjugador.instancia.nuevaPartida == false)
                 {
-                    camaraZoom = Cargar.CargarBola(Unjugador.instancia.partida.numeroPartida).zoom;
-                    angulo = Cargar.CargarBola(Unjugador.instancia.partida.numeroPartida).angulo;
-                    golpes = Cargar.CargarBola(Unjugador.instancia.partida.numeroPartida).golpes;
+                    camaraZoom = Cargar.CargarPartida(Unjugador.instancia.partida.numeroPartida).zoom;
+                    angulo = Cargar.CargarPartida(Unjugador.instancia.partida.numeroPartida).angulo;
+                    golpes = Cargar.CargarPartida(Unjugador.instancia.partida.numeroPartida).golpes;
                 }
 
                 Color.Cambiar(gameObject, Atributos.instancia.color);
@@ -140,7 +139,7 @@ namespace Jugador
 
             if (Multijugador.instancia.Conectado() == false)
             {
-                Guardar.GuardarMaestro(ultimaPosicionBola, angulo, golpes, camaraZoom, DateTime.Now, Configuracion.instancia.campo.id, Configuracion.instancia.nivel, Configuracion.instancia.numeroPartida, Escenario.Escenario.instancia.casillasIniciales, Configuracion.instancia.tamañoX, Configuracion.instancia.tamañoZ);
+                Guardar.GuardarPartida(ultimaPosicionBola, angulo, golpes, camaraZoom);
             }            
         }
 
@@ -174,8 +173,8 @@ namespace Jugador
                     linea.enabled = true;
                     ultimaPosicionBola = transform.parent.localPosition + cuerpo.transform.localPosition;
                     ultimaPosicionCuerpo = cuerpo.transform.localPosition;
-                   
-                    Guardar.GuardarMaestro(ultimaPosicionBola, angulo, golpes, camaraZoom, DateTime.Now, Configuracion.instancia.campo.id, Configuracion.instancia.nivel, Configuracion.instancia.numeroPartida, Escenario.Escenario.instancia.casillasIniciales, Configuracion.instancia.tamañoX, Configuracion.instancia.tamañoZ);
+
+                    Guardar.GuardarPartida(ultimaPosicionBola, angulo, golpes, camaraZoom);
                     Transparentar.Casillas(ultimaPosicionBola, Transparentar.CasillasMaterial.Transparente);
 
                     if (controles.Principal.BolaPotencia.phase == InputActionPhase.Performed)

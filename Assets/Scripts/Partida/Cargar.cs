@@ -48,15 +48,10 @@ namespace Partida
             }
         }
 
-        public static PartidaMaestro CargarBola(int numeroPartida)
+        public static PartidaMaestro CargarPartida(int numeroPartida)
         {
             PartidaMaestro bola = JsonUtility.FromJson<PartidaMaestro>(PlayerPrefs.GetString(numeroPartida.ToString() + "bola"));
             return bola;
-        }
-
-        public static PartidaHoyo CargarHoyo()
-        {
-            return JsonUtility.FromJson<PartidaHoyo>(PlayerPrefs.GetString(Configuracion.instancia.numeroPartida.ToString() + "hoyo" + Configuracion.instancia.nivel.ToString()));
         }
 
         public static List<Vector2> CargarMordiscos()

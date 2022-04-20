@@ -115,6 +115,7 @@ namespace Escenario
         {
             aleatorio = true;
             PlayerPrefs.SetInt(numeroPartida.ToString() + "nivel", nuevoNivel);
+            Unjugador.instancia.partida.nivel = nuevoNivel;
             SceneManager.LoadScene("Escenario");
         }
 

@@ -12,8 +12,15 @@ namespace Partida
 
         public void Awake()
         {
-            instancia = this;
-            DontDestroyOnLoad(instancia);
+            if (instancia == null)
+            {
+                instancia = this;
+                DontDestroyOnLoad(this);
+            }
+            else if (this != instancia)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }

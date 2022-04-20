@@ -43,17 +43,25 @@ namespace Partida
             }               
         }
 
-        public static void GuardarMaestro(Vector3 posicion, float angulo, int golpes, float zoom, 
-                                          DateTime fecha, int campo, int nivel, int numeroPartida, 
-                                          List<Vector3> casillasIniciales, int tamañoX, int tamañoZ)
+        public static void GuardarPartida(Vector3 posicionBola, float angulo, int golpes, float zoom)
         {
             if (Multijugador.instancia.Conectado() == false)
             {
-                VectorTres posicion2 = new VectorTres(posicion);
+                DateTime fecha = DateTime.Now;
+                int campo = Configuracion.instancia.campo.id;
+                int nivel = Configuracion.instancia.nivel;
+                int numeroPartida = Configuracion.instancia.numeroPartida;
+                List<Vector3> casillasIniciales = Escenario.Escenario.instancia.casillasIniciales;
+                int tamañoX = Configuracion.instancia.tamañoX;
+                int tamañoZ = Configuracion.instancia.tamañoZ;
+                int hoyoCasillaX = Configuracion.instancia.posicionHoyoX;
+                int hoyoCasillaZ = Configuracion.instancia.posicionHoyoZ;
 
-                PartidaMaestro bola = new PartidaMaestro
+                VectorTres posicionBola2 = new VectorTres(posicionBola);
+
+                PartidaMaestro partida = new PartidaMaestro
                 {
-                    posicion = posicion2,
+                    posicion = posicionBola2,
                     angulo = angulo,
                     golpes = golpes,
                     zoom = zoom,
@@ -87,31 +95,24 @@ namespace Partida
 
                         escenario.tamaño = tamaño;
 
-                        bola.escenario = escenario;
+                        partida.escenario = escenario;
                     }
                 }
 
-                string datos = JsonUtility.ToJson(bola);
-                PlayerPrefs.SetString(numeroPartida.ToString() + "bola", datos);
-                Unjugador.instancia.partida = bola;
-            }
-        }
-       
-        public static void GuardarHoyo(int casillaX, int casillaZ)
-        {
-            if (Multijugador.instancia.Conectado() == false)
-            {
                 PartidaHoyo hoyo = new PartidaHoyo
                 {
-                    casillaX = casillaX,
-                    casillaZ = casillaZ
+                    casillaX = hoyoCasillaX,
+                    casillaZ = hoyoCasillaZ
                 };
 
-                string datos = JsonUtility.ToJson(hoyo);
-                PlayerPrefs.SetString(Configuracion.instancia.numeroPartida.ToString() + "hoyo" + Configuracion.instancia.nivel.ToString(), datos);
-            }                
-        }
+                partida.hoyo = hoyo;
 
+                string datos = JsonUtility.ToJson(partida);
+                PlayerPrefs.SetString(numeroPartida.ToString() + "bola", datos);
+                Unjugador.instancia.partida = partida;
+            }
+        }
+ 
         public static void GuardarMordiscos(List<Vector2> casillas)
         {
             if (Multijugador.instancia.Conectado() == false)
