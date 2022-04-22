@@ -113,7 +113,6 @@ namespace Escenario
 
         public void NuevoNivel(int nuevoNivel)
         {
-
             aleatorio = true;
             Unjugador.instancia.partida.nivel = nuevoNivel;
             SceneManager.LoadScene("Escenario");
