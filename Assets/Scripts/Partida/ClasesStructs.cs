@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Partida
@@ -55,6 +56,7 @@ namespace Partida
         public int numeroPartida;
         public PartidaEscenario escenario;
         public PartidaHoyo hoyo;
+        public List<PartidaRegistro> registro;
     }
 
     //-----------------------------------------------------------------------
@@ -90,6 +92,15 @@ namespace Partida
     {
         public int casillaX;
         public int casillaZ;
+    }
+
+    //-----------------------------------------------------------------------
+
+    [System.Serializable]
+    public class PartidaRegistro
+    {
+        public int hoyo;
+        public int golpes;
     }
 
     //-----------------------------------------------------------------------
