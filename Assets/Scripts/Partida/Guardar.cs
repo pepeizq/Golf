@@ -108,6 +108,7 @@ namespace Partida
                 partida.hoyo = hoyo;
 
 
+
                 string datos = JsonUtility.ToJson(partida);
                 PlayerPrefs.SetString(numeroPartida.ToString() + "bola", datos);
                 Unjugador.instancia.partida = partida;
