@@ -107,7 +107,9 @@ namespace Partida
 
                 partida.hoyo = hoyo;
 
+                List<PartidaRegistro> registro = new List<PartidaRegistro>();
 
+                partida.registro = registro;
 
                 string datos = JsonUtility.ToJson(partida);
                 PlayerPrefs.SetString(numeroPartida.ToString() + "bola", datos);
