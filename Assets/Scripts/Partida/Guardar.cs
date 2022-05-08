@@ -71,6 +71,8 @@ namespace Partida
                     numeroPartida = numeroPartida
                 };
 
+                //----------------------------
+
                 if (casillasIniciales != null)
                 {
                     if (casillasIniciales.Count > 0)
@@ -99,6 +101,8 @@ namespace Partida
                     }
                 }
 
+                //----------------------------
+
                 PartidaHoyo hoyo = new PartidaHoyo
                 {
                     casillaX = hoyoCasillaX,
@@ -107,9 +111,26 @@ namespace Partida
 
                 partida.hoyo = hoyo;
 
-                List<PartidaRegistro> registro = new List<PartidaRegistro>();
+                //----------------------------
 
-                partida.registro = registro;
+                List<PartidaRegistro> registroHoyos = Cargar.CargarPartida(Unjugador.instancia.partida.numeroPartida).registro;
+
+                if (registroHoyos == null)
+                {
+                    registroHoyos = new List<PartidaRegistro>();
+                }
+
+                PartidaRegistro registro = new PartidaRegistro
+                {
+                    hoyo = nivel,
+                    golpes = golpes
+                };
+
+                registroHoyos.Add(registro);
+
+                partida.registro = registroHoyos;
+
+                //----------------------------
 
                 string datos = JsonUtility.ToJson(partida);
                 PlayerPrefs.SetString(numeroPartida.ToString() + "bola", datos);
