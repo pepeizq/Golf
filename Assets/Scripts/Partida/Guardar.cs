@@ -113,7 +113,16 @@ namespace Partida
 
                 //----------------------------
 
-                List<PartidaRegistro> registroHoyos = Cargar.CargarPartida(Unjugador.instancia.partida.numeroPartida).registro;
+                List<PartidaRegistro> registroHoyos = null;
+                
+                try
+                {
+                    registroHoyos = Cargar.CargarPartida(Unjugador.instancia.partida.numeroPartida).registro;
+                }
+                catch (Exception ex)
+                {
+
+                }           
 
                 if (registroHoyos == null)
                 {
