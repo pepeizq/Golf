@@ -113,12 +113,17 @@ namespace Escenario
 
         public void NuevoNivel(int nuevoNivel)
         {
-            if (nuevoNivel > campo.hoyos.Count - 1)
+            if (nuevoNivel > campo.hoyos.Count)
             {
                 SceneManager.LoadScene("Principal");
             }
             else
             {
+                if (Unjugador.instancia.nuevaPartida == true)
+                {
+                    Unjugador.instancia.nuevaPartida = false;
+                }
+
                 aleatorio = true;
                 Unjugador.instancia.partida.nivel = nuevoNivel;
                 SceneManager.LoadScene("Escenario");

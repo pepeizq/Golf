@@ -34,10 +34,10 @@ namespace Escenario
         public void Arranque()
         {
             casillasMapa = new Casilla[Configuracion.instancia.tamañoX, Configuracion.instancia.tamañoZ];
-
+     
             if (Jugador.Multijugador.instancia.Conectado() == false)
             {
-                if (Jugador.Unjugador.instancia.nuevaPartida == true)
+                if (Configuracion.instancia.aleatorio == true)
                 {
                     casillasIniciales = Vectores.instancia.GenerarCasillas(casillasMapa, Configuracion.instancia.alturaMaxima, limitesMapa);
                 }

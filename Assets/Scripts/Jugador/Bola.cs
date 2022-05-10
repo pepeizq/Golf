@@ -451,6 +451,7 @@ namespace Jugador
             if (Multijugador.instancia.Conectado() == false)
             {
                 yield return new WaitForSeconds(5);
+                Guardar.GuardarPartida(ultimaPosicionBola, angulo, golpes, camaraZoom);
                 Destroy(gameObject);
                 Configuracion.instancia.NuevoNivel(Configuracion.instancia.nivel += 1);
             }

@@ -129,13 +129,30 @@ namespace Partida
                     registroHoyos = new List<PartidaRegistro>();
                 }
 
-                PartidaRegistro registro = new PartidaRegistro
+                PartidaRegistro nuevoRegistro = new PartidaRegistro
                 {
                     hoyo = nivel,
                     golpes = golpes
                 };
 
-                registroHoyos.Add(registro);
+                bool añadir = true;
+
+                if (registroHoyos.Count > 0)
+                {
+                    foreach (PartidaRegistro registro in registroHoyos)
+                    {
+                        if (registro.hoyo == nuevoRegistro.hoyo)
+                        {
+                            añadir = false;
+                            registro.golpes = nuevoRegistro.golpes;
+                        }
+                    }
+                }
+
+                if (añadir == true)
+                {
+                    registroHoyos.Add(nuevoRegistro);
+                }
 
                 partida.registro = registroHoyos;
 
