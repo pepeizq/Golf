@@ -88,10 +88,10 @@ namespace Escenario
             if (campo != null)
             {
                 forma = campo.hoyos[nivel].forma;
-
+            
                 tamañoX = campo.hoyos[nivel].tamañoX;
                 tamañoZ = campo.hoyos[nivel].tamañoZ;
-
+           
                 alturaMaxima = campo.hoyos[nivel].alturaMaxima;
 
                 Mordiscos.instancia.intentos = campo.hoyos[nivel].intentosMordiscos;

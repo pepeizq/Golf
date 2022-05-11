@@ -15,7 +15,7 @@ namespace Escenario.Colocar
             instancia = this;
         }
 
-        public void Colocar(Casilla[,] casillas)
+        public void Colocar(Casilla[,] casillas, int tamañoX, int tamañoZ)
         {
             bool buscarPosicion = true;
 
@@ -37,8 +37,8 @@ namespace Escenario.Colocar
 
                         while (i <= intentos)
                         {
-                            int x = Random.Range(Configuracion.instancia.tamañoX / 2 + Configuracion.instancia.tamañoX / proporcion, Configuracion.instancia.tamañoX - perimetro - Escenario.instancia.limitesMapa);
-                            int z = Random.Range(Configuracion.instancia.tamañoZ / 2 + Configuracion.instancia.tamañoZ / proporcion, Configuracion.instancia.tamañoZ - perimetro - Escenario.instancia.limitesMapa);
+                            int x = Random.Range(tamañoX / 2 + tamañoX / proporcion, tamañoX - perimetro - Escenario.instancia.limitesMapa);
+                            int z = Random.Range(tamañoZ / 2 + tamañoZ / proporcion, tamañoZ - perimetro - Escenario.instancia.limitesMapa);
 
                             if (casillas[x, z] != null)
                             {
@@ -50,7 +50,7 @@ namespace Escenario.Colocar
                                     }
                                     else
                                     {
-                                        if (PhotonNetwork.IsMasterClient == true)
+                                        if (Multijugador.instancia.Maestro() == true)
                                         {
                                             int[] posiciones = new int[2];
                                             posiciones[0] = x;

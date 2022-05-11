@@ -102,7 +102,7 @@ namespace Escenario
 
             if (Configuracion.instancia.hoyo == true)
             {
-                Hoyo.instancia.Colocar(casillasMapa);
+                Hoyo.instancia.Colocar(casillasMapa, Configuracion.instancia.tamañoX, Configuracion.instancia.tamañoZ);
             }
 
             if (Configuracion.instancia.mordiscos == true)
