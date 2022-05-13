@@ -18,7 +18,7 @@ namespace Escenario.Colocar
         public void Colocar(Casilla[,] casillas, int tamañoX, int tamañoZ)
         {
             bool buscarPosicion = true;
-
+      
             if (Multijugador.instancia.Conectado() == true && Multijugador.instancia.Maestro() == false)
             {
                 buscarPosicion = false;
@@ -92,7 +92,7 @@ namespace Escenario.Colocar
             {
                 GameObject hoyo = Instantiate(Configuracion.instancia.campo.hoyo);
                 hoyo.transform.position = casillas[casillaX, casillaZ].prefab.transform.position;
-           
+      
                 Configuracion.instancia.posicionHoyo = hoyo.transform.localPosition;
                 Configuracion.instancia.posicionHoyoX = casillaX;
                 Configuracion.instancia.posicionHoyoZ = casillaZ;

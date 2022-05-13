@@ -71,6 +71,8 @@ namespace Escenario
         {
             instancia = this;
 
+            nivel = Unjugador.instancia.partida.nivel;
+
             if (Unjugador.instancia.nuevaPartida == true)
             {
                 aleatorio = true;
@@ -79,8 +81,7 @@ namespace Escenario
             }
             else 
             {
-                aleatorio = false;
-                nivel = Unjugador.instancia.partida.nivel;
+                aleatorio = false;             
                 numeroPartida = Unjugador.instancia.partida.numeroPartida;
                 campo = Campos.instancia.campos[Unjugador.instancia.partida.campo];
             }
@@ -119,9 +120,9 @@ namespace Escenario
             }
             else
             {
-                if (Unjugador.instancia.nuevaPartida == true)
+                if (Unjugador.instancia.nuevaPartida == false)
                 {
-                    Unjugador.instancia.nuevaPartida = false;
+                    Unjugador.instancia.nuevaPartida = true;
                 }
 
                 aleatorio = true;
