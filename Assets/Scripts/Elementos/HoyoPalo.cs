@@ -16,7 +16,6 @@ namespace Elementos
         private float pasos = 0f;
         private float velocidadPasos = 2f;
 
-
         private GameObject bola;
 
         private void OnTriggerEnter(Collider colision)
