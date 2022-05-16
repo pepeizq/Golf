@@ -89,7 +89,7 @@
     <Compile Include="Assets\Scripts\Escenario\Escenario.cs" />
     <Compile Include="Assets\Scripts\Recursos\Casilla.cs" />
     <Compile Include="Assets\Scripts\Canvas\Principal.cs" />
-    <Compile Include="Assets\Scripts\Elementos\HoyoPalo.cs" />
+    <Compile Include="Assets\Scripts\Escenario\Animaciones\HoyoPalo.cs" />
     <Compile Include="Assets\Scripts\Escenario\Generacion\Colores.cs" />
     <Compile Include="Assets\Scripts\Jugador\Unjugador.cs" />
     <Compile Include="Assets\Scripts\Escenario\Colocar\Bola.cs" />

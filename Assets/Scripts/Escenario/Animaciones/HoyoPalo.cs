@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Elementos
+namespace Escenario.Animaciones
 {
     public class HoyoPalo : MonoBehaviour
     {
