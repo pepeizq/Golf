@@ -93,6 +93,7 @@
     <Compile Include="Assets\Scripts\Escenario\Generacion\Colores.cs" />
     <Compile Include="Assets\Scripts\Jugador\Unjugador.cs" />
     <Compile Include="Assets\Scripts\Escenario\Colocar\Bola.cs" />
+    <Compile Include="Assets\Scripts\Escenario\NuevoNivel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
