@@ -1,7 +1,6 @@
-﻿using Partida;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Jugador
+namespace Partida
 {
     public class Unjugador : MonoBehaviour
     {

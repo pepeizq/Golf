@@ -312,7 +312,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
-  ultimaPosicion: {x: 0, y: 0, z: 0}
+  ultimaPosicionBola: {x: 0, y: 0, z: 0}
 --- !u!1 &6189768287818474246
 GameObject:
   m_ObjectHideFlags: 0

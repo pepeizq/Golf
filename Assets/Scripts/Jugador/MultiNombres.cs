@@ -46,61 +46,64 @@ namespace Jugador
 
         public void Update()
         {
-            if (mostrar == true)
+            if (Multijugador.instancia.Conectado() == true)
             {
-                GameObject[] bolas = GameObject.FindGameObjectsWithTag("Player");
-
-                foreach (Player jugador2 in PhotonNetwork.PlayerList)
+                if (mostrar == true)
                 {
+                    GameObject[] bolas = GameObject.FindGameObjectsWithTag("Player");
+
+                    foreach (Player jugador2 in PhotonNetwork.PlayerList)
+                    {
+                        foreach (GameObject bola in bolas)
+                        {
+                            if (bola != null)
+                            {
+                                int id = bola.transform.GetChild(0).gameObject.GetComponent<Bola>().id;
+
+                                if (id == jugador2.ActorNumber)
+                                {
+                                    GameObject objetoNombre = bola.transform.GetChild(1).gameObject;
+                                    TextMeshPro textoNombre = bola.transform.GetChild(1).gameObject.GetComponent<TextMeshPro>();
+
+                                    Vector3 posicion = bola.transform.GetChild(0).gameObject.transform.position;
+                                    posicion.y = objetoNombre.transform.position.y;
+                                    objetoNombre.transform.position = posicion;
+
+                                    if (jugador2.IsLocal == false)
+                                    {
+                                        objetoNombre.gameObject.SetActive(true);
+                                        textoNombre.text = jugador2.NickName;
+                                    }
+                                    else
+                                    {
+                                        objetoNombre.gameObject.SetActive(false);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    GameObject[] bolas = GameObject.FindGameObjectsWithTag("Player");
+
                     foreach (GameObject bola in bolas)
                     {
                         if (bola != null)
                         {
-                            int id = bola.transform.GetChild(0).gameObject.GetComponent<Bola>().id;
-
-                            if (id == jugador2.ActorNumber)
+                            if (bola.transform.GetChild(1) != null)
                             {
                                 GameObject objetoNombre = bola.transform.GetChild(1).gameObject;
-                                TextMeshPro textoNombre = bola.transform.GetChild(1).gameObject.GetComponent<TextMeshPro>();
 
-                                Vector3 posicion = bola.transform.GetChild(0).gameObject.transform.position;
-                                posicion.y = objetoNombre.transform.position.y;
-                                objetoNombre.transform.position = posicion;
-
-                                if (jugador2.IsLocal == false)
-                                {
-                                    objetoNombre.gameObject.SetActive(true);
-                                    textoNombre.text = jugador2.NickName;
-                                }
-                                else
+                                if (objetoNombre.gameObject.activeSelf == true)
                                 {
                                     objetoNombre.gameObject.SetActive(false);
                                 }
                             }
-                        }    
+                        }
                     }
                 }
-            }
-            else
-            {
-                GameObject[] bolas = GameObject.FindGameObjectsWithTag("Player");
-
-                foreach (GameObject bola in bolas)
-                {
-                    if (bola != null)
-                    {
-                        if (bola.transform.GetChild(1) != null)
-                        {
-                            GameObject objetoNombre = bola.transform.GetChild(1).gameObject;
-
-                            if (objetoNombre.gameObject.activeSelf == true)
-                            {
-                                objetoNombre.gameObject.SetActive(false);
-                            }
-                        }    
-                    }      
-                }
-            }
+            }                
         }
     }
 }

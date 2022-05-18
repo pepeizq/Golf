@@ -2,10 +2,8 @@ using Escenario.Colocar;
 using Jugador;
 using Partida;
 using Photon.Pun;
-using Photon.Realtime;
 using Recursos;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Escenario
 {
@@ -71,19 +69,29 @@ namespace Escenario
         {
             instancia = this;
 
-            nivel = Unjugador.instancia.partida.nivel;
+            if (Multijugador.instancia.Conectado() == false)
+            {
+                nivel = Unjugador.instancia.partida.nivel;
 
-            if (Unjugador.instancia.nuevaPartida == true)
-            {
-                aleatorio = true;
-                numeroPartida = PlayerPrefs.GetInt("numeroPartida");
-                campo = Campos.instancia.campos[PlayerPrefs.GetInt(numeroPartida.ToString() + "campo")];
+                if (Unjugador.instancia.nuevaPartida == true)
+                {
+                    aleatorio = true;
+                    numeroPartida = PlayerPrefs.GetInt("numeroPartida");
+                    campo = Campos.instancia.campos[PlayerPrefs.GetInt(numeroPartida.ToString() + "campo")];
+                }
+                else
+                {
+                    aleatorio = false;
+                    numeroPartida = Unjugador.instancia.partida.numeroPartida;
+                    campo = Campos.instancia.campos[Unjugador.instancia.partida.campo];
+                }
             }
-            else 
+            else
             {
-                aleatorio = false;             
-                numeroPartida = Unjugador.instancia.partida.numeroPartida;
-                campo = Campos.instancia.campos[Unjugador.instancia.partida.campo];
+                nivel = 0;
+                aleatorio = true;
+                numeroPartida = 9999;
+
             }
 
             if (campo != null)
@@ -110,25 +118,6 @@ namespace Escenario
             Objetos.instancia.textoPartida.text = string.Format("Partida: {0}", numeroPartida.ToString());
             Objetos.instancia.textoHoyo.text = string.Format("Hoyo: {0}", (nivel + 1).ToString());
             Objetos.instancia.textoPalos.text = palos.ToString();
-        }
-
-        public void NuevoNivel(int nuevoNivel)
-        {
-            if (nuevoNivel > campo.hoyos.Count)
-            {
-                SceneManager.LoadScene("Principal");
-            }
-            else
-            {
-                if (Unjugador.instancia.nuevaPartida == false)
-                {
-                    Unjugador.instancia.nuevaPartida = true;
-                }
-
-                aleatorio = true;
-                Unjugador.instancia.partida.nivel = nuevoNivel;
-                SceneManager.LoadScene("Escenario");
-            }       
         }
 
         [PunRPC]
@@ -158,12 +147,6 @@ namespace Escenario
         {
             multiPosicionXHoyo = posiciones[0];
             multiPosicionZHoyo = posiciones[1];
-        }
-
-        [PunRPC]
-        public void MultijugadorNuevoNivel()
-        {
-            Debug.Log("test cambio nivel");
         }
 
         public enum Palos { Madera, Hierro }

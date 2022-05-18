@@ -1,4 +1,5 @@
 using Jugador;
+using Partida;
 using Photon.Pun;
 using Recursos;
 using UnityEngine;

@@ -43,10 +43,10 @@ namespace Escenario
                 }
                 else
                 {
-                    casillasIniciales = Cargar.CargarEscenario(Jugador.Unjugador.instancia.partida.escenario);
+                    casillasIniciales = Cargar.CargarEscenario(Unjugador.instancia.partida.escenario);
                 }
             }
-            else if (Jugador.Multijugador.instancia.Conectado() == true)
+            else 
             {
                 if (Jugador.Multijugador.instancia.Maestro() == true)
                 {

@@ -453,7 +453,7 @@ namespace Jugador
                 yield return new WaitForSeconds(5);
                 Guardar.GuardarPartida(ultimaPosicionBola, angulo, golpes, camaraZoom);
                 Destroy(gameObject);
-                Configuracion.instancia.NuevoNivel(Configuracion.instancia.nivel += 1);
+                NuevoNivel.instancia.UnJugador(Configuracion.instancia.nivel += 1);
             }
             else
             {

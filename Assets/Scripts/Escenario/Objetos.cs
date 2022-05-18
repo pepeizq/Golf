@@ -12,6 +12,10 @@ namespace Escenario
         [Header("Canvas")]
         public Canvas canvasPartida;
         public Canvas canvasMenu;
+        public Canvas canvasCargando;
+
+        [Header("Cargando")]
+        public Slider sliderCargando;
 
         [Header("Mensaje")]
         public GameObject panelMensaje;
