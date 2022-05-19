@@ -74,7 +74,7 @@ namespace Jugador
 
             //----------------------------------------
             
-            if (bolas.Length != Multijugador.instancia.Sala().PlayerCount)
+            if (bolas.Length != MultiPhoton.instancia.Sala().PlayerCount)
             {
                 Objetos.instancia.panelMensaje.SetActive(true);
                 Configuracion.instancia.poderMover = false;
@@ -121,7 +121,7 @@ namespace Jugador
             camaraZoom = Configuracion.instancia.zoomDefecto;
             angulo = 90;
 
-            if (Multijugador.instancia.Conectado() == false)
+            if (MultiPhoton.instancia.Conectado() == false)
             {
                 if (Unjugador.instancia.nuevaPartida == false)
                 {
@@ -137,7 +137,7 @@ namespace Jugador
 
             //--------------------------------------------------------------------
 
-            if (Multijugador.instancia.Conectado() == false)
+            if (MultiPhoton.instancia.Conectado() == false)
             {
                 Guardar.GuardarPartida(ultimaPosicionBola, angulo, golpes, camaraZoom);
             }            
@@ -147,7 +147,7 @@ namespace Jugador
         {
             bool jugadorAsignado = false;
 
-            if (Multijugador.instancia.Conectado() == true)
+            if (MultiPhoton.instancia.Conectado() == true)
             {
                 if (photonView.IsMine == true)
                 {
@@ -281,7 +281,7 @@ namespace Jugador
                 linea.enabled = false;
             }
 
-            if (Multijugador.instancia.Conectado() == true)
+            if (MultiPhoton.instancia.Conectado() == true)
             {
                 if (controles.Principal.EnseñarNombresMulti.phase == InputActionPhase.Performed)
                 {
@@ -294,7 +294,7 @@ namespace Jugador
         {
             bool jugadorAsignado = false;
 
-            if (Multijugador.instancia.Conectado() == true)
+            if (MultiPhoton.instancia.Conectado() == true)
             {
                 if (photonView.IsMine == true)
                 {
@@ -447,17 +447,18 @@ namespace Jugador
         }
 
         IEnumerator TerminarHoyo()
-        {            
-            if (Multijugador.instancia.Conectado() == false)
+        {
+            yield return new WaitForSeconds(5);
+            Destroy(gameObject);
+
+            if (MultiPhoton.instancia.Conectado() == false)
             {
-                yield return new WaitForSeconds(5);
-                Guardar.GuardarPartida(ultimaPosicionBola, angulo, golpes, camaraZoom);
-                Destroy(gameObject);
+                Guardar.GuardarPartida(ultimaPosicionBola, angulo, golpes, camaraZoom);          
                 NuevoNivel.instancia.UnJugador(Configuracion.instancia.nivel += 1);
             }
             else
             {
-                photonView.RPC("MultijugadorNuevoNivel", RpcTarget.All);
+                NuevoNivel.instancia.Multijugador();
             }
         }
 

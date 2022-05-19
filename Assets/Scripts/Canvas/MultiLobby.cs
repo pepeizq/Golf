@@ -5,6 +5,7 @@ using Photon.Realtime;
 using UnityEngine;
 using System.Collections.Generic;
 using Jugador;
+using Partida;
 
 namespace Canvas2
 {
@@ -32,7 +33,7 @@ namespace Canvas2
             canvasLobby.gameObject.SetActive(false);
             canvasPrincipal.gameObject.SetActive(true);
 
-            Multijugador.instancia.Desconectar();
+            MultiPhoton.instancia.Desconectar();
         }
 
         public override void OnRoomListUpdate(List<RoomInfo> listaSalas)
@@ -67,7 +68,7 @@ namespace Canvas2
 
             if (textoSala.text.Length > 0)
             {
-                Multijugador.instancia.CrearSala(textoSala.text);
+                MultiPhoton.instancia.CrearSala(textoSala.text);
 
                 canvasLobby.gameObject.SetActive(false);
                 canvasSala.gameObject.SetActive(true);
@@ -83,7 +84,7 @@ namespace Canvas2
 
             if (nombreSala.Length > 0)
             {
-                Multijugador.instancia.UnirseSala(nombreSala);
+                MultiPhoton.instancia.UnirseSala(nombreSala);
 
                 canvasLobby.gameObject.SetActive(false);
                 canvasSala.gameObject.SetActive(true);
@@ -129,7 +130,7 @@ namespace Canvas2
                 if (jugador.IsMasterClient == true)
                 {
                     PhotonNetwork.LeaveRoom();
-                    Multijugador.instancia.photonView.RPC("CambiarEscena", RpcTarget.All, "Principal");
+                    MultiPhoton.instancia.photonView.RPC("CambiarEscena", RpcTarget.All, "Principal");
                 }
             }
         }
@@ -152,7 +153,7 @@ namespace Canvas2
                 texto.text = string.Format("{0}", jugador.NickName);
             }
 
-            if (PhotonNetwork.IsMasterClient == true)
+            if (MultiPhoton.instancia.Maestro() == true)
             {
                 botonEmpezarPartida.interactable = true;
             }
@@ -164,7 +165,7 @@ namespace Canvas2
 
         public void DejarSala()
         {
-            PhotonNetwork.LeaveRoom();
+            MultiPhoton.instancia.DejarSala();
 
             canvasSala.gameObject.SetActive(false);
             canvasLobby.gameObject.SetActive(true);
@@ -172,8 +173,11 @@ namespace Canvas2
 
         public void EmpezarPartida()
         {
+            MultiPartida.instancia.campo = 0;
+            MultiPartida.instancia.nivel = 0;
+
             botonEmpezarPartida.interactable = false;
-            Multijugador.instancia.photonView.RPC("CambiarEscena", RpcTarget.All, "Escenario");
+            MultiPhoton.instancia.photonView.RPC("CambiarEscena", RpcTarget.All, "Escenario");
         }
     }
 }

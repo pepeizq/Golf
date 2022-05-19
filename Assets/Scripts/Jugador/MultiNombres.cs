@@ -46,7 +46,7 @@ namespace Jugador
 
         public void Update()
         {
-            if (Multijugador.instancia.Conectado() == true)
+            if (MultiPhoton.instancia.Conectado() == true)
             {
                 if (mostrar == true)
                 {

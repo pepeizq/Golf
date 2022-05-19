@@ -17,7 +17,7 @@ namespace Partida
 
         public static void GuardarForma(List<Vector2> casillas)
         {
-            if (Multijugador.instancia.Conectado() == false)
+            if (MultiPhoton.instancia.Conectado() == false)
             {
                 if (casillas != null)
                 {
@@ -45,7 +45,7 @@ namespace Partida
 
         public static void GuardarPartida(Vector3 posicionBola, float angulo, int golpes, float zoom)
         {
-            if (Multijugador.instancia.Conectado() == false)
+            if (MultiPhoton.instancia.Conectado() == false)
             {
                 DateTime fecha = DateTime.Now;
                 int campo = Configuracion.instancia.campo.id;
@@ -166,7 +166,7 @@ namespace Partida
  
         public static void GuardarMordiscos(List<Vector2> casillas)
         {
-            if (Multijugador.instancia.Conectado() == false)
+            if (MultiPhoton.instancia.Conectado() == false)
             {
                 if (casillas != null)
                 {

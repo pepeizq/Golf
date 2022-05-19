@@ -28,7 +28,7 @@ namespace Escenario.Animaciones
                 Vector3 posicionBola = Bola.instancia.ultimaPosicionBola;
                 Vector3 posicionHoyo = Configuracion.instancia.posicionHoyo;
 
-                if (Multijugador.instancia.Conectado() == true)
+                if (MultiPhoton.instancia.Conectado() == true)
                 {
                     posicionHoyo.x = Configuracion.instancia.multiPosicionXHoyo;
                     posicionHoyo.z = Configuracion.instancia.multiPosicionZHoyo;

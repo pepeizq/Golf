@@ -3,9 +3,9 @@ using Photon.Realtime;
 
 namespace Jugador
 {
-    public class Multijugador : MonoBehaviourPunCallbacks
+    public class MultiPhoton : MonoBehaviourPunCallbacks
     {
-        public static Multijugador instancia;
+        public static MultiPhoton instancia;
 
         public void Awake()
         {
@@ -58,6 +58,11 @@ namespace Jugador
         public void UnirseSala(string nombreSala)
         {
             PhotonNetwork.JoinRoom(nombreSala);
+        }
+
+        public void DejarSala()
+        {
+            PhotonNetwork.LeaveRoom();
         }
 
         public Room Sala()

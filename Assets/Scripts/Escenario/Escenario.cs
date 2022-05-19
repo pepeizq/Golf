@@ -35,7 +35,7 @@ namespace Escenario
         {
             casillasMapa = new Casilla[Configuracion.instancia.tamañoX, Configuracion.instancia.tamañoZ];
      
-            if (Jugador.Multijugador.instancia.Conectado() == false)
+            if (Jugador.MultiPhoton.instancia.Conectado() == false)
             {
                 if (Configuracion.instancia.aleatorio == true)
                 {
@@ -48,7 +48,7 @@ namespace Escenario
             }
             else 
             {
-                if (Jugador.Multijugador.instancia.Maestro() == true)
+                if (Jugador.MultiPhoton.instancia.Maestro() == true)
                 {
                     casillasIniciales = Vectores.instancia.GenerarCasillas(casillasMapa, Configuracion.instancia.alturaMaxima, limitesMapa);
                 }
@@ -117,7 +117,7 @@ namespace Escenario
 
             if (Configuracion.instancia.animacionHoyoBola == true)
             {
-                if (Jugador.Multijugador.instancia.Conectado() == false)
+                if (Jugador.MultiPhoton.instancia.Conectado() == false)
                 {
                     HoyoBola.instancia.Generar();
                 }               

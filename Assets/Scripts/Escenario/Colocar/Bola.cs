@@ -19,7 +19,7 @@ namespace Escenario.Colocar
         {
             bool buscarPosicion = true;
 
-            if (Multijugador.instancia.Conectado() == true && PhotonNetwork.IsMasterClient == false)
+            if (MultiPhoton.instancia.Conectado() == true && PhotonNetwork.IsMasterClient == false)
             {
                 buscarPosicion = false;
             }

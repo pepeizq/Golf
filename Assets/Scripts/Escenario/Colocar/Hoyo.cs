@@ -19,7 +19,7 @@ namespace Escenario.Colocar
         {
             bool buscarPosicion = true;
       
-            if (Multijugador.instancia.Conectado() == true && Multijugador.instancia.Maestro() == false)
+            if (MultiPhoton.instancia.Conectado() == true && MultiPhoton.instancia.Maestro() == false)
             {
                 buscarPosicion = false;
             }
@@ -44,13 +44,13 @@ namespace Escenario.Colocar
                             {
                                 if (casillas[x, z].id == 0 && casillas[x, z].modificable == true)
                                 {
-                                    if (Multijugador.instancia.Conectado() == false)
+                                    if (MultiPhoton.instancia.Conectado() == false)
                                     {
                                         InstanciarHoyo(casillas, x, z);
                                     }
                                     else
                                     {
-                                        if (Multijugador.instancia.Maestro() == true)
+                                        if (MultiPhoton.instancia.Maestro() == true)
                                         {
                                             int[] posiciones = new int[2];
                                             posiciones[0] = x;
@@ -88,7 +88,7 @@ namespace Escenario.Colocar
   
         public void InstanciarHoyo(Casilla[,] casillas, int casillaX, int casillaZ)
         {
-            if (Multijugador.instancia.Conectado() == false)
+            if (MultiPhoton.instancia.Conectado() == false)
             {
                 GameObject hoyo = Instantiate(Configuracion.instancia.campo.hoyo);
                 hoyo.transform.position = casillas[casillaX, casillaZ].prefab.transform.position;

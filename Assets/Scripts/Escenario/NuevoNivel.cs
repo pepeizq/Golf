@@ -1,3 +1,4 @@
+using Jugador;
 using Partida;
 using Photon.Pun;
 using UnityEngine;
@@ -48,10 +49,11 @@ namespace Escenario
             }
         }
 
-        [PunRPC]
-        public void MultijugadorNuevoNivel()
+        public void Multijugador()
         {
-            Debug.Log("test cambio nivel");
+            MultiPartida.instancia.nivel = MultiPartida.instancia.nivel += 1;
+
+            MultiPhoton.instancia.photonView.RPC("CambiarEscena", RpcTarget.All, "Escenario");
         }
     }
 }

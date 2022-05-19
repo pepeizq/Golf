@@ -10,8 +10,6 @@ namespace Escenario
     public class Configuracion : MonoBehaviourPunCallbacks
     {
         [Header("Multijugador")]
-        [HideInInspector] public float tiempoTerminar = 0f;
-        [HideInInspector] public bool partidaTerminada = false;
         [HideInInspector] public Jugador.Bola[] jugadores;
         [HideInInspector] public Vector3 multiPosicionBolaInicio;
         [HideInInspector] public int multiPosicionXHoyo;
@@ -69,7 +67,7 @@ namespace Escenario
         {
             instancia = this;
 
-            if (Multijugador.instancia.Conectado() == false)
+            if (MultiPhoton.instancia.Conectado() == false)
             {
                 nivel = Unjugador.instancia.partida.nivel;
 
@@ -88,10 +86,9 @@ namespace Escenario
             }
             else
             {
-                nivel = 0;
+                nivel = MultiPartida.instancia.nivel;
                 aleatorio = true;
-                numeroPartida = 9999;
-
+                campo = Campos.instancia.campos[MultiPartida.instancia.campo];
             }
 
             if (campo != null)
@@ -109,7 +106,7 @@ namespace Escenario
 
         public void Start()
         {
-            if (Multijugador.instancia.Conectado() == true)
+            if (MultiPhoton.instancia.Conectado() == true)
             {
                 jugadores = new Jugador.Bola[PhotonNetwork.PlayerList.Length];
                 photonView.RPC("MultijugadorSumarJugador", RpcTarget.AllBuffered);
@@ -130,7 +127,7 @@ namespace Escenario
                 Colocar.Bola.instancia.InstanciarBolaMulti(multiPosicionBolaInicio);
             }
 
-            if (jugadoresDentro == Multijugador.instancia.Sala().PlayerCount)
+            if (jugadoresDentro == MultiPhoton.instancia.Sala().PlayerCount)
             {
 
             }

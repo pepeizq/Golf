@@ -76,7 +76,8 @@
     <Compile Include="Assets\Photon\PhotonRealtime\Demos\DemoLoadBalancing\ConnectAndJoinRandomLb.cs" />
     <Compile Include="Assets\Scripts\Partida\Campos.cs" />
     <Compile Include="Assets\Scripts\Escenario\Colocar\Mordiscos.cs" />
-    <Compile Include="Assets\Scripts\Jugador\Multijugador.cs" />
+    <Compile Include="Assets\Scripts\Jugador\MultiPhoton.cs" />
+    <Compile Include="Assets\Scripts\Escenario\NuevoNivel.cs" />
     <Compile Include="Assets\Scripts\Jugador\MultiNombres.cs" />
     <Compile Include="Assets\Scripts\Escenario\Colocar\Muros.cs" />
     <Compile Include="Assets\Scripts\Jugador\Color.cs" />
@@ -93,7 +94,7 @@
     <Compile Include="Assets\Scripts\Escenario\Generacion\Colores.cs" />
     <Compile Include="Assets\Scripts\Partida\Unjugador.cs" />
     <Compile Include="Assets\Scripts\Escenario\Colocar\Bola.cs" />
-    <Compile Include="Assets\Scripts\Escenario\NuevoNivel.cs" />
+    <Compile Include="Assets\Scripts\Partida\MultiPartida.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
