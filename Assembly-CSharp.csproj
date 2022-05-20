@@ -87,6 +87,7 @@
     <Compile Include="Assets\Scripts\Recursos\Campo.cs" />
     <Compile Include="Assets\Photon\PhotonLibs\WebSocket\WebSocket.cs" />
     <Compile Include="Assets\Scripts\Jugador\Controles.cs" />
+    <Compile Include="Assets\Scripts\Partida\MultiPartida.cs" />
     <Compile Include="Assets\Scripts\Escenario\Escenario.cs" />
     <Compile Include="Assets\Scripts\Recursos\Casilla.cs" />
     <Compile Include="Assets\Scripts\Canvas\Principal.cs" />
@@ -94,7 +95,7 @@
     <Compile Include="Assets\Scripts\Escenario\Generacion\Colores.cs" />
     <Compile Include="Assets\Scripts\Partida\Unjugador.cs" />
     <Compile Include="Assets\Scripts\Escenario\Colocar\Bola.cs" />
-    <Compile Include="Assets\Scripts\Partida\MultiPartida.cs" />
+    <Compile Include="Assets\Scripts\Partida\NoDestruir.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

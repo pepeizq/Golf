@@ -1,6 +1,7 @@
 ﻿using Escenario.Animaciones;
 using Escenario.Colocar;
 using Escenario.Generacion;
+using Jugador;
 using Partida;
 using Photon.Pun;
 using Recursos;
@@ -97,7 +98,7 @@ namespace Escenario
 
             if (Configuracion.instancia.bola == true)
             {
-                Bola.instancia.Colocar(casillasMapa);
+                Colocar.Bola.instancia.Colocar(casillasMapa);
             }
 
             if (Configuracion.instancia.hoyo == true)
@@ -307,9 +308,9 @@ namespace Escenario
 
                     GameObject casilla2 = null;
                     
-                    if (PhotonNetwork.IsConnected == true)
+                    if (MultiPhoton.instancia.Conectado() == true)
                     {
-                        if (PhotonNetwork.IsMasterClient == true)
+                        if (MultiPhoton.instancia.Maestro() == true)
                         {
                             casilla2 = PhotonNetwork.Instantiate("Prefabs/Casillas/" + casillasFinal2[id].prefab.name, posicionFinal, Quaternion.identity);
                         }
