@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scripts\Escenario\Generacion\Llano.cs" />
     <Compile Include="Assets\Scripts\Jugador\Transparentar.cs" />
     <Compile Include="Assets\Scripts\Canvas\MultiConexion.cs" />
+    <Compile Include="Assets\Scripts\Partida\NoDestruir.cs" />
     <Compile Include="Assets\Scripts\Escenario\Colocar\Forma.cs" />
     <Compile Include="Assets\Scripts\Canvas\Escenario.cs" />
     <Compile Include="Assets\Scripts\Jugador\MultiTablaGolpes.cs" />
@@ -95,7 +96,6 @@
     <Compile Include="Assets\Scripts\Escenario\Generacion\Colores.cs" />
     <Compile Include="Assets\Scripts\Partida\Unjugador.cs" />
     <Compile Include="Assets\Scripts\Escenario\Colocar\Bola.cs" />
-    <Compile Include="Assets\Scripts\Partida\NoDestruir.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

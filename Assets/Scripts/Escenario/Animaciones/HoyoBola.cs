@@ -28,12 +28,6 @@ namespace Escenario.Animaciones
                 Vector3 posicionBola = Bola.instancia.ultimaPosicionBola;
                 Vector3 posicionHoyo = Configuracion.instancia.posicionHoyo;
 
-                if (MultiPhoton.instancia.Conectado() == true)
-                {
-                    posicionHoyo.x = Configuracion.instancia.multiPosicionXHoyo;
-                    posicionHoyo.z = Configuracion.instancia.multiPosicionZHoyo;
-                }
-
                 GameObject camara = Objetos.instancia.camara.gameObject;
 
                 pasos += Time.deltaTime * 5;

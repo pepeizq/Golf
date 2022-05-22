@@ -29,14 +29,27 @@ namespace Escenario
 
         public void Start()
         {
-            Arranque();
+            bool arrancar = true;
+
+            if (MultiPhoton.instancia.Conectado() == true)
+            {
+                if (MultiPhoton.instancia.Maestro() == false)
+                {
+                    arrancar = false;
+                }
+            }
+
+            if (arrancar == true)
+            {
+                Arranque();
+            }
         }
 
         public void Arranque()
         {
             casillasMapa = new Casilla[Configuracion.instancia.tamañoX, Configuracion.instancia.tamañoZ];
-     
-            if (Jugador.MultiPhoton.instancia.Conectado() == false)
+
+            if (MultiPhoton.instancia.Conectado() == false)
             {
                 if (Configuracion.instancia.aleatorio == true)
                 {
@@ -47,17 +60,15 @@ namespace Escenario
                     casillasIniciales = Cargar.CargarEscenario(Unjugador.instancia.partida.escenario);
                 }
             }
-            else 
+            else
             {
-                if (Jugador.MultiPhoton.instancia.Maestro() == true)
+                if (MultiPhoton.instancia.Maestro() == true)
                 {
                     casillasIniciales = Vectores.instancia.GenerarCasillas(casillasMapa, Configuracion.instancia.alturaMaxima, limitesMapa);
                 }
-                else
-                {
-                    photonView.RPC("MultijugadorCasillasIniciales", RpcTarget.AllBuffered, casillasIniciales.ToArray());
-                }
             }
+
+            //----------------------------------------------------------
 
             int k = 0;
             float altura = Configuracion.instancia.alturaMaxima;
@@ -118,10 +129,10 @@ namespace Escenario
 
             if (Configuracion.instancia.animacionHoyoBola == true)
             {
-                if (Jugador.MultiPhoton.instancia.Conectado() == false)
+                if (MultiPhoton.instancia.Conectado() == false)
                 {
                     HoyoBola.instancia.Generar();
-                }               
+                }
             }
         }
 
@@ -312,7 +323,7 @@ namespace Escenario
                     {
                         if (MultiPhoton.instancia.Maestro() == true)
                         {
-                            casilla2 = PhotonNetwork.Instantiate("Prefabs/Casillas/" + casillasFinal2[id].prefab.name, posicionFinal, Quaternion.identity);
+                            casilla2 = PhotonNetwork.InstantiateRoomObject("Prefabs/Casillas/" + casillasFinal2[id].prefab.name, posicionFinal, Quaternion.identity);
                         }
                     }
                     else

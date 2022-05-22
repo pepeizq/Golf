@@ -52,14 +52,8 @@ namespace Escenario.Colocar
                                     {
                                         if (MultiPhoton.instancia.Maestro() == true)
                                         {
-                                            int[] posiciones = new int[2];
-                                            posiciones[0] = x;
-                                            posiciones[1] = z;
-                                        
-                                            Configuracion.instancia.photonView.RPC("MultijugadorPosicionInicioHoyo", RpcTarget.All, posiciones);
+                                            InstanciarHoyo(casillas, x, z);
                                         }
-
-                                        InstanciarHoyo(casillas, x, z);
                                     }
        
                                     break;
@@ -103,13 +97,9 @@ namespace Escenario.Colocar
             }
             else
             {
-                Vector3 posicion = casillas[Configuracion.instancia.multiPosicionXHoyo, Configuracion.instancia.multiPosicionZHoyo].posicion;
-                GameObject hoyo = PhotonNetwork.Instantiate("Prefabs/Prefab Hoyo 1", posicion, Quaternion.identity);
+                Vector3 posicion = casillas[casillaX, casillaZ].posicion;
+                GameObject hoyo = PhotonNetwork.InstantiateRoomObject("Prefabs/Prefab Hoyo 1", posicion, Quaternion.identity);
            
-                Configuracion.instancia.posicionHoyo = posicion;
-                Configuracion.instancia.posicionHoyoX = Configuracion.instancia.multiPosicionXHoyo;
-                Configuracion.instancia.posicionHoyoZ = Configuracion.instancia.multiPosicionZHoyo;
-
                 PhotonNetwork.Destroy(casillas[casillaX, casillaZ].prefab);
                 casillas[casillaX, casillaZ].prefab = hoyo;
                 casillas[casillaX, casillaZ].modificable = false;

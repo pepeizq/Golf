@@ -91,7 +91,7 @@ namespace Jugador
                     {
                         if (bola != null)
                         {
-                            if (bola.transform.GetChild(1) != null)
+                            if (bola.transform.childCount >= 1)
                             {
                                 GameObject objetoNombre = bola.transform.GetChild(1).gameObject;
 
@@ -99,7 +99,7 @@ namespace Jugador
                                 {
                                     objetoNombre.gameObject.SetActive(false);
                                 }
-                            }
+                            }    
                         }
                     }
                 }

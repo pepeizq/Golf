@@ -1,3 +1,4 @@
+using Jugador;
 using Recursos;
 using System.Collections.Generic;
 using UnityEngine;
@@ -155,7 +156,15 @@ namespace Escenario.Colocar
             {
                 if (casillas[x, z].modificable == true)
                 {
-                    Destroy(casillas[x, z].prefab);
+                    if (MultiPhoton.instancia.Conectado() == false)
+                    {
+                        Destroy(casillas[x, z].prefab);
+                    }
+                    else
+                    {
+                        MultiPhoton.instancia.DestruirObjeto(casillas[x, z].prefab);
+                    }
+                    
                     casillas[x, z].modificable = false;
                 }
             }

@@ -1,5 +1,7 @@
+using Partida;
 using Photon.Pun;
 using Photon.Realtime;
+using UnityEngine;
 
 namespace Jugador
 {
@@ -74,6 +76,11 @@ namespace Jugador
         public void CambiarEscena(string nombreEscena)
         {
             PhotonNetwork.LoadLevel(nombreEscena);
+        }
+
+        public void DestruirObjeto(GameObject objeto)
+        {
+            PhotonNetwork.Destroy(objeto);
         }
     }
 }

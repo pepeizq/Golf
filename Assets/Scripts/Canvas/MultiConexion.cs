@@ -1,5 +1,6 @@
 ﻿using ExitGames.Client.Photon;
 using Jugador;
+using Partida;
 using Photon.Pun;
 using Photon.Realtime;
 using TMPro;

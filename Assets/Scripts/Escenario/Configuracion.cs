@@ -12,8 +12,6 @@ namespace Escenario
         [Header("Multijugador")]
         [HideInInspector] public Jugador.Bola[] jugadores;
         [HideInInspector] public Vector3 multiPosicionBolaInicio;
-        [HideInInspector] public int multiPosicionXHoyo;
-        [HideInInspector] public int multiPosicionZHoyo;
         private int jugadoresDentro;
 
         [Header("Partida")]
@@ -137,13 +135,6 @@ namespace Escenario
         public void MultijugadorPosicionInicioBola(Vector3 posicion)
         {
             multiPosicionBolaInicio = posicion;
-        }
-
-        [PunRPC]
-        public void MultijugadorPosicionInicioHoyo(int[] posiciones)
-        {
-            multiPosicionXHoyo = posiciones[0];
-            multiPosicionZHoyo = posiciones[1];
         }
 
         public enum Palos { Madera, Hierro }
