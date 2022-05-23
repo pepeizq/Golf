@@ -18,7 +18,6 @@ namespace Jugador
 
         private float angulo = 0;
         private float potencia = 0;
-        private float potenciaUltima = 0;
         private bool potenciaDecrecer = false;
         private int golpes = 0;
 
@@ -218,7 +217,6 @@ namespace Jugador
                                 cuerpo.AddForce(Quaternion.Euler(0, angulo, 0) * Vector3.forward * potencia, ForceMode.Impulse);
                             }
 
-                            potenciaUltima = potencia;
                             potencia = 0;
 
                             golpes += 1;
@@ -361,7 +359,7 @@ namespace Jugador
                 {
                     if (camaraVolver == true)
                     {
-                        Vector3 posicionBola = instancia.ultimaPosicionBola;
+                        Vector3 posicionBola = ultimaPosicionBola;
 
                         camaraVolverPasos += Time.deltaTime * 2;
 
