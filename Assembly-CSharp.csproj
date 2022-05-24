@@ -73,6 +73,7 @@
     <Compile Include="Assets\Scripts\Jugador\MultiTablaGolpes.cs" />
     <Compile Include="Assets\Scripts\Escenario\Animaciones\HoyoBola.cs" />
     <Compile Include="Assets\Scripts\Escenario\Generacion\Limites.cs" />
+    <Compile Include="Assets\Scripts\Canvas\PersonalizarBola.cs" />
     <Compile Include="Assets\Scripts\Escenario\Generacion\Vectores.cs" />
     <Compile Include="Assets\Photon\PhotonRealtime\Demos\DemoLoadBalancing\ConnectAndJoinRandomLb.cs" />
     <Compile Include="Assets\Scripts\Partida\Campos.cs" />

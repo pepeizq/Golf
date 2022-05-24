@@ -38,6 +38,12 @@ namespace Canvas2
         [Header("Multijugador")]
         public Canvas canvasConexion;
 
+        [Header("Personalizar")]
+        public Canvas canvasPersonalizar;
+
+        [Header("Opciones")]
+        public Canvas canvasOpciones;
+
         private AsyncOperation cargando = null;
 
         public void Start()
@@ -71,17 +77,7 @@ namespace Canvas2
                 botonCargarPartida.gameObject.SetActive(true);
             }
 
-            //----------------------------------------
-
-            dropdownColor.ClearOptions();
-
-            List<string> opciones = new List<string>();
-            opciones.Add("Rojo");
-            opciones.Add("Verde");
-            opciones.Add("Azul");
-
-            dropdownColor.AddOptions(opciones);
-            dropdownColor.value = PlayerPrefs.GetInt("colorJugador");
+            PersonalizarBola.instancia.CargarAtributoColor();
         }
 
         public void Update()
@@ -225,22 +221,27 @@ namespace Canvas2
 
         //------------------------------------------------------------------
 
-        public void CambiarColorJugador()
+        public void PersonalizarMostrar()
         {
-            if (dropdownColor.value == 0)
-            {
-                Atributos.instancia.color = UnityEngine.Color.red;
-            }
-            else if (dropdownColor.value == 1)
-            {
-                Atributos.instancia.color = UnityEngine.Color.green;
-            }
-            else if (dropdownColor.value == 2)
-            {
-                Atributos.instancia.color = UnityEngine.Color.blue;
-            }
+            canvasMenu.gameObject.SetActive(false);
+            canvasPersonalizar.gameObject.SetActive(true);
 
-            PlayerPrefs.SetInt("colorJugador", dropdownColor.value);
+            PersonalizarBola.instancia.Iniciar();
+        }
+
+        //------------------------------------------------------------------
+
+        public void OpcionesMostrar()
+        {
+            canvasMenu.gameObject.SetActive(false);
+            canvasOpciones.gameObject.SetActive(true);
+        }
+
+        //------------------------------------------------------------------
+
+        public void Salir()
+        {
+            Application.Quit();
         }
     }
 }
