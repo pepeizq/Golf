@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using Jugador;
 using Partida;
 
-namespace Canvas2
+namespace Principal
 {
     public class MultiLobby : MonoBehaviourPunCallbacks
     {

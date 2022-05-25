@@ -56,7 +56,7 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Canvas\MultiLobby.cs" />
+    <Compile Include="Assets\Scripts\Principal\MultiLobby.cs" />
     <Compile Include="Assets\Scripts\Escenario\Configuracion.cs" />
     <Compile Include="Assets\Photon\PhotonLibs\WebSocket\SocketWebTcp.cs" />
     <Compile Include="Assets\Scripts\Partida\Guardar.cs" />
@@ -66,14 +66,14 @@
     <Compile Include="Assets\Scripts\Jugador\Bola.cs" />
     <Compile Include="Assets\Scripts\Escenario\Generacion\Llano.cs" />
     <Compile Include="Assets\Scripts\Jugador\Transparentar.cs" />
-    <Compile Include="Assets\Scripts\Canvas\MultiConexion.cs" />
+    <Compile Include="Assets\Scripts\Principal\MultiConexion.cs" />
     <Compile Include="Assets\Scripts\Partida\NoDestruir.cs" />
     <Compile Include="Assets\Scripts\Escenario\Colocar\Forma.cs" />
-    <Compile Include="Assets\Scripts\Canvas\Escenario.cs" />
+    <Compile Include="Assets\Scripts\Escenario\Interfaz.cs" />
     <Compile Include="Assets\Scripts\Jugador\MultiTablaGolpes.cs" />
     <Compile Include="Assets\Scripts\Escenario\Animaciones\HoyoBola.cs" />
     <Compile Include="Assets\Scripts\Escenario\Generacion\Limites.cs" />
-    <Compile Include="Assets\Scripts\Canvas\PersonalizarBola.cs" />
+    <Compile Include="Assets\Scripts\Principal\PersonalizarBola.cs" />
     <Compile Include="Assets\Scripts\Escenario\Generacion\Vectores.cs" />
     <Compile Include="Assets\Photon\PhotonRealtime\Demos\DemoLoadBalancing\ConnectAndJoinRandomLb.cs" />
     <Compile Include="Assets\Scripts\Partida\Campos.cs" />
@@ -92,11 +92,14 @@
     <Compile Include="Assets\Scripts\Partida\MultiPartida.cs" />
     <Compile Include="Assets\Scripts\Escenario\Escenario.cs" />
     <Compile Include="Assets\Scripts\Recursos\Casilla.cs" />
-    <Compile Include="Assets\Scripts\Canvas\Principal.cs" />
+    <Compile Include="Assets\Scripts\Principal\Principal.cs" />
     <Compile Include="Assets\Scripts\Escenario\Animaciones\HoyoPalo.cs" />
     <Compile Include="Assets\Scripts\Escenario\Generacion\Colores.cs" />
     <Compile Include="Assets\Scripts\Partida\Unjugador.cs" />
     <Compile Include="Assets\Scripts\Escenario\Colocar\Bola.cs" />
+    <Compile Include="Assets\Scripts\Idiomas\Idiomas.cs" />
+    <Compile Include="Assets\Scripts\Principal\Opciones.cs" />
+    <Compile Include="Assets\Scripts\Idiomas\IdiomasPrincipal.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -123,6 +126,7 @@
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\Photon\PhotonLibs\Metro\Photon3Unity3D.dll" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
+    <None Include="Assets\Scripts\Idiomas\Traducciones.xml" />
     <None Include="Assets\Photon\PhotonLibs\Photon3Unity3D.xml" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />

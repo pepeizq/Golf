@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Canvas2
+namespace Principal
 {
     public class PersonalizarBola : MonoBehaviour
     {
@@ -14,6 +14,7 @@ namespace Canvas2
         public Slider sliderAzul;
 
         public GameObject bolaVistaPrevia;
+        public GameObject bolaPrincipalVistaPrevia;
 
         public static PersonalizarBola instancia;
 
@@ -38,6 +39,11 @@ namespace Canvas2
             };
 
             Atributos.instancia.color = colorNuevo;
+
+            MeshRenderer renderer = bolaPrincipalVistaPrevia.gameObject.GetComponent<MeshRenderer>();
+            Material material = new Material(Shader.Find("HDRP/Lit"));
+            material.SetColor("_BaseColor", colorNuevo);
+            renderer.material = material;
         }
 
         public void Iniciar()
@@ -92,10 +98,14 @@ namespace Canvas2
 
             Atributos.instancia.color = colorNuevo;
 
-            MeshRenderer renderer = bolaVistaPrevia.gameObject.GetComponent<MeshRenderer>();
+            MeshRenderer renderer1 = bolaVistaPrevia.gameObject.GetComponent<MeshRenderer>();
+            MeshRenderer renderer2 = bolaPrincipalVistaPrevia.gameObject.GetComponent<MeshRenderer>();
+
             Material material = new Material(Shader.Find("HDRP/Lit"));
             material.SetColor("_BaseColor", colorNuevo);
-            renderer.material = material;
+
+            renderer1.material = material;
+            renderer2.material = material;
         }
     }
 }

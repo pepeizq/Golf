@@ -1,4 +1,3 @@
-using Jugador;
 using Partida;
 using Recursos;
 using System;
@@ -8,7 +7,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace Canvas2
+namespace Principal
 {
     public class Principal : MonoBehaviour
     {
@@ -19,7 +18,7 @@ namespace Canvas2
         public Canvas canvasMenu;
         public Button botonContinuarPartida;
         public Button botonCargarPartida;
-        public TMP_Dropdown dropdownColor;
+        public TextMeshProUGUI textoVersion;
 
         [Header("Cargando")]
         public Canvas canvasCargando;
@@ -50,6 +49,8 @@ namespace Canvas2
         {
             totalPartidas = PlayerPrefs.GetInt("totalPartidas");
 
+            Idiomas.Idiomas.instancia.CargarTraducciones(0);
+
             int i = 0;
             while (i <= totalPartidas)
             {
@@ -78,6 +79,7 @@ namespace Canvas2
             }
 
             PersonalizarBola.instancia.CargarAtributoColor();
+            textoVersion.text = Application.version;
         }
 
         public void Update()

@@ -1,12 +1,11 @@
 ﻿using ExitGames.Client.Photon;
 using Jugador;
-using Partida;
 using Photon.Pun;
 using Photon.Realtime;
 using TMPro;
 using UnityEngine;
 
-namespace Canvas2
+namespace Principal
 {
     public class MultiConexion : MonoBehaviourPunCallbacks
     {     

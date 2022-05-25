@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<languages>
+    <English>
+		<string name="language">English</string>
+        <string name="newGame">New Game</string>
+    </English>
+     
+    <Spanish>
+		<string name="language">Español (de España)</string>
+        <string name="newGame">Nueva Partida</string>
+    </Spanish>
+</languages>

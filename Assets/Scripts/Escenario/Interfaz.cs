@@ -1,12 +1,11 @@
-using Escenario;
 using Jugador;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
-namespace Canvas2
+namespace Escenario
 {
-    public class Escenario : MonoBehaviour
+    public class Interfaz : MonoBehaviour
     {
         private Controles controles;
 
