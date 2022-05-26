@@ -62,6 +62,7 @@
     <Compile Include="Assets\Scripts\Partida\Guardar.cs" />
     <Compile Include="Assets\Scripts\Partida\Cargar.cs" />
     <Compile Include="Assets\Scripts\Escenario\Objetos.cs" />
+    <Compile Include="Assets\Scripts\Idiomas\IdiomasPrincipal.cs" />
     <Compile Include="Assets\Scripts\Partida\ClasesStructs.cs" />
     <Compile Include="Assets\Scripts\Jugador\Bola.cs" />
     <Compile Include="Assets\Scripts\Escenario\Generacion\Llano.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="Assets\Scripts\Escenario\Colocar\Forma.cs" />
     <Compile Include="Assets\Scripts\Escenario\Interfaz.cs" />
     <Compile Include="Assets\Scripts\Jugador\MultiTablaGolpes.cs" />
+    <Compile Include="Assets\Scripts\Principal\Opciones.cs" />
     <Compile Include="Assets\Scripts\Escenario\Animaciones\HoyoBola.cs" />
     <Compile Include="Assets\Scripts\Escenario\Generacion\Limites.cs" />
     <Compile Include="Assets\Scripts\Principal\PersonalizarBola.cs" />
@@ -83,7 +85,9 @@
     <Compile Include="Assets\Scripts\Jugador\MultiNombres.cs" />
     <Compile Include="Assets\Scripts\Escenario\Colocar\Muros.cs" />
     <Compile Include="Assets\Scripts\Jugador\Color.cs" />
+    <Compile Include="Assets\Scripts\Idiomas\Idiomas.cs" />
     <Compile Include="Assets\Scripts\Escenario\Colocar\Hoyo.cs" />
+    <Compile Include="Assets\Scripts\Idiomas\IdiomasEscenario.cs" />
     <Compile Include="Assets\Scripts\Jugador\Atributos.cs" />
     <Compile Include="Assets\Scripts\Recursos\CampoHoyo.cs" />
     <Compile Include="Assets\Scripts\Recursos\Campo.cs" />
@@ -97,9 +101,6 @@
     <Compile Include="Assets\Scripts\Escenario\Generacion\Colores.cs" />
     <Compile Include="Assets\Scripts\Partida\Unjugador.cs" />
     <Compile Include="Assets\Scripts\Escenario\Colocar\Bola.cs" />
-    <Compile Include="Assets\Scripts\Idiomas\Idiomas.cs" />
-    <Compile Include="Assets\Scripts\Principal\Opciones.cs" />
-    <Compile Include="Assets\Scripts\Idiomas\IdiomasPrincipal.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

@@ -29,6 +29,8 @@ namespace Escenario
 
         public void Start()
         {
+            Idiomas.Idiomas.instancia.CargarTraducciones(Idiomas.Idiomas.Escenas.Escenario);
+
             bool arrancar = true;
 
             if (MultiPhoton.instancia.Conectado() == true)

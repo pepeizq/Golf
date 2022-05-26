@@ -3,10 +3,36 @@
     <English>
 		<string name="language">English</string>
         <string name="newGame">New Game</string>
+		<string name="continueGame">Continue Game</string>
+		<string name="loadGame">Load Game</string>
+		<string name="multiplayer">Multiplayer</string>
+		<string name="options">Options</string>
+		<string name="customizeBall">Customize Ball</string>
+		<string name="exit">Exit</string>
+		<string name="back">Back</string>
+		<string name="loading">Loading</string>
+		<string name="connecting">Connecting</string>
+		<string name="createRoom">Create Room</string>
+		<string name="leaveRoom">Leave Room</string>
+		<string name="startGame">Start Game</string>
+		<string name="backGame">Back to the Game</string>
     </English>
      
     <Spanish>
 		<string name="language">Español (de España)</string>
         <string name="newGame">Nueva Partida</string>
+		<string name="continueGame">Continuar Partida</string>
+		<string name="loadGame">Cargar Partida</string>
+		<string name="multiplayer">Multijugador</string>
+		<string name="options">Opciones</string>
+		<string name="customizeBall">Personalizar Bola</string>
+		<string name="exit">Salir</string>
+		<string name="back">Volver</string>
+		<string name="loading">Cargando</string>
+		<string name="connecting">Conectando</string>
+		<string name="createRoom">Crear Sala</string>
+		<string name="leaveRoom">Dejar Sala</string>
+		<string name="startGame">Empezar Partida</string>
+		<string name="backGame">Volver a la Partida</string>
     </Spanish>
 </languages>

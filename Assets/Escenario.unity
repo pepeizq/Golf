@@ -3000,7 +3000,7 @@ GameObject:
   - component: {fileID: 1383884513}
   - component: {fileID: 1383884512}
   m_Layer: 5
-  m_Name: Texto
+  m_Name: TextoBotonVolverPartida
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4173,6 +4173,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2114800862}
   - component: {fileID: 2114800863}
+  - component: {fileID: 2114800864}
   m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
@@ -4215,6 +4216,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a8b7464808fd4f45a9bcaf115d2070e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2114800864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2114800861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 342fbf76835bcbf49995f4d0d66a0045, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volverPartida: {fileID: 1383884512}
 --- !u!1 &2128774809
 GameObject:
   m_ObjectHideFlags: 0

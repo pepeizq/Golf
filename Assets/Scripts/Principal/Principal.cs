@@ -49,7 +49,7 @@ namespace Principal
         {
             totalPartidas = PlayerPrefs.GetInt("totalPartidas");
 
-            Idiomas.Idiomas.instancia.CargarTraducciones(0);
+            Idiomas.Idiomas.instancia.CargarTraducciones(Idiomas.Idiomas.Escenas.Principal);
 
             int i = 0;
             while (i <= totalPartidas)

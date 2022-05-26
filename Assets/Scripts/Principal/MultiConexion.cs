@@ -27,7 +27,7 @@ namespace Principal
         {
             MultiPhoton.instancia.Conectar();
 
-            textoMensaje.text = "Conectando";
+            textoMensaje.text = Idiomas.Idiomas.instancia.CogerCadena("connecting");
 
             if (botones.activeSelf == true)
             {

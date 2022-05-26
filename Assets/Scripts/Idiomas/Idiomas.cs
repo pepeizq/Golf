@@ -26,7 +26,7 @@ namespace Idiomas
             }
         }
 
-        public void CargarTraducciones(int escena)
+        public void CargarTraducciones(Escenas escena)
         {
             if (PlayerPrefs.GetString("idioma") == null)
             {
@@ -35,9 +35,13 @@ namespace Idiomas
 
             CargarIdiomaXml(ficheroIdiomas, PlayerPrefs.GetString("idioma"));
 
-            if (escena == 0)
+            if (escena == Escenas.Principal)
             {
                 IdiomasPrincipal.instancia.CargarTextos();
+            }
+            else if (escena == Escenas.Escenario)
+            {
+                IdiomasEscenario.instancia.CargarTextos();
             }
         }
 
@@ -73,10 +77,10 @@ namespace Idiomas
                         }
                     }
 
-                    //if (nodo2.Name == PlayerPrefs.GetString("idioma"))
-                    //{
-                    //    dp.value = j;
-                    //}
+                    if (nodo2.Name == PlayerPrefs.GetString("idioma"))
+                    {
+                        dp.value = j;
+                    }
 
                     j += 1;
                 }
@@ -176,5 +180,7 @@ namespace Idiomas
                 PlayerPrefs.SetString("idioma", "English");
             }
         }
+
+        public enum Escenas { Principal, Escenario }
     }
 }

@@ -129,7 +129,7 @@ namespace Principal
             {
                 if (jugador.IsMasterClient == true)
                 {
-                    PhotonNetwork.LeaveRoom();
+                    MultiPhoton.instancia.DejarSala();
                     MultiPhoton.instancia.photonView.RPC("CambiarEscena", RpcTarget.All, "Principal");
                 }
             }
@@ -143,7 +143,7 @@ namespace Principal
                 Destroy(jugador.gameObject);
             }
 
-            foreach (Player jugador in PhotonNetwork.PlayerList)
+            foreach (Player jugador in MultiPhoton.instancia.ListaJugadores())
             {
                 GameObject boton = Instantiate(prefabJugador, new Vector3(0, 0, 0), Quaternion.identity);
                 boton.transform.SetParent(panelJugadores.gameObject.transform);
@@ -153,7 +153,7 @@ namespace Principal
                 texto.text = string.Format("{0}", jugador.NickName);
             }
 
-            if (MultiPhoton.instancia.Maestro() == true)
+            if (MultiPhoton.instancia.Maestro() == true && MultiPhoton.instancia.ListaJugadores().Length >= 2)
             {
                 botonEmpezarPartida.interactable = true;
             }

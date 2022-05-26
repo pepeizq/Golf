@@ -82,5 +82,10 @@ namespace Jugador
         {
             PhotonNetwork.Destroy(objeto);
         }
+
+        public Player[] ListaJugadores()
+        {
+            return PhotonNetwork.PlayerList;
+        }
     }
 }
