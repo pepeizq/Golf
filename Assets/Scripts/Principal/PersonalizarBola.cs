@@ -1,4 +1,5 @@
 ﻿using Jugador;
+using Partida;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -29,9 +30,9 @@ namespace Principal
             canvasPrincipal.gameObject.SetActive(true);
         }
 
-        public void CargarAtributoColor()
+        public void CargarAtributos()
         {
-            UnityEngine.Color colorNuevo = new UnityEngine.Color
+            Color colorNuevo = new Color
             {
                 r = PlayerPrefs.GetFloat("jugadorColorRojo"),
                 g = PlayerPrefs.GetFloat("jugadorColorVerde"),
@@ -44,6 +45,9 @@ namespace Principal
             Material material = new Material(Shader.Find("HDRP/Lit"));
             material.SetColor("_BaseColor", colorNuevo);
             renderer.material = material;
+
+            Atributos.instancia.modelo = PlayerPrefs.GetInt("jugadorBola");
+            bolaPrincipalVistaPrevia.gameObject.GetComponent<MeshFilter>().mesh = Datos.instancia.bolas[PlayerPrefs.GetInt("jugadorBola")];
         }
 
         public void Iniciar()
@@ -67,6 +71,8 @@ namespace Principal
                 sliderVerde.value = 1f;
                 sliderAzul.value = 1f;
             }
+
+            bolaVistaPrevia.gameObject.GetComponent<MeshFilter>().mesh = Datos.instancia.bolas[PlayerPrefs.GetInt("jugadorBola")];
         }
 
         public void CambiarColorRojo()
@@ -106,6 +112,36 @@ namespace Principal
 
             renderer1.material = material;
             renderer2.material = material;
+        }
+
+        public void CambiarModelo(bool sumar)
+        {
+            int posicion = PlayerPrefs.GetInt("jugadorBola");
+
+            if (sumar == true)
+            {
+                posicion += 1;
+
+                if (posicion >= Datos.instancia.bolas.Count)
+                {
+                    posicion = 0;
+                }
+            }
+            else
+            {
+                posicion -= 1;
+
+                if (posicion < 0)
+                {
+                    posicion = Datos.instancia.bolas.Count - 1;
+                }
+            }
+
+            Atributos.instancia.modelo = posicion;
+            PlayerPrefs.SetInt("jugadorBola", posicion);
+
+            bolaPrincipalVistaPrevia.gameObject.GetComponent<MeshFilter>().mesh = Datos.instancia.bolas[PlayerPrefs.GetInt("jugadorBola")];
+            bolaVistaPrevia.gameObject.GetComponent<MeshFilter>().mesh = Datos.instancia.bolas[PlayerPrefs.GetInt("jugadorBola")];
         }
     }
 }

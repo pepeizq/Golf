@@ -49,10 +49,14 @@ namespace Principal
 
             MultiPhoton.instancia.UnirseLobby();
 
-            Hashtable hash = new Hashtable();
-            hash["BolaColorRojo"] = Atributos.instancia.color.r;
-            hash["BolaColorVerde"] = Atributos.instancia.color.g;
-            hash["BolaColorAzul"] = Atributos.instancia.color.b;
+            Hashtable hash = new Hashtable
+            {
+                ["BolaColorRojo"] = Atributos.instancia.color.r,
+                ["BolaColorVerde"] = Atributos.instancia.color.g,
+                ["BolaColorAzul"] = Atributos.instancia.color.b,
+                ["BolaModelo"] = Atributos.instancia.modelo
+            };
+
             PhotonNetwork.LocalPlayer.CustomProperties = hash;
         }
 

@@ -3,7 +3,6 @@ using Escenario.Animaciones;
 using Partida;
 using Photon.Pun;
 using Photon.Realtime;
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -56,9 +55,10 @@ namespace Jugador
 
             GameObject[] bolas = GameObject.FindGameObjectsWithTag("Player");
 
-            foreach (Player jugador2 in PhotonNetwork.PlayerList)
+            foreach (Player jugador2 in MultiPhoton.instancia.ListaJugadores())
             {
-                UnityEngine.Color color2 = new UnityEngine.Color((float)jugador2.CustomProperties["BolaColorRojo"], (float)jugador2.CustomProperties["BolaColorVerde"], (float)jugador2.CustomProperties["BolaColorAzul"]);
+                Color colorBola = new Color((float)jugador2.CustomProperties["BolaColorRojo"], (float)jugador2.CustomProperties["BolaColorVerde"], (float)jugador2.CustomProperties["BolaColorAzul"]);
+                int modeloBola = (int)jugador2.CustomProperties["BolaModelo"];
 
                 foreach (GameObject bola in bolas)
                 {
@@ -66,7 +66,8 @@ namespace Jugador
 
                     if (id == jugador2.ActorNumber)
                     {
-                        Color.Cambiar(bola.gameObject, color2);
+                        Personalizar.Color(bola.gameObject, colorBola);
+                        Personalizar.Modelo(bola.gameObject, modeloBola);
                     }
                 }
             }
@@ -129,17 +130,13 @@ namespace Jugador
                     golpes = Cargar.CargarPartida(Unjugador.instancia.partida.numeroPartida).golpes;
                 }
 
-                Color.Cambiar(gameObject, Atributos.instancia.color);
+                Personalizar.Color(gameObject, Atributos.instancia.color);
+                Personalizar.Modelo(gameObject, Atributos.instancia.modelo);
+
+                Guardar.GuardarPartida(ultimaPosicionBola, angulo, golpes, camaraZoom);
             }
 
-            Objetos.instancia.textoGolpes.text = string.Format("Golpes: {0}", golpes.ToString());
-
-            //--------------------------------------------------------------------
-
-            if (MultiPhoton.instancia.Conectado() == false)
-            {
-                Guardar.GuardarPartida(ultimaPosicionBola, angulo, golpes, camaraZoom);
-            }            
+            Objetos.instancia.textoGolpes.text = string.Format("Golpes: {0}", golpes.ToString());       
         }
 
         public void Update()

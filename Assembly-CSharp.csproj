@@ -78,13 +78,13 @@
     <Compile Include="Assets\Scripts\Principal\PersonalizarBola.cs" />
     <Compile Include="Assets\Scripts\Escenario\Generacion\Vectores.cs" />
     <Compile Include="Assets\Photon\PhotonRealtime\Demos\DemoLoadBalancing\ConnectAndJoinRandomLb.cs" />
-    <Compile Include="Assets\Scripts\Partida\Campos.cs" />
+    <Compile Include="Assets\Scripts\Partida\Datos.cs" />
     <Compile Include="Assets\Scripts\Escenario\Colocar\Mordiscos.cs" />
     <Compile Include="Assets\Scripts\Jugador\MultiPhoton.cs" />
     <Compile Include="Assets\Scripts\Escenario\NuevoNivel.cs" />
     <Compile Include="Assets\Scripts\Jugador\MultiNombres.cs" />
     <Compile Include="Assets\Scripts\Escenario\Colocar\Muros.cs" />
-    <Compile Include="Assets\Scripts\Jugador\Color.cs" />
+    <Compile Include="Assets\Scripts\Jugador\Personalizar.cs" />
     <Compile Include="Assets\Scripts\Idiomas\Idiomas.cs" />
     <Compile Include="Assets\Scripts\Escenario\Colocar\Hoyo.cs" />
     <Compile Include="Assets\Scripts\Idiomas\IdiomasEscenario.cs" />

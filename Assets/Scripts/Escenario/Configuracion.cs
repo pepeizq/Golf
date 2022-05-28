@@ -73,20 +73,20 @@ namespace Escenario
                 {
                     aleatorio = true;
                     numeroPartida = PlayerPrefs.GetInt("numeroPartida");
-                    campo = Campos.instancia.campos[PlayerPrefs.GetInt(numeroPartida.ToString() + "campo")];
+                    campo = Datos.instancia.campos[PlayerPrefs.GetInt(numeroPartida.ToString() + "campo")];
                 }
                 else
                 {
                     aleatorio = false;
                     numeroPartida = Unjugador.instancia.partida.numeroPartida;
-                    campo = Campos.instancia.campos[Unjugador.instancia.partida.campo];
+                    campo = Datos.instancia.campos[Unjugador.instancia.partida.campo];
                 }
             }
             else
             {
                 nivel = MultiPartida.instancia.nivel;
                 aleatorio = true;
-                campo = Campos.instancia.campos[MultiPartida.instancia.campo];
+                campo = Datos.instancia.campos[MultiPartida.instancia.campo];
             }
 
             if (campo != null)

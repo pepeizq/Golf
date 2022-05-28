@@ -78,7 +78,7 @@ namespace Principal
                 botonCargarPartida.gameObject.SetActive(true);
             }
 
-            PersonalizarBola.instancia.CargarAtributoColor();
+            PersonalizarBola.instancia.CargarAtributos();
             textoVersion.text = Application.version;
         }
 
@@ -102,7 +102,7 @@ namespace Principal
                 Destroy(boton.gameObject);
             }
 
-            foreach (Campo campo in Campos.instancia.campos)
+            foreach (Campo campo in Datos.instancia.campos)
             {
                 GameObject boton = Instantiate(prefabBotonCampo, new Vector3(0, 0, 0), Quaternion.identity);
                 boton.transform.SetParent(panelCampos.gameObject.transform);
