@@ -28,11 +28,11 @@ namespace Idiomas
 
         public void CargarTraducciones(Escenas escena)
         {
-            if (PlayerPrefs.GetString("idioma") == null)
+            if (PlayerPrefs.GetString("idioma") == string.Empty)
             {
                 DetectarIdioma();
             }
-
+      
             CargarIdiomaXml(ficheroIdiomas, PlayerPrefs.GetString("idioma"));
 
             if (escena == Escenas.Principal)
@@ -174,8 +174,8 @@ namespace Idiomas
                 }
                 i += 1;
             }
-
-            if (PlayerPrefs.GetString("idioma") == null)
+         
+            if (PlayerPrefs.GetString("idioma") == string.Empty)
             {
                 PlayerPrefs.SetString("idioma", "English");
             }

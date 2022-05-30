@@ -78,7 +78,7 @@ namespace Principal
                 botonCargarPartida.gameObject.SetActive(true);
             }
 
-            PersonalizarBola.instancia.CargarAtributos();
+            PersonalizarBola.instancia.Cargar();
             textoVersion.text = Application.version;
         }
 
@@ -227,8 +227,6 @@ namespace Principal
         {
             canvasMenu.gameObject.SetActive(false);
             canvasPersonalizar.gameObject.SetActive(true);
-
-            PersonalizarBola.instancia.Iniciar();
         }
 
         //------------------------------------------------------------------

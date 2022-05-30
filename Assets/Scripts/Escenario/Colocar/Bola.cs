@@ -46,13 +46,13 @@ namespace Escenario.Colocar
                                 {
                                     Vector3 posicion = casillas[x, z].prefab.gameObject.transform.position;
 
-                                    if (PhotonNetwork.IsConnected == false)
+                                    if (MultiPhoton.instancia.Conectado() == false)
                                     {
                                         InstanciarBola(posicion);
                                     }
                                     else
                                     {
-                                        if (PhotonNetwork.IsMasterClient == true)
+                                        if (MultiPhoton.instancia.Maestro() == true)
                                         {
                                             Configuracion.instancia.photonView.RPC("MultijugadorPosicionInicioBola", RpcTarget.All, posicion);
                                         }                                           

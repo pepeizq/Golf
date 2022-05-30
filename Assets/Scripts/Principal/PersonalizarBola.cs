@@ -30,7 +30,7 @@ namespace Principal
             canvasPrincipal.gameObject.SetActive(true);
         }
 
-        public void CargarAtributos()
+        public void Cargar()
         {
             Color colorNuevo = new Color
             {
@@ -47,23 +47,22 @@ namespace Principal
             renderer.material = material;
 
             Atributos.instancia.modelo = PlayerPrefs.GetInt("jugadorBola");
-            bolaPrincipalVistaPrevia.gameObject.GetComponent<MeshFilter>().mesh = Datos.instancia.bolas[PlayerPrefs.GetInt("jugadorBola")];
-        }
+            bolaPrincipalVistaPrevia.gameObject.GetComponent<MeshFilter>().sharedMesh = Datos.instancia.bolas[PlayerPrefs.GetInt("jugadorBola")].gameObject.GetComponent<MeshFilter>().sharedMesh;
 
-        public void Iniciar()
-        {
+            //--------------------------------
+
             sliderRojo.minValue = 0f;
             sliderRojo.maxValue = 1f;
-            
+
             sliderVerde.minValue = 0f;
             sliderVerde.maxValue = 1f;
-            
+
             sliderAzul.minValue = 0f;
             sliderAzul.maxValue = 1f;
 
-            sliderRojo.value = PlayerPrefs.GetFloat("jugadorColorRojo");
-            sliderVerde.value = PlayerPrefs.GetFloat("jugadorColorVerde");
-            sliderAzul.value = PlayerPrefs.GetFloat("jugadorColorAzul");
+            sliderRojo.value = colorNuevo.r;
+            sliderVerde.value = colorNuevo.g;
+            sliderAzul.value = colorNuevo.b;
 
             if (sliderRojo.value == 0f && sliderVerde.value == 0f && sliderAzul.value == 0f)
             {
@@ -72,7 +71,7 @@ namespace Principal
                 sliderAzul.value = 1f;
             }
 
-            bolaVistaPrevia.gameObject.GetComponent<MeshFilter>().mesh = Datos.instancia.bolas[PlayerPrefs.GetInt("jugadorBola")];
+            bolaVistaPrevia.gameObject.GetComponent<MeshFilter>().sharedMesh = Datos.instancia.bolas[PlayerPrefs.GetInt("jugadorBola")].gameObject.GetComponent<MeshFilter>().sharedMesh;
         }
 
         public void CambiarColorRojo()
@@ -95,7 +94,7 @@ namespace Principal
 
         private void CambiarColor()
         {
-            UnityEngine.Color colorNuevo = new UnityEngine.Color
+            Color colorNuevo = new Color
             {
                 r = sliderRojo.value,
                 g = sliderVerde.value,
@@ -140,8 +139,8 @@ namespace Principal
             Atributos.instancia.modelo = posicion;
             PlayerPrefs.SetInt("jugadorBola", posicion);
 
-            bolaPrincipalVistaPrevia.gameObject.GetComponent<MeshFilter>().mesh = Datos.instancia.bolas[PlayerPrefs.GetInt("jugadorBola")];
-            bolaVistaPrevia.gameObject.GetComponent<MeshFilter>().mesh = Datos.instancia.bolas[PlayerPrefs.GetInt("jugadorBola")];
+            bolaPrincipalVistaPrevia.gameObject.GetComponent<MeshFilter>().sharedMesh = Datos.instancia.bolas[PlayerPrefs.GetInt("jugadorBola")].gameObject.GetComponent<MeshFilter>().sharedMesh;
+            bolaVistaPrevia.gameObject.GetComponent<MeshFilter>().sharedMesh = Datos.instancia.bolas[PlayerPrefs.GetInt("jugadorBola")].gameObject.GetComponent<MeshFilter>().sharedMesh;
         }
     }
 }

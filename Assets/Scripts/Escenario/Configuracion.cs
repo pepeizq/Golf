@@ -120,7 +120,7 @@ namespace Escenario
         {
             jugadoresDentro += 1;
 
-            if (jugadoresDentro == PhotonNetwork.PlayerList.Length)
+            if (jugadoresDentro == MultiPhoton.instancia.ListaJugadores().Length)
             {
                 Colocar.Bola.instancia.InstanciarBolaMulti(multiPosicionBolaInicio);
             }

@@ -6,7 +6,7 @@ namespace Partida
 {
     public class Datos : MonoBehaviour
     {
-        public List<Mesh> bolas;
+        public List<GameObject> bolas;
         public List<Campo> campos;
 
         public static Datos instancia;
