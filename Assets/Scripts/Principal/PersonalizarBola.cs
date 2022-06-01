@@ -46,9 +46,6 @@ namespace Principal
             material.SetColor("_BaseColor", colorNuevo);
             renderer.material = material;
 
-            Atributos.instancia.modelo = PlayerPrefs.GetInt("jugadorBola");
-            bolaPrincipalVistaPrevia.gameObject.GetComponent<MeshFilter>().sharedMesh = Datos.instancia.bolas[PlayerPrefs.GetInt("jugadorBola")].gameObject.GetComponent<MeshFilter>().sharedMesh;
-
             //--------------------------------
 
             sliderRojo.minValue = 0f;
@@ -70,8 +67,6 @@ namespace Principal
                 sliderVerde.value = 1f;
                 sliderAzul.value = 1f;
             }
-
-            bolaVistaPrevia.gameObject.GetComponent<MeshFilter>().sharedMesh = Datos.instancia.bolas[PlayerPrefs.GetInt("jugadorBola")].gameObject.GetComponent<MeshFilter>().sharedMesh;
         }
 
         public void CambiarColorRojo()
@@ -111,36 +106,6 @@ namespace Principal
 
             renderer1.material = material;
             renderer2.material = material;
-        }
-
-        public void CambiarModelo(bool sumar)
-        {
-            int posicion = PlayerPrefs.GetInt("jugadorBola");
-
-            if (sumar == true)
-            {
-                posicion += 1;
-
-                if (posicion >= Datos.instancia.bolas.Count)
-                {
-                    posicion = 0;
-                }
-            }
-            else
-            {
-                posicion -= 1;
-
-                if (posicion < 0)
-                {
-                    posicion = Datos.instancia.bolas.Count - 1;
-                }
-            }
-
-            Atributos.instancia.modelo = posicion;
-            PlayerPrefs.SetInt("jugadorBola", posicion);
-
-            bolaPrincipalVistaPrevia.gameObject.GetComponent<MeshFilter>().sharedMesh = Datos.instancia.bolas[PlayerPrefs.GetInt("jugadorBola")].gameObject.GetComponent<MeshFilter>().sharedMesh;
-            bolaVistaPrevia.gameObject.GetComponent<MeshFilter>().sharedMesh = Datos.instancia.bolas[PlayerPrefs.GetInt("jugadorBola")].gameObject.GetComponent<MeshFilter>().sharedMesh;
         }
     }
 }

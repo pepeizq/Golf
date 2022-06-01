@@ -67,7 +67,6 @@ namespace Jugador
                     if (id == jugador2.ActorNumber)
                     {
                         Personalizar.Color(bola.gameObject, colorBola);
-                        Personalizar.Modelo(bola.gameObject, modeloBola);
                     }
                 }
             }
@@ -131,7 +130,6 @@ namespace Jugador
                 }
 
                 Personalizar.Color(gameObject, Atributos.instancia.color);
-                Personalizar.Modelo(gameObject, Atributos.instancia.modelo);
 
                 Guardar.GuardarPartida(ultimaPosicionBola, angulo, golpes, camaraZoom);
             }
