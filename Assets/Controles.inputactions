@@ -78,7 +78,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Enseñar Tabla Golpes Multi",
+                    "name": "Enseñar Tabla Golpes",
                     "type": "Button",
                     "id": "a8052456-5674-4993-85c6-d8e241b7e938",
                     "expectedControlType": "Button",
@@ -227,7 +227,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Enseñar Tabla Golpes Multi",
+                    "action": "Enseñar Tabla Golpes",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

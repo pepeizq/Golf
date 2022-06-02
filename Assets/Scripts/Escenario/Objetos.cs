@@ -13,6 +13,7 @@ namespace Escenario
         public Canvas canvasPartida;
         public Canvas canvasMenu;
         public Canvas canvasCargando;
+        public Canvas canvasTablaGolpes;
 
         [Header("Cargando")]
         public Slider sliderCargando;
@@ -21,9 +22,9 @@ namespace Escenario
         public GameObject panelMensaje;
         public TextMeshProUGUI textoMensaje;
 
-        [Header("Multijugador")]
-        public GameObject panelTabla;
-        public GameObject prefabTablaJugador;
+        [Header("Golpes")]
+        public GameObject panelTablaGolpes;
+        public GameObject prefabTablaGolpesJugador;
 
         [Header("Jugador")]
         public TextMeshProUGUI textoPartida;

@@ -274,12 +274,19 @@ namespace Jugador
                 linea.enabled = false;
             }
 
+            //-----------------------------------------------------------
+
             if (MultiPhoton.instancia.Conectado() == true)
             {
                 if (controles.Principal.EnseñarNombresMulti.phase == InputActionPhase.Performed)
                 {
                     MultiNombres.instancia.Enseñar();
                 }
+            }
+
+            if (controles.Principal.EnseñarTablaGolpes.phase == InputActionPhase.Performed)
+            {
+                TablaGolpes.instancia.Enseñar();
             }
         }
 

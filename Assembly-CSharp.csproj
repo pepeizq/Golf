@@ -71,7 +71,7 @@
     <Compile Include="Assets\Scripts\Partida\NoDestruir.cs" />
     <Compile Include="Assets\Scripts\Escenario\Colocar\Forma.cs" />
     <Compile Include="Assets\Scripts\Escenario\Interfaz.cs" />
-    <Compile Include="Assets\Scripts\Jugador\MultiTablaGolpes.cs" />
+    <Compile Include="Assets\Scripts\Jugador\TablaGolpes.cs" />
     <Compile Include="Assets\Scripts\Principal\Opciones.cs" />
     <Compile Include="Assets\Scripts\Escenario\Animaciones\HoyoBola.cs" />
     <Compile Include="Assets\Scripts\Escenario\Generacion\Limites.cs" />

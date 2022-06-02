@@ -102,7 +102,7 @@ namespace Jugador
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Enseñar Tabla Golpes Multi"",
+                    ""name"": ""Enseñar Tabla Golpes"",
                     ""type"": ""Button"",
                     ""id"": ""a8052456-5674-4993-85c6-d8e241b7e938"",
                     ""expectedControlType"": ""Button"",
@@ -251,7 +251,7 @@ namespace Jugador
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Enseñar Tabla Golpes Multi"",
+                    ""action"": ""Enseñar Tabla Golpes"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -270,7 +270,7 @@ namespace Jugador
             m_Principal_CambiarPalo = m_Principal.FindAction("Cambiar Palo", throwIfNotFound: true);
             m_Principal_EnseñarMenu = m_Principal.FindAction("Enseñar Menu", throwIfNotFound: true);
             m_Principal_EnseñarNombresMulti = m_Principal.FindAction("Enseñar Nombres Multi", throwIfNotFound: true);
-            m_Principal_EnseñarTablaGolpesMulti = m_Principal.FindAction("Enseñar Tabla Golpes Multi", throwIfNotFound: true);
+            m_Principal_EnseñarTablaGolpes = m_Principal.FindAction("Enseñar Tabla Golpes", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -338,7 +338,7 @@ namespace Jugador
         private readonly InputAction m_Principal_CambiarPalo;
         private readonly InputAction m_Principal_EnseñarMenu;
         private readonly InputAction m_Principal_EnseñarNombresMulti;
-        private readonly InputAction m_Principal_EnseñarTablaGolpesMulti;
+        private readonly InputAction m_Principal_EnseñarTablaGolpes;
         public struct PrincipalActions
         {
             private @Controles m_Wrapper;
@@ -351,7 +351,7 @@ namespace Jugador
             public InputAction @CambiarPalo => m_Wrapper.m_Principal_CambiarPalo;
             public InputAction @EnseñarMenu => m_Wrapper.m_Principal_EnseñarMenu;
             public InputAction @EnseñarNombresMulti => m_Wrapper.m_Principal_EnseñarNombresMulti;
-            public InputAction @EnseñarTablaGolpesMulti => m_Wrapper.m_Principal_EnseñarTablaGolpesMulti;
+            public InputAction @EnseñarTablaGolpes => m_Wrapper.m_Principal_EnseñarTablaGolpes;
             public InputActionMap Get() { return m_Wrapper.m_Principal; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -385,9 +385,9 @@ namespace Jugador
                     @EnseñarNombresMulti.started -= m_Wrapper.m_PrincipalActionsCallbackInterface.OnEnseñarNombresMulti;
                     @EnseñarNombresMulti.performed -= m_Wrapper.m_PrincipalActionsCallbackInterface.OnEnseñarNombresMulti;
                     @EnseñarNombresMulti.canceled -= m_Wrapper.m_PrincipalActionsCallbackInterface.OnEnseñarNombresMulti;
-                    @EnseñarTablaGolpesMulti.started -= m_Wrapper.m_PrincipalActionsCallbackInterface.OnEnseñarTablaGolpesMulti;
-                    @EnseñarTablaGolpesMulti.performed -= m_Wrapper.m_PrincipalActionsCallbackInterface.OnEnseñarTablaGolpesMulti;
-                    @EnseñarTablaGolpesMulti.canceled -= m_Wrapper.m_PrincipalActionsCallbackInterface.OnEnseñarTablaGolpesMulti;
+                    @EnseñarTablaGolpes.started -= m_Wrapper.m_PrincipalActionsCallbackInterface.OnEnseñarTablaGolpes;
+                    @EnseñarTablaGolpes.performed -= m_Wrapper.m_PrincipalActionsCallbackInterface.OnEnseñarTablaGolpes;
+                    @EnseñarTablaGolpes.canceled -= m_Wrapper.m_PrincipalActionsCallbackInterface.OnEnseñarTablaGolpes;
                 }
                 m_Wrapper.m_PrincipalActionsCallbackInterface = instance;
                 if (instance != null)
@@ -416,9 +416,9 @@ namespace Jugador
                     @EnseñarNombresMulti.started += instance.OnEnseñarNombresMulti;
                     @EnseñarNombresMulti.performed += instance.OnEnseñarNombresMulti;
                     @EnseñarNombresMulti.canceled += instance.OnEnseñarNombresMulti;
-                    @EnseñarTablaGolpesMulti.started += instance.OnEnseñarTablaGolpesMulti;
-                    @EnseñarTablaGolpesMulti.performed += instance.OnEnseñarTablaGolpesMulti;
-                    @EnseñarTablaGolpesMulti.canceled += instance.OnEnseñarTablaGolpesMulti;
+                    @EnseñarTablaGolpes.started += instance.OnEnseñarTablaGolpes;
+                    @EnseñarTablaGolpes.performed += instance.OnEnseñarTablaGolpes;
+                    @EnseñarTablaGolpes.canceled += instance.OnEnseñarTablaGolpes;
                 }
             }
         }
@@ -433,7 +433,7 @@ namespace Jugador
             void OnCambiarPalo(InputAction.CallbackContext context);
             void OnEnseñarMenu(InputAction.CallbackContext context);
             void OnEnseñarNombresMulti(InputAction.CallbackContext context);
-            void OnEnseñarTablaGolpesMulti(InputAction.CallbackContext context);
+            void OnEnseñarTablaGolpes(InputAction.CallbackContext context);
         }
     }
 }
