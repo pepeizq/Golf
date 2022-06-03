@@ -58,7 +58,6 @@ namespace Jugador
             foreach (Player jugador2 in MultiPhoton.instancia.ListaJugadores())
             {
                 Color colorBola = new Color((float)jugador2.CustomProperties["BolaColorRojo"], (float)jugador2.CustomProperties["BolaColorVerde"], (float)jugador2.CustomProperties["BolaColorAzul"]);
-                int modeloBola = (int)jugador2.CustomProperties["BolaModelo"];
 
                 foreach (GameObject bola in bolas)
                 {
@@ -216,6 +215,11 @@ namespace Jugador
 
                             golpes += 1;
                             Objetos.instancia.textoGolpes.text = string.Format("Golpes: {0}", golpes.ToString());
+
+                            if (MultiPhoton.instancia.Conectado() == true)
+                            {
+                                photonView.RPC("MultijugadorSincronizarGolpes", RpcTarget.AllBuffered);
+                            }
                         }
                     }
 
@@ -483,6 +487,11 @@ namespace Jugador
 
                 cambiarPalo = true;
             }         
+        }
+
+        public void MultijugadorSincronizarGolpes()
+        {
+            photonJugador.CustomProperties["GolpesHoyo" + (Configuracion.instancia.nivel + 1)] = golpes;
         }
 
         public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo mensaje)

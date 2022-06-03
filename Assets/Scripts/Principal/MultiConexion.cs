@@ -54,7 +54,24 @@ namespace Principal
                 ["BolaColorRojo"] = Atributos.instancia.color.r,
                 ["BolaColorVerde"] = Atributos.instancia.color.g,
                 ["BolaColorAzul"] = Atributos.instancia.color.b,
-                ["BolaModelo"] = Atributos.instancia.modelo
+                ["GolpesHoyo1"] = 0,
+                ["GolpesHoyo2"] = 0,
+                ["GolpesHoyo3"] = 0,
+                ["GolpesHoyo4"] = 0,
+                ["GolpesHoyo5"] = 0,
+                ["GolpesHoyo6"] = 0,
+                ["GolpesHoyo7"] = 0,
+                ["GolpesHoyo8"] = 0,
+                ["GolpesHoyo9"] = 0,
+                ["GolpesHoyo10"] = 0,
+                ["GolpesHoyo11"] = 0,
+                ["GolpesHoyo12"] = 0,
+                ["GolpesHoyo13"] = 0,
+                ["GolpesHoyo14"] = 0,
+                ["GolpesHoyo15"] = 0,
+                ["GolpesHoyo16"] = 0,
+                ["GolpesHoyo17"] = 0,
+                ["GolpesHoyo18"] = 0
             };
 
             PhotonNetwork.LocalPlayer.CustomProperties = hash;

@@ -38,7 +38,7 @@ namespace Jugador
                     mostrar = true;
                 }
 
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(0.25f);
 
                 cambiando = false;
             }            
@@ -93,12 +93,15 @@ namespace Jugador
                         {
                             if (bola.transform.childCount >= 1)
                             {
-                                GameObject objetoNombre = bola.transform.GetChild(1).gameObject;
-
-                                if (objetoNombre.gameObject.activeSelf == true)
+                                if (bola.transform.GetChild(1).gameObject != null)
                                 {
-                                    objetoNombre.gameObject.SetActive(false);
-                                }
+                                    GameObject objetoNombre = bola.transform.GetChild(1).gameObject;
+
+                                    if (objetoNombre.gameObject.activeSelf == true)
+                                    {
+                                        objetoNombre.gameObject.SetActive(false);
+                                    }
+                                }                               
                             }    
                         }
                     }
