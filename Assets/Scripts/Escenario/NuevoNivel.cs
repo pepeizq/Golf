@@ -53,11 +53,7 @@ namespace Escenario
         {
             MultiPartida.instancia.nivel = MultiPartida.instancia.nivel += 1;
 
-            Objetos.instancia.canvasPartida.gameObject.SetActive(false);
-            Objetos.instancia.canvasCargando.gameObject.SetActive(true);
-            Objetos.instancia.sliderCargando.value = 0;
-
-            cargando = SceneManager.LoadSceneAsync("Escenario");
+            MultiPhoton.instancia.CambiarEscenaSincronizado("Escenario");
         }
     }
 }

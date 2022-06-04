@@ -106,7 +106,7 @@ namespace Escenario
         {
             if (MultiPhoton.instancia.Conectado() == true)
             {
-                jugadores = new Jugador.Bola[PhotonNetwork.PlayerList.Length];
+                jugadores = new Jugador.Bola[MultiPhoton.instancia.ListaJugadores().Length];
                 photonView.RPC("MultijugadorSumarJugador", RpcTarget.AllBuffered);
             }
 

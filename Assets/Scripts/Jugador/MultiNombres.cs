@@ -1,5 +1,5 @@
-﻿using Photon.Pun;
-using Photon.Realtime;
+﻿using Photon.Realtime;
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -52,7 +52,7 @@ namespace Jugador
                 {
                     GameObject[] bolas = GameObject.FindGameObjectsWithTag("Player");
 
-                    foreach (Player jugador2 in PhotonNetwork.PlayerList)
+                    foreach (Player jugador2 in MultiPhoton.instancia.ListaJugadores())
                     {
                         foreach (GameObject bola in bolas)
                         {
@@ -93,15 +93,22 @@ namespace Jugador
                         {
                             if (bola.transform.childCount >= 1)
                             {
-                                if (bola.transform.GetChild(1).gameObject != null)
+                                try
                                 {
-                                    GameObject objetoNombre = bola.transform.GetChild(1).gameObject;
-
-                                    if (objetoNombre.gameObject.activeSelf == true)
+                                    if (bola.transform.GetChild(1).gameObject != null)
                                     {
-                                        objetoNombre.gameObject.SetActive(false);
+                                        GameObject objetoNombre = bola.transform.GetChild(1).gameObject;
+
+                                        if (objetoNombre.gameObject.activeSelf == true)
+                                        {
+                                            objetoNombre.gameObject.SetActive(false);
+                                        }
                                     }
-                                }                               
+                                }
+                                catch (Exception ex)
+                                {
+
+                                }                                           
                             }    
                         }
                     }

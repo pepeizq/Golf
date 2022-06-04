@@ -1,4 +1,3 @@
-using Partida;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
@@ -51,7 +50,8 @@ namespace Jugador
             RoomOptions opciones = new RoomOptions
             {
                 MaxPlayers = 4,
-                CleanupCacheOnLeave = true
+                CleanupCacheOnLeave = true,
+                BroadcastPropsChangeToAll = true
             };
 
             PhotonNetwork.CreateRoom(nombreSala, opciones);
@@ -78,6 +78,12 @@ namespace Jugador
             PhotonNetwork.LoadLevel(nombreEscena);
         }
 
+        public void CambiarEscenaSincronizado(string nombreEscena)
+        {
+            PhotonNetwork.AutomaticallySyncScene = true;
+            PhotonNetwork.LoadLevel(nombreEscena);
+        }
+
         public void DestruirObjeto(GameObject objeto)
         {
             PhotonNetwork.Destroy(objeto);
@@ -86,6 +92,12 @@ namespace Jugador
         public Player[] ListaJugadores()
         {
             return PhotonNetwork.PlayerList;
+        }
+
+        public void ActualizarPropiedades(Player jugador, string propiedad, int contenido)
+        {
+            jugador.CustomProperties[propiedad] = contenido;
+            PhotonNetwork.SetPlayerCustomProperties(jugador.CustomProperties);
         }
     }
 }

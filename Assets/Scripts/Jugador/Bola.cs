@@ -218,7 +218,7 @@ namespace Jugador
 
                             if (MultiPhoton.instancia.Conectado() == true)
                             {
-                                photonView.RPC("MultijugadorSincronizarGolpes", RpcTarget.AllBuffered);
+                                MultiPhoton.instancia.ActualizarPropiedades(photonJugador, "GolpesHoyo" + (Configuracion.instancia.nivel + 1), golpes);
                             }
                         }
                     }
@@ -487,11 +487,6 @@ namespace Jugador
 
                 cambiarPalo = true;
             }         
-        }
-
-        public void MultijugadorSincronizarGolpes()
-        {
-            photonJugador.CustomProperties["GolpesHoyo" + (Configuracion.instancia.nivel + 1)] = golpes;
         }
 
         public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo mensaje)
