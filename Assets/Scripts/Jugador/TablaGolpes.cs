@@ -59,6 +59,8 @@ namespace Jugador
 
             if (Objetos.instancia.canvasTablaGolpes.isActiveAndEnabled == true)
             {
+
+
                 foreach (Transform boton in Objetos.instancia.panelTablaGolpes.gameObject.transform)
                 {
                     Destroy(boton.gameObject);
@@ -76,11 +78,13 @@ namespace Jugador
                         {
                             TextMeshProUGUI texto = panel.transform.GetChild(j).GetComponent<TextMeshProUGUI>();
                             texto.text = string.Empty;
+                            texto.gameObject.SetActive(false);
                             j += 1;
                         }
 
                         TextMeshProUGUI textoNombre = panel.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
                         textoNombre.text = jugador2.NickName;
+                        textoNombre.gameObject.SetActive(true);
 
                         int tope = Configuracion.instancia.nivel + 1;
                         int total = 0;
@@ -91,12 +95,14 @@ namespace Jugador
 
                             TextMeshProUGUI textoGolpes = panel.transform.GetChild(i).GetComponent<TextMeshProUGUI>();
                             textoGolpes.text = jugador2.CustomProperties["GolpesHoyo" + i.ToString()].ToString();
+                            textoGolpes.gameObject.SetActive(true);
 
                             total = total + (int)jugador2.CustomProperties["GolpesHoyo" + i.ToString()];
                         }
 
                         TextMeshProUGUI textoTotal = panel.transform.GetChild(panel.transform.childCount - 1).GetComponent<TextMeshProUGUI>();
                         textoTotal.text = total.ToString();
+                        textoTotal.gameObject.SetActive(true);
                     }
                 }
                 else
@@ -113,6 +119,7 @@ namespace Jugador
                         {
                             TextMeshProUGUI texto = panel.transform.GetChild(j).GetComponent<TextMeshProUGUI>();
                             texto.text = string.Empty;
+                            texto.gameObject.SetActive(false);
                             j += 1;
                         }
 
@@ -124,12 +131,14 @@ namespace Jugador
 
                             TextMeshProUGUI textoGolpes = panel.transform.GetChild(i).GetComponent<TextMeshProUGUI>();
                             textoGolpes.text = subregistro.golpes.ToString();
+                            textoGolpes.gameObject.SetActive(true);
 
                             total = total + subregistro.golpes;
                         }
 
                         TextMeshProUGUI textoTotal = panel.transform.GetChild(panel.transform.childCount - 1).GetComponent<TextMeshProUGUI>();
                         textoTotal.text = total.ToString();
+                        textoTotal.gameObject.SetActive(true);
                     }
                 }
             }
