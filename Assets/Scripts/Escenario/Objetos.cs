@@ -23,6 +23,7 @@ namespace Escenario
         public TextMeshProUGUI textoMensaje;
 
         [Header("Golpes")]
+        public GameObject panelTablaCabecera;
         public GameObject panelTablaGolpes;
         public GameObject prefabTablaGolpesJugador;
 
