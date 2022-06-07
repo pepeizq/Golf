@@ -59,15 +59,50 @@ namespace Jugador
 
             if (Objetos.instancia.canvasTablaGolpes.isActiveAndEnabled == true)
             {
+                int k = 0;
 
-
-                foreach (Transform boton in Objetos.instancia.panelTablaGolpes.gameObject.transform)
+                foreach (Transform panel in Objetos.instancia.panelTablaCabecera.gameObject.transform.GetChild(0))
                 {
-                    Destroy(boton.gameObject);
+                    if (k > Configuracion.instancia.campo.hoyos.Count)
+                    {
+                        panel.gameObject.SetActive(false);
+                    }
+                    else
+                    {
+                        panel.gameObject.SetActive(true);
+                    }
+
+                    if (k == 0 && MultiPhoton.instancia.Conectado() == false)
+                    {
+                        panel.gameObject.SetActive(false);
+                    }
+
+                    if (k + 1 == Objetos.instancia.panelTablaCabecera.gameObject.transform.GetChild(0).childCount)
+                    {
+                        panel.gameObject.SetActive(true);
+
+                        TextMeshProUGUI textoTotal = panel.transform.GetComponent<TextMeshProUGUI>();
+                        textoTotal.text = Idiomas.Idiomas.instancia.CogerCadena("total");
+                    }
+
+                    k += 1;
+                }
+
+                //-------------------------------------------------------------------------------
+
+                foreach (Transform panel in Objetos.instancia.panelTablaGolpes.gameObject.transform)
+                {
+                    Destroy(panel.gameObject);
                 }
 
                 if (MultiPhoton.instancia.Conectado() == true)
                 {
+                    RectTransform alturaCabecera = Objetos.instancia.panelTablaCabecera.gameObject.GetComponent<RectTransform>();
+                    alturaCabecera.sizeDelta = new Vector2(470 + Configuracion.instancia.campo.hoyos.Count * 65 + 120, 60);
+
+                    RectTransform alturaGolpes = Objetos.instancia.panelTablaGolpes.gameObject.GetComponent<RectTransform>();
+                    alturaGolpes.sizeDelta = new Vector2(470 + Configuracion.instancia.campo.hoyos.Count * 65 + 120, MultiPhoton.instancia.ListaJugadores().Length * 60);
+
                     foreach (Player jugador2 in MultiPhoton.instancia.ListaJugadores())
                     {
                         GameObject panel = Instantiate(Objetos.instancia.prefabTablaGolpesJugador, new Vector3(0, 0, 0), Quaternion.identity);
@@ -78,13 +113,17 @@ namespace Jugador
                         {
                             TextMeshProUGUI texto = panel.transform.GetChild(j).GetComponent<TextMeshProUGUI>();
                             texto.text = string.Empty;
-                            texto.gameObject.SetActive(false);
+
+                            if (j > Configuracion.instancia.campo.hoyos.Count)
+                            {
+                                texto.gameObject.SetActive(false);
+                            }
+                            
                             j += 1;
                         }
 
                         TextMeshProUGUI textoNombre = panel.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
                         textoNombre.text = jugador2.NickName;
-                        textoNombre.gameObject.SetActive(true);
 
                         int tope = Configuracion.instancia.nivel + 1;
                         int total = 0;
@@ -95,7 +134,6 @@ namespace Jugador
 
                             TextMeshProUGUI textoGolpes = panel.transform.GetChild(i).GetComponent<TextMeshProUGUI>();
                             textoGolpes.text = jugador2.CustomProperties["GolpesHoyo" + i.ToString()].ToString();
-                            textoGolpes.gameObject.SetActive(true);
 
                             total = total + (int)jugador2.CustomProperties["GolpesHoyo" + i.ToString()];
                         }
@@ -107,6 +145,12 @@ namespace Jugador
                 }
                 else
                 {
+                    RectTransform alturaCabecera = Objetos.instancia.panelTablaCabecera.gameObject.GetComponent<RectTransform>();
+                    alturaCabecera.sizeDelta = new Vector2(Configuracion.instancia.campo.hoyos.Count * 65 + 120, 60);
+
+                    RectTransform alturaGolpes = Objetos.instancia.panelTablaGolpes.gameObject.GetComponent<RectTransform>();
+                    alturaGolpes.sizeDelta = new Vector2(Configuracion.instancia.campo.hoyos.Count * 65 + 120, 60);
+
                     List<PartidaRegistro> registro = Unjugador.instancia.partida.registro;
 
                     if (registro.Count > 0)
@@ -119,9 +163,17 @@ namespace Jugador
                         {
                             TextMeshProUGUI texto = panel.transform.GetChild(j).GetComponent<TextMeshProUGUI>();
                             texto.text = string.Empty;
-                            texto.gameObject.SetActive(false);
+
+                            if (j > Configuracion.instancia.campo.hoyos.Count)
+                            {
+                                texto.gameObject.SetActive(false);
+                            }
+
                             j += 1;
                         }
+
+                        TextMeshProUGUI textoNombre = panel.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+                        textoNombre.gameObject.SetActive(false);
 
                         int total = 0;
                         int i = 0;
@@ -131,7 +183,6 @@ namespace Jugador
 
                             TextMeshProUGUI textoGolpes = panel.transform.GetChild(i).GetComponent<TextMeshProUGUI>();
                             textoGolpes.text = subregistro.golpes.ToString();
-                            textoGolpes.gameObject.SetActive(true);
 
                             total = total + subregistro.golpes;
                         }

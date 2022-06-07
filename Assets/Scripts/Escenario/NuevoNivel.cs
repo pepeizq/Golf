@@ -51,9 +51,16 @@ namespace Escenario
 
         public void Multijugador()
         {
-            MultiPartida.instancia.nivel = MultiPartida.instancia.nivel += 1;
+            if (MultiPartida.instancia.nivel + 1 > Configuracion.instancia.campo.hoyos.Count)
+            {
+                SceneManager.LoadScene("Principal");
+            }
+            else
+            {
+                MultiPartida.instancia.nivel = MultiPartida.instancia.nivel += 1;
 
-            MultiPhoton.instancia.CambiarEscenaSincronizado("Escenario");
+                MultiPhoton.instancia.CambiarEscenaSincronizado("Escenario");
+            }
         }
     }
 }

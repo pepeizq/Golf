@@ -16,6 +16,7 @@
 		<string name="leaveRoom">Leave Room</string>
 		<string name="startGame">Start Game</string>
 		<string name="backGame">Back to the Game</string>
+		<string name="total">Total</string>
     </English>
      
     <Spanish>
@@ -34,5 +35,6 @@
 		<string name="leaveRoom">Dejar Sala</string>
 		<string name="startGame">Empezar Partida</string>
 		<string name="backGame">Volver a la Partida</string>
+		<string name="total">Total</string>
     </Spanish>
 </languages>
