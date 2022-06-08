@@ -1,5 +1,4 @@
-﻿using Partida;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Jugador
 {
@@ -40,33 +39,6 @@ namespace Jugador
                 new GradientAlphaKey[] { new GradientAlphaKey(0.5f, 0.0f), new GradientAlphaKey(0.5f, 1.0f) }
             );
             linea.colorGradient = gradiente;
-        }
-
-        public static void Modelo(GameObject bola, int nuevoModelo)
-        {
-            if (MultiPhoton.instancia.Conectado() == true)
-            {
-                //bola.transform.GetChild(0).gameObject.GetComponent<MeshFilter>().mesh = Datos.instancia.bolas[nuevoModelo].gameObject.GetComponent<MeshFilter>().mesh;
-            }
-            else
-            {
-
-                //bola.gameObject.GetComponent<MeshFilter>().mesh = Datos.instancia.bolas[nuevoModelo];
-
-                //Mesh nuevaBola = Datos.instancia.bolas[nuevoModelo];
-                //Debug.Log(Datos.instancia.bolas[nuevoModelo].triangles);
-                //nuevaBola.vertices = bola.gameObject.GetComponent<MeshFilter>().mesh.vertices;
-                //nuevaBola.triangles = Datos.instancia.bolas[nuevoModelo].triangles;
-                //nuevaBola.normals = bola.gameObject.GetComponent<MeshFilter>().mesh.normals;
-                //nuevaBola.uv = bola.gameObject.GetComponent<MeshFilter>().mesh.uv;
-
-                //bola.gameObject.GetComponent<MeshFilter>().sharedMesh = Datos.instancia.bolas[nuevoModelo].gameObject.GetComponent<MeshFilter>().sharedMesh;
-                Mesh nuevaBola = Datos.instancia.bolas[nuevoModelo].gameObject.GetComponent<MeshFilter>().sharedMesh;
-                //nuevaBola.Clear();
-                
-
-                bola.gameObject.GetComponent<MeshFilter>().sharedMesh = nuevaBola;
-            } 
         }
     }
 }

@@ -1,4 +1,5 @@
 using Jugador;
+using Partida;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -44,6 +45,9 @@ namespace Escenario
 
         public void CargarPrincipal()
         {
+            GameObject multijugador = GameObject.FindGameObjectWithTag("Multijugador");
+            Destroy(multijugador);
+
             SceneManager.LoadScene("Principal");
         }
     }
