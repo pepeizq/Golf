@@ -74,12 +74,17 @@ namespace Jugador
             
             if (bolas.Length != MultiPhoton.instancia.Sala().PlayerCount)
             {
-                Objetos.instancia.panelMensaje.SetActive(true);
+                Objetos.instancia.panelEsperandoJugadores.SetActive(true);
+                Objetos.instancia.textoEsperandoJugadores.text = string.Format("{0} ({1}/{2})", Idiomas.Idiomas.instancia.CogerCadena("waitingPlayers"), bolas.Length, MultiPhoton.instancia.Sala().PlayerCount);
+
+                Camera camara = Objetos.instancia.camara.GetComponent<Camera>();
+                camara.transform.position = new Vector3(camara.transform.position.x, 60, camara.transform.position.z);
+
                 Configuracion.instancia.poderMover = false;
             }
             else
             {
-                Objetos.instancia.panelMensaje.SetActive(false);
+                Objetos.instancia.panelEsperandoJugadores.SetActive(false);
 
                 if (Configuracion.instancia.animacionHoyoBola == true)
                 {
@@ -417,7 +422,10 @@ namespace Jugador
         {
             if (colision.gameObject.name == "FondoHoyo")
             {
-                StartCoroutine(TerminarHoyo());
+                if (Objetos.instancia.canvasNuevoNivel.isActiveAndEnabled == false)
+                {
+                    StartCoroutine(TerminarHoyo());
+                }
             }
         }
 
@@ -452,18 +460,21 @@ namespace Jugador
 
         IEnumerator TerminarHoyo()
         {
-            yield return new WaitForSeconds(5);
-            Destroy(gameObject);
-
             if (MultiPhoton.instancia.Conectado() == false)
             {
+                NuevoNivel.instancia.MensajeEspera(Configuracion.instancia.tiempoEsperaNuevoNivelUnjugador);
+                yield return new WaitForSeconds(Configuracion.instancia.tiempoEsperaNuevoNivelUnjugador);
                 Guardar.GuardarPartida(ultimaPosicionBola, angulo, golpes, camaraZoom);          
-                NuevoNivel.instancia.UnJugador(Configuracion.instancia.nivel += 1);
+                NuevoNivel.instancia.UnJugador(Configuracion.instancia.nivel += 1);           
             }
             else
             {
+                NuevoNivel.instancia.MensajeEspera(Configuracion.instancia.tiempoEsperaNuevoNivelMultijugador);
+                yield return new WaitForSeconds(Configuracion.instancia.tiempoEsperaNuevoNivelMultijugador);
                 NuevoNivel.instancia.Multijugador();
             }
+
+            Destroy(gameObject);
         }
 
         IEnumerator CambiarPalo()

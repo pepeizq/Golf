@@ -17,6 +17,7 @@
 		<string name="startGame">Start Game</string>
 		<string name="backGame">Back to the Game</string>
 		<string name="total">Total</string>
+		<string name="waitingPlayers">Waiting Players</string>
     </English>
      
     <Spanish>
@@ -36,5 +37,6 @@
 		<string name="startGame">Empezar Partida</string>
 		<string name="backGame">Volver a la Partida</string>
 		<string name="total">Total</string>
+		<string name="waitingPlayers">Esperando Jugadores</string>
     </Spanish>
 </languages>

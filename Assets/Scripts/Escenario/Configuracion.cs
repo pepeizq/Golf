@@ -9,11 +9,6 @@ namespace Escenario
 {
     public class Configuracion : MonoBehaviourPunCallbacks
     {
-        [Header("Multijugador")]
-        [HideInInspector] public Jugador.Bola[] jugadores;
-        [HideInInspector] public Vector3 multiPosicionBolaInicio;
-        private int jugadoresDentro;
-
         [Header("Partida")]
         [HideInInspector] public int numeroPartida = 0;
         [HideInInspector] public Campo campo;
@@ -58,6 +53,15 @@ namespace Escenario
         [HideInInspector] public Vector3 posicionHoyo;
         [HideInInspector] public int posicionHoyoX;
         [HideInInspector] public int posicionHoyoZ;
+
+        [Header("Unjugador")]
+        public int tiempoEsperaNuevoNivelUnjugador = 5;
+
+        [Header("Multijugador")]
+        [HideInInspector] public Jugador.Bola[] jugadores;
+        [HideInInspector] public Vector3 multiPosicionBolaInicio;
+        private int jugadoresDentro;
+        public int tiempoEsperaNuevoNivelMultijugador = 30;
 
         public static Configuracion instancia;
 
