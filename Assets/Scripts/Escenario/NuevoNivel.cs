@@ -1,6 +1,7 @@
 using Jugador;
 using Partida;
 using Photon.Pun;
+using Photon.Realtime;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -90,6 +91,14 @@ namespace Escenario
             }
             else
             {
+                foreach (Player jugador3 in MultiPhoton.instancia.ListaJugadores())
+                {
+                    if (MultiPhoton.instancia.CogerPropiedades(jugador3, "TerminadoHoyo" + (Configuracion.instancia.nivel + 1)) == "false")
+                    {
+                        MultiPhoton.instancia.ActualizarPropiedades(jugador3, "GolpesHoyo" + (Configuracion.instancia.nivel + 1), 10);
+                    }
+                }
+
                 MultiPartida.instancia.nivel = MultiPartida.instancia.nivel += 1;
 
                 MultiPhoton.instancia.CambiarEscenaSincronizado("Escenario");

@@ -422,10 +422,7 @@ namespace Jugador
         {
             if (colision.gameObject.name == "FondoHoyo")
             {
-                if (Objetos.instancia.canvasNuevoNivel.isActiveAndEnabled == false)
-                {
-                    StartCoroutine(TerminarHoyo());
-                }
+                StartCoroutine(TerminarHoyo());
             }
         }
 
@@ -439,6 +436,11 @@ namespace Jugador
             if (colision.gameObject.name == "FondoHoyo")
             {
                 StopCoroutine(TerminarHoyo());
+
+                if (MultiPhoton.instancia.Conectado() == true)
+                {
+                    MultiPhoton.instancia.ActualizarPropiedades(MultiPhoton.instancia.JugadorLocal(), "TerminadoHoyo" + (Configuracion.instancia.nivel + 1), false);
+                }
             }
         }
 
@@ -465,16 +467,21 @@ namespace Jugador
                 NuevoNivel.instancia.MensajeEspera(Configuracion.instancia.tiempoEsperaNuevoNivelUnjugador);
                 yield return new WaitForSeconds(Configuracion.instancia.tiempoEsperaNuevoNivelUnjugador);
                 Guardar.GuardarPartida(ultimaPosicionBola, angulo, golpes, camaraZoom);          
-                NuevoNivel.instancia.UnJugador(Configuracion.instancia.nivel += 1);           
+                NuevoNivel.instancia.UnJugador(Configuracion.instancia.nivel += 1);
+                Destroy(gameObject);
             }
             else
             {
-                NuevoNivel.instancia.MensajeEspera(Configuracion.instancia.tiempoEsperaNuevoNivelMultijugador);
-                yield return new WaitForSeconds(Configuracion.instancia.tiempoEsperaNuevoNivelMultijugador);
-                NuevoNivel.instancia.Multijugador();
-            }
+                if (Objetos.instancia.canvasNuevoNivel.isActiveAndEnabled == false)
+                {
+                    NuevoNivel.instancia.MensajeEspera(Configuracion.instancia.tiempoEsperaNuevoNivelMultijugador);
+                    yield return new WaitForSeconds(Configuracion.instancia.tiempoEsperaNuevoNivelMultijugador);
+                    Destroy(gameObject);
+                    NuevoNivel.instancia.Multijugador();
+                }
 
-            Destroy(gameObject);
+                MultiPhoton.instancia.ActualizarPropiedades(MultiPhoton.instancia.JugadorLocal(), "TerminadoHoyo" + (Configuracion.instancia.nivel + 1), true);
+            }
         }
 
         IEnumerator CambiarPalo()

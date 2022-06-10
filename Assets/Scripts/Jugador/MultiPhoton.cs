@@ -94,7 +94,23 @@ namespace Jugador
             return PhotonNetwork.PlayerList;
         }
 
+        public Player JugadorLocal()
+        {
+            return PhotonNetwork.LocalPlayer;
+        }
+
+        public string CogerPropiedades(Player jugador, string propiedad)
+        {
+            return jugador.CustomProperties[propiedad].ToString();
+        }
+
         public void ActualizarPropiedades(Player jugador, string propiedad, int contenido)
+        {
+            jugador.CustomProperties[propiedad] = contenido;
+            PhotonNetwork.SetPlayerCustomProperties(jugador.CustomProperties);
+        }
+
+        public void ActualizarPropiedades(Player jugador, string propiedad, bool contenido)
         {
             jugador.CustomProperties[propiedad] = contenido;
             PhotonNetwork.SetPlayerCustomProperties(jugador.CustomProperties);
