@@ -58,10 +58,10 @@ namespace Escenario
         public int tiempoEsperaNuevoNivelUnjugador = 5;
 
         [Header("Multijugador")]
+        public int tiempoEsperaNuevoNivelMultijugador = 30;
         [HideInInspector] public Jugador.Bola[] jugadores;
         [HideInInspector] public Vector3 multiPosicionBolaInicio;
-        private int jugadoresDentro;
-        public int tiempoEsperaNuevoNivelMultijugador = 30;
+        private int jugadoresDentro;      
 
         public static Configuracion instancia;
 

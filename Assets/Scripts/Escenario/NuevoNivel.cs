@@ -91,11 +91,11 @@ namespace Escenario
             }
             else
             {
-                foreach (Player jugador3 in MultiPhoton.instancia.ListaJugadores())
-                {
-                    if (MultiPhoton.instancia.CogerPropiedades(jugador3, "TerminadoHoyo" + (Configuracion.instancia.nivel + 1)) == "false")
+                foreach (Player jugador2 in MultiPhoton.instancia.ListaJugadores())
+                {                   
+                    if (bool.Parse(MultiPhoton.instancia.CogerPropiedades(jugador2, "TerminadoHoyo" + (Configuracion.instancia.nivel + 1))) == false)
                     {
-                        MultiPhoton.instancia.ActualizarPropiedades(jugador3, "GolpesHoyo" + (Configuracion.instancia.nivel + 1), 10);
+                        MultiPhoton.instancia.ActualizarPropiedades(jugador2, "GolpesHoyo" + (Configuracion.instancia.nivel + 1), 10);
                     }
                 }
 

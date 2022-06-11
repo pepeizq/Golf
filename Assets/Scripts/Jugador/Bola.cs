@@ -43,7 +43,7 @@ namespace Jugador
         {
             photonJugador = jugador;
             id = jugador.ActorNumber;
-
+   
             Configuracion.instancia.jugadores[id - 1] = this;
 
             if (photonView.IsMine == false)
@@ -422,6 +422,11 @@ namespace Jugador
         {
             if (colision.gameObject.name == "FondoHoyo")
             {
+                if (MultiPhoton.instancia.Conectado() == true && photonView.IsMine == true)
+                {
+                    MultiPhoton.instancia.ActualizarPropiedades(photonJugador, "TerminadoHoyo" + (Configuracion.instancia.nivel + 1), true);
+                }
+
                 StartCoroutine(TerminarHoyo());
             }
         }
@@ -435,12 +440,12 @@ namespace Jugador
         {
             if (colision.gameObject.name == "FondoHoyo")
             {
-                StopCoroutine(TerminarHoyo());
-
-                if (MultiPhoton.instancia.Conectado() == true)
+                if (MultiPhoton.instancia.Conectado() == true && photonView.IsMine == true)
                 {
-                    MultiPhoton.instancia.ActualizarPropiedades(MultiPhoton.instancia.JugadorLocal(), "TerminadoHoyo" + (Configuracion.instancia.nivel + 1), false);
+                    MultiPhoton.instancia.ActualizarPropiedades(photonJugador, "TerminadoHoyo" + (Configuracion.instancia.nivel + 1), false);
                 }
+
+                StopCoroutine(TerminarHoyo());
             }
         }
 
@@ -476,11 +481,9 @@ namespace Jugador
                 {
                     NuevoNivel.instancia.MensajeEspera(Configuracion.instancia.tiempoEsperaNuevoNivelMultijugador);
                     yield return new WaitForSeconds(Configuracion.instancia.tiempoEsperaNuevoNivelMultijugador);
-                    Destroy(gameObject);
                     NuevoNivel.instancia.Multijugador();
-                }
-
-                MultiPhoton.instancia.ActualizarPropiedades(MultiPhoton.instancia.JugadorLocal(), "TerminadoHoyo" + (Configuracion.instancia.nivel + 1), true);
+                    Destroy(gameObject);
+                }               
             }
         }
 
