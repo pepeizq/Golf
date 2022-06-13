@@ -101,7 +101,7 @@ namespace Escenario
 
                 MultiPartida.instancia.nivel = MultiPartida.instancia.nivel += 1;
 
-                MultiPhoton.instancia.CambiarEscenaSincronizado("Escenario");
+                MultiPhoton.instancia.photonView.RPC("CambiarEscena", RpcTarget.AllBuffered, "Escenario");
             }
         }
     }

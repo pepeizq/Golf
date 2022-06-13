@@ -56,8 +56,9 @@ namespace Jugador
             GameObject[] bolas = GameObject.FindGameObjectsWithTag("Player");
 
             foreach (Player jugador2 in MultiPhoton.instancia.ListaJugadores())
-            {
+            {            
                 Color colorBola = new Color((float)jugador2.CustomProperties["BolaColorRojo"], (float)jugador2.CustomProperties["BolaColorVerde"], (float)jugador2.CustomProperties["BolaColorAzul"]);
+                Debug.Log(jugador2.NickName);
 
                 foreach (GameObject bola in bolas)
                 {

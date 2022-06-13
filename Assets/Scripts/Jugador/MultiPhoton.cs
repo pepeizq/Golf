@@ -76,12 +76,7 @@ namespace Jugador
         public void CambiarEscena(string nombreEscena)
         {
             PhotonNetwork.LoadLevel(nombreEscena);
-        }
-
-        public void CambiarEscenaSincronizado(string nombreEscena)
-        {
             PhotonNetwork.AutomaticallySyncScene = true;
-            PhotonNetwork.LoadLevel(nombreEscena);
         }
 
         public void DestruirObjeto(GameObject objeto)
