@@ -1,3 +1,4 @@
+using Partida;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
@@ -109,6 +110,12 @@ namespace Jugador
         {
             jugador.CustomProperties[propiedad] = contenido;
             PhotonNetwork.SetPlayerCustomProperties(jugador.CustomProperties);
+        }
+
+        [PunRPC]
+        public void AsignarCampo(int campo)
+        {
+            MultiPartida.instancia.campo = campo;
         }
     }
 }

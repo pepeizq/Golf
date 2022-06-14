@@ -18,7 +18,7 @@ namespace Jugador
             }
 
             Color defecto = new Color(1f, 1f, 1f, 1f);
-            Debug.Log(renderer.material.color);
+
             if (renderer.material.color == defecto)
             {
                 Material material = new Material(Shader.Find("HDRP/Lit"));

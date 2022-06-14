@@ -4,8 +4,8 @@ namespace Partida
 {
     public class MultiPartida : MonoBehaviour
     {
-        public int campo;
-        public int nivel;
+        public int campo = 0;
+        public int nivel = 0;
 
         public static MultiPartida instancia;
 

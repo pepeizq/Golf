@@ -1,7 +1,5 @@
-using Jugador;
 using Partida;
 using Photon.Pun;
-using Photon.Realtime;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -55,10 +53,7 @@ namespace Escenario
 
             if (nuevoNivel > Configuracion.instancia.campo.hoyos.Count)
             {
-                GameObject multijugador = GameObject.FindGameObjectWithTag("Multijugador");
-                Destroy(multijugador);
-
-                SceneManager.LoadScene("Principal");
+                Configuracion.instancia.VolverPrincipal();
             }
             else
             {
@@ -82,27 +77,22 @@ namespace Escenario
         {
             Objetos.instancia.canvasNuevoNivel.gameObject.SetActive(false);
 
-            if (MultiPartida.instancia.nivel + 1 > Configuracion.instancia.campo.hoyos.Count)
+            if (MultiPartida.instancia.nivel >= Configuracion.instancia.campo.hoyos.Count - 1)
             {
-                GameObject multijugador = GameObject.FindGameObjectWithTag("Multijugador");
-                Destroy(multijugador);
-
-                SceneManager.LoadScene("Principal");
+                Configuracion.instancia.photonView.RPC("VolverPrincipal", RpcTarget.All);
             }
             else
             {
-                foreach (Player jugador2 in MultiPhoton.instancia.ListaJugadores())
-                {                   
-                    if (bool.Parse(MultiPhoton.instancia.CogerPropiedades(jugador2, "TerminadoHoyo" + (Configuracion.instancia.nivel + 1))) == false)
-                    {
-                        MultiPhoton.instancia.ActualizarPropiedades(jugador2, "GolpesHoyo" + (Configuracion.instancia.nivel + 1), 10);
-                    }
-                }
-
-                MultiPartida.instancia.nivel = MultiPartida.instancia.nivel += 1;
-
-                MultiPhoton.instancia.photonView.RPC("CambiarEscena", RpcTarget.AllBuffered, "Escenario");
+                Configuracion.instancia.photonView.RPC("MultijugadorRecargarEscena", RpcTarget.All);
             }
+        }
+
+        public void VolverPrincipal()
+        {
+            GameObject multijugador = GameObject.FindGameObjectWithTag("Multijugador");
+            Destroy(multijugador);
+
+            SceneManager.LoadScene("Principal");
         }
     }
 }

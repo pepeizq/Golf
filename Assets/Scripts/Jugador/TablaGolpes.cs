@@ -11,7 +11,7 @@ namespace Jugador
     public class TablaGolpes : MonoBehaviour
     {
         private bool cambiando = false;
-        private bool mostrar = false;
+        [HideInInspector] public bool mostrar = false;
 
         public static TablaGolpes instancia;
 
@@ -22,7 +22,10 @@ namespace Jugador
 
         public void Enseñar()
         {
-            StartCoroutine(Enseñar2());
+            if (Objetos.instancia.canvasVolverPrincipal.gameObject.activeSelf == false)
+            {
+                StartCoroutine(Enseñar2());
+            }   
         }
 
         IEnumerator Enseñar2()
@@ -136,6 +139,12 @@ namespace Jugador
                             textoGolpes.text = jugador2.CustomProperties["GolpesHoyo" + i.ToString()].ToString();
 
                             total = total + (int)jugador2.CustomProperties["GolpesHoyo" + i.ToString()];
+
+                            if (bool.Parse(jugador2.CustomProperties["TerminadoHoyo" + i.ToString()].ToString()) == false && i <= Configuracion.instancia.nivel)
+                            {
+                                textoGolpes.text = "10";
+                                total = total + 10;
+                            }                           
                         }
 
                         TextMeshProUGUI textoTotal = panel.transform.GetChild(panel.transform.childCount - 1).GetComponent<TextMeshProUGUI>();

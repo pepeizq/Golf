@@ -15,6 +15,7 @@ namespace Escenario
         public Canvas canvasCargando;
         public Canvas canvasTablaGolpes;
         public Canvas canvasNuevoNivel;
+        public Canvas canvasVolverPrincipal;
 
         [Header("NuevoNivel")]
         public Slider sliderCargando;
@@ -43,6 +44,16 @@ namespace Escenario
             instancia = this;
 
             instancia.sliderPotencia.gameObject.SetActive(false);
+        }
+
+        public void OcultarCanvas()
+        {
+            canvasPartida.gameObject.SetActive(false);
+            canvasMenu.gameObject.SetActive(false);
+            canvasCargando.gameObject.SetActive(false);
+            canvasTablaGolpes.gameObject.SetActive(false);
+            canvasNuevoNivel.gameObject.SetActive(false);
+            canvasVolverPrincipal.gameObject.SetActive(false);
         }
     }
 }

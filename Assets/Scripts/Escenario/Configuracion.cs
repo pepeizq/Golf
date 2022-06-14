@@ -4,6 +4,7 @@ using Partida;
 using Photon.Pun;
 using Recursos;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Escenario
 {
@@ -139,6 +140,25 @@ namespace Escenario
         public void MultijugadorPosicionInicioBola(Vector3 posicion)
         {
             multiPosicionBolaInicio = posicion;
+        }
+
+        [PunRPC]
+        public void MultijugadorRecargarEscena()
+        {
+            MultiPartida.instancia.nivel = MultiPartida.instancia.nivel += 1;
+            SceneManager.LoadScene("Escenario");
+        }
+
+        [PunRPC]
+        public void VolverPrincipal()
+        {
+            Objetos.instancia.OcultarCanvas();
+
+            poderMover = false;
+            TablaGolpes.instancia.mostrar = true;
+
+            Objetos.instancia.canvasTablaGolpes.gameObject.SetActive(true);
+            Objetos.instancia.canvasVolverPrincipal.gameObject.SetActive(true);
         }
 
         public enum Palos { Madera, Hierro }

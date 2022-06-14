@@ -20,7 +20,7 @@ namespace Escenario
         {
             if (controles != null)
             {
-                if (controles.Principal.EnseñarMenu.phase == InputActionPhase.Performed)
+                if (controles.Principal.EnseñarMenu.phase == InputActionPhase.Performed && Objetos.instancia.canvasVolverPrincipal.gameObject.activeSelf == false)
                 {
                     EnseñarMenu();
                 }
@@ -31,7 +31,7 @@ namespace Escenario
         {
             Configuracion.instancia.poderMover = false;
 
-            Objetos.instancia.canvasPartida.gameObject.SetActive(false);
+            Objetos.instancia.OcultarCanvas();
             Objetos.instancia.canvasMenu.gameObject.SetActive(true);
         }
 
@@ -39,7 +39,7 @@ namespace Escenario
         {
             Configuracion.instancia.poderMover = true;
 
-            Objetos.instancia.canvasMenu.gameObject.SetActive(false);
+            Objetos.instancia.OcultarCanvas();
             Objetos.instancia.canvasPartida.gameObject.SetActive(true);
         }
 

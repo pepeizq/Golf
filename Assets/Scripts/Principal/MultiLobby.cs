@@ -30,6 +30,9 @@ namespace Principal
 
         public void VolverPrincipal()
         {
+            GameObject multijugador = GameObject.FindGameObjectWithTag("Multijugador");
+            Destroy(multijugador);
+
             canvasLobby.gameObject.SetActive(false);
             canvasPrincipal.gameObject.SetActive(true);
 
@@ -173,7 +176,7 @@ namespace Principal
 
         public void EmpezarPartida()
         {
-            MultiPartida.instancia.campo = 0;
+            MultiPhoton.instancia.photonView.RPC("AsignarCampo", RpcTarget.All, 1);
             MultiPartida.instancia.nivel = 0;
 
             botonEmpezarPartida.interactable = false;
