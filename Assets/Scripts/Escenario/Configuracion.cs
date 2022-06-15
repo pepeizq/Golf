@@ -14,6 +14,7 @@ namespace Escenario
         [HideInInspector] public int numeroPartida = 0;
         [HideInInspector] public Campo campo;
         public Palos palos;
+        [HideInInspector] public bool partidaTerminada = false;
 
         [Header("Bola")]
         public float potenciaMaxima = 6f;
@@ -60,6 +61,7 @@ namespace Escenario
 
         [Header("Multijugador")]
         public int tiempoEsperaNuevoNivelMultijugador = 30;
+        public int golpesExtraMultijugador = 10;
         [HideInInspector] public Jugador.Bola[] jugadores;
         [HideInInspector] public Vector3 multiPosicionBolaInicio;
         private int jugadoresDentro;      
@@ -150,15 +152,15 @@ namespace Escenario
         }
 
         [PunRPC]
-        public void VolverPrincipal()
+        public void PartidaTerminada()
         {
-            Objetos.instancia.OcultarCanvas();
-
+            partidaTerminada = true;
             poderMover = false;
-            TablaGolpes.instancia.mostrar = true;
 
+            Objetos.instancia.OcultarCanvas();        
+            TablaGolpes.instancia.mostrar = true;
             Objetos.instancia.canvasTablaGolpes.gameObject.SetActive(true);
-            Objetos.instancia.canvasVolverPrincipal.gameObject.SetActive(true);
+            Objetos.instancia.canvasPartidaTerminada.gameObject.SetActive(true);
         }
 
         public enum Palos { Madera, Hierro }

@@ -22,7 +22,7 @@ namespace Jugador
 
         public void Enseñar()
         {
-            if (Objetos.instancia.canvasVolverPrincipal.gameObject.activeSelf == false)
+            if (Objetos.instancia.canvasPartidaTerminada.gameObject.activeSelf == false)
             {
                 StartCoroutine(Enseñar2());
             }   
@@ -106,6 +106,28 @@ namespace Jugador
                     RectTransform alturaGolpes = Objetos.instancia.panelTablaGolpes.gameObject.GetComponent<RectTransform>();
                     alturaGolpes.sizeDelta = new Vector2(470 + Configuracion.instancia.campo.hoyos.Count * 65 + 120, MultiPhoton.instancia.ListaJugadores().Length * 60);
 
+                    List<int> mayorGolpes = new List<int>();
+
+                    foreach (var hoyo in Configuracion.instancia.campo.hoyos)
+                    {
+                        mayorGolpes.Add(0);
+                    }
+
+                    foreach (Player jugador2 in MultiPhoton.instancia.ListaJugadores())
+                    {
+                        int tope = Configuracion.instancia.nivel + 1;
+                        int i = 0;
+                        while (i < tope)
+                        {
+                            i += 1;
+
+                            if (mayorGolpes[i - 1] < int.Parse(jugador2.CustomProperties["GolpesHoyo" + i.ToString()].ToString()))
+                            {
+                                mayorGolpes[i - 1] = int.Parse(jugador2.CustomProperties["GolpesHoyo" + i.ToString()].ToString());
+                            }
+                        }
+                    }
+
                     foreach (Player jugador2 in MultiPhoton.instancia.ListaJugadores())
                     {
                         GameObject panel = Instantiate(Objetos.instancia.prefabTablaGolpesJugador, new Vector3(0, 0, 0), Quaternion.identity);
@@ -142,9 +164,14 @@ namespace Jugador
 
                             if (bool.Parse(jugador2.CustomProperties["TerminadoHoyo" + i.ToString()].ToString()) == false && i <= Configuracion.instancia.nivel)
                             {
-                                textoGolpes.text = "10";
-                                total = total + 10;
-                            }                           
+                                textoGolpes.text = (mayorGolpes[i - 1] + Configuracion.instancia.golpesExtraMultijugador).ToString();
+                                total = total + mayorGolpes[i - 1] + Configuracion.instancia.golpesExtraMultijugador;
+                            } 
+                            else if (bool.Parse(jugador2.CustomProperties["TerminadoHoyo" + i.ToString()].ToString()) == false && Configuracion.instancia.partidaTerminada == true)
+                            {
+                                textoGolpes.text = (mayorGolpes[i - 1] + Configuracion.instancia.golpesExtraMultijugador).ToString();
+                                total = total + mayorGolpes[i - 1] + Configuracion.instancia.golpesExtraMultijugador;
+                            }
                         }
 
                         TextMeshProUGUI textoTotal = panel.transform.GetChild(panel.transform.childCount - 1).GetComponent<TextMeshProUGUI>();

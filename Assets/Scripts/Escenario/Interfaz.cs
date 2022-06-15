@@ -20,7 +20,7 @@ namespace Escenario
         {
             if (controles != null)
             {
-                if (controles.Principal.EnseñarMenu.phase == InputActionPhase.Performed && Objetos.instancia.canvasVolverPrincipal.gameObject.activeSelf == false)
+                if (controles.Principal.EnseñarMenu.phase == InputActionPhase.Performed && Objetos.instancia.canvasPartidaTerminada.gameObject.activeSelf == false)
                 {
                     EnseñarMenu();
                 }

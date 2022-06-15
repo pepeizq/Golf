@@ -53,7 +53,7 @@ namespace Escenario
 
             if (nuevoNivel > Configuracion.instancia.campo.hoyos.Count)
             {
-                Configuracion.instancia.VolverPrincipal();
+                Configuracion.instancia.PartidaTerminada();
             }
             else
             {
@@ -79,7 +79,7 @@ namespace Escenario
 
             if (MultiPartida.instancia.nivel >= Configuracion.instancia.campo.hoyos.Count - 1)
             {
-                Configuracion.instancia.photonView.RPC("VolverPrincipal", RpcTarget.All);
+                Configuracion.instancia.photonView.RPC("PartidaTerminada", RpcTarget.All);
             }
             else
             {

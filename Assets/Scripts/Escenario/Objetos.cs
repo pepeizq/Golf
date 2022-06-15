@@ -15,7 +15,7 @@ namespace Escenario
         public Canvas canvasCargando;
         public Canvas canvasTablaGolpes;
         public Canvas canvasNuevoNivel;
-        public Canvas canvasVolverPrincipal;
+        public Canvas canvasPartidaTerminada;
 
         [Header("NuevoNivel")]
         public Slider sliderCargando;
@@ -53,7 +53,7 @@ namespace Escenario
             canvasCargando.gameObject.SetActive(false);
             canvasTablaGolpes.gameObject.SetActive(false);
             canvasNuevoNivel.gameObject.SetActive(false);
-            canvasVolverPrincipal.gameObject.SetActive(false);
+            canvasPartidaTerminada.gameObject.SetActive(false);
         }
     }
 }

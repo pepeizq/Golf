@@ -30,9 +30,6 @@ namespace Principal
 
         public void VolverPrincipal()
         {
-            GameObject multijugador = GameObject.FindGameObjectWithTag("Multijugador");
-            Destroy(multijugador);
-
             canvasLobby.gameObject.SetActive(false);
             canvasPrincipal.gameObject.SetActive(true);
 

@@ -2288,6 +2288,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b16b87cc68a9142418f528c6d647058f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mostrar: 0
 --- !u!1 &585149974
 GameObject:
   m_ObjectHideFlags: 0
@@ -6600,6 +6601,7 @@ MonoBehaviour:
   numeroPartida: 34
   campo: {fileID: 11400000, guid: 5f1ea259c26884241980cf74c5b240b4, type: 2}
   palos: 0
+  partidaTerminada: 0
   potenciaMaxima: 10
   anguloVelocidad: 100
   lineaLongitud: 2
@@ -6631,6 +6633,7 @@ MonoBehaviour:
   posicionHoyoZ: 0
   tiempoEsperaNuevoNivelUnjugador: 5
   tiempoEsperaNuevoNivelMultijugador: 30
+  golpesExtraMultijugador: 10
   jugadores: []
   multiPosicionBolaInicio: {x: 0, y: 0, z: 0}
 --- !u!114 &1707549034
@@ -6652,7 +6655,7 @@ MonoBehaviour:
   canvasCargando: {fileID: 589323591}
   canvasTablaGolpes: {fileID: 722565338}
   canvasNuevoNivel: {fileID: 36399858}
-  canvasVolverPrincipal: {fileID: 1924807823}
+  canvasPartidaTerminada: {fileID: 1924807823}
   sliderCargando: {fileID: 955714459}
   textoSegundos: {fileID: 1816295677}
   panelEsperandoJugadores: {fileID: 1077870873}
@@ -7252,7 +7255,7 @@ GameObject:
   - component: {fileID: 1924807822}
   - component: {fileID: 1924807821}
   m_Layer: 5
-  m_Name: CanvasVolverPrincipal
+  m_Name: CanvasPartidaTerminada
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
