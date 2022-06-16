@@ -36,6 +36,9 @@ namespace Jugador
 
         private Controles controles;
 
+        public GameObject paloMadera;
+        public GameObject paloHierro;
+
         public static Bola instancia;
 
         [PunRPC]
@@ -88,7 +91,7 @@ namespace Jugador
 
                 if (Configuracion.instancia.animacionHoyoBola == true)
                 {
-                    HoyoBola.instancia.Generar();
+                    PresentacionHoyoBola.instancia.Generar();
                 }
                 else
                 {

@@ -133,7 +133,7 @@ namespace Escenario
             {
                 if (MultiPhoton.instancia.Conectado() == false)
                 {
-                    HoyoBola.instancia.Generar();
+                    PresentacionHoyoBola.instancia.Generar();
                 }
             }
         }

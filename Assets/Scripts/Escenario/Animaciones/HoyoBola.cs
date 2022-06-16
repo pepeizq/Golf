@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace Escenario.Animaciones
 {
-    public class HoyoBola : MonoBehaviour
+    public class PresentacionHoyoBola : MonoBehaviour
     {
         private float pasos = 0f;
         private bool animacion = false;
 
-        public static HoyoBola instancia;
+        public static PresentacionHoyoBola instancia;
 
         public void Awake()
         {

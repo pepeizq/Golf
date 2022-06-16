@@ -70,6 +70,7 @@
     <Compile Include="Assets\Scripts\Principal\MultiConexion.cs" />
     <Compile Include="Assets\Scripts\Partida\NoDestruir.cs" />
     <Compile Include="Assets\Scripts\Escenario\Colocar\Forma.cs" />
+    <Compile Include="Assets\Scripts\Escenario\Animaciones\PaloBola.cs" />
     <Compile Include="Assets\Scripts\Escenario\Interfaz.cs" />
     <Compile Include="Assets\Scripts\Jugador\TablaGolpes.cs" />
     <Compile Include="Assets\Scripts\Principal\Opciones.cs" />
