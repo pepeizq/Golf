@@ -15,8 +15,8 @@ namespace Jugador
         [HideInInspector] public Player photonJugador;
         [HideInInspector] public int id;
 
-        private float angulo = 0;
-        private float potencia = 0;
+        [HideInInspector] public float rotacion = 0;
+        [HideInInspector] public float potencia = 0;
         private bool potenciaDecrecer = false;
         private int golpes = 0;
 
@@ -125,20 +125,20 @@ namespace Jugador
             //--------------------------------------------------------------------
 
             camaraZoom = Configuracion.instancia.zoomDefecto;
-            angulo = 90;
+            rotacion = 90;
 
             if (MultiPhoton.instancia.Conectado() == false)
             {
                 if (Unjugador.instancia.nuevaPartida == false)
                 {
                     camaraZoom = Cargar.CargarPartida(Unjugador.instancia.partida.numeroPartida).zoom;
-                    angulo = Cargar.CargarPartida(Unjugador.instancia.partida.numeroPartida).angulo;
+                    rotacion = Cargar.CargarPartida(Unjugador.instancia.partida.numeroPartida).rotacion;
                     golpes = Cargar.CargarPartida(Unjugador.instancia.partida.numeroPartida).golpes;
                 }
 
                 Personalizar.Color(gameObject, Atributos.instancia.color);
 
-                Guardar.GuardarPartida(ultimaPosicionBola, angulo, golpes, camaraZoom);
+                Guardar.GuardarPartida(ultimaPosicionBola, rotacion, golpes, camaraZoom);
             }
 
             Objetos.instancia.textoGolpes.text = string.Format("Golpes: {0}", golpes.ToString());       
@@ -171,11 +171,20 @@ namespace Jugador
                     cuerpo.velocity = Vector3.zero;
                     cuerpo.angularVelocity = Vector3.zero;
 
+                    if (Configuracion.instancia.paloUsado == Configuracion.Palos.Madera)
+                    {
+                        PaloEmpujarBola.instancia.Generar(gameObject, paloMadera);
+                    }
+                    else if (Configuracion.instancia.paloUsado == Configuracion.Palos.Hierro)
+                    {
+                        PaloEmpujarBola.instancia.Generar(gameObject, paloHierro);
+                    }
+
                     linea.enabled = true;
                     ultimaPosicionBola = transform.parent.localPosition + cuerpo.transform.localPosition;
                     ultimaPosicionCuerpo = cuerpo.transform.localPosition;
 
-                    Guardar.GuardarPartida(ultimaPosicionBola, angulo, golpes, camaraZoom);
+                    Guardar.GuardarPartida(ultimaPosicionBola, rotacion, golpes, camaraZoom);
                     Transparentar.Casillas(ultimaPosicionBola, Transparentar.CasillasMaterial.Transparente);
 
                     if (controles.Principal.BolaPotencia.phase == InputActionPhase.Performed)
@@ -207,16 +216,18 @@ namespace Jugador
                     }
                     else
                     {
+                        PaloEmpujarBola.instancia.Destruir();
+
                         if (potencia != 0)
                         {
-                            if (Configuracion.instancia.palos == Configuracion.Palos.Madera)
+                            if (Configuracion.instancia.paloUsado == Configuracion.Palos.Madera)
                             {
-                                cuerpo.AddForce(Quaternion.Euler(0, angulo, 0) * Vector3.up * (potencia * 2), ForceMode.Impulse);
-                                cuerpo.AddForce(Quaternion.Euler(0, angulo, 0) * Vector3.forward * (potencia * 2), ForceMode.Impulse);
+                                cuerpo.AddForce(Quaternion.Euler(0, rotacion, 0) * Vector3.up * (potencia * 2), ForceMode.Impulse);
+                                cuerpo.AddForce(Quaternion.Euler(0, rotacion, 0) * Vector3.forward * (potencia * 2), ForceMode.Impulse);
                             }
                             else
                             {
-                                cuerpo.AddForce(Quaternion.Euler(0, angulo, 0) * Vector3.forward * potencia, ForceMode.Impulse);
+                                cuerpo.AddForce(Quaternion.Euler(0, rotacion, 0) * Vector3.forward * potencia, ForceMode.Impulse);
                             }
 
                             potencia = 0;
@@ -246,19 +257,19 @@ namespace Jugador
 
                     if (controles.Principal.BolaRotarIzquierda.phase == InputActionPhase.Performed)
                     {
-                        angulo -= Time.deltaTime * Configuracion.instancia.anguloVelocidad;
+                        rotacion -= Time.deltaTime * Configuracion.instancia.rotacionVelocidad;
                     }
 
                     
                     if (controles.Principal.BolaRotarDerecha.phase == InputActionPhase.Performed)
                     {
-                        angulo += Time.deltaTime * Configuracion.instancia.anguloVelocidad;
+                        rotacion += Time.deltaTime * Configuracion.instancia.rotacionVelocidad;
                     }
 
                     //--------------------------------------------------------
 
                     linea.SetPosition(0, gameObject.transform.position);
-                    linea.SetPosition(1, gameObject.transform.position + Quaternion.Euler(0, angulo, 0) * Vector3.forward * (Configuracion.instancia.lineaLongitud + potencia / 4));
+                    linea.SetPosition(1, gameObject.transform.position + Quaternion.Euler(0, rotacion, 0) * Vector3.forward * (Configuracion.instancia.lineaLongitud + potencia / 4));
 
                     //--------------------------------------------------------
 
@@ -474,7 +485,7 @@ namespace Jugador
             {
                 NuevoNivel.instancia.MensajeEspera(Configuracion.instancia.tiempoEsperaNuevoNivelUnjugador);
                 yield return new WaitForSeconds(Configuracion.instancia.tiempoEsperaNuevoNivelUnjugador);
-                Guardar.GuardarPartida(ultimaPosicionBola, angulo, golpes, camaraZoom);          
+                Guardar.GuardarPartida(ultimaPosicionBola, rotacion, golpes, camaraZoom);          
                 NuevoNivel.instancia.UnJugador(Configuracion.instancia.nivel += 1);
                 Destroy(gameObject);
             }
@@ -496,16 +507,16 @@ namespace Jugador
             {
                 cambiarPalo = false;
 
-                if (Configuracion.instancia.palos == Configuracion.Palos.Madera)
+                if (Configuracion.instancia.paloUsado == Configuracion.Palos.Madera)
                 {
-                    Configuracion.instancia.palos = Configuracion.Palos.Hierro;
+                    Configuracion.instancia.paloUsado = Configuracion.Palos.Hierro;
                 }
                 else
                 {
-                    Configuracion.instancia.palos = Configuracion.Palos.Madera;
+                    Configuracion.instancia.paloUsado = Configuracion.Palos.Madera;
                 }
 
-                Objetos.instancia.textoPalos.text = Configuracion.instancia.palos.ToString();
+                Objetos.instancia.textoPalos.text = Configuracion.instancia.paloUsado.ToString();
 
                 yield return new WaitForSeconds(0.5f);
 

@@ -47,7 +47,7 @@ namespace Partida
     public class PartidaMaestro
     {
         public VectorTres posicion;
-        public float angulo;
+        public float rotacion;
         public int golpes;
         public float zoom;
         public string fecha;

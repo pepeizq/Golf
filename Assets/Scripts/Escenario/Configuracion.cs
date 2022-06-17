@@ -13,12 +13,12 @@ namespace Escenario
         [Header("Partida")]
         [HideInInspector] public int numeroPartida = 0;
         [HideInInspector] public Campo campo;
-        public Palos palos;
+        public Palos paloUsado;
         [HideInInspector] public bool partidaTerminada = false;
 
         [Header("Bola")]
         public float potenciaMaxima = 6f;
-        public float anguloVelocidad = 100f;
+        public float rotacionVelocidad = 100f;
         public float lineaLongitud = 2f;
         public bool transparencias = true;
 
@@ -119,7 +119,7 @@ namespace Escenario
 
             Objetos.instancia.textoPartida.text = string.Format("Partida: {0}", numeroPartida.ToString());
             Objetos.instancia.textoHoyo.text = string.Format("Hoyo: {0}", (nivel + 1).ToString());
-            Objetos.instancia.textoPalos.text = palos.ToString();
+            Objetos.instancia.textoPalos.text = paloUsado.ToString();
         }
 
         [PunRPC]

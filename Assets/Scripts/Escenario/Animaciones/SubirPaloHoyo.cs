@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Escenario.Animaciones
 {
-    public class HoyoPalo : MonoBehaviour
+    public class SubirPaloHoyo : MonoBehaviour
     {
         private bool animacionArriba = false;
         private bool animacionAbajo = false;

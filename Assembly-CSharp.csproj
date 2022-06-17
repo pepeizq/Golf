@@ -70,11 +70,11 @@
     <Compile Include="Assets\Scripts\Principal\MultiConexion.cs" />
     <Compile Include="Assets\Scripts\Partida\NoDestruir.cs" />
     <Compile Include="Assets\Scripts\Escenario\Colocar\Forma.cs" />
-    <Compile Include="Assets\Scripts\Escenario\Animaciones\PaloBola.cs" />
+    <Compile Include="Assets\Scripts\Escenario\Animaciones\PaloEmpujarBola.cs" />
     <Compile Include="Assets\Scripts\Escenario\Interfaz.cs" />
     <Compile Include="Assets\Scripts\Jugador\TablaGolpes.cs" />
     <Compile Include="Assets\Scripts\Principal\Opciones.cs" />
-    <Compile Include="Assets\Scripts\Escenario\Animaciones\HoyoBola.cs" />
+    <Compile Include="Assets\Scripts\Escenario\Animaciones\PresentacionHoyoBola.cs" />
     <Compile Include="Assets\Scripts\Escenario\Generacion\Limites.cs" />
     <Compile Include="Assets\Scripts\Principal\PersonalizarBola.cs" />
     <Compile Include="Assets\Scripts\Escenario\Generacion\Vectores.cs" />
@@ -98,7 +98,7 @@
     <Compile Include="Assets\Scripts\Escenario\Escenario.cs" />
     <Compile Include="Assets\Scripts\Recursos\Casilla.cs" />
     <Compile Include="Assets\Scripts\Principal\Principal.cs" />
-    <Compile Include="Assets\Scripts\Escenario\Animaciones\HoyoPalo.cs" />
+    <Compile Include="Assets\Scripts\Escenario\Animaciones\SubirPaloHoyo.cs" />
     <Compile Include="Assets\Scripts\Escenario\Generacion\Colores.cs" />
     <Compile Include="Assets\Scripts\Partida\Unjugador.cs" />
     <Compile Include="Assets\Scripts\Escenario\Colocar\Bola.cs" />

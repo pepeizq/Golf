@@ -43,7 +43,7 @@ namespace Partida
             }               
         }
 
-        public static void GuardarPartida(Vector3 posicionBola, float angulo, int golpes, float zoom)
+        public static void GuardarPartida(Vector3 posicionBola, float rotacion, int golpes, float zoom)
         {
             if (MultiPhoton.instancia.Conectado() == false)
             {
@@ -62,7 +62,7 @@ namespace Partida
                 PartidaMaestro partida = new PartidaMaestro
                 {
                     posicion = posicionBola2,
-                    angulo = angulo,
+                    rotacion = rotacion,
                     golpes = golpes,
                     zoom = zoom,
                     fecha = fecha.ToString(),
