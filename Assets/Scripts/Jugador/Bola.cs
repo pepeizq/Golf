@@ -258,18 +258,20 @@ namespace Jugador
                     if (controles.Principal.BolaRotarIzquierda.phase == InputActionPhase.Performed)
                     {
                         rotacion -= Time.deltaTime * Configuracion.instancia.rotacionVelocidad;
+                        transform.RotateAround(transform.position, Vector3.up, rotacion);
                     }
 
                     
                     if (controles.Principal.BolaRotarDerecha.phase == InputActionPhase.Performed)
                     {
                         rotacion += Time.deltaTime * Configuracion.instancia.rotacionVelocidad;
+                        transform.RotateAround(transform.position, Vector3.up, rotacion);
                     }
 
                     //--------------------------------------------------------
 
                     linea.SetPosition(0, gameObject.transform.position);
-                    linea.SetPosition(1, gameObject.transform.position + Quaternion.Euler(0, rotacion, 0) * Vector3.forward * (Configuracion.instancia.lineaLongitud + potencia / 4));
+                    linea.SetPosition(1, gameObject.transform.position + Quaternion.Euler(0, rotacion, 0) * Vector3.forward * (Configuracion.instancia.lineaLongitud + potencia / 4));                   
 
                     //--------------------------------------------------------
 

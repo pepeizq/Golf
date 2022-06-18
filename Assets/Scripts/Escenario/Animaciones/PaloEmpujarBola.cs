@@ -43,20 +43,17 @@ namespace Escenario.Animaciones
         {
             if (paloGenerado != null)
             {
-                Debug.Log(paloGenerado.transform.InverseTransformPoint(bola.transform.position));
 
                 float rotacion = bola.gameObject.GetComponent<Bola>().rotacion;
 
-                Vector3 nuevaPosicion = bola.transform.position;
-
-
-                nuevaPosicion.x = nuevaPosicion.x - rotacion / 100 - (bola.gameObject.GetComponent<Bola>().potencia / 5);
-                nuevaPosicion.z = nuevaPosicion.z - rotacion / 100 - (bola.gameObject.GetComponent<Bola>().potencia / 5);
+                Vector3 nuevaPosicion = new Vector3(0, 0, 0);
+                nuevaPosicion.z = nuevaPosicion.z - (bola.gameObject.GetComponent<Bola>().potencia / 2);
+                paloGenerado.transform.localPosition = nuevaPosicion;
 
                 //if (rotacion == 0)
                 //{
-                //    nuevaPosicion.x = nuevaPosicion.x - rotacion / 100 - (bola.gameObject.GetComponent<Bola>().potencia / 5);
-                //    nuevaPosicion.z = nuevaPosicion.z - rotacion / 100 - (bola.gameObject.GetComponent<Bola>().potencia / 5);
+                //    nuevaPosicion.x = nuevaPosicion.x;
+                //    nuevaPosicion.z = nuevaPosicion.z - 0.25f - (bola.gameObject.GetComponent<Bola>().potencia / 5);
                 //}
 
                 //if (rotacion == 45)
@@ -76,10 +73,10 @@ namespace Escenario.Animaciones
                 //    nuevaPosicion.x = nuevaPosicion.x - 0.25f - rotacion / 10;
                 //    nuevaPosicion.z = nuevaPosicion.z - 0.25f - (bola.gameObject.GetComponent<Bola>().potencia / 5);
                 //}
-    
+
                 //paloGenerado.transform.position = nuevaPosicion;
 
-                paloGenerado.transform.RotateAround(bola.transform.position, bola.transform.up, 20 * Time.deltaTime);
+
             }
         }
     }
