@@ -258,14 +258,14 @@ namespace Jugador
                     if (controles.Principal.BolaRotarIzquierda.phase == InputActionPhase.Performed)
                     {
                         rotacion -= Time.deltaTime * Configuracion.instancia.rotacionVelocidad;
-                        transform.RotateAround(transform.position, Vector3.up, rotacion);
+                        transform.RotateAround(transform.position, Vector3.up, - Time.deltaTime);
                     }
 
                     
                     if (controles.Principal.BolaRotarDerecha.phase == InputActionPhase.Performed)
                     {
                         rotacion += Time.deltaTime * Configuracion.instancia.rotacionVelocidad;
-                        transform.RotateAround(transform.position, Vector3.up, rotacion);
+                        transform.RotateAround(transform.position, Vector3.up, Time.deltaTime);
                     }
 
                     //--------------------------------------------------------
