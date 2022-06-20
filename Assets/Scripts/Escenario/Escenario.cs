@@ -129,7 +129,7 @@ namespace Escenario
                 Muros.instancia.Colocar(casillasMapa);
             }
 
-            if (Configuracion.instancia.animacionHoyoBola == true)
+            if (Configuracion.instancia.animacionPresentacionHoyoBola == true)
             {
                 if (MultiPhoton.instancia.Conectado() == false)
                 {

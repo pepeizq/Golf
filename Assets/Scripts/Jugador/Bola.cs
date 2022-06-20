@@ -89,7 +89,7 @@ namespace Jugador
             {
                 Objetos.instancia.panelEsperandoJugadores.SetActive(false);
 
-                if (Configuracion.instancia.animacionHoyoBola == true)
+                if (Configuracion.instancia.animacionPresentacionHoyoBola == true)
                 {
                     PresentacionHoyoBola.instancia.Generar();
                 }
@@ -258,14 +258,18 @@ namespace Jugador
                     if (controles.Principal.BolaRotarIzquierda.phase == InputActionPhase.Performed)
                     {
                         rotacion -= Time.deltaTime * Configuracion.instancia.rotacionVelocidad;
-                        transform.RotateAround(transform.position, Vector3.up, - Time.deltaTime);
+                        transform.RotateAround(transform.position, Vector3.up, - Time.deltaTime * Configuracion.instancia.rotacionVelocidad);
                     }
 
-                    
                     if (controles.Principal.BolaRotarDerecha.phase == InputActionPhase.Performed)
                     {
                         rotacion += Time.deltaTime * Configuracion.instancia.rotacionVelocidad;
-                        transform.RotateAround(transform.position, Vector3.up, Time.deltaTime);
+                        transform.RotateAround(transform.position, Vector3.up, Time.deltaTime * Configuracion.instancia.rotacionVelocidad);
+                    }
+
+                    if (rotacion > 360 || rotacion < -360)
+                    {
+                        rotacion = 0;
                     }
 
                     //--------------------------------------------------------

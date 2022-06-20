@@ -44,7 +44,9 @@ namespace Escenario
         public bool hoyo = true;
         public bool mordiscos = true;
         public bool muros = true;
-        public bool animacionHoyoBola = true;
+
+        [Header("Animaciones")]
+        public bool animacionPresentacionHoyoBola = true;
 
         [HideInInspector] public int nivel = 0;
         [HideInInspector] public int tamañoX = 40;
