@@ -61,7 +61,10 @@ namespace Escenario.Animaciones
                 nuevaPosicion.x = nuevaPosicion.x - 0.5f - (bola.gameObject.GetComponent<Bola>().potencia / 2);
                 paloGenerado.transform.localPosition = nuevaPosicion;
 
-
+                if (Vector3.Distance(paloGenerado.transform.position, bola.transform.position) <= 0.25f)
+                {
+                    Debug.Log("test");
+                }
 
             }
         }

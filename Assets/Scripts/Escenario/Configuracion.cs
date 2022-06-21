@@ -46,6 +46,7 @@ namespace Escenario
         public bool muros = true;
 
         [Header("Animaciones")]
+        public bool animacionPaloEmpujarBola = true;
         public bool animacionPresentacionHoyoBola = true;
 
         [HideInInspector] public int nivel = 0;

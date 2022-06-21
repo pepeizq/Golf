@@ -6600,10 +6600,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numeroPartida: 34
   campo: {fileID: 11400000, guid: 5f1ea259c26884241980cf74c5b240b4, type: 2}
-  palos: 0
+  paloUsado: 0
   partidaTerminada: 0
   potenciaMaxima: 10
-  anguloVelocidad: 100
+  rotacionVelocidad: 100
   lineaLongitud: 2
   transparencias: 0
   poderMover: 1
@@ -6622,7 +6622,8 @@ MonoBehaviour:
   hoyo: 1
   mordiscos: 1
   muros: 0
-  animacionHoyoBola: 0
+  animacionPaloEmpujarBola: 1
+  animacionPresentacionHoyoBola: 0
   nivel: 0
   "tama\xF1oX": 20
   "tama\xF1oZ": 20
