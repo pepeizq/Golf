@@ -68,7 +68,8 @@ namespace Partida
                     fecha = fecha.ToString(),
                     campo = campo,
                     nivel = nivel,
-                    numeroPartida = numeroPartida
+                    numeroPartida = numeroPartida,
+                    versionJuego = Application.version
                 };
 
                 //----------------------------

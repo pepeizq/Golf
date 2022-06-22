@@ -20,10 +20,13 @@ namespace Escenario
         {
             if (controles != null)
             {
-                if (controles.Principal.EnseñarMenu.phase == InputActionPhase.Performed && Objetos.instancia.canvasPartidaTerminada.gameObject.activeSelf == false)
+                if (Configuracion.instancia.poderMover == true)
                 {
-                    EnseñarMenu();
-                }
+                    if (controles.Principal.EnseñarMenu.phase == InputActionPhase.Performed && Objetos.instancia.canvasPartidaTerminada.gameObject.activeSelf == false)
+                    {
+                        EnseñarMenu();
+                    }
+                }               
             }         
         }
 

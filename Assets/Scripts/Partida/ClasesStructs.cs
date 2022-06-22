@@ -57,6 +57,7 @@ namespace Partida
         public PartidaEscenario escenario;
         public PartidaHoyo hoyo;
         public List<PartidaRegistro> registro;
+        public string versionJuego;
     }
 
     //-----------------------------------------------------------------------

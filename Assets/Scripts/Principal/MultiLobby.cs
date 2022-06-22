@@ -173,7 +173,7 @@ namespace Principal
 
         public void EmpezarPartida()
         {
-            MultiPhoton.instancia.photonView.RPC("AsignarCampo", RpcTarget.All, 1);
+            MultiPhoton.instancia.photonView.RPC("AsignarCampo", RpcTarget.All, 0);
             MultiPartida.instancia.nivel = 0;
 
             botonEmpezarPartida.interactable = false;

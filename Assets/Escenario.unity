@@ -6622,8 +6622,8 @@ MonoBehaviour:
   hoyo: 1
   mordiscos: 1
   muros: 0
-  animacionPaloEmpujarBola: 1
-  animacionPresentacionHoyoBola: 0
+  paloEmpujarBola: 0
+  presentacionHoyoBola: 0
   nivel: 0
   "tama\xF1oX": 20
   "tama\xF1oZ": 20

@@ -1339,7 +1339,7 @@ MonoBehaviour:
       x: 0
       y: 0
       z: 0
-    angulo: 0
+    rotacion: 0
     golpes: 0
     zoom: 0
     fecha: 
@@ -1355,6 +1355,7 @@ MonoBehaviour:
       casillaX: 0
       casillaZ: 0
     registro: []
+    versionJuego: 
 --- !u!4 &154648149
 Transform:
   m_ObjectHideFlags: 0

@@ -89,7 +89,7 @@ namespace Jugador
             {
                 Objetos.instancia.panelEsperandoJugadores.SetActive(false);
 
-                if (Configuracion.instancia.animacionPresentacionHoyoBola == true)
+                if (Configuracion.instancia.presentacionHoyoBola == true)
                 {
                     PresentacionHoyoBola.instancia.Generar();
                 }
@@ -170,18 +170,6 @@ namespace Jugador
                 {
                     cuerpo.velocity = Vector3.zero;
                     cuerpo.angularVelocity = Vector3.zero;
-
-                    if (Configuracion.instancia.animacionPaloEmpujarBola == true)
-                    {
-                        if (Configuracion.instancia.paloUsado == Configuracion.Palos.Madera)
-                        {
-                            PaloEmpujarBola.instancia.Generar(gameObject, paloMadera);
-                        }
-                        else if (Configuracion.instancia.paloUsado == Configuracion.Palos.Hierro)
-                        {
-                            PaloEmpujarBola.instancia.Generar(gameObject, paloHierro);
-                        }
-                    }
                         
                     linea.enabled = true;
                     ultimaPosicionBola = transform.parent.localPosition + cuerpo.transform.localPosition;
@@ -219,41 +207,24 @@ namespace Jugador
                     }
                     else
                     {
-                        bool empujar = true;
-
-                        if (Configuracion.instancia.animacionPaloEmpujarBola == true)
+                        if (potencia != 0)
                         {
-                            PaloEmpujarBola.instancia.Destruir();
-
-
-                        }
-
-                        
-                        if (empujar == true)
-                        {
-                            if (potencia != 0)
+                            if (Configuracion.instancia.paloEmpujarBola == true)
                             {
                                 if (Configuracion.instancia.paloUsado == Configuracion.Palos.Madera)
                                 {
-                                    cuerpo.AddForce(Quaternion.Euler(0, rotacion, 0) * Vector3.up * (potencia * 2), ForceMode.Impulse);
-                                    cuerpo.AddForce(Quaternion.Euler(0, rotacion, 0) * Vector3.forward * (potencia * 2), ForceMode.Impulse);
+                                    PaloEmpujarBola.instancia.Generar(gameObject, paloMadera);
                                 }
-                                else
+                                else if (Configuracion.instancia.paloUsado == Configuracion.Palos.Hierro)
                                 {
-                                    cuerpo.AddForce(Quaternion.Euler(0, rotacion, 0) * Vector3.forward * potencia, ForceMode.Impulse);
-                                }
-
-                                potencia = 0;
-
-                                golpes += 1;
-                                Objetos.instancia.textoGolpes.text = string.Format("Golpes: {0}", golpes.ToString());
-
-                                if (MultiPhoton.instancia.Conectado() == true)
-                                {
-                                    MultiPhoton.instancia.ActualizarPropiedades(photonJugador, "GolpesHoyo" + (Configuracion.instancia.nivel + 1), golpes);
+                                    PaloEmpujarBola.instancia.Generar(gameObject, paloHierro);
                                 }
                             }
-                        }                      
+                            else
+                            {
+                                EmpujarBola();
+                            }
+                        }                                            
                     }
 
                     Objetos.instancia.sliderPotencia.value = potencia;
@@ -305,6 +276,7 @@ namespace Jugador
                     if (transform.localPosition.y <= -5f)
                     {
                         transform.localPosition = ultimaPosicionCuerpo;
+                        transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
                         cuerpo.velocity = Vector3.zero;
                         cuerpo.angularVelocity = Vector3.zero;
                     }
@@ -449,6 +421,29 @@ namespace Jugador
    
                 camara.orthographicSize = Mathf.Clamp(camara.orthographicSize -= camaraZoomInput * (10f * camara.orthographicSize * .1f), Configuracion.instancia.zoomCerca, Configuracion.instancia.zoomLejos);
                 camaraZoom = camara.orthographicSize;
+            }
+        }
+
+        public void EmpujarBola()
+        {
+            if (Configuracion.instancia.paloUsado == Configuracion.Palos.Madera)
+            {
+                cuerpo.AddForce(Quaternion.Euler(0, rotacion, 0) * Vector3.up * (potencia * 2), ForceMode.Impulse);
+                cuerpo.AddForce(Quaternion.Euler(0, rotacion, 0) * Vector3.forward * (potencia * 2), ForceMode.Impulse);
+            }
+            else
+            {
+                cuerpo.AddForce(Quaternion.Euler(0, rotacion, 0) * Vector3.forward * potencia, ForceMode.Impulse);
+            }
+
+            potencia = 0;
+
+            golpes += 1;
+            Objetos.instancia.textoGolpes.text = string.Format("Golpes: {0}", golpes.ToString());
+
+            if (MultiPhoton.instancia.Conectado() == true)
+            {
+                MultiPhoton.instancia.ActualizarPropiedades(photonJugador, "GolpesHoyo" + (Configuracion.instancia.nivel + 1), golpes);
             }
         }
 
