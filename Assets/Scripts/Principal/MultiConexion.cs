@@ -23,6 +23,11 @@ namespace Principal
             instancia = this;
         }
 
+        public void Update()
+        {
+            
+        }
+
         public void Conectar()
         {
             MultiPhoton.instancia.Conectar();
