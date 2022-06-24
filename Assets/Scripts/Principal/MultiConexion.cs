@@ -2,6 +2,7 @@
 using Jugador;
 using Photon.Pun;
 using Photon.Realtime;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 
@@ -38,6 +39,11 @@ namespace Principal
             {
                 botones.SetActive(false);
             }
+        }
+
+        IEnumerator ContabilizarTiempoConexion()
+        {
+           
         }
 
         public override void OnErrorInfo(ErrorInfo error)
