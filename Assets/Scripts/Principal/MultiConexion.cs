@@ -2,7 +2,6 @@
 using Jugador;
 using Photon.Pun;
 using Photon.Realtime;
-using System.Collections;
 using TMPro;
 using UnityEngine;
 
@@ -17,6 +16,9 @@ namespace Principal
         public TextMeshProUGUI textoMensaje;
         public GameObject botones;
 
+        private bool conectando;
+        private float segundosSumar;
+
         public static MultiConexion instancia;
 
         public void Awake()
@@ -26,7 +28,16 @@ namespace Principal
 
         public void Update()
         {
-            
+            if (conectando == true)
+            {
+                segundosSumar += Time.deltaTime;
+                int segundosSumar2 = (int)(segundosSumar % 60);
+
+                if (segundosSumar2 > 10)
+                {
+
+                }
+            }
         }
 
         public void Conectar()
@@ -39,15 +50,15 @@ namespace Principal
             {
                 botones.SetActive(false);
             }
-        }
 
-        IEnumerator ContabilizarTiempoConexion()
-        {
-           
+            conectando = true;
+            segundosSumar = 0;
         }
 
         public override void OnErrorInfo(ErrorInfo error)
         {
+            conectando = false;
+
             textoMensaje.text = error.Info;
 
             botones.SetActive(true);
@@ -55,6 +66,8 @@ namespace Principal
 
         public override void OnConnectedToMaster()
         {
+            conectando = false;
+
             Hashtable hash = new Hashtable
             {
                 ["BolaColorRojo"] = Atributos.instancia.color.r,
