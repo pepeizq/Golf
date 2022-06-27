@@ -18,6 +18,7 @@ namespace Principal
 
         private bool conectando;
         private float segundosSumar;
+        private int segundosTemporal = 0;
 
         public static MultiConexion instancia;
 
