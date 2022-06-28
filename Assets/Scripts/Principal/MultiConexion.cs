@@ -36,24 +36,45 @@ namespace Principal
 
                 if (segundosSumar2 > 10)
                 {
+                    MultiPhoton.instancia.Reconectar();
+                }
 
+                if (segundosSumar2 != segundosTemporal)
+                {
+                    segundosTemporal = segundosSumar2;
+
+                    if (textoMensaje.text == Idiomas.Idiomas.instancia.CogerCadena("connecting") + " ..")
+                    {
+                        textoMensaje.text = Idiomas.Idiomas.instancia.CogerCadena("connecting") + " ...";
+                    }
+                    else
+                    {
+                        textoMensaje.text = Idiomas.Idiomas.instancia.CogerCadena("connecting") + " ..";
+                    }      
                 }
             }
         }
 
         public void Conectar()
         {
-            MultiPhoton.instancia.Conectar();
-
-            textoMensaje.text = Idiomas.Idiomas.instancia.CogerCadena("connecting");
-
-            if (botones.activeSelf == true)
+            if (MultiPhoton.instancia.Conectado() == false)
             {
-                botones.SetActive(false);
-            }
+                MultiPhoton.instancia.Conectar();
 
-            conectando = true;
-            segundosSumar = 0;
+                textoMensaje.text = Idiomas.Idiomas.instancia.CogerCadena("connecting");
+
+                if (botones.activeSelf == true)
+                {
+                    botones.SetActive(false);
+                }
+
+                conectando = true;
+                segundosSumar = 0;
+            }
+            else
+            {
+                ConectadoaServidor();
+            }
         }
 
         public override void OnErrorInfo(ErrorInfo error)
@@ -66,6 +87,11 @@ namespace Principal
         }
 
         public override void OnConnectedToMaster()
+        {
+            ConectadoaServidor();
+        }
+
+        private void ConectadoaServidor()
         {
             conectando = false;
 

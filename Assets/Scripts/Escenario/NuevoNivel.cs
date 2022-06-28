@@ -65,7 +65,7 @@ namespace Escenario
                 Configuracion.instancia.aleatorio = true;
                 Unjugador.instancia.partida.nivel = nuevoNivel;
 
-                Objetos.instancia.canvasPartida.gameObject.SetActive(false);
+                Objetos.instancia.OcultarCanvas();
                 Objetos.instancia.canvasCargando.gameObject.SetActive(true);
                 Objetos.instancia.sliderCargando.value = 0;
 

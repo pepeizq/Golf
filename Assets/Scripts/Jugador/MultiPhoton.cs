@@ -41,6 +41,11 @@ namespace Jugador
             PhotonNetwork.Disconnect();
         }
 
+        public void Reconectar()
+        {
+            PhotonNetwork.Reconnect();
+        }
+
         public void UnirseLobby()
         {
             PhotonNetwork.JoinLobby();
