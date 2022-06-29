@@ -51,6 +51,16 @@ namespace Jugador
             PhotonNetwork.JoinLobby();
         }
 
+        public void SalirLobby()
+        {
+            PhotonNetwork.LeaveLobby();
+        }
+
+        public bool EnLobby()
+        {
+            return PhotonNetwork.InLobby;
+        }
+
         public void CrearSala(string nombreSala)
         {
             RoomOptions opciones = new RoomOptions

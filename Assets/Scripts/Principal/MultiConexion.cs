@@ -143,7 +143,15 @@ namespace Principal
             canvasConexion.gameObject.SetActive(false);
             canvasLobby.gameObject.SetActive(true);
 
-            MultiPhoton.instancia.UnirseLobby();
+            if (MultiPhoton.instancia.EnLobby() == false)
+            {
+                MultiPhoton.instancia.UnirseLobby();
+            }
+            else
+            {
+                MultiPhoton.instancia.SalirLobby();
+                MultiPhoton.instancia.UnirseLobby();
+            }
         }
 
         public void VolverPrincipal()
