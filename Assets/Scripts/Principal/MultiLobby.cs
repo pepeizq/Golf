@@ -55,6 +55,12 @@ namespace Principal
                 Button boton2 = boton.GetComponent<Button>();
                 boton2.onClick.RemoveAllListeners();
                 boton2.onClick.AddListener(() => UnirseSala(sala.Name));
+
+                if (sala.IsOpen == false)
+                {
+                    texto.text = "* " + texto.text;
+                    boton2.enabled = false;
+                }
             }
         }
 
@@ -178,6 +184,9 @@ namespace Principal
 
             botonEmpezarPartida.interactable = false;
             MultiPhoton.instancia.photonView.RPC("CambiarEscena", RpcTarget.All, "Escenario");
+
+            Room sala = MultiPhoton.instancia.Sala();
+            sala.IsOpen = false;
         }
     }
 }

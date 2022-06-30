@@ -1,3 +1,4 @@
+using Jugador;
 using Partida;
 using Recursos;
 using System;
@@ -80,6 +81,11 @@ namespace Principal
 
             PersonalizarBola.instancia.Cargar();
             textoVersion.text = Application.version;
+
+            if (MultiPhoton.instancia.Conectado() == true)
+            {
+                MultiPhoton.instancia.Desconectar();
+            }
         }
 
         public void Update()
