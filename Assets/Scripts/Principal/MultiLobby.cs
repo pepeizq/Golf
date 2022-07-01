@@ -50,7 +50,7 @@ namespace Principal
                 boton.transform.localScale = Vector3.one;
 
                 TextMeshProUGUI texto = boton.GetComponentInChildren<TextMeshProUGUI>();
-                texto.text = string.Format("{0} - Jugadores: {1}/{2}", sala.Name, sala.PlayerCount, sala.MaxPlayers);
+                texto.text = string.Format("{0} - " + Idiomas.Idiomas.instancia.CogerCadena("players") + ": {1}/{2}", sala.Name, sala.PlayerCount, sala.MaxPlayers);
 
                 Button boton2 = boton.GetComponent<Button>();
                 boton2.onClick.RemoveAllListeners();
