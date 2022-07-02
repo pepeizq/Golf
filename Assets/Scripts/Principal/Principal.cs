@@ -37,6 +37,7 @@ namespace Principal
 
         [Header("Multijugador")]
         public Canvas canvasConexion;
+        public Button botonMultijugador;
 
         [Header("Personalizar")]
         public Canvas canvasPersonalizar;
@@ -93,6 +94,17 @@ namespace Principal
             if (cargando != null)
             {
                 sliderCargando.value = Mathf.Clamp01(cargando.progress / 0.9f);
+            }
+
+            //-----------------------------------------------
+
+            if (MultiPhoton.instancia.Conectado() == true)
+            {
+                botonMultijugador.gameObject.SetActive(false);
+            }
+            else
+            {
+                botonMultijugador.gameObject.SetActive(true);
             }
         }
 

@@ -147,11 +147,6 @@ namespace Principal
             {
                 MultiPhoton.instancia.UnirseLobby();
             }
-            else
-            {
-                MultiPhoton.instancia.SalirLobby();
-                MultiPhoton.instancia.UnirseLobby();
-            }
         }
 
         public void VolverPrincipal()
