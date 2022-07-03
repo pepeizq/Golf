@@ -15,6 +15,9 @@ namespace Principal
         private int totalPartidas = 0;
         private List<PartidaMaestro> partidas = new List<PartidaMaestro>();
 
+        private float segundosSumar;
+        private int segundosTemporal = 0;
+
         [Header("Principal")]
         public Canvas canvasMenu;
         public Button botonContinuarPartida;
