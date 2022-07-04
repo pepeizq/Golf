@@ -16,7 +16,7 @@ namespace Principal
         private List<PartidaMaestro> partidas = new List<PartidaMaestro>();
 
         private float segundosSumar;
-        private int segundosTemporal = 0;
+        private int segundosTemporal = 1;
 
         [Header("Principal")]
         public Canvas canvasMenu;
@@ -101,13 +101,21 @@ namespace Principal
 
             //-----------------------------------------------
 
-            if (MultiPhoton.instancia.Conectado() == true)
+            segundosSumar += Time.deltaTime;
+            int segundosSumar2 = (int)(segundosSumar % 60);
+
+            if (segundosSumar2 > segundosTemporal)
             {
-                botonMultijugador.gameObject.SetActive(false);
-            }
-            else
-            {
-                botonMultijugador.gameObject.SetActive(true);
+                segundosTemporal = segundosSumar2;
+
+                if (MultiPhoton.instancia.Conectado() == true)
+                {
+                    botonMultijugador.gameObject.SetActive(false);
+                }
+                else
+                {
+                    botonMultijugador.gameObject.SetActive(true);
+                }
             }
         }
 
