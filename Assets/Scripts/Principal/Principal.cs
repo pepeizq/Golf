@@ -89,6 +89,7 @@ namespace Principal
             if (MultiPhoton.instancia.Conectado() == true)
             {
                 MultiPhoton.instancia.Desconectar();
+                botonMultijugador.gameObject.SetActive(false);
             }
         }
 
