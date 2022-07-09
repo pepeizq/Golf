@@ -113,7 +113,6 @@ namespace Principal
                 {
                     MultiPhoton.instancia.Desconectar();
                     botonMultijugador.gameObject.SetActive(false);
-
                 }
                 else
                 {
