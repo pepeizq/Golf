@@ -5226,6 +5226,7 @@ MonoBehaviour:
   prefabBotonCargarPartida: {fileID: 4341659069019042839, guid: e95438be1270a3d43add958db481df2c,
     type: 3}
   canvasConexion: {fileID: 281001964}
+  botonMultijugador: {fileID: 828390864}
   canvasPersonalizar: {fileID: 947739832}
   canvasOpciones: {fileID: 1456199038}
 --- !u!4 &784611044

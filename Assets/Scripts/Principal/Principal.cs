@@ -104,16 +104,15 @@ namespace Principal
 
             segundosSumar += Time.deltaTime;
             int segundosSumar2 = (int)(segundosSumar % 60);
-
+          
             if (segundosSumar2 > segundosTemporal)
             {
                 segundosTemporal = segundosSumar2;
-
+             
                 if (MultiPhoton.instancia.Conectado() == true)
                 {
                     MultiPhoton.instancia.Desconectar();
                     botonMultijugador.gameObject.SetActive(false);
-
                 }
                 else
                 {
