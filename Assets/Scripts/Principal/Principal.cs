@@ -109,6 +109,7 @@ namespace Principal
             {
                 segundosTemporal = segundosSumar2;
              
+                
                 if (MultiPhoton.instancia.Conectado() == true)
                 {
                     MultiPhoton.instancia.Desconectar();
