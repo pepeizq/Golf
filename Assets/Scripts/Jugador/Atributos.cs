@@ -5,7 +5,7 @@ namespace Jugador
     public class Atributos : MonoBehaviour
     {
         [Header("Bola")]
-        public UnityEngine.Color color;
+        public Color color;
         public int modelo;
 
         public static Atributos instancia;
