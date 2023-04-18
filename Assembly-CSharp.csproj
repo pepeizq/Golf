@@ -66,6 +66,7 @@
     <Compile Include="Assets\Scripts\Partida\ClasesStructs.cs" />
     <Compile Include="Assets\Scripts\Jugador\Bola.cs" />
     <Compile Include="Assets\Scripts\Escenario\Generacion\Llano.cs" />
+    <Compile Include="Assets\Scripts\Interfaz\ObjetosPrincipal.cs" />
     <Compile Include="Assets\Scripts\Jugador\Transparentar.cs" />
     <Compile Include="Assets\Scripts\Principal\MultiConexion.cs" />
     <Compile Include="Assets\Scripts\Partida\NoDestruir.cs" />
@@ -863,6 +864,9 @@
     </Reference>
     <Reference Include="Unity.RenderPipelines.HighDefinition.Runtime">
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.HighDefinition.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Sprite.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Runtime">
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.dll</HintPath>

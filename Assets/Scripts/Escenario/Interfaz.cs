@@ -1,5 +1,4 @@
 using Jugador;
-using Partida;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
