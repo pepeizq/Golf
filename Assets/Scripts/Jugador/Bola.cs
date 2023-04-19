@@ -78,7 +78,7 @@ namespace Jugador
             if (bolas.Length != MultiPhoton.instancia.Sala().PlayerCount)
             {
                 Objetos.instancia.panelEsperandoJugadores.SetActive(true);
-                Objetos.instancia.textoEsperandoJugadores.text = string.Format("{0} ({1}/{2})", Idiomas.Idiomas.instancia.CogerCadena("waitingPlayers"), bolas.Length, MultiPhoton.instancia.Sala().PlayerCount);
+                Objetos.instancia.textoEsperandoJugadores.text = string.Format("{0} ({1}/{2})", Interfaz.Idiomas.Idiomas.instancia.CogerCadena("waitingPlayers"), bolas.Length, MultiPhoton.instancia.Sala().PlayerCount);
 
                 Camera camara = Objetos.instancia.camara.GetComponent<Camera>();
                 camara.transform.position = new Vector3(camara.transform.position.x, 60, camara.transform.position.z);

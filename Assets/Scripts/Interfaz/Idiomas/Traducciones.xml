@@ -12,6 +12,7 @@
 		<string name="back">Back</string>
 		<string name="loading">Loading</string>
 		<string name="connecting">Connecting</string>
+		<string name="reconnect">Reconnect</string>
 		<string name="createRoom">Create Room</string>
 		<string name="leaveRoom">Leave Room</string>
 		<string name="startGame">Start Game</string>
@@ -33,6 +34,7 @@
 		<string name="back">Volver</string>
 		<string name="loading">Cargando</string>
 		<string name="connecting">Conectando</string>
+		<string name="reconnect">Reconectar</string>
 		<string name="createRoom">Crear Sala</string>
 		<string name="leaveRoom">Dejar Sala</string>
 		<string name="startGame">Empezar Partida</string>

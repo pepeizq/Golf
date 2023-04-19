@@ -1,6 +1,7 @@
 ﻿using Escenario.Animaciones;
 using Escenario.Colocar;
 using Escenario.Generacion;
+using Interfaz.Idiomas;
 using Jugador;
 using Partida;
 using Photon.Pun;
@@ -29,7 +30,7 @@ namespace Escenario
 
         public void Start()
         {
-            Idiomas.Idiomas.instancia.CargarTraducciones(Idiomas.Idiomas.Escenas.Escenario);
+            Idiomas.instancia.CargarTraducciones(Idiomas.Escenas.Escenario);
 
             bool arrancar = true;
 

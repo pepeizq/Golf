@@ -1,56 +1,39 @@
-using UnityEngine.UI;
-using TMPro;
-using Photon.Pun;
-using Photon.Realtime;
-using UnityEngine;
-using System.Collections.Generic;
 using Jugador;
 using Partida;
+using Photon.Pun;
+using Photon.Realtime;
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
 
-namespace Principal
+namespace Interfaz
 {
     public class MultiLobby : MonoBehaviourPunCallbacks
     {
-        public Canvas canvasPrincipal;
-        public Canvas canvasLobby;
-        public Canvas canvasSala;
-
-        [Header("Lobby")]
-        public RectTransform panelSalas;
-        public GameObject prefabBotonSala;
-
-        public TMP_InputField textoJugador;
-        public TMP_InputField textoSala;
-
-        [Header("Sala")]
-        public RectTransform panelJugadores;
-        public GameObject prefabJugador;
-
-        public Button botonEmpezarPartida;
-
         public void VolverPrincipal()
         {
-            canvasLobby.gameObject.SetActive(false);
-            canvasPrincipal.gameObject.SetActive(true);
+            ObjetosMultiLobby.instancia.canvas.gameObject.SetActive(false);
+            ObjetosPrincipal.instancia.canvas.gameObject.SetActive(true);
 
             MultiPhoton.instancia.Desconectar();
         }
 
         public override void OnRoomListUpdate(List<RoomInfo> listaSalas)
         {
-            foreach (Transform sala in panelSalas.gameObject.transform)
+            foreach (Transform sala in ObjetosMultiLobby.instancia.panelSalas.gameObject.transform)
             {
                 Destroy(sala.gameObject);
             }
        
             foreach (RoomInfo sala in listaSalas)
             {
-                GameObject boton = Instantiate(prefabBotonSala, new Vector3(0, 0, 0), Quaternion.identity);
-                boton.transform.SetParent(panelSalas.gameObject.transform);
+                GameObject boton = Instantiate(ObjetosMultiLobby.instancia.prefabBotonSala, new Vector3(0, 0, 0), Quaternion.identity);
+                boton.transform.SetParent(ObjetosMultiLobby.instancia.panelSalas.gameObject.transform);
                 boton.transform.localScale = Vector3.one;
 
                 TextMeshProUGUI texto = boton.GetComponentInChildren<TextMeshProUGUI>();
-                texto.text = string.Format("{0} - " + Idiomas.Idiomas.instancia.CogerCadena("players") + ": {1}/{2}", sala.Name, sala.PlayerCount, sala.MaxPlayers);
+                texto.text = string.Format("{0} - " + Interfaz.Idiomas.Idiomas.instancia.CogerCadena("players") + ": {1}/{2}", sala.Name, sala.PlayerCount, sala.MaxPlayers);
 
                 Button boton2 = boton.GetComponent<Button>();
                 boton2.onClick.RemoveAllListeners();
@@ -66,42 +49,42 @@ namespace Principal
 
         public void CrearSala()
         {
-            if (textoSala.text.Length == 0)
+            if (ObjetosMultiLobby.instancia.textoSala.text.Length == 0)
             {
-                textoJugador.text = "testJugadorServidor"; 
-                textoSala.text = "testSala"; 
+                ObjetosMultiLobby.instancia.textoJugador.text = "testJugadorServidor";
+                ObjetosMultiLobby.instancia.textoSala.text = "testSala"; 
             }
 
-            if (textoSala.text.Length > 0)
+            if (ObjetosMultiLobby.instancia.textoSala.text.Length > 0)
             {
-                MultiPhoton.instancia.CrearSala(textoSala.text);
+                MultiPhoton.instancia.CrearSala(ObjetosMultiLobby.instancia.textoSala.text);
 
-                canvasLobby.gameObject.SetActive(false);
-                canvasSala.gameObject.SetActive(true);
+                ObjetosMultiLobby.instancia.canvas.gameObject.SetActive(false);
+                ObjetosMultiSala.instancia.canvas.gameObject.SetActive(true);
             }
         }
 
         public void UnirseSala(string nombreSala)
         {
-            if (textoJugador.text.Length == 0)
+            if (ObjetosMultiLobby.instancia.textoJugador.text.Length == 0)
             {
-                textoJugador.text = "testJugador-" + PhotonNetwork.LocalPlayer.UserId;
+                ObjetosMultiLobby.instancia.textoJugador.text = "testJugador-" + PhotonNetwork.LocalPlayer.UserId;
             }
 
             if (nombreSala.Length > 0)
             {
                 MultiPhoton.instancia.UnirseSala(nombreSala);
 
-                canvasLobby.gameObject.SetActive(false);
-                canvasSala.gameObject.SetActive(true);
+                ObjetosMultiLobby.instancia.canvas.gameObject.SetActive(false);
+                ObjetosMultiSala.instancia.canvas.gameObject.SetActive(true);
             }               
         }
 
         public void CambiarNombreJugador()
         {
-            if (textoJugador.text.Length > 0)
+            if (ObjetosMultiLobby.instancia.textoJugador.text.Length > 0)
             {
-                PhotonNetwork.NickName = textoJugador.text;
+                PhotonNetwork.NickName = ObjetosMultiLobby.instancia.textoJugador.text;
             }            
         }
 
@@ -117,9 +100,9 @@ namespace Principal
 
         public override void OnPlayerLeftRoom(Player jugador)
         {
-            if (canvasSala != null)
+            if (ObjetosMultiSala.instancia.canvas != null)
             {
-                if (canvasSala.isActiveAndEnabled == true)
+                if (ObjetosMultiSala.instancia.canvas.isActiveAndEnabled == true)
                 {
                     if (jugador.IsMasterClient == false)
                     {
@@ -144,15 +127,15 @@ namespace Principal
         [PunRPC]
         public void ActualizarSala()
         {
-            foreach (Transform jugador in panelJugadores.gameObject.transform)
+            foreach (Transform jugador in ObjetosMultiSala.instancia.panelJugadores.gameObject.transform)
             {
                 Destroy(jugador.gameObject);
             }
 
             foreach (Player jugador in MultiPhoton.instancia.ListaJugadores())
             {
-                GameObject boton = Instantiate(prefabJugador, new Vector3(0, 0, 0), Quaternion.identity);
-                boton.transform.SetParent(panelJugadores.gameObject.transform);
+                GameObject boton = Instantiate(ObjetosMultiSala.instancia.prefabJugador, new Vector3(0, 0, 0), Quaternion.identity);
+                boton.transform.SetParent(ObjetosMultiSala.instancia.panelJugadores.gameObject.transform);
                 boton.transform.localScale = Vector3.one;
 
                 TextMeshProUGUI texto = boton.GetComponentInChildren<TextMeshProUGUI>();
@@ -161,11 +144,11 @@ namespace Principal
 
             if (MultiPhoton.instancia.Maestro() == true && MultiPhoton.instancia.ListaJugadores().Length >= 2)
             {
-                botonEmpezarPartida.interactable = true;
+                ObjetosMultiSala.instancia.botonEmpezarPartida.interactable = true;
             }
             else
             {
-                botonEmpezarPartida.interactable = false;
+                ObjetosMultiSala.instancia.botonEmpezarPartida.interactable = false;
             }
         }
 
@@ -173,8 +156,8 @@ namespace Principal
         {
             MultiPhoton.instancia.DejarSala();
 
-            canvasSala.gameObject.SetActive(false);
-            canvasLobby.gameObject.SetActive(true);
+            ObjetosMultiSala.instancia.canvas.gameObject.SetActive(false);
+            ObjetosMultiLobby.instancia.canvas.gameObject.SetActive(true);
         }
 
         public void EmpezarPartida()
@@ -182,7 +165,7 @@ namespace Principal
             MultiPhoton.instancia.photonView.RPC("AsignarCampo", RpcTarget.All, 0);
             MultiPartida.instancia.nivel = 0;
 
-            botonEmpezarPartida.interactable = false;
+            ObjetosMultiSala.instancia.botonEmpezarPartida.interactable = false;
             MultiPhoton.instancia.photonView.RPC("CambiarEscena", RpcTarget.All, "Escenario");
 
             Room sala = MultiPhoton.instancia.Sala();

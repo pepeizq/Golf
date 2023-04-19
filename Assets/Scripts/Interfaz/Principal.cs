@@ -1,5 +1,6 @@
 using Jugador;
 using Partida;
+using Principal;
 using Recursos;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace Principal
+namespace Interfaz
 {
     public class Principal : MonoBehaviour
     {
@@ -17,26 +18,6 @@ namespace Principal
 
         private float segundosSumar;
         private int segundosTemporal = 1;
-
-        [Header("Principal")]
-        public Canvas canvasMenu;
-        public Button botonContinuarPartida;
-        public Button botonCargarPartida;
-        public TextMeshProUGUI textoVersion;
-
-        [Header("Cargando")]
-        public Canvas canvasCargando;
-        public Slider sliderCargando;
-
-        [Header("Nueva Partida")]
-        public Canvas canvasNuevaPartida;
-        public RectTransform panelCampos;
-        public GameObject prefabBotonCampo;
-
-        [Header("Cargar Partida")]
-        public Canvas canvasCargarPartida;
-        public RectTransform panelPartidas;
-        public GameObject prefabBotonCargarPartida;
 
         [Header("Multijugador")]
         public Canvas canvasConexion;
@@ -74,17 +55,17 @@ namespace Principal
             
             if (partidas.Count == 0)
             {
-                botonContinuarPartida.gameObject.SetActive(false);
-                botonCargarPartida.gameObject.SetActive(false);
+                ObjetosPrincipal.instancia.botonContinuarPartida.gameObject.SetActive(false);
+                ObjetosPrincipal.instancia.botonCargarPartida.gameObject.SetActive(false);
             }
             else
             {
-                botonContinuarPartida.gameObject.SetActive(true);
-                botonCargarPartida.gameObject.SetActive(true);
+                ObjetosPrincipal.instancia.botonContinuarPartida.gameObject.SetActive(true);
+                ObjetosPrincipal.instancia.botonCargarPartida.gameObject.SetActive(true);
             }
 
             PersonalizarBola.instancia.Cargar();
-            textoVersion.text = Application.version;
+            ObjetosPrincipal.instancia.version.text = Application.version;
 
             if (MultiPhoton.instancia.Conectado() == true)
             {
@@ -97,7 +78,7 @@ namespace Principal
         {
             if (cargando != null)
             {
-                sliderCargando.value = Mathf.Clamp01(cargando.progress / 0.9f);
+                ObjetosCargando.instancia.slider.value = Mathf.Clamp01(cargando.progress / 0.9f);
             }
 
             //-----------------------------------------------
@@ -125,18 +106,18 @@ namespace Principal
 
         public void NuevaPartidaMostrar()
         {
-            canvasMenu.gameObject.SetActive(false);
-            canvasNuevaPartida.gameObject.SetActive(true);
+            ObjetosPrincipal.instancia.canvas.gameObject.SetActive(false);
+            ObjetosNuevaPartida.instancia.canvas.gameObject.SetActive(true);
 
-            foreach (Transform boton in panelCampos.gameObject.transform)
+            foreach (Transform boton in ObjetosNuevaPartida.instancia.panelCampos.gameObject.transform)
             {
                 Destroy(boton.gameObject);
             }
 
             foreach (Campo campo in Datos.instancia.campos)
             {
-                GameObject boton = Instantiate(prefabBotonCampo, new Vector3(0, 0, 0), Quaternion.identity);
-                boton.transform.SetParent(panelCampos.gameObject.transform);
+                GameObject boton = Instantiate(ObjetosNuevaPartida.instancia.prefabBotonCampo, new Vector3(0, 0, 0), Quaternion.identity);
+                boton.transform.SetParent(ObjetosNuevaPartida.instancia.panelCampos.gameObject.transform);
 
                 TextMeshProUGUI texto = boton.GetComponentInChildren<TextMeshProUGUI>();
                 texto.text = string.Format("ID: {0} - Hoyos: {1}", campo.id.ToString(), campo.hoyos.Count.ToString());
@@ -157,17 +138,17 @@ namespace Principal
 
             Unjugador.instancia.nuevaPartida = true;
 
-            canvasNuevaPartida.gameObject.SetActive(false);
-            canvasCargando.gameObject.SetActive(true);
-            sliderCargando.value = 0;
+            ObjetosNuevaPartida.instancia.canvas.gameObject.SetActive(false);
+            ObjetosCargando.instancia.canvas.gameObject.SetActive(true);
+            ObjetosCargando.instancia.slider.value = 0;
 
             cargando = SceneManager.LoadSceneAsync("Escenario");
         }
 
         public void NuevaPartidaVolver()
         {
-            canvasNuevaPartida.gameObject.SetActive(false);
-            canvasMenu.gameObject.SetActive(true);
+            ObjetosNuevaPartida.instancia.canvas.gameObject.SetActive(false);
+            ObjetosPrincipal.instancia.canvas.gameObject.SetActive(true);
         }
 
         //------------------------------------------------------------------
@@ -178,9 +159,9 @@ namespace Principal
             Unjugador.instancia.partida = ultimaPartida;
             Unjugador.instancia.nuevaPartida = false;
 
-            canvasMenu.gameObject.SetActive(false);
-            canvasCargando.gameObject.SetActive(true);
-            sliderCargando.value = 0;
+            ObjetosPrincipal.instancia.canvas.gameObject.SetActive(false);
+            ObjetosCargando.instancia.canvas.gameObject.SetActive(true);
+            ObjetosCargando.instancia.slider.value = 0;
 
             cargando = SceneManager.LoadSceneAsync("Escenario");
         }
@@ -189,18 +170,18 @@ namespace Principal
 
         public void CargarPartidaMostrar()
         {
-            canvasMenu.gameObject.SetActive(false);
-            canvasCargarPartida.gameObject.SetActive(true);
+            ObjetosPrincipal.instancia.canvas.gameObject.SetActive(false);
+            ObjetosCargarPartida.instancia.canvas.gameObject.SetActive(true);
 
-            foreach (Transform boton in panelPartidas.gameObject.transform)
+            foreach (Transform boton in ObjetosCargarPartida.instancia.panelPartidas.gameObject.transform)
             {
                 Destroy(boton.gameObject);
             }
 
             foreach (PartidaMaestro partida in partidas)
             {
-                GameObject boton = Instantiate(prefabBotonCargarPartida, new Vector3(0, 0, 0), Quaternion.identity);
-                boton.transform.SetParent(panelPartidas.gameObject.transform);
+                GameObject boton = Instantiate(ObjetosCargarPartida.instancia.prefabBotonCargarPartida, new Vector3(0, 0, 0), Quaternion.identity);
+                boton.transform.SetParent(ObjetosCargarPartida.instancia.panelPartidas.gameObject.transform);
                 boton.transform.localScale = Vector3.one;
 
                 TextMeshProUGUI texto = boton.GetComponentInChildren<TextMeshProUGUI>();
@@ -217,9 +198,9 @@ namespace Principal
             Unjugador.instancia.partida = partida;
             Unjugador.instancia.nuevaPartida = false;
 
-            canvasCargarPartida.gameObject.SetActive(false);
-            canvasCargando.gameObject.SetActive(true);
-            sliderCargando.value = 0;
+            ObjetosCargarPartida.instancia.canvas.gameObject.SetActive(false);
+            ObjetosCargando.instancia.canvas.gameObject.SetActive(true);
+            ObjetosCargando.instancia.slider.value = 0;
 
             cargando = SceneManager.LoadSceneAsync("Escenario");
         }
@@ -227,26 +208,26 @@ namespace Principal
         public void CargarPartidaVolver()
         {
             int i = 0;
-            foreach (Transform boton in panelPartidas.gameObject.transform)
+            foreach (Transform boton in ObjetosCargarPartida.instancia.panelPartidas.gameObject.transform)
             {
                 i += 1;
             }
 
             if (i == 0)
             {
-                botonContinuarPartida.gameObject.SetActive(false);
-                botonCargarPartida.gameObject.SetActive(false);
+                ObjetosPrincipal.instancia.botonContinuarPartida.gameObject.SetActive(false);
+                ObjetosPrincipal.instancia.botonCargarPartida.gameObject.SetActive(false);
             }
 
-            canvasMenu.gameObject.SetActive(true);
-            canvasCargarPartida.gameObject.SetActive(false);
+            ObjetosPrincipal.instancia.canvas.gameObject.SetActive(true);
+            ObjetosCargarPartida.instancia.canvas.gameObject.SetActive(false);
         }
 
         //------------------------------------------------------------------
 
         public void MultijugadorMostrar()
         {
-            canvasMenu.gameObject.SetActive(false);
+            ObjetosPrincipal.instancia.canvas.gameObject.SetActive(false);
             canvasConexion.gameObject.SetActive(true);
 
             MultiConexion.instancia.Conectar();
@@ -256,7 +237,7 @@ namespace Principal
 
         public void PersonalizarMostrar()
         {
-            canvasMenu.gameObject.SetActive(false);
+            ObjetosPrincipal.instancia.canvas.gameObject.SetActive(false);
             canvasPersonalizar.gameObject.SetActive(true);
         }
 
@@ -264,7 +245,7 @@ namespace Principal
 
         public void OpcionesMostrar()
         {
-            canvasMenu.gameObject.SetActive(false);
+            ObjetosPrincipal.instancia.canvas.gameObject.SetActive(false);
             canvasOpciones.gameObject.SetActive(true);
         }
 

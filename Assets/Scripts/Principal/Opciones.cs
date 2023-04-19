@@ -18,7 +18,7 @@ namespace Principal
 
         public void Start()
         {
-            Idiomas.Idiomas.instancia.CargarDropdownOpciones(dpIdiomas);
+            Interfaz.Idiomas.Idiomas.instancia.CargarDropdownOpciones(dpIdiomas);
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using TMPro;
 using UnityEngine;
 
-namespace Idiomas
+namespace Interfaz.Idiomas
 {
     public class IdiomasEscenario : MonoBehaviour
     {

@@ -85,7 +85,7 @@ namespace Jugador
                         panel.gameObject.SetActive(true);
 
                         TextMeshProUGUI textoTotal = panel.transform.GetComponent<TextMeshProUGUI>();
-                        textoTotal.text = Idiomas.Idiomas.instancia.CogerCadena("total");
+                        textoTotal.text = Interfaz.Idiomas.Idiomas.instancia.CogerCadena("total");
                     }
 
                     k += 1;

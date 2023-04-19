@@ -3,7 +3,7 @@ using System.Xml;
 using TMPro;
 using UnityEngine;
 
-namespace Idiomas
+namespace Interfaz.Idiomas
 {
     public class Idiomas : MonoBehaviour
     {
@@ -37,7 +37,13 @@ namespace Idiomas
 
             if (escena == Escenas.Principal)
             {
-                IdiomasPrincipal.instancia.CargarTextos();
+                ObjetosPrincipal.instancia.CargarTextos();
+                ObjetosCargando.instancia.CargarTextos();
+                ObjetosNuevaPartida.instancia.CargarTextos();
+                ObjetosCargarPartida.instancia.CargarTextos();
+                ObjetosMultiConexion.instancia.CargarTextos();
+                ObjetosMultiLobby.instancia.CargarTextos();
+                ObjetosMultiSala.instancia.CargarTextos();
             }
             else if (escena == Escenas.Escenario)
             {

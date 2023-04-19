@@ -1,20 +1,16 @@
 ﻿using ExitGames.Client.Photon;
+using Interfaz;
+using Interfaz.Idiomas;
 using Jugador;
 using Photon.Pun;
 using Photon.Realtime;
-using TMPro;
 using UnityEngine;
 
 namespace Principal
 {
     public class MultiConexion : MonoBehaviourPunCallbacks
     {     
-        public Canvas canvasMenu;
-        public Canvas canvasConexion;
         public Canvas canvasLobby;
-
-        public TextMeshProUGUI textoMensaje;
-        public GameObject botones;
 
         private bool conectando;
         private float segundosSumar;
@@ -43,13 +39,13 @@ namespace Principal
                 {
                     segundosTemporal = segundosSumar2;
 
-                    if (textoMensaje.text == Idiomas.Idiomas.instancia.CogerCadena("connecting") + " ..")
+                    if (ObjetosMultiConexion.instancia.mensaje.text == Idiomas.instancia.CogerCadena("connecting") + " ..")
                     {
-                        textoMensaje.text = Idiomas.Idiomas.instancia.CogerCadena("connecting") + " ...";
+                        ObjetosMultiConexion.instancia.mensaje.text = Idiomas.instancia.CogerCadena("connecting") + " ...";
                     }
                     else
                     {
-                        textoMensaje.text = Idiomas.Idiomas.instancia.CogerCadena("connecting") + " ..";
+                        ObjetosMultiConexion.instancia.mensaje.text = Idiomas.instancia.CogerCadena("connecting") + " ..";
                     }      
                 }
             }
@@ -61,11 +57,11 @@ namespace Principal
             {
                 MultiPhoton.instancia.Conectar();
 
-                textoMensaje.text = Idiomas.Idiomas.instancia.CogerCadena("connecting");
+                ObjetosMultiConexion.instancia.mensaje.text = Idiomas.instancia.CogerCadena("connecting");
 
-                if (botones.activeSelf == true)
+                if (ObjetosMultiConexion.instancia.panelBotones.activeSelf == true)
                 {
-                    botones.SetActive(false);
+                    ObjetosMultiConexion.instancia.panelBotones.SetActive(false);
                 }
 
                 conectando = true;
@@ -81,9 +77,9 @@ namespace Principal
         {
             conectando = false;
 
-            textoMensaje.text = error.Info;
+            ObjetosMultiConexion.instancia.mensaje.text = error.Info;
 
-            botones.SetActive(true);
+            ObjetosMultiConexion.instancia.panelBotones.SetActive(true);
         }
 
         public override void OnConnectedToMaster()
@@ -140,7 +136,7 @@ namespace Principal
 
             MultiPhoton.instancia.JugadorLocal().CustomProperties = hash;
 
-            canvasConexion.gameObject.SetActive(false);
+            ObjetosMultiConexion.instancia.canvas.gameObject.SetActive(false);
             canvasLobby.gameObject.SetActive(true);
 
             if (MultiPhoton.instancia.EnLobby() == false)
@@ -151,8 +147,8 @@ namespace Principal
 
         public void VolverPrincipal()
         {
-            canvasConexion.gameObject.SetActive(false);
-            canvasMenu.gameObject.SetActive(true);
+            ObjetosMultiConexion.instancia.canvas.gameObject.SetActive(false);
+            ObjetosPrincipal.instancia.canvas.gameObject.SetActive(true);
         }
     }
 }
