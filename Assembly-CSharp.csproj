@@ -62,7 +62,6 @@
     <Compile Include="Assets\Scripts\Partida\Guardar.cs" />
     <Compile Include="Assets\Scripts\Partida\Cargar.cs" />
     <Compile Include="Assets\Scripts\Escenario\Objetos.cs" />
-    <Compile Include="Assets\Scripts\Interfaz\Idiomas\IdiomasPrincipal.cs" />
     <Compile Include="Assets\Scripts\Partida\ClasesStructs.cs" />
     <Compile Include="Assets\Scripts\Jugador\Bola.cs" />
     <Compile Include="Assets\Scripts\Escenario\Generacion\Llano.cs" />
@@ -74,11 +73,11 @@
     <Compile Include="Assets\Scripts\Escenario\Interfaz.cs" />
     <Compile Include="Assets\Scripts\Interfaz\Objetos\ObjetosCargarPartida.cs" />
     <Compile Include="Assets\Scripts\Jugador\TablaGolpes.cs" />
-    <Compile Include="Assets\Scripts\Principal\Opciones.cs" />
+    <Compile Include="Assets\Scripts\Interfaz\Opciones.cs" />
     <Compile Include="Assets\Scripts\Escenario\Animaciones\PresentacionHoyoBola.cs" />
     <Compile Include="Assets\Scripts\Interfaz\Objetos\ObjetosCargando.cs" />
     <Compile Include="Assets\Scripts\Escenario\Generacion\Limites.cs" />
-    <Compile Include="Assets\Scripts\Principal\PersonalizarBola.cs" />
+    <Compile Include="Assets\Scripts\Interfaz\PersonalizarBola.cs" />
     <Compile Include="Assets\Scripts\Escenario\Generacion\Vectores.cs" />
     <Compile Include="Assets\Photon\PhotonRealtime\Demos\DemoLoadBalancing\ConnectAndJoinRandomLb.cs" />
     <Compile Include="Assets\Scripts\Partida\Datos.cs" />
@@ -91,7 +90,7 @@
     <Compile Include="Assets\Scripts\Interfaz\Idiomas\Idiomas.cs" />
     <Compile Include="Assets\Scripts\Interfaz\Objetos\ObjetosMultiConexion.cs" />
     <Compile Include="Assets\Scripts\Escenario\Colocar\Hoyo.cs" />
-    <Compile Include="Assets\Scripts\Interfaz\Idiomas\IdiomasEscenario.cs" />
+    <Compile Include="Assets\Scripts\Interfaz\Objetos\IdiomasEscenario.cs" />
     <Compile Include="Assets\Scripts\Jugador\Atributos.cs" />
     <Compile Include="Assets\Scripts\Interfaz\Objetos\ObjetosPrincipal.cs" />
     <Compile Include="Assets\Scripts\Interfaz\Objetos\ObjetosMultiSala.cs" />
@@ -109,6 +108,8 @@
     <Compile Include="Assets\Scripts\Interfaz\Objetos\ObjetosMultiLobby.cs" />
     <Compile Include="Assets\Scripts\Partida\Unjugador.cs" />
     <Compile Include="Assets\Scripts\Escenario\Colocar\Bola.cs" />
+    <Compile Include="Assets\Scripts\Interfaz\Objetos\ObjetosPersonalizarBola.cs" />
+    <Compile Include="Assets\Scripts\Interfaz\Objetos\ObjetosOpciones.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

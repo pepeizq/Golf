@@ -19,16 +19,6 @@ namespace Interfaz
         private float segundosSumar;
         private int segundosTemporal = 1;
 
-        [Header("Multijugador")]
-        public Canvas canvasConexion;
-        public Button botonMultijugador;
-
-        [Header("Personalizar")]
-        public Canvas canvasPersonalizar;
-
-        [Header("Opciones")]
-        public Canvas canvasOpciones;
-
         private AsyncOperation cargando = null;
 
         public void Start()
@@ -70,7 +60,7 @@ namespace Interfaz
             if (MultiPhoton.instancia.Conectado() == true)
             {
                 MultiPhoton.instancia.Desconectar();
-                botonMultijugador.gameObject.SetActive(false);
+                ObjetosPrincipal.instancia.botonMultijugador.gameObject.SetActive(false);
             }
         }
 
@@ -93,11 +83,11 @@ namespace Interfaz
                 if (MultiPhoton.instancia.Conectado() == true)
                 {
                     MultiPhoton.instancia.Desconectar();
-                    botonMultijugador.gameObject.SetActive(false);
+                    ObjetosPrincipal.instancia.botonMultijugador.gameObject.SetActive(false);
                 }
                 else
                 {
-                    botonMultijugador.gameObject.SetActive(true);
+                    ObjetosPrincipal.instancia.botonMultijugador.gameObject.SetActive(true);
                 }
             }
         }
@@ -228,7 +218,7 @@ namespace Interfaz
         public void MultijugadorMostrar()
         {
             ObjetosPrincipal.instancia.canvas.gameObject.SetActive(false);
-            canvasConexion.gameObject.SetActive(true);
+            ObjetosMultiConexion.instancia.gameObject.SetActive(true);
 
             MultiConexion.instancia.Conectar();
         }
@@ -238,7 +228,7 @@ namespace Interfaz
         public void PersonalizarMostrar()
         {
             ObjetosPrincipal.instancia.canvas.gameObject.SetActive(false);
-            canvasPersonalizar.gameObject.SetActive(true);
+            ObjetosPersonalizarBola.instancia.canvas.gameObject.SetActive(true);
         }
 
         //------------------------------------------------------------------
@@ -246,7 +236,7 @@ namespace Interfaz
         public void OpcionesMostrar()
         {
             ObjetosPrincipal.instancia.canvas.gameObject.SetActive(false);
-            canvasOpciones.gameObject.SetActive(true);
+            ObjetosOpciones.instancia.canvas.gameObject.SetActive(true);
         }
 
         //------------------------------------------------------------------

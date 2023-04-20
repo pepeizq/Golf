@@ -4,31 +4,25 @@ using UnityEngine.UI;
 
 namespace Interfaz
 {
-    public class ObjetosMultiLobby : MonoBehaviour
+    public class ObjetosOpciones : MonoBehaviour
     {
         [Header("Canvas")]
         public Canvas canvas;
 
         [Header("Paneles")]
         public RectTransform panel;
-        public RectTransform panelSalas;
+        public RectTransform panelOpciones;
 
         [Header("Botones")]
         public Button botonVolver;
-        public Button botonCrearSala;
 
         [Header("Textos")]
         public TMP_Text volver;
-        public TMP_Text crearSala;
 
-        [Header("Inputs")]
-        public TMP_InputField textoJugador;
-        public TMP_InputField textoSala;
+        [Header("Dropdowns")]
+        public TMP_Dropdown dpIdiomas;
 
-        [Header("Prefabs")]
-        public GameObject prefabBotonSala;
-
-        public static ObjetosMultiLobby instancia;
+        public static ObjetosOpciones instancia;
 
         public void Awake()
         {
@@ -38,7 +32,6 @@ namespace Interfaz
         public void CargarTextos()
         {
             volver.text = Idiomas.Idiomas.instancia.CogerCadena("back");
-            crearSala.text = Idiomas.Idiomas.instancia.CogerCadena("createRoom");
         }
     }
 }

@@ -44,10 +44,12 @@ namespace Interfaz.Idiomas
                 ObjetosMultiConexion.instancia.CargarTextos();
                 ObjetosMultiLobby.instancia.CargarTextos();
                 ObjetosMultiSala.instancia.CargarTextos();
+                ObjetosPersonalizarBola.instancia.CargarTextos();
+                ObjetosOpciones.instancia.CargarTextos();
             }
             else if (escena == Escenas.Escenario)
             {
-                IdiomasEscenario.instancia.CargarTextos();
+                ObjetosEscenario.instancia.CargarTextos();
             }
         }
 

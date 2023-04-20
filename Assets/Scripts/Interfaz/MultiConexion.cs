@@ -10,8 +10,6 @@ namespace Principal
 {
     public class MultiConexion : MonoBehaviourPunCallbacks
     {     
-        public Canvas canvasLobby;
-
         private bool conectando;
         private float segundosSumar;
         private int segundosTemporal = 0;
@@ -137,7 +135,7 @@ namespace Principal
             MultiPhoton.instancia.JugadorLocal().CustomProperties = hash;
 
             ObjetosMultiConexion.instancia.canvas.gameObject.SetActive(false);
-            canvasLobby.gameObject.SetActive(true);
+            ObjetosMultiLobby.instancia.canvas.gameObject.SetActive(true);
 
             if (MultiPhoton.instancia.EnLobby() == false)
             {

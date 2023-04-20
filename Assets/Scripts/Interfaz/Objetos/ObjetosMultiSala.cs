@@ -10,9 +10,11 @@ namespace Interfaz
         public Canvas canvas;
 
         [Header("Paneles")]
+        public RectTransform panel;
         public RectTransform panelJugadores;
 
         [Header("Botones")]
+        public Button botonDejarSala;
         public Button botonEmpezarPartida;
 
         [Header("Textos")]
