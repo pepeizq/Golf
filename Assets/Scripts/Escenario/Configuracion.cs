@@ -75,7 +75,21 @@ namespace Escenario
         {
             instancia = this;
 
-            if (MultiPhoton.instancia.Conectado() == false)
+            bool conectadoMultijugador = false;
+
+            if (MultiPhoton.instancia != null)
+            {
+                if (MultiPhoton.instancia.Conectado() == true)
+                {
+                    conectadoMultijugador = true;
+
+                    nivel = MultiPartida.instancia.nivel;
+                    aleatorio = true;
+                    campo = Datos.instancia.campos[MultiPartida.instancia.campo];
+                }
+            }
+            
+            if (conectadoMultijugador == false)
             {
                 nivel = Unjugador.instancia.partida.nivel;
 
@@ -91,12 +105,6 @@ namespace Escenario
                     numeroPartida = Unjugador.instancia.partida.numeroPartida;
                     campo = Datos.instancia.campos[Unjugador.instancia.partida.campo];
                 }
-            }
-            else
-            {
-                nivel = MultiPartida.instancia.nivel;
-                aleatorio = true;
-                campo = Datos.instancia.campos[MultiPartida.instancia.campo];
             }
 
             if (campo != null)
