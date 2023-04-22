@@ -49,6 +49,9 @@ namespace Escenario
         public bool paloEmpujarBola = true;
         public bool presentacionHoyoBola = true;
 
+        [Header("Pruebas")]
+        public Campo campoPruebas;
+
         [HideInInspector] public int nivel = 0;
         [HideInInspector] public int tamañoX = 40;
         [HideInInspector] public int tamañoZ = 40;
@@ -91,19 +94,28 @@ namespace Escenario
             
             if (conectadoMultijugador == false)
             {
-                nivel = Unjugador.instancia.partida.nivel;
-
-                if (Unjugador.instancia.nuevaPartida == true)
+                if (Unjugador.instancia != null)
                 {
-                    aleatorio = true;
-                    numeroPartida = PlayerPrefs.GetInt("numeroPartida");
-                    campo = Datos.instancia.campos[PlayerPrefs.GetInt(numeroPartida.ToString() + "campo")];
+                    nivel = Unjugador.instancia.partida.nivel;
+
+                    if (Unjugador.instancia.nuevaPartida == true)
+                    {
+                        aleatorio = true;
+                        numeroPartida = PlayerPrefs.GetInt("numeroPartida");
+                        campo = Datos.instancia.campos[PlayerPrefs.GetInt(numeroPartida.ToString() + "campo")];
+                    }
+                    else
+                    {
+                        aleatorio = false;
+                        numeroPartida = Unjugador.instancia.partida.numeroPartida;
+                        campo = Datos.instancia.campos[Unjugador.instancia.partida.campo];
+                    }
                 }
                 else
                 {
-                    aleatorio = false;
-                    numeroPartida = Unjugador.instancia.partida.numeroPartida;
-                    campo = Datos.instancia.campos[Unjugador.instancia.partida.campo];
+                    aleatorio = true;
+                    numeroPartida = 0;
+                    campo = campoPruebas;
                 }
             }
 
@@ -122,10 +134,13 @@ namespace Escenario
 
         public void Start()
         {
-            if (MultiPhoton.instancia.Conectado() == true)
+            if (MultiPhoton.instancia != null)
             {
-                jugadores = new Jugador.Bola[MultiPhoton.instancia.ListaJugadores().Length];
-                photonView.RPC("MultijugadorSumarJugador", RpcTarget.AllBuffered);
+                if (MultiPhoton.instancia.Conectado() == true)
+                {
+                    jugadores = new Jugador.Bola[MultiPhoton.instancia.ListaJugadores().Length];
+                    photonView.RPC("MultijugadorSumarJugador", RpcTarget.AllBuffered);
+                }
             }
 
             Objetos.instancia.textoPartida.text = string.Format("Partida: {0}", numeroPartida.ToString());

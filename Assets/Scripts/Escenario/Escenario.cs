@@ -34,11 +34,14 @@ namespace Escenario
 
             bool arrancar = true;
 
-            if (MultiPhoton.instancia.Conectado() == true)
+            if (MultiPhoton.instancia != null)
             {
-                if (MultiPhoton.instancia.Maestro() == false)
+                if (MultiPhoton.instancia.Conectado() == true)
                 {
-                    arrancar = false;
+                    if (MultiPhoton.instancia.Maestro() == false)
+                    {
+                        arrancar = false;
+                    }
                 }
             }
 
