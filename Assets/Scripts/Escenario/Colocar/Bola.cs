@@ -19,9 +19,12 @@ namespace Escenario.Colocar
         {
             bool buscarPosicion = true;
 
-            if (MultiPhoton.instancia.Conectado() == true && PhotonNetwork.IsMasterClient == false)
+            if (MultiPhoton.instancia != null)
             {
-                buscarPosicion = false;
+                if (MultiPhoton.instancia.Conectado() == true && PhotonNetwork.IsMasterClient == false)
+                {
+                    buscarPosicion = false;
+                }
             }
 
             if (buscarPosicion == true && Objetos.instancia.bola != null)
@@ -46,16 +49,19 @@ namespace Escenario.Colocar
                                 {
                                     Vector3 posicion = casillas[x, z].prefab.gameObject.transform.position;
 
-                                    if (MultiPhoton.instancia.Conectado() == false)
+                                    if (MultiPhoton.instancia != null)
                                     {
-                                        InstanciarBola(posicion);
-                                    }
-                                    else
-                                    {
-                                        if (MultiPhoton.instancia.Maestro() == true)
+                                        if (MultiPhoton.instancia.Conectado() == false)
                                         {
-                                            Configuracion.instancia.photonView.RPC("MultijugadorPosicionInicioBola", RpcTarget.All, posicion);
-                                        }                                           
+                                            InstanciarBola(posicion);
+                                        }
+                                        else
+                                        {
+                                            if (MultiPhoton.instancia.Maestro() == true)
+                                            {
+                                                Configuracion.instancia.photonView.RPC("MultijugadorPosicionInicioBola", RpcTarget.All, posicion);
+                                            }
+                                        }
                                     }
                                         
                                     casillas[x, z].modificable = false;

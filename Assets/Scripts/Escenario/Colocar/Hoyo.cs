@@ -19,9 +19,12 @@ namespace Escenario.Colocar
         {
             bool buscarPosicion = true;
       
-            if (MultiPhoton.instancia.Conectado() == true && MultiPhoton.instancia.Maestro() == false)
+            if (MultiPhoton.instancia != null)
             {
-                buscarPosicion = false;
+                if (MultiPhoton.instancia.Conectado() == true && MultiPhoton.instancia.Maestro() == false)
+                {
+                    buscarPosicion = false;
+                }
             }
 
             if (buscarPosicion == true && Configuracion.instancia.campo.hoyo != null)
@@ -44,15 +47,18 @@ namespace Escenario.Colocar
                             {
                                 if (casillas[x, z].id == 0 && casillas[x, z].modificable == true)
                                 {
-                                    if (MultiPhoton.instancia.Conectado() == false)
+                                    if (MultiPhoton.instancia != null)
                                     {
-                                        InstanciarHoyo(casillas, x, z);
-                                    }
-                                    else
-                                    {
-                                        if (MultiPhoton.instancia.Maestro() == true)
+                                        if (MultiPhoton.instancia.Conectado() == false)
                                         {
                                             InstanciarHoyo(casillas, x, z);
+                                        }
+                                        else
+                                        {
+                                            if (MultiPhoton.instancia.Maestro() == true)
+                                            {
+                                                InstanciarHoyo(casillas, x, z);
+                                            }
                                         }
                                     }
        

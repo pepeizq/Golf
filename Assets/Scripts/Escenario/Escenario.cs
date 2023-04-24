@@ -30,8 +30,11 @@ namespace Escenario
 
         public void Start()
         {
-            Idiomas.instancia.CargarTraducciones(Idiomas.Escenas.Escenario);
-
+            if (Idiomas.instancia != null)
+            {
+                Idiomas.instancia.CargarTraducciones(Idiomas.Escenas.Escenario);
+            }
+            
             bool arrancar = true;
 
             if (MultiPhoton.instancia != null)
@@ -55,22 +58,25 @@ namespace Escenario
         {
             casillasMapa = new Casilla[Configuracion.instancia.tamañoX, Configuracion.instancia.tamañoZ];
 
-            if (MultiPhoton.instancia.Conectado() == false)
+            if (MultiPhoton.instancia != null)
             {
-                if (Configuracion.instancia.aleatorio == true)
+                if (MultiPhoton.instancia.Conectado() == false)
                 {
-                    casillasIniciales = Vectores.instancia.GenerarCasillas(casillasMapa, Configuracion.instancia.alturaMaxima, limitesMapa);
+                    if (Configuracion.instancia.aleatorio == true)
+                    {
+                        casillasIniciales = Vectores.instancia.GenerarCasillas(casillasMapa, Configuracion.instancia.alturaMaxima, limitesMapa);
+                    }
+                    else
+                    {
+                        casillasIniciales = Cargar.CargarEscenario(Unjugador.instancia.partida.escenario);
+                    }
                 }
                 else
                 {
-                    casillasIniciales = Cargar.CargarEscenario(Unjugador.instancia.partida.escenario);
-                }
-            }
-            else
-            {
-                if (MultiPhoton.instancia.Maestro() == true)
-                {
-                    casillasIniciales = Vectores.instancia.GenerarCasillas(casillasMapa, Configuracion.instancia.alturaMaxima, limitesMapa);
+                    if (MultiPhoton.instancia.Maestro() == true)
+                    {
+                        casillasIniciales = Vectores.instancia.GenerarCasillas(casillasMapa, Configuracion.instancia.alturaMaxima, limitesMapa);
+                    }
                 }
             }
 
@@ -325,14 +331,18 @@ namespace Escenario
 
                     GameObject casilla2 = null;
                     
-                    if (MultiPhoton.instancia.Conectado() == true)
+                    if (MultiPhoton.instancia != null)
                     {
-                        if (MultiPhoton.instancia.Maestro() == true)
+                        if (MultiPhoton.instancia.Conectado() == true)
                         {
-                            casilla2 = PhotonNetwork.InstantiateRoomObject("Prefabs/Casillas/" + casillasFinal2[id].prefab.name, posicionFinal, Quaternion.identity);
+                            if (MultiPhoton.instancia.Maestro() == true)
+                            {
+                                casilla2 = PhotonNetwork.InstantiateRoomObject("Prefabs/Casillas/" + casillasFinal2[id].prefab.name, posicionFinal, Quaternion.identity);
+                            }
                         }
                     }
-                    else
+
+                    if (casilla2 == null)
                     {
                         casilla2 = Instantiate(casillasFinal2[id].prefab, posicionFinal, Quaternion.identity);
                     }

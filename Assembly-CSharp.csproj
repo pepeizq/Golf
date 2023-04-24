@@ -91,7 +91,7 @@
     <Compile Include="Assets\Scripts\Interfaz\Idiomas\Idiomas.cs" />
     <Compile Include="Assets\Scripts\Interfaz\Objetos\ObjetosMultiConexion.cs" />
     <Compile Include="Assets\Scripts\Escenario\Colocar\Hoyo.cs" />
-    <Compile Include="Assets\Scripts\Interfaz\Objetos\IdiomasEscenario.cs" />
+    <Compile Include="Assets\Scripts\Interfaz\Objetos\ObjetosEscenario.cs" />
     <Compile Include="Assets\Scripts\Jugador\Atributos.cs" />
     <Compile Include="Assets\Scripts\Interfaz\Objetos\ObjetosPrincipal.cs" />
     <Compile Include="Assets\Scripts\Interfaz\Objetos\ObjetosMultiSala.cs" />

@@ -6624,6 +6624,7 @@ MonoBehaviour:
   muros: 0
   paloEmpujarBola: 0
   presentacionHoyoBola: 0
+  campoPruebas: {fileID: 11400000, guid: 5f1ea259c26884241980cf74c5b240b4, type: 2}
   nivel: 0
   "tama\xF1oX": 20
   "tama\xF1oZ": 20
@@ -7820,7 +7821,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 342fbf76835bcbf49995f4d0d66a0045, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volverPartida: {fileID: 1383884512}
 --- !u!1 &2117603344
 GameObject:
   m_ObjectHideFlags: 0

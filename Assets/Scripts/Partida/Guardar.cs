@@ -167,30 +167,33 @@ namespace Partida
  
         public static void GuardarMordiscos(List<Vector2> casillas)
         {
-            if (MultiPhoton.instancia.Conectado() == false)
+            if (MultiPhoton.instancia != null)
             {
-                if (casillas != null)
+                if (MultiPhoton.instancia.Conectado() == false)
                 {
-                    if (casillas.Count > 0)
+                    if (casillas != null)
                     {
-                        PartidaCoordenadas mordiscos = new PartidaCoordenadas();
-                        VectorDos[] mordiscos2 = new VectorDos[casillas.Count];
-
-                        int i = 0;
-                        foreach (Vector2 vector in casillas)
+                        if (casillas.Count > 0)
                         {
-                            mordiscos2[i] = new VectorDos(vector);
+                            PartidaCoordenadas mordiscos = new PartidaCoordenadas();
+                            VectorDos[] mordiscos2 = new VectorDos[casillas.Count];
 
-                            i += 1;
+                            int i = 0;
+                            foreach (Vector2 vector in casillas)
+                            {
+                                mordiscos2[i] = new VectorDos(vector);
+
+                                i += 1;
+                            }
+
+                            mordiscos.coordenada = mordiscos2;
+
+                            string datos = JsonUtility.ToJson(mordiscos);
+                            PlayerPrefs.SetString(Configuracion.instancia.numeroPartida.ToString() + "mordiscos" + Configuracion.instancia.nivel.ToString(), datos);
                         }
-
-                        mordiscos.coordenada = mordiscos2;
-
-                        string datos = JsonUtility.ToJson(mordiscos);
-                        PlayerPrefs.SetString(Configuracion.instancia.numeroPartida.ToString() + "mordiscos" + Configuracion.instancia.nivel.ToString(), datos);
                     }
                 }
-            }               
+            }                     
         }
     }
 }
