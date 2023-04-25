@@ -7821,6 +7821,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 342fbf76835bcbf49995f4d0d66a0045, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canvas: {fileID: 436698342}
+  panelAbajo: {fileID: 1420913254}
+  botonMenu: {fileID: 1183350181}
+  menu: {fileID: 277127581}
+  partida: {fileID: 260772670}
+  hoyo: {fileID: 917129064}
+  golpes: {fileID: 1207260765}
+  palos: {fileID: 2018059112}
+  sliderPotencia: {fileID: 440376284}
 --- !u!1 &2117603344
 GameObject:
   m_ObjectHideFlags: 0

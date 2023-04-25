@@ -63,6 +63,13 @@ namespace Escenario.Colocar
                                             }
                                         }
                                     }
+                                    else
+                                    {
+                                        if (Unjugador.instancia == null)
+                                        {
+                                            InstanciarBola(posicion);
+                                        }
+                                    }
                                         
                                     casillas[x, z].modificable = false;
                                     break;
@@ -81,7 +88,10 @@ namespace Escenario.Colocar
                     }
                     else
                     {
-                        InstanciarBola(Unjugador.instancia.partida.posicion.ObtenerVector3());
+                        if (Unjugador.instancia != null)
+                        {
+                            InstanciarBola(Unjugador.instancia.partida.posicion.ObtenerVector3());
+                        }
                     }                       
                 }
             }

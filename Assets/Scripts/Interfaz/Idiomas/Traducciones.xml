@@ -20,6 +20,8 @@
 		<string name="total">Total</string>
 		<string name="players">Players</string>
 		<string name="waitingPlayers">Waiting Players</string>
+		<string name="menu">Menu</string>
+		<string name="hits">Hits</string>
     </English>
      
     <Spanish>
@@ -42,5 +44,7 @@
 		<string name="total">Total</string>
 		<string name="players">Jugadores</string>
 		<string name="waitingPlayers">Esperando Jugadores</string>
+		<string name="menu">Menu</string>
+		<string name="hits">Golpes</string>
     </Spanish>
 </languages>

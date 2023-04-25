@@ -49,7 +49,7 @@ namespace Interfaz.Idiomas
             }
             else if (escena == Escenas.Escenario)
             {
-                ObjetosEscenario.instancia.CargarTextos();
+                ObjetosPartida.instancia.CargarTextos();
             }
         }
 

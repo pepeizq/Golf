@@ -1,5 +1,6 @@
 using Escenario;
 using Escenario.Animaciones;
+using Interfaz.Idiomas;
 using Partida;
 using Photon.Pun;
 using Photon.Realtime;
@@ -78,7 +79,7 @@ namespace Jugador
             if (bolas.Length != MultiPhoton.instancia.Sala().PlayerCount)
             {
                 Objetos.instancia.panelEsperandoJugadores.SetActive(true);
-                Objetos.instancia.textoEsperandoJugadores.text = string.Format("{0} ({1}/{2})", Interfaz.Idiomas.Idiomas.instancia.CogerCadena("waitingPlayers"), bolas.Length, MultiPhoton.instancia.Sala().PlayerCount);
+                Objetos.instancia.textoEsperandoJugadores.text = string.Format("{0} ({1}/{2})", Idiomas.instancia.CogerCadena("waitingPlayers"), bolas.Length, MultiPhoton.instancia.Sala().PlayerCount);
 
                 Camera camara = Objetos.instancia.camara.GetComponent<Camera>();
                 camara.transform.position = new Vector3(camara.transform.position.x, 60, camara.transform.position.z);
@@ -127,30 +128,40 @@ namespace Jugador
             camaraZoom = Configuracion.instancia.zoomDefecto;
             rotacion = 90;
 
-            if (MultiPhoton.instancia.Conectado() == false)
+            if (MultiPhoton.instancia != null)
             {
-                if (Unjugador.instancia.nuevaPartida == false)
+                if (MultiPhoton.instancia.Conectado() == false)
                 {
-                    camaraZoom = Cargar.CargarPartida(Unjugador.instancia.partida.numeroPartida).zoom;
-                    rotacion = Cargar.CargarPartida(Unjugador.instancia.partida.numeroPartida).rotacion;
-                    golpes = Cargar.CargarPartida(Unjugador.instancia.partida.numeroPartida).golpes;
+                    if (Unjugador.instancia.nuevaPartida == false)
+                    {
+                        camaraZoom = Cargar.CargarPartida(Unjugador.instancia.partida.numeroPartida).zoom;
+                        rotacion = Cargar.CargarPartida(Unjugador.instancia.partida.numeroPartida).rotacion;
+                        golpes = Cargar.CargarPartida(Unjugador.instancia.partida.numeroPartida).golpes;
+                    }
+
+                    Personalizar.Color(gameObject, Atributos.instancia.color);
+
+                    Guardar.GuardarPartida(ultimaPosicionBola, rotacion, golpes, camaraZoom);
                 }
-
-                Personalizar.Color(gameObject, Atributos.instancia.color);
-
-                Guardar.GuardarPartida(ultimaPosicionBola, rotacion, golpes, camaraZoom);
             }
 
-            Objetos.instancia.textoGolpes.text = string.Format("Golpes: {0}", golpes.ToString());       
+            Objetos.instancia.textoGolpes.text = string.Format("{0}: {1}", Idiomas.instancia.CogerCadena("hits"), golpes.ToString());       
         }
 
         public void Update()
         {
             bool jugadorAsignado = false;
 
-            if (MultiPhoton.instancia.Conectado() == true)
+            if (MultiPhoton.instancia != null)
             {
-                if (photonView.IsMine == true)
+                if (MultiPhoton.instancia.Conectado() == true)
+                {
+                    if (photonView.IsMine == true)
+                    {
+                        jugadorAsignado = true;
+                    }
+                }
+                else
                 {
                     jugadorAsignado = true;
                 }
@@ -175,7 +186,11 @@ namespace Jugador
                     ultimaPosicionBola = transform.parent.localPosition + cuerpo.transform.localPosition;
                     ultimaPosicionCuerpo = cuerpo.transform.localPosition;
 
-                    Guardar.GuardarPartida(ultimaPosicionBola, rotacion, golpes, camaraZoom);
+                    if (Guardar.instancia != null)
+                    {
+                        Guardar.GuardarPartida(ultimaPosicionBola, rotacion, golpes, camaraZoom);
+                    }
+                    
                     Transparentar.Casillas(ultimaPosicionBola, Transparentar.CasillasMaterial.Transparente);
 
                     if (controles.Principal.BolaPotencia.phase == InputActionPhase.Performed)
@@ -291,11 +306,14 @@ namespace Jugador
 
             //-----------------------------------------------------------
 
-            if (MultiPhoton.instancia.Conectado() == true)
+            if (MultiPhoton.instancia != null)
             {
-                if (controles.Principal.EnseñarNombresMulti.phase == InputActionPhase.Performed)
+                if (MultiPhoton.instancia.Conectado() == true)
                 {
-                    MultiNombres.instancia.Enseñar();
+                    if (controles.Principal.EnseñarNombresMulti.phase == InputActionPhase.Performed)
+                    {
+                        MultiNombres.instancia.Enseñar();
+                    }
                 }
             }
 
@@ -309,9 +327,16 @@ namespace Jugador
         {
             bool jugadorAsignado = false;
 
-            if (MultiPhoton.instancia.Conectado() == true)
+            if (MultiPhoton.instancia != null)
             {
-                if (photonView.IsMine == true)
+                if (MultiPhoton.instancia.Conectado() == true)
+                {
+                    if (photonView.IsMine == true)
+                    {
+                        jugadorAsignado = true;
+                    }
+                }
+                else
                 {
                     jugadorAsignado = true;
                 }
@@ -441,9 +466,12 @@ namespace Jugador
             golpes += 1;
             Objetos.instancia.textoGolpes.text = string.Format("Golpes: {0}", golpes.ToString());
 
-            if (MultiPhoton.instancia.Conectado() == true)
+            if (MultiPhoton.instancia != null)
             {
-                MultiPhoton.instancia.ActualizarPropiedades(photonJugador, "GolpesHoyo" + (Configuracion.instancia.nivel + 1), golpes);
+                if (MultiPhoton.instancia.Conectado() == true)
+                {
+                    MultiPhoton.instancia.ActualizarPropiedades(photonJugador, "GolpesHoyo" + (Configuracion.instancia.nivel + 1), golpes);
+                }
             }
         }
 
@@ -451,9 +479,12 @@ namespace Jugador
         {
             if (colision.gameObject.name == "FondoHoyo")
             {
-                if (MultiPhoton.instancia.Conectado() == true && photonView.IsMine == true)
+                if (MultiPhoton.instancia != null)
                 {
-                    MultiPhoton.instancia.ActualizarPropiedades(photonJugador, "TerminadoHoyo" + (Configuracion.instancia.nivel + 1), true);
+                    if (MultiPhoton.instancia.Conectado() == true && photonView.IsMine == true)
+                    {
+                        MultiPhoton.instancia.ActualizarPropiedades(photonJugador, "TerminadoHoyo" + (Configuracion.instancia.nivel + 1), true);
+                    }
                 }
 
                 StartCoroutine(TerminarHoyo());
@@ -469,11 +500,14 @@ namespace Jugador
         {
             if (colision.gameObject.name == "FondoHoyo")
             {
-                if (MultiPhoton.instancia.Conectado() == true && photonView.IsMine == true)
+                if (MultiPhoton.instancia != null)
                 {
-                    MultiPhoton.instancia.ActualizarPropiedades(photonJugador, "TerminadoHoyo" + (Configuracion.instancia.nivel + 1), false);
+                    if (MultiPhoton.instancia.Conectado() == true && photonView.IsMine == true)
+                    {
+                        MultiPhoton.instancia.ActualizarPropiedades(photonJugador, "TerminadoHoyo" + (Configuracion.instancia.nivel + 1), false);
+                    }
                 }
-
+                    
                 StopCoroutine(TerminarHoyo());
             }
         }
@@ -496,23 +530,28 @@ namespace Jugador
 
         IEnumerator TerminarHoyo()
         {
-            if (MultiPhoton.instancia.Conectado() == false)
+            bool conectado = false;
+
+            if (MultiPhoton.instancia != null)
             {
-                NuevoNivel.instancia.MensajeEspera(Configuracion.instancia.tiempoEsperaNuevoNivelUnjugador);
-                yield return new WaitForSeconds(Configuracion.instancia.tiempoEsperaNuevoNivelUnjugador);
-                Guardar.GuardarPartida(ultimaPosicionBola, rotacion, golpes, camaraZoom);          
-                NuevoNivel.instancia.UnJugador(Configuracion.instancia.nivel += 1);
-                Destroy(gameObject);
-            }
-            else
-            {
-                if (Objetos.instancia.canvasNuevoNivel.isActiveAndEnabled == false)
+                if (MultiPhoton.instancia.Conectado() == true)
                 {
+                    conectado = true;
+
                     NuevoNivel.instancia.MensajeEspera(Configuracion.instancia.tiempoEsperaNuevoNivelMultijugador);
                     yield return new WaitForSeconds(Configuracion.instancia.tiempoEsperaNuevoNivelMultijugador);
                     NuevoNivel.instancia.Multijugador();
                     Destroy(gameObject);
-                }               
+                }
+            }
+
+            if (conectado == false)
+            {
+                NuevoNivel.instancia.MensajeEspera(Configuracion.instancia.tiempoEsperaNuevoNivelUnjugador);
+                yield return new WaitForSeconds(Configuracion.instancia.tiempoEsperaNuevoNivelUnjugador);
+                Guardar.GuardarPartida(ultimaPosicionBola, rotacion, golpes, camaraZoom);
+                NuevoNivel.instancia.UnJugador(Configuracion.instancia.nivel += 1);
+                Destroy(gameObject);
             }
         }
 

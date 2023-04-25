@@ -61,6 +61,13 @@ namespace Escenario.Colocar
                                             }
                                         }
                                     }
+                                    else
+                                    {
+                                        if (Unjugador.instancia == null)
+                                        {
+                                            InstanciarHoyo(casillas, x, z);
+                                        }
+                                    }
        
                                     break;
                                 }
@@ -88,25 +95,33 @@ namespace Escenario.Colocar
   
         public void InstanciarHoyo(Casilla[,] casillas, int casillaX, int casillaZ)
         {
-            if (MultiPhoton.instancia.Conectado() == false)
+            bool conectado = false;
+
+            if (MultiPhoton.instancia != null)
+            {
+                if (MultiPhoton.instancia.Conectado() == true)
+                {
+                    conectado = true;
+
+                    Vector3 posicion = casillas[casillaX, casillaZ].posicion;
+                    GameObject hoyo = PhotonNetwork.InstantiateRoomObject("Prefabs/Prefab Hoyo 1", posicion, Quaternion.identity);
+
+                    PhotonNetwork.Destroy(casillas[casillaX, casillaZ].prefab);
+                    casillas[casillaX, casillaZ].prefab = hoyo;
+                    casillas[casillaX, casillaZ].modificable = false;
+                }
+            }
+
+            if (conectado == false)
             {
                 GameObject hoyo = Instantiate(Configuracion.instancia.campo.hoyo);
                 hoyo.transform.position = casillas[casillaX, casillaZ].prefab.transform.position;
-      
+
                 Configuracion.instancia.posicionHoyo = hoyo.transform.localPosition;
                 Configuracion.instancia.posicionHoyoX = casillaX;
                 Configuracion.instancia.posicionHoyoZ = casillaZ;
 
                 Destroy(casillas[casillaX, casillaZ].prefab);
-                casillas[casillaX, casillaZ].prefab = hoyo;
-                casillas[casillaX, casillaZ].modificable = false;
-            }
-            else
-            {
-                Vector3 posicion = casillas[casillaX, casillaZ].posicion;
-                GameObject hoyo = PhotonNetwork.InstantiateRoomObject("Prefabs/Prefab Hoyo 1", posicion, Quaternion.identity);
-           
-                PhotonNetwork.Destroy(casillas[casillaX, casillaZ].prefab);
                 casillas[casillaX, casillaZ].prefab = hoyo;
                 casillas[casillaX, casillaZ].modificable = false;
             }
