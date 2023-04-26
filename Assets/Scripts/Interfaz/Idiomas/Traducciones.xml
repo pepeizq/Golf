@@ -22,6 +22,7 @@
 		<string name="waitingPlayers">Waiting Players</string>
 		<string name="menu">Menu</string>
 		<string name="hits">Hits</string>
+		<string name="backMain">Back to Main Menu</string>
     </English>
      
     <Spanish>
@@ -46,5 +47,6 @@
 		<string name="waitingPlayers">Esperando Jugadores</string>
 		<string name="menu">Menu</string>
 		<string name="hits">Golpes</string>
+		<string name="backMain">Volver al Menú Principal</string>
     </Spanish>
 </languages>

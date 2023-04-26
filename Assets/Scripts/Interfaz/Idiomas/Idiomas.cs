@@ -50,6 +50,7 @@ namespace Interfaz.Idiomas
             else if (escena == Escenas.Escenario)
             {
                 ObjetosPartida.instancia.CargarTextos();
+                ObjetosMenu.instancia.CargarTextos();
             }
         }
 
