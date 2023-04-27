@@ -7765,6 +7765,7 @@ GameObject:
   - component: {fileID: 2114800863}
   - component: {fileID: 2114800864}
   - component: {fileID: 2114800865}
+  - component: {fileID: 2114800866}
   m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
@@ -7849,6 +7850,22 @@ MonoBehaviour:
   botonVolverPrincipal: {fileID: 1829640931}
   volverPartida: {fileID: 1383884512}
   volverPrincipal: {fileID: 1271899304}
+--- !u!114 &2114800866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2114800861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 412ab58659994f04eb83400f42620936, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 589323591}
+  panel: {fileID: 505489716}
+  cargando: {fileID: 2111007803}
+  slider: {fileID: 955714459}
 --- !u!1 &2117603344
 GameObject:
   m_ObjectHideFlags: 0

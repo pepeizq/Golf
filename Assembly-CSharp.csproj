@@ -91,6 +91,7 @@
     <Compile Include="Assets\Scripts\Interfaz\Idiomas\Idiomas.cs" />
     <Compile Include="Assets\Scripts\Interfaz\Objetos Principal\ObjetosMultiConexion.cs" />
     <Compile Include="Assets\Scripts\Escenario\Colocar\Hoyo.cs" />
+    <Compile Include="Assets\Scripts\Interfaz\Objetos Escenario\ObjetosMenu.cs" />
     <Compile Include="Assets\Scripts\Interfaz\Objetos Escenario\ObjetosPartida.cs" />
     <Compile Include="Assets\Scripts\Jugador\Atributos.cs" />
     <Compile Include="Assets\Scripts\Interfaz\Objetos Principal\ObjetosPrincipal.cs" />
@@ -110,7 +111,7 @@
     <Compile Include="Assets\Scripts\Interfaz\Objetos Principal\ObjetosMultiLobby.cs" />
     <Compile Include="Assets\Scripts\Partida\Unjugador.cs" />
     <Compile Include="Assets\Scripts\Escenario\Colocar\Bola.cs" />
-    <Compile Include="Assets\Scripts\Interfaz\Objetos Escenario\ObjetosMenu.cs" />
+    <Compile Include="Assets\Scripts\Interfaz\Objetos Escenario\ObjetosCargandoEscenario.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
