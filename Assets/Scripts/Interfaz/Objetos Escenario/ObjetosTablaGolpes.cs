@@ -1,12 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
 
-namespace Assets.Scripts.Interfaz.Objetos_Escenario
+namespace Interfaz
 {
-    internal class ObjetosTablaGolpes
+    public class ObjetosTablaGolpes : MonoBehaviour
     {
+        [Header("Canvas")]
+        public Canvas canvas;
+
+        [Header("Paneles")]
+        public RectTransform panel;
+
+        [Header("Textos")]
+        public TMP_Text cargando;
+
+        [Header("Sliders")]
+        public Slider slider;
+
+        public static ObjetosTablaGolpes instancia;
+
+        public void Awake()
+        {
+            instancia = this;
+        }
+
+        public void CargarTextos()
+        {
+            cargando.text = Idiomas.Idiomas.instancia.CogerCadena("loading");
+        }
     }
 }
