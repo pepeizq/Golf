@@ -13,7 +13,7 @@ namespace Interfaz
         public RectTransform panel;
 
         [Header("Textos")]
-        public TMP_Text cargando3;
+        public TMP_Text cargando4;
 
         [Header("Sliders")]
         public Slider slider;
