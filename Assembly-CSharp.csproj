@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Interfaz\MultiLobby.cs" />
+    <Compile Include="Assets\Scripts\Interfaz\Objetos Escenario\ObjetosTablaGolpes.cs" />
     <Compile Include="Assets\Scripts\Escenario\Configuracion.cs" />
     <Compile Include="Assets\Photon\PhotonLibs\WebSocket\SocketWebTcp.cs" />
     <Compile Include="Assets\Scripts\Partida\Guardar.cs" />
@@ -112,7 +113,6 @@
     <Compile Include="Assets\Scripts\Interfaz\Objetos Principal\ObjetosMultiLobby.cs" />
     <Compile Include="Assets\Scripts\Partida\Unjugador.cs" />
     <Compile Include="Assets\Scripts\Escenario\Colocar\Bola.cs" />
-    <Compile Include="Assets\Scripts\Interfaz\Objetos Escenario\ObjetosTablaGolpes.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

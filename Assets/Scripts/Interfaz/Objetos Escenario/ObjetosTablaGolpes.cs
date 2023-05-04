@@ -11,23 +11,17 @@ namespace Interfaz
 
         [Header("Paneles")]
         public RectTransform panel;
+        public RectTransform panelCabecera;
+        public RectTransform panelGolpes;
 
-        [Header("Textos")]
-        public TMP_Text cargando4;
-
-        [Header("Sliders")]
-        public Slider slider;
+        [Header("Prefabs")]
+        public GameObject panelGolpe;
 
         public static ObjetosTablaGolpes instancia;
 
         public void Awake()
         {
             instancia = this;
-        }
-
-        public void CargarTextos()
-        {
-            cargando.text = Idiomas.Idiomas.instancia.CogerCadena("loading");
         }
     }
 }
