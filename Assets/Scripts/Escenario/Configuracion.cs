@@ -1,4 +1,5 @@
 using Escenario.Colocar;
+using Interfaz;
 using Jugador;
 using Partida;
 using Photon.Pun;
@@ -17,6 +18,7 @@ namespace Escenario
         [HideInInspector] public bool partidaTerminada = false;
 
         [Header("Bola")]
+        public GameObject bolaObjeto;
         public float potenciaMaxima = 6f;
         public float rotacionVelocidad = 100f;
         public float lineaLongitud = 2f;
@@ -25,6 +27,7 @@ namespace Escenario
         [HideInInspector] public bool poderMover = true;
 
         [Header("Camara")]
+        public GameObject camaraObjeto;
         public int velocidadLibre = 20;
         public float zoomDefecto = 3.5f;
         public float zoomCerca = 0.5f;
@@ -143,9 +146,9 @@ namespace Escenario
                 }
             }
 
-            Objetos.instancia.textoPartida.text = string.Format("Partida: {0}", numeroPartida.ToString());
-            Objetos.instancia.textoHoyo.text = string.Format("Hoyo: {0}", (nivel + 1).ToString());
-            Objetos.instancia.textoPalos.text = paloUsado.ToString();
+            ObjetosPartida.instancia.partida.text = string.Format("Partida: {0}", numeroPartida.ToString());
+            ObjetosPartida.instancia.hoyo.text = string.Format("Hoyo: {0}", (nivel + 1).ToString());
+            ObjetosPartida.instancia.palos.text = paloUsado.ToString();
         }
 
         [PunRPC]
@@ -183,10 +186,10 @@ namespace Escenario
             partidaTerminada = true;
             poderMover = false;
 
-            Objetos.instancia.OcultarCanvas();        
+            Interfaz.instancia.OcultarCanvas();        
             TablaGolpes.instancia.mostrar = true;
-            Objetos.instancia.canvasTablaGolpes.gameObject.SetActive(true);
-            Objetos.instancia.canvasPartidaTerminada.gameObject.SetActive(true);
+            ObjetosTablaGolpes.instancia.canvas.gameObject.SetActive(true);
+            ObjetosPartidaTerminada.instancia.canvas.gameObject.SetActive(true);
         }
 
         public enum Palos { Madera, Hierro }

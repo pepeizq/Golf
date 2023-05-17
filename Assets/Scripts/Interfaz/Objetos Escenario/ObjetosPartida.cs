@@ -11,6 +11,7 @@ namespace Interfaz
 
         [Header("Paneles")]
         public RectTransform panelAbajo;
+        public RectTransform panelEsperandoJugadores;
 
         [Header("Botones")]
         public Button botonMenu;
@@ -21,6 +22,7 @@ namespace Interfaz
         public TMP_Text hoyo;
         public TMP_Text golpes;
         public TMP_Text palos;
+        public TMP_Text esperandoJugadores;
 
         [Header("Sliders")]
         public Slider sliderPotencia;
@@ -30,6 +32,8 @@ namespace Interfaz
         public void Awake()
         {
             instancia = this;
+
+            instancia.sliderPotencia.gameObject.SetActive(false);
         }
 
         public void CargarTextos()

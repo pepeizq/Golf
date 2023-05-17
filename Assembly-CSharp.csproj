@@ -62,7 +62,6 @@
     <Compile Include="Assets\Photon\PhotonLibs\WebSocket\SocketWebTcp.cs" />
     <Compile Include="Assets\Scripts\Partida\Guardar.cs" />
     <Compile Include="Assets\Scripts\Partida\Cargar.cs" />
-    <Compile Include="Assets\Scripts\Escenario\Objetos.cs" />
     <Compile Include="Assets\Scripts\Partida\ClasesStructs.cs" />
     <Compile Include="Assets\Scripts\Jugador\Bola.cs" />
     <Compile Include="Assets\Scripts\Escenario\Generacion\Llano.cs" />
@@ -114,6 +113,7 @@
     <Compile Include="Assets\Scripts\Interfaz\Objetos Escenario\ObjetosNuevoNivel.cs" />
     <Compile Include="Assets\Scripts\Partida\Unjugador.cs" />
     <Compile Include="Assets\Scripts\Escenario\Colocar\Bola.cs" />
+    <Compile Include="Assets\Scripts\Interfaz\Objetos Escenario\ObjetosPartidaTerminada.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

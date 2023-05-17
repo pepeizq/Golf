@@ -1,3 +1,4 @@
+using Interfaz;
 using Jugador;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -9,8 +10,12 @@ namespace Escenario
     {
         private Controles controles;
 
+        public static Interfaz instancia;
+
         public void Awake()
         {
+            instancia = this;
+
             controles = new Controles();
             controles.Principal.Enable();
         }
@@ -21,7 +26,7 @@ namespace Escenario
             {
                 if (Configuracion.instancia.poderMover == true)
                 {
-                    if (controles.Principal.EnseñarMenu.phase == InputActionPhase.Performed && Objetos.instancia.canvasPartidaTerminada.gameObject.activeSelf == false)
+                    if (controles.Principal.EnseñarMenu.phase == InputActionPhase.Performed && ObjetosPartidaTerminada.instancia.canvas.gameObject.activeSelf == false)
                     {
                         EnseñarMenu();
                     }
@@ -33,16 +38,16 @@ namespace Escenario
         {
             Configuracion.instancia.poderMover = false;
 
-            Objetos.instancia.OcultarCanvas();
-            Objetos.instancia.canvasMenu.gameObject.SetActive(true);
+            OcultarCanvas();
+            ObjetosMenu.instancia.canvas.gameObject.SetActive(true);
         }
 
         public void VolverPartida()
         {
             Configuracion.instancia.poderMover = true;
 
-            Objetos.instancia.OcultarCanvas();
-            Objetos.instancia.canvasPartida.gameObject.SetActive(true);
+            OcultarCanvas();
+            ObjetosPartida.instancia.canvas.gameObject.SetActive(true);
         }
 
         public void CargarPrincipal()
@@ -51,6 +56,16 @@ namespace Escenario
             Destroy(multijugador);
 
             SceneManager.LoadScene("Principal");
+        }
+
+        public void OcultarCanvas()
+        {
+            ObjetosPartida.instancia.canvas.gameObject.SetActive(false);
+            ObjetosMenu.instancia.canvas.gameObject.SetActive(false);
+            ObjetosCargandoEscenario.instancia.canvas.gameObject.SetActive(false);
+            ObjetosTablaGolpes.instancia.canvas.gameObject.SetActive(false);
+            ObjetosNuevoNivel.instancia.canvas.gameObject.SetActive(false);
+            ObjetosPartidaTerminada.instancia.canvas.gameObject.SetActive(false);
         }
     }
 }

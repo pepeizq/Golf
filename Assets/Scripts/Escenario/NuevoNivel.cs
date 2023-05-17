@@ -1,3 +1,4 @@
+using Interfaz;
 using Partida;
 using Photon.Pun;
 using UnityEngine;
@@ -23,16 +24,16 @@ namespace Escenario
         {
             if (cargando != null)
             {
-                Objetos.instancia.sliderCargando.value = Mathf.Clamp01(cargando.progress / 0.9f);
+               ObjetosCargandoEscenario.instancia.slider.value = Mathf.Clamp01(cargando.progress / 0.9f);
             }
 
-            if (Objetos.instancia.canvasNuevoNivel.gameObject.activeSelf == true)
+            if (ObjetosNuevoNivel.instancia.canvas.gameObject.activeSelf == true)
             {
                 segundosRestar += Time.deltaTime;
                 int segundosRestar2 = (int)(segundosRestar % 60);
                 int segundosFinal = segundosTope - segundosRestar2;
 
-                Objetos.instancia.textoSegundos.text = segundosFinal.ToString();
+                ObjetosNuevoNivel.instancia.segundos.text = segundosFinal.ToString();
             }
         }
 
@@ -43,13 +44,13 @@ namespace Escenario
                 segundosTope = segundos;
                 segundosRestar = 0f;
 
-                Objetos.instancia.canvasNuevoNivel.gameObject.SetActive(true);
+                ObjetosNuevoNivel.instancia.canvas.gameObject.SetActive(true);
             }
         }
 
         public void UnJugador(int nuevoNivel)
         {
-            Objetos.instancia.canvasNuevoNivel.gameObject.SetActive(false);
+            ObjetosNuevoNivel.instancia.canvas.gameObject.SetActive(false);
 
             if (nuevoNivel > Configuracion.instancia.campo.hoyos.Count)
             {
@@ -65,9 +66,9 @@ namespace Escenario
                 Configuracion.instancia.aleatorio = true;
                 Unjugador.instancia.partida.nivel = nuevoNivel;
 
-                Objetos.instancia.OcultarCanvas();
-                Objetos.instancia.canvasCargando.gameObject.SetActive(true);
-                Objetos.instancia.sliderCargando.value = 0;
+                Interfaz.instancia.OcultarCanvas();
+                ObjetosCargandoEscenario.instancia.canvas.gameObject.SetActive(true);
+                ObjetosCargandoEscenario.instancia.slider.value = 0;
 
                 cargando = SceneManager.LoadSceneAsync("Escenario");
             }
@@ -75,7 +76,7 @@ namespace Escenario
 
         public void Multijugador()
         {
-            Objetos.instancia.canvasNuevoNivel.gameObject.SetActive(false);
+            ObjetosNuevoNivel.instancia.canvas.gameObject.SetActive(false);
 
             if (MultiPartida.instancia.nivel >= Configuracion.instancia.campo.hoyos.Count - 1)
             {

@@ -28,7 +28,7 @@ namespace Escenario.Animaciones
                 Vector3 posicionBola = Bola.instancia.ultimaPosicionBola;
                 Vector3 posicionHoyo = Configuracion.instancia.posicionHoyo;
 
-                GameObject camara = Objetos.instancia.camara.gameObject;
+                GameObject camara = Configuracion.instancia.camaraObjeto.gameObject;
 
                 pasos += Time.deltaTime * 5;
 

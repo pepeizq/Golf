@@ -1,9 +1,10 @@
 ﻿using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Interfaz
 {
-    public class ObjetosNuevoNivel : MonoBehaviour
+    public class ObjetosPartidaTerminada : MonoBehaviour
     {
         [Header("Canvas")]
         public Canvas canvas;
@@ -11,10 +12,13 @@ namespace Interfaz
         [Header("Paneles")]
         public RectTransform panel;
 
-        [Header("Textos")]
-        public TMP_Text segundos;
+        [Header("Botones")]
+        public Button botonVolver;
 
-        public static ObjetosNuevoNivel instancia;
+        [Header("Textos")]
+        public TMP_Text volver;
+
+        public static ObjetosPartidaTerminada instancia;
 
         public void Awake()
         {
@@ -23,7 +27,7 @@ namespace Interfaz
 
         public void CargarTextos()
         {
-            segundos.text = "0";
+            volver.text = Idiomas.Idiomas.instancia.CogerCadena("backMain");
         }
     }
 }

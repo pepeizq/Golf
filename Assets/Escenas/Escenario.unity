@@ -446,7 +446,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &36399855
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1237,7 +1237,7 @@ GameObject:
   - component: {fileID: 283529079}
   - component: {fileID: 283529078}
   m_Layer: 5
-  m_Name: Texto
+  m_Name: TextoBotonVolverPrincipal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2881,7 +2881,7 @@ GameObject:
   - component: {fileID: 824967510}
   - component: {fileID: 824967509}
   m_Layer: 5
-  m_Name: Panel1
+  m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6561,7 +6561,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1707549032}
   - component: {fileID: 1707549033}
-  - component: {fileID: 1707549034}
   - component: {fileID: 1707549035}
   m_Layer: 0
   m_Name: Juego
@@ -6602,11 +6601,14 @@ MonoBehaviour:
   campo: {fileID: 11400000, guid: 5f1ea259c26884241980cf74c5b240b4, type: 2}
   paloUsado: 0
   partidaTerminada: 0
+  bolaObjeto: {fileID: 423153653864952199, guid: 98ff6fc8d1104d240844948f96fd5ce4,
+    type: 3}
   potenciaMaxima: 10
   rotacionVelocidad: 100
   lineaLongitud: 2
   transparencias: 0
   poderMover: 1
+  camaraObjeto: {fileID: 967383142}
   velocidadLibre: 20
   zoomDefecto: 3.5
   zoomCerca: 0.5
@@ -6638,39 +6640,6 @@ MonoBehaviour:
   golpesExtraMultijugador: 10
   jugadores: []
   multiPosicionBolaInicio: {x: 0, y: 0, z: 0}
---- !u!114 &1707549034
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1707549031}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c4bf8eac5cd2ba49993c4e92352d9a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bola: {fileID: 423153653864952199, guid: 98ff6fc8d1104d240844948f96fd5ce4, type: 3}
-  camara: {fileID: 967383142}
-  canvasPartida: {fileID: 436698342}
-  canvasMenu: {fileID: 1908481597}
-  canvasCargando: {fileID: 589323591}
-  canvasTablaGolpes: {fileID: 722565338}
-  canvasNuevoNivel: {fileID: 36399858}
-  canvasPartidaTerminada: {fileID: 1924807823}
-  sliderCargando: {fileID: 955714459}
-  textoSegundos: {fileID: 1816295677}
-  panelEsperandoJugadores: {fileID: 1077870873}
-  textoEsperandoJugadores: {fileID: 1019860587}
-  panelTablaCabecera: {fileID: 506453492}
-  panelTablaGolpes: {fileID: 1086729084}
-  prefabTablaGolpesJugador: {fileID: 4850512761403287011, guid: eb233a3bdf0b3004ead57af7274da2ea,
-    type: 3}
-  textoPartida: {fileID: 260772670}
-  textoHoyo: {fileID: 917129064}
-  textoGolpes: {fileID: 1207260765}
-  textoPalos: {fileID: 2018059112}
-  sliderPotencia: {fileID: 440376284}
 --- !u!114 &1707549035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6802,10 +6771,10 @@ RectTransform:
   m_Father: {fileID: 1860070942}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 40}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 175, y: -30}
+  m_SizeDelta: {x: 330, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1816295677
 MonoBehaviour:
@@ -7768,6 +7737,7 @@ GameObject:
   - component: {fileID: 2114800866}
   - component: {fileID: 2114800867}
   - component: {fileID: 2114800868}
+  - component: {fileID: 2114800869}
   m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
@@ -7827,12 +7797,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 436698342}
   panelAbajo: {fileID: 1420913254}
+  panelEsperandoJugadores: {fileID: 1077870874}
   botonMenu: {fileID: 1183350181}
   menu: {fileID: 277127581}
   partida: {fileID: 260772670}
   hoyo: {fileID: 917129064}
   golpes: {fileID: 1207260765}
   palos: {fileID: 2018059112}
+  esperandoJugadores: {fileID: 1019860587}
   sliderPotencia: {fileID: 440376284}
 --- !u!114 &2114800865
 MonoBehaviour:
@@ -7884,7 +7856,7 @@ MonoBehaviour:
   panel: {fileID: 957890618}
   panelCabecera: {fileID: 506453493}
   panelGolpes: {fileID: 1086729085}
-  panelGolpe: {fileID: 4850512761403287011, guid: eb233a3bdf0b3004ead57af7274da2ea,
+  prefabTablaGolpesJugador: {fileID: 4850512761403287011, guid: eb233a3bdf0b3004ead57af7274da2ea,
     type: 3}
 --- !u!114 &2114800868
 MonoBehaviour:
@@ -7900,7 +7872,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 36399858}
   panel: {fileID: 1860070942}
-  mensaje: {fileID: 1816295677}
+  segundos: {fileID: 0}
+--- !u!114 &2114800869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2114800861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad5ef5dd7127fff46b1553e2ca95fcff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 1924807823}
+  panel: {fileID: 824967508}
+  botonVolver: {fileID: 1644133189}
+  volver: {fileID: 283529078}
 --- !u!1 &2117603344
 GameObject:
   m_ObjectHideFlags: 0

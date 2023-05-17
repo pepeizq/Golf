@@ -1,5 +1,6 @@
 using Escenario;
 using Escenario.Animaciones;
+using Interfaz;
 using Interfaz.Idiomas;
 using Partida;
 using Photon.Pun;
@@ -78,17 +79,17 @@ namespace Jugador
             
             if (bolas.Length != MultiPhoton.instancia.Sala().PlayerCount)
             {
-                Objetos.instancia.panelEsperandoJugadores.SetActive(true);
-                Objetos.instancia.textoEsperandoJugadores.text = string.Format("{0} ({1}/{2})", Idiomas.instancia.CogerCadena("waitingPlayers"), bolas.Length, MultiPhoton.instancia.Sala().PlayerCount);
+                ObjetosPartida.instancia.panelEsperandoJugadores.gameObject.SetActive(true);
+                ObjetosPartida.instancia.esperandoJugadores.text = string.Format("{0} ({1}/{2})", Idiomas.instancia.CogerCadena("waitingPlayers"), bolas.Length, MultiPhoton.instancia.Sala().PlayerCount);
 
-                Camera camara = Objetos.instancia.camara.GetComponent<Camera>();
+                Camera camara = Configuracion.instancia.camaraObjeto.GetComponent<Camera>();
                 camara.transform.position = new Vector3(camara.transform.position.x, 60, camara.transform.position.z);
 
                 Configuracion.instancia.poderMover = false;
             }
             else
             {
-                Objetos.instancia.panelEsperandoJugadores.SetActive(false);
+                ObjetosPartida.instancia.panelEsperandoJugadores.gameObject.SetActive(false);
 
                 if (Configuracion.instancia.presentacionHoyoBola == true)
                 {
@@ -115,11 +116,11 @@ namespace Jugador
 
         public void Start()
         {
-            Objetos.instancia.sliderPotencia.maxValue = Configuracion.instancia.potenciaMaxima;
+            ObjetosPartida.instancia.sliderPotencia.maxValue = Configuracion.instancia.potenciaMaxima;
 
             //--------------------------------------------------------------------
 
-            camaraOffset = Objetos.instancia.camara.gameObject.transform.position - gameObject.transform.position;
+            camaraOffset = Configuracion.instancia.camaraObjeto.gameObject.transform.position - gameObject.transform.position;
             ultimaPosicionBola = transform.parent.localPosition + cuerpo.transform.localPosition;
             ultimaPosicionCuerpo = cuerpo.transform.localPosition;
 
@@ -145,7 +146,7 @@ namespace Jugador
                 }
             }
 
-            Objetos.instancia.textoGolpes.text = string.Format("{0}: {1}", Idiomas.instancia.CogerCadena("hits"), golpes.ToString());       
+            ObjetosPartida.instancia.golpes.text = string.Format("{0}: {1}", Idiomas.instancia.CogerCadena("hits"), golpes.ToString());       
         }
 
         public void Update()
@@ -242,15 +243,15 @@ namespace Jugador
                         }                                            
                     }
 
-                    Objetos.instancia.sliderPotencia.value = potencia;
+                    ObjetosPartida.instancia.sliderPotencia.value = potencia;
 
                     if (potencia == 0)
                     {
-                        Objetos.instancia.sliderPotencia.gameObject.SetActive(false);
+                        ObjetosPartida.instancia.sliderPotencia.gameObject.SetActive(false);
                     }
                     else
                     {
-                        Objetos.instancia.sliderPotencia.gameObject.SetActive(true);
+                        ObjetosPartida.instancia.sliderPotencia.gameObject.SetActive(true);
                     }
 
                     //--------------------------------------------------------
@@ -348,7 +349,7 @@ namespace Jugador
 
             if (Configuracion.instancia.poderMover == true && jugadorAsignado == true)
             {
-                Camera camara = Objetos.instancia.camara.GetComponent<Camera>();
+                Camera camara = Configuracion.instancia.camaraObjeto.GetComponent<Camera>();
 
                 camaraMovimientoInput = controles.Principal.CamaraLibreMovimiento.ReadValue<Vector2>();
 
@@ -464,7 +465,7 @@ namespace Jugador
             potencia = 0;
 
             golpes += 1;
-            Objetos.instancia.textoGolpes.text = string.Format("Golpes: {0}", golpes.ToString());
+            ObjetosPartida.instancia.golpes.text = string.Format("Golpes: {0}", golpes.ToString());
 
             if (MultiPhoton.instancia != null)
             {
@@ -570,7 +571,7 @@ namespace Jugador
                     Configuracion.instancia.paloUsado = Configuracion.Palos.Madera;
                 }
 
-                Objetos.instancia.textoPalos.text = Configuracion.instancia.paloUsado.ToString();
+                ObjetosPartida.instancia.palos.text = Configuracion.instancia.paloUsado.ToString();
 
                 yield return new WaitForSeconds(0.5f);
 

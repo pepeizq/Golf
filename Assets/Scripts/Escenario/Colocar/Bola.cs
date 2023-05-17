@@ -27,7 +27,7 @@ namespace Escenario.Colocar
                 }
             }
 
-            if (buscarPosicion == true && Objetos.instancia.bola != null)
+            if (buscarPosicion == true && Configuracion.instancia.bolaObjeto != null)
             {
                 if (casillas != null)
                 {
@@ -99,11 +99,11 @@ namespace Escenario.Colocar
 
         public void InstanciarBola(Vector3 posicion)
         {
-            GameObject bola = Instantiate(Objetos.instancia.bola);
+            GameObject bola = Instantiate(Configuracion.instancia.bolaObjeto);
             bola.transform.position = posicion;
             
             Vector3 posicion2 = bola.transform.position;
-            Objetos.instancia.camara.transform.position = posicion2;
+            Configuracion.instancia.camaraObjeto.transform.position = posicion2;
         }
 
         public void InstanciarBolaMulti(Vector3 posicion)
@@ -115,7 +115,7 @@ namespace Escenario.Colocar
             Jugador.Bola bola2 = bola.transform.GetChild(0).gameObject.GetComponent<Jugador.Bola>();
             bola2.photonView.RPC("Arranque", RpcTarget.All, MultiPhoton.instancia.JugadorLocal());
 
-            Objetos.instancia.camara.transform.position = bola.transform.position;
+            Configuracion.instancia.camaraObjeto.transform.position = bola.transform.position;
         }
     }
 }

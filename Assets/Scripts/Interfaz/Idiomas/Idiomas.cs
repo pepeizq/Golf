@@ -52,7 +52,7 @@ namespace Interfaz.Idiomas
                 ObjetosPartida.instancia.CargarTextos();
                 ObjetosMenu.instancia.CargarTextos();
                 ObjetosNuevoNivel.instancia.CargarTextos();
-
+                ObjetosPartidaTerminada.instancia.CargarTextos();
             }
         }
 

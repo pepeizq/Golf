@@ -1,4 +1,5 @@
 ﻿using Escenario;
+using Interfaz;
 using Partida;
 using Photon.Realtime;
 using System.Collections;
@@ -22,7 +23,7 @@ namespace Jugador
 
         public void Enseñar()
         {
-            if (Objetos.instancia.canvasPartidaTerminada.gameObject.activeSelf == false)
+            if (ObjetosPartidaTerminada.instancia.canvas.gameObject.activeSelf == false)
             {
                 StartCoroutine(Enseñar2());
             }   
@@ -53,18 +54,18 @@ namespace Jugador
         {
             if (mostrar == true)
             {
-                Objetos.instancia.canvasTablaGolpes.gameObject.SetActive(true);
+                ObjetosTablaGolpes.instancia.canvas.gameObject.SetActive(true);
             }
             else
             {
-                Objetos.instancia.canvasTablaGolpes.gameObject.SetActive(false);
+                ObjetosTablaGolpes.instancia.canvas.gameObject.SetActive(false);
             }
 
-            if (Objetos.instancia.canvasTablaGolpes.isActiveAndEnabled == true)
+            if (ObjetosTablaGolpes.instancia.canvas.isActiveAndEnabled == true)
             {
                 int k = 0;
 
-                foreach (Transform panel in Objetos.instancia.panelTablaCabecera.gameObject.transform.GetChild(0))
+                foreach (Transform panel in ObjetosTablaGolpes.instancia.panelCabecera.gameObject.transform.GetChild(0))
                 {
                     if (k > Configuracion.instancia.campo.hoyos.Count)
                     {
@@ -80,7 +81,7 @@ namespace Jugador
                         panel.gameObject.SetActive(false);
                     }
 
-                    if (k + 1 == Objetos.instancia.panelTablaCabecera.gameObject.transform.GetChild(0).childCount)
+                    if (k + 1 == ObjetosTablaGolpes.instancia.panelCabecera.gameObject.transform.GetChild(0).childCount)
                     {
                         panel.gameObject.SetActive(true);
 
@@ -93,17 +94,17 @@ namespace Jugador
 
                 //-------------------------------------------------------------------------------
 
-                foreach (Transform panel in Objetos.instancia.panelTablaGolpes.gameObject.transform)
+                foreach (Transform panel in ObjetosTablaGolpes.instancia.panelGolpes.gameObject.transform)
                 {
                     Destroy(panel.gameObject);
                 }
 
                 if (MultiPhoton.instancia.Conectado() == true)
                 {
-                    RectTransform alturaCabecera = Objetos.instancia.panelTablaCabecera.gameObject.GetComponent<RectTransform>();
+                    RectTransform alturaCabecera = ObjetosTablaGolpes.instancia.panelCabecera.gameObject.GetComponent<RectTransform>();
                     alturaCabecera.sizeDelta = new Vector2(470 + Configuracion.instancia.campo.hoyos.Count * 65 + 120, 60);
 
-                    RectTransform alturaGolpes = Objetos.instancia.panelTablaGolpes.gameObject.GetComponent<RectTransform>();
+                    RectTransform alturaGolpes = ObjetosTablaGolpes.instancia.panelGolpes.gameObject.GetComponent<RectTransform>();
                     alturaGolpes.sizeDelta = new Vector2(470 + Configuracion.instancia.campo.hoyos.Count * 65 + 120, MultiPhoton.instancia.ListaJugadores().Length * 60);
 
                     List<int> mayorGolpes = new List<int>();
@@ -130,8 +131,8 @@ namespace Jugador
 
                     foreach (Player jugador2 in MultiPhoton.instancia.ListaJugadores())
                     {
-                        GameObject panel = Instantiate(Objetos.instancia.prefabTablaGolpesJugador, new Vector3(0, 0, 0), Quaternion.identity);
-                        panel.transform.SetParent(Objetos.instancia.panelTablaGolpes.gameObject.transform);
+                        GameObject panel = Instantiate(ObjetosTablaGolpes.instancia.prefabTablaGolpesJugador, new Vector3(0, 0, 0), Quaternion.identity);
+                        panel.transform.SetParent(ObjetosTablaGolpes.instancia.panelGolpes.gameObject.transform);
 
                         int j = 0;
                         while (j < panel.transform.childCount)
@@ -181,18 +182,18 @@ namespace Jugador
                 }
                 else
                 {
-                    RectTransform alturaCabecera = Objetos.instancia.panelTablaCabecera.gameObject.GetComponent<RectTransform>();
+                    RectTransform alturaCabecera = ObjetosTablaGolpes.instancia.panelCabecera.gameObject.GetComponent<RectTransform>();
                     alturaCabecera.sizeDelta = new Vector2(Configuracion.instancia.campo.hoyos.Count * 65 + 120, 60);
 
-                    RectTransform alturaGolpes = Objetos.instancia.panelTablaGolpes.gameObject.GetComponent<RectTransform>();
+                    RectTransform alturaGolpes = ObjetosTablaGolpes.instancia.panelGolpes.gameObject.GetComponent<RectTransform>();
                     alturaGolpes.sizeDelta = new Vector2(Configuracion.instancia.campo.hoyos.Count * 65 + 120, 60);
 
                     List<PartidaRegistro> registro = Unjugador.instancia.partida.registro;
 
                     if (registro.Count > 0)
                     {
-                        GameObject panel = Instantiate(Objetos.instancia.prefabTablaGolpesJugador, new Vector3(0, 0, 0), Quaternion.identity);
-                        panel.transform.SetParent(Objetos.instancia.panelTablaGolpes.gameObject.transform);
+                        GameObject panel = Instantiate(ObjetosTablaGolpes.instancia.prefabTablaGolpesJugador, new Vector3(0, 0, 0), Quaternion.identity);
+                        panel.transform.SetParent(ObjetosTablaGolpes.instancia.panelGolpes.gameObject.transform);
 
                         int j = 0;
                         while (j < panel.transform.childCount)

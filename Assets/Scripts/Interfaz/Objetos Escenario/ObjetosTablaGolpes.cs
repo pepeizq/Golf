@@ -1,6 +1,4 @@
-﻿using TMPro;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 namespace Interfaz
 {
@@ -15,7 +13,7 @@ namespace Interfaz
         public RectTransform panelGolpes;
 
         [Header("Prefabs")]
-        public GameObject panelGolpe;
+        public GameObject prefabTablaGolpesJugador;
 
         public static ObjetosTablaGolpes instancia;
 
