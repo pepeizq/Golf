@@ -81,6 +81,7 @@
     <Compile Include="Assets\Scripts\Interfaz\PersonalizarBola.cs" />
     <Compile Include="Assets\Scripts\Interfaz\Objetos Escenario\ObjetosCargandoEscenario.cs" />
     <Compile Include="Assets\Scripts\Escenario\Generacion\Vectores.cs" />
+    <Compile Include="Assets\Scripts\Interfaz\Objetos Escenario\ObjetosPartidaTerminada.cs" />
     <Compile Include="Assets\Photon\PhotonRealtime\Demos\DemoLoadBalancing\ConnectAndJoinRandomLb.cs" />
     <Compile Include="Assets\Scripts\Partida\Datos.cs" />
     <Compile Include="Assets\Scripts\Escenario\Colocar\Mordiscos.cs" />
@@ -113,7 +114,6 @@
     <Compile Include="Assets\Scripts\Interfaz\Objetos Escenario\ObjetosNuevoNivel.cs" />
     <Compile Include="Assets\Scripts\Partida\Unjugador.cs" />
     <Compile Include="Assets\Scripts\Escenario\Colocar\Bola.cs" />
-    <Compile Include="Assets\Scripts\Interfaz\Objetos Escenario\ObjetosPartidaTerminada.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

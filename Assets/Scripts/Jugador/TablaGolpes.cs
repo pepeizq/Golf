@@ -2,6 +2,7 @@
 using Interfaz;
 using Partida;
 using Photon.Realtime;
+using Recursos;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -109,7 +110,7 @@ namespace Jugador
 
                     List<int> mayorGolpes = new List<int>();
 
-                    foreach (var hoyo in Configuracion.instancia.campo.hoyos)
+                    foreach (CampoHoyo hoyo in Configuracion.instancia.campo.hoyos)
                     {
                         mayorGolpes.Add(0);
                     }
@@ -214,6 +215,7 @@ namespace Jugador
 
                         int total = 0;
                         int i = 0;
+
                         foreach (PartidaRegistro subregistro in registro)
                         {
                             i += 1;
