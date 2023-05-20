@@ -155,6 +155,7 @@ namespace Jugador
                         int tope = Configuracion.instancia.nivel + 1;
                         int total = 0;
                         int i = 0;
+
                         while (i < tope)
                         {
                             i += 1;
@@ -164,12 +165,18 @@ namespace Jugador
 
                             total = total + (int)jugador2.CustomProperties["GolpesHoyo" + i.ToString()];
 
+                            bool enseñar = false;
+
                             if (bool.Parse(jugador2.CustomProperties["TerminadoHoyo" + i.ToString()].ToString()) == false && i <= Configuracion.instancia.nivel)
                             {
-                                textoGolpes.text = (mayorGolpes[i - 1] + Configuracion.instancia.golpesExtraMultijugador).ToString();
-                                total = total + mayorGolpes[i - 1] + Configuracion.instancia.golpesExtraMultijugador;
+                                enseñar = true;
                             } 
                             else if (bool.Parse(jugador2.CustomProperties["TerminadoHoyo" + i.ToString()].ToString()) == false && Configuracion.instancia.partidaTerminada == true)
+                            {
+                                enseñar = true;
+                            }
+
+                            if (enseñar == true)
                             {
                                 textoGolpes.text = (mayorGolpes[i - 1] + Configuracion.instancia.golpesExtraMultijugador).ToString();
                                 total = total + mayorGolpes[i - 1] + Configuracion.instancia.golpesExtraMultijugador;
