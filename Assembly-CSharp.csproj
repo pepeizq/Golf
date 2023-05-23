@@ -114,13 +114,17 @@
     <Compile Include="Assets\Scripts\Interfaz\Objetos Escenario\ObjetosNuevoNivel.cs" />
     <Compile Include="Assets\Scripts\Partida\Unjugador.cs" />
     <Compile Include="Assets\Scripts\Escenario\Colocar\Bola.cs" />
+    <Compile Include="Assets\Scripts\Shaders\Hierba\GrassDisplacementObject.cs" />
+    <Compile Include="Assets\Scripts\Shaders\Hierba\GrassDisplacementCamera.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\Photon\PhotonLibs\netstandard2.0\Photon3Unity3D.xml" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
+    <None Include="Assets\Shaders\Hierba\GeometryGrassShader.shader" />
     <None Include="Assets\Photon\PhotonUnityNetworking\changelog.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
+    <None Include="Assets\Shaders\Hierba\CustomTessellation.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
     <None Include="Assets\Photon\PhotonLibs\WebSocket\websocket-sharp.dll" />
@@ -137,6 +141,7 @@
     <None Include="Assets\Photon\PhotonUnityNetworking\readme.txt" />
     <None Include="Assets\Photon\PhotonLibs\netstandard2.0\Photon3Unity3D.dll" />
     <None Include="Assets\Photon\PhotonLibs\Photon3Unity3D.dll" />
+    <None Include="Assets\Shaders\Hierba\DisplacementTexture.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\Photon\PhotonLibs\Metro\Photon3Unity3D.dll" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
