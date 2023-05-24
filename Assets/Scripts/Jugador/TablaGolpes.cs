@@ -156,6 +156,7 @@ namespace Jugador
                         int total = 0;
                         int i = 0;
 
+
                         while (i < tope)
                         {
                             i += 1;
