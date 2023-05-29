@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Interfaz\MultiLobby.cs" />
+    <Compile Include="Assets\Scripts\Shaders\Hierba\GrassDisplacementObject.cs" />
     <Compile Include="Assets\Scripts\Interfaz\Objetos Escenario\ObjetosTablaGolpes.cs" />
     <Compile Include="Assets\Scripts\Escenario\Configuracion.cs" />
     <Compile Include="Assets\Photon\PhotonLibs\WebSocket\SocketWebTcp.cs" />
@@ -73,6 +74,7 @@
     <Compile Include="Assets\Scripts\Interfaz\Objetos Principal\ObjetosOpciones.cs" />
     <Compile Include="Assets\Scripts\Escenario\Interfaz.cs" />
     <Compile Include="Assets\Scripts\Interfaz\Objetos Principal\ObjetosCargarPartida.cs" />
+    <Compile Include="Assets\Scripts\Shaders\Hierba\GrassDisplacementCamera.cs" />
     <Compile Include="Assets\Scripts\Jugador\TablaGolpes.cs" />
     <Compile Include="Assets\Scripts\Interfaz\Opciones.cs" />
     <Compile Include="Assets\Scripts\Escenario\Animaciones\PresentacionHoyoBola.cs" />
@@ -114,14 +116,12 @@
     <Compile Include="Assets\Scripts\Interfaz\Objetos Escenario\ObjetosNuevoNivel.cs" />
     <Compile Include="Assets\Scripts\Partida\Unjugador.cs" />
     <Compile Include="Assets\Scripts\Escenario\Colocar\Bola.cs" />
-    <Compile Include="Assets\Scripts\Shaders\Hierba\GrassDisplacementObject.cs" />
-    <Compile Include="Assets\Scripts\Shaders\Hierba\GrassDisplacementCamera.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\Photon\PhotonLibs\netstandard2.0\Photon3Unity3D.xml" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
-    <None Include="Assets\Shaders\Hierba\GeometryGrassShader.shader" />
+    <None Include="Assets\Shaders\Hierba\HierbaGeometria.shader" />
     <None Include="Assets\Photon\PhotonUnityNetworking\changelog.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
     <None Include="Assets\Shaders\Hierba\CustomTessellation.cginc" />

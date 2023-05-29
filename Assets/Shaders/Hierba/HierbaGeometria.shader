@@ -1,31 +1,31 @@
-﻿Shader "Custom/GeometryGrassShader" {
+﻿Shader "Custom/HierbaGeometria" {
     Properties {
-        _TranslucentGain("Translucent Gain", Range(0,1)) = 0.5
+        _TranslucentGain("Translucidez Ganancia", Range(0,1)) = 0.5
 
-        _GroundTexture ("Ground Texture", 2D) = "white" {}
+        _GroundTexture("Textura Tierra", 2D) = "white" {}
 
-        _DisplacementTexture("Displacement Texture", 2D) = "grey" {}
-        _DisplacementFactor("Displacement Factor", Float) = 2
+        _DisplacementTexture("Textura Desplazamiento", 2D) = "grey" {}
+        _DisplacementFactor("Factor Desplazamiento", Float) = 2
 
-        _GrassMask("Grass Mask", 2D) = "white" {}
-        _GrassMaskThreshold("Mask Threshold", Range(0,1)) = 0.1
+        _GrassMask("Mascara Hierba", 2D) = "white" {}
+        _GrassMaskThreshold("Mascara Limite", Range(0,1)) = 0.1
 
-        _BendRotationRandom("Bend Rotation Random", Range(0, 1)) = 0.2
+        _BendRotationRandom("Curva Rotacion Aleatoria", Range(0, 1)) = 0.2
 
-        _BladeWidth("Blade Width", Float) = 0.05
-        _BladeWidthRandom("Blade Width Random", Float) = 0.02
+        _BladeWidth("Espada Ancho", Float) = 0.05
+        _BladeWidthRandom("Espada Ancho Aleatoria", Float) = 0.02
 
-        _BladeHeight("Blade Height", Float) =0.5
-        _BladeHeightRandom("Blade Height Random", Float) = 0.3
+        _BladeHeight("Espada Alto", Float) = 0.5
+        _BladeHeightRandom("Espada Alto Aleatoria", Float) = 0.3
 
-        _TessellationUniform("Tessellation Uniform", Range(1, 64)) = 1
+        _TessellationUniform("Teselacion Uniformidad", Range(1, 64)) = 1
 
-        _WindDistortionMap("Wind Distortion Map", 2D) = "white" {}
-        _WindFrequency("Wind Frequency", Vector) = (0.05, 0.05, 0, 0)
-        _WindStrength("Wind Strength", Float) = 1
+        _WindDistortionMap("Viento Distorsion Mapa", 2D) = "white" {}
+        _WindFrequency("Viento Frecuencia", Vector) = (0.05, 0.05, 0, 0)
+        _WindStrength("Viento Fuerza", Float) = 1
 
-        _BladeForward("Blade Forward Amount", Float) = 0.38
-        _BladeCurve("Blade Curvature Amount", Range(1, 4)) = 2
+        _BladeForward("Espada Movimiento Cantidad", Float) = 0.38
+        _BladeCurve("Espada Curvatura Cantidad", Range(1, 4)) = 2
     }
 
     CGINCLUDE
