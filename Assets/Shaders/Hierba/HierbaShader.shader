@@ -1,4 +1,4 @@
-﻿Shader "Custom/HierbaGeometria" {
+﻿Shader "Custom/HierbaShader" {
     Properties {
         _TranslucentGain("Translucidez Ganancia", Range(0,1)) = 0.5
 
