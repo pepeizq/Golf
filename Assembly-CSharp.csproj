@@ -57,7 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Interfaz\MultiLobby.cs" />
-    <Compile Include="Assets\Scripts\Shaders\Hierba\GrassDisplacementObject.cs" />
+    <Compile Include="Assets\Scripts\Shaders\Hierba\GrassDisplacementObject2.cs" />
     <Compile Include="Assets\Scripts\Interfaz\Objetos Escenario\ObjetosTablaGolpes.cs" />
     <Compile Include="Assets\Scripts\Escenario\Configuracion.cs" />
     <Compile Include="Assets\Photon\PhotonLibs\WebSocket\SocketWebTcp.cs" />
@@ -74,7 +74,7 @@
     <Compile Include="Assets\Scripts\Interfaz\Objetos Principal\ObjetosOpciones.cs" />
     <Compile Include="Assets\Scripts\Escenario\Interfaz.cs" />
     <Compile Include="Assets\Scripts\Interfaz\Objetos Principal\ObjetosCargarPartida.cs" />
-    <Compile Include="Assets\Scripts\Shaders\Hierba\GrassDisplacementCamera.cs" />
+    <Compile Include="Assets\Scripts\Shaders\Hierba\GrassDisplacementCamera2.cs" />
     <Compile Include="Assets\Scripts\Jugador\TablaGolpes.cs" />
     <Compile Include="Assets\Scripts\Interfaz\Opciones.cs" />
     <Compile Include="Assets\Scripts\Escenario\Animaciones\PresentacionHoyoBola.cs" />
@@ -797,6 +797,9 @@
     <Reference Include="Unity.VSCode.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.VSCode.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.RenderPipelines.Universal.Shaders">
+      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Shaders.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
@@ -842,6 +845,9 @@
     <Reference Include="Unity.ShaderGraph.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.ShaderGraph.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
+      <HintPath>Library\ScriptAssemblies\Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.XR.Management">
       <HintPath>Library\ScriptAssemblies\Unity.XR.Management.dll</HintPath>
     </Reference>
@@ -856,6 +862,12 @@
     </Reference>
     <Reference Include="Unity.VisualEffectGraph.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.VisualEffectGraph.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Universal.Runtime">
+      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="PPv2URPConverters">
+      <HintPath>Library\ScriptAssemblies\PPv2URPConverters.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualStudio.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll</HintPath>
@@ -910,6 +922,9 @@
     </Reference>
     <Reference Include="Unity.Burst">
       <HintPath>Library\ScriptAssemblies\Unity.Burst.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Universal.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.XR.LegacyInputHelpers">
       <HintPath>Library\ScriptAssemblies\UnityEngine.XR.LegacyInputHelpers.dll</HintPath>
