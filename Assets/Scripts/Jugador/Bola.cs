@@ -146,7 +146,11 @@ namespace Jugador
                 }
             }
 
-            ObjetosPartida.instancia.golpes.text = string.Format("{0}: {1}", Idiomas.instancia.CogerCadena("hits"), golpes.ToString());       
+            if (Idiomas.instancia != null)
+            {
+                ObjetosPartida.instancia.golpes.text = string.Format("{0}: {1}", Idiomas.instancia.CogerCadena("hits"), golpes.ToString());
+            }
+             
         }
 
         public void Update()

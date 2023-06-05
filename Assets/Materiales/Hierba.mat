@@ -165,12 +165,12 @@ Material:
     - _AlphaToMask: 0
     - _AlphaToMaskInspectorValue: 0
     - _Anisotropy: 0
-    - _BendRotationRandom: 0
+    - _BendRotationRandom: 0.25
     - _BladeCurve: 1
     - _BladeForward: 0.38
-    - _BladeHeight: 0.67
-    - _BladeHeightRandom: 0.12
-    - _BladeWidth: 0.06
+    - _BladeHeight: 0.1
+    - _BladeHeightRandom: 0.05
+    - _BladeWidth: 0.01
     - _BladeWidthRandom: 0
     - _BlendMode: 0
     - _CoatMask: 0
@@ -199,7 +199,7 @@ Material:
     - _EnableFogOnTransparent: 1
     - _EnableGeometricSpecularAA: 0
     - _EnergyConservingSpecularColor: 1
-    - _GrassMaskThreshold: 0.34
+    - _GrassMaskThreshold: 0.5
     - _HeightAmplitude: 0.02
     - _HeightCenter: 0.5
     - _HeightMapParametrization: 0
@@ -248,7 +248,7 @@ Material:
     - _SubsurfaceMask: 1
     - _SupportDecals: 1
     - _SurfaceType: 0
-    - _TessellationUniform: 2
+    - _TessellationUniform: 30
     - _TexWorldScale: 1
     - _TexWorldScaleEmissive: 1
     - _Thickness: 1
