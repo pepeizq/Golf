@@ -167,10 +167,10 @@ Material:
     - _Anisotropy: 0
     - _BendRotationRandom: 0.25
     - _BladeCurve: 1
-    - _BladeForward: 0.38
-    - _BladeHeight: 0.1
-    - _BladeHeightRandom: 0.05
-    - _BladeWidth: 0.01
+    - _BladeForward: 0.2
+    - _BladeHeight: 0.2
+    - _BladeHeightRandom: 0.02
+    - _BladeWidth: 0.005
     - _BladeWidthRandom: 0
     - _BlendMode: 0
     - _CoatMask: 0
@@ -266,7 +266,7 @@ Material:
     - _UVEmissive: 0
     - _UseEmissiveIntensity: 0
     - _UseShadowThreshold: 0
-    - _WindStrength: 0.2
+    - _WindStrength: 0.1
     - _ZTestDepthEqualForOpaque: 3
     - _ZTestGBuffer: 4
     - _ZTestTransparent: 4
