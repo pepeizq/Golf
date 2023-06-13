@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 6984928526646795918}
   - component: {fileID: 7666212047904743462}
   - component: {fileID: 1963947446555760644}
-  m_Layer: 0
-  m_Name: Base
+  m_Layer: 14
+  m_Name: Hierba
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -63,7 +63,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 71306783159ea2c448d6b499539cd03a, type: 2}
-  - {fileID: 2100000, guid: ceadad0c0ffe6c84ebc40a9e36aec291, type: 2}
+  - {fileID: 2100000, guid: 4f955d4a7beae7e4eaebeb5f57f075ff, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -165,7 +165,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 71306783159ea2c448d6b499539cd03a, type: 2}
-  - {fileID: 2100000, guid: 4f955d4a7beae7e4eaebeb5f57f075ff, type: 2}
+  - {fileID: 2100000, guid: ceadad0c0ffe6c84ebc40a9e36aec291, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

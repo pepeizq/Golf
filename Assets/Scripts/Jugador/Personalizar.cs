@@ -21,8 +21,8 @@ namespace Jugador
 
             if (renderer.material.color == defecto)
             {
-                Material material = new Material(Shader.Find("HDRP/Lit"));
-                material.SetColor("_BaseColor", color);
+                Material material = new Material(Shader.Find("Standard"));
+                material.SetColor("_Color", color);
                 renderer.material = material;
 
                 LineRenderer linea = new LineRenderer();

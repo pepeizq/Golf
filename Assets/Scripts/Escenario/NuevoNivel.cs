@@ -58,14 +58,18 @@ namespace Escenario
             }
             else
             {
-                if (Unjugador.instancia.nuevaPartida == false)
+                if (Unjugador.instancia != null)
                 {
-                    Unjugador.instancia.nuevaPartida = true;
+                    if (Unjugador.instancia.nuevaPartida == false)
+                    {
+                        Unjugador.instancia.nuevaPartida = true;
+                    }
+
+                    Unjugador.instancia.partida.nivel = nuevoNivel;
                 }
 
                 Configuracion.instancia.aleatorio = true;
-                Unjugador.instancia.partida.nivel = nuevoNivel;
-
+              
                 Interfaz.instancia.OcultarCanvas();
                 ObjetosCargandoEscenario.instancia.canvas.gameObject.SetActive(true);
                 ObjetosCargandoEscenario.instancia.slider.value = 0;

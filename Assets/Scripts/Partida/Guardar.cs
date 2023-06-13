@@ -17,7 +17,21 @@ namespace Partida
 
         public static void GuardarForma(List<Vector2> casillas)
         {
-            if (MultiPhoton.instancia.Conectado() == false)
+            bool guardar = false;
+
+            if (MultiPhoton.instancia != null)
+            {
+                if (MultiPhoton.instancia.Conectado() == false)
+                {
+                    guardar = true;
+                }
+            }
+            else
+            {
+                guardar = true;
+            }
+
+            if (guardar == true)
             {
                 if (casillas != null)
                 {
@@ -45,7 +59,21 @@ namespace Partida
 
         public static void GuardarPartida(Vector3 posicionBola, float rotacion, int golpes, float zoom)
         {
-            if (MultiPhoton.instancia.Conectado() == false)
+            bool guardar = false;
+
+            if (MultiPhoton.instancia != null)
+            {
+                if (MultiPhoton.instancia.Conectado() == false)
+                {
+                    guardar = true;
+                }
+            }
+            else
+            {
+                guardar = true;
+            }
+
+            if (guardar == true)
             {
                 DateTime fecha = DateTime.Now;
                 int campo = Configuracion.instancia.campo.id;
@@ -161,36 +189,51 @@ namespace Partida
 
                 string datos = JsonUtility.ToJson(partida);
                 PlayerPrefs.SetString(numeroPartida.ToString() + "bola", datos);
-                Unjugador.instancia.partida = partida;
+
+                if (Unjugador.instancia != null)
+                {
+                    Unjugador.instancia.partida = partida;
+                }               
             }
         }
  
         public static void GuardarMordiscos(List<Vector2> casillas)
         {
+            bool guardar = false;
+
             if (MultiPhoton.instancia != null)
             {
                 if (MultiPhoton.instancia.Conectado() == false)
                 {
-                    if (casillas != null)
+                    guardar = true;
+                }
+            }
+            else
+            {
+                guardar = true;
+            }
+
+            if (guardar == true)
+            {
+                if (casillas != null)
+                {
+                    if (casillas.Count > 0)
                     {
-                        if (casillas.Count > 0)
+                        PartidaCoordenadas mordiscos = new PartidaCoordenadas();
+                        VectorDos[] mordiscos2 = new VectorDos[casillas.Count];
+
+                        int i = 0;
+                        foreach (Vector2 vector in casillas)
                         {
-                            PartidaCoordenadas mordiscos = new PartidaCoordenadas();
-                            VectorDos[] mordiscos2 = new VectorDos[casillas.Count];
+                            mordiscos2[i] = new VectorDos(vector);
 
-                            int i = 0;
-                            foreach (Vector2 vector in casillas)
-                            {
-                                mordiscos2[i] = new VectorDos(vector);
-
-                                i += 1;
-                            }
-
-                            mordiscos.coordenada = mordiscos2;
-
-                            string datos = JsonUtility.ToJson(mordiscos);
-                            PlayerPrefs.SetString(Configuracion.instancia.numeroPartida.ToString() + "mordiscos" + Configuracion.instancia.nivel.ToString(), datos);
+                            i += 1;
                         }
+
+                        mordiscos.coordenada = mordiscos2;
+
+                        string datos = JsonUtility.ToJson(mordiscos);
+                        PlayerPrefs.SetString(Configuracion.instancia.numeroPartida.ToString() + "mordiscos" + Configuracion.instancia.nivel.ToString(), datos);
                     }
                 }
             }                     

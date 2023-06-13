@@ -1,18 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [ExecuteInEditMode]
-public class GrassDisplacementObject : MonoBehaviour
+public class HierbaDesplazamientoBola : MonoBehaviour
 {
     [SerializeField]
-    private GameObject _displacementTextureObject;
+    private GameObject objetoDesplazamiento;
 
     [SerializeField]
-    private LayerMask _grassLayer;
+    private LayerMask capaHierba;
 
     [SerializeField]
-    private float _maxDistance = 2f;
+    private float distanciaMaxima = 2f;
 
     private MeshRenderer _displacementRenderer;
     private MaterialPropertyBlock _propertyBlock;
@@ -23,13 +21,15 @@ public class GrassDisplacementObject : MonoBehaviour
 
     private void Awake()
     {
-        if (_displacementTextureObject == null)
+        if (objetoDesplazamiento == null)
+        {
             Debug.LogWarning("No Displacement Object has been set.");
+        }           
         else
         {
             _propertyBlock = new MaterialPropertyBlock();
 
-            _displacementRenderer = _displacementTextureObject.GetComponent<MeshRenderer>();
+            _displacementRenderer = objetoDesplazamiento.GetComponent<MeshRenderer>();
             _displacementRenderer.GetPropertyBlock(_propertyBlock);
 
             _cachedRay = new Ray(this.transform.position, Vector3.down);
@@ -46,9 +46,9 @@ public class GrassDisplacementObject : MonoBehaviour
         Awake();
 #endif
 
-        if (Physics.Raycast(_cachedRay, out RaycastHit hit, _maxDistance, _grassLayer))
+        if (Physics.Raycast(_cachedRay, out RaycastHit hit, distanciaMaxima, capaHierba))
         {
-            _propertyBlock.SetFloat(_transparencyGuid, hit.distance / _maxDistance);
+            _propertyBlock.SetFloat(_transparencyGuid, hit.distance / distanciaMaxima);
             _displacementRenderer.SetPropertyBlock(_propertyBlock);
         }
         else
@@ -58,6 +58,6 @@ public class GrassDisplacementObject : MonoBehaviour
         }
 
         //Fix X and Z rotations
-        _displacementTextureObject.transform.rotation = Quaternion.Euler(0f, _displacementTextureObject.transform.rotation.eulerAngles.y, 0f);
+        objetoDesplazamiento.transform.rotation = Quaternion.Euler(0f, objetoDesplazamiento.transform.rotation.eulerAngles.y, 0f);
     }
 }

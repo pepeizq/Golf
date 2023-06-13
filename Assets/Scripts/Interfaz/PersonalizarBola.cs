@@ -30,8 +30,8 @@ namespace Interfaz
             Atributos.instancia.color = colorNuevo;
 
             MeshRenderer renderer = ObjetosPersonalizarBola.instancia.bolaPrincipalVistaPrevia.gameObject.GetComponent<MeshRenderer>();
-            Material material = new Material(Shader.Find("HDRP/Lit"));
-            material.SetColor("_BaseColor", colorNuevo);
+            Material material = new Material(Shader.Find("Standard"));
+            material.SetColor("_Color", colorNuevo);
             renderer.material = material;
 
             //--------------------------------
@@ -89,8 +89,8 @@ namespace Interfaz
             MeshRenderer renderer1 = ObjetosPersonalizarBola.instancia.bolaVistaPrevia.gameObject.GetComponent<MeshRenderer>();
             MeshRenderer renderer2 = ObjetosPersonalizarBola.instancia.bolaPrincipalVistaPrevia.gameObject.GetComponent<MeshRenderer>();
 
-            Material material = new Material(Shader.Find("HDRP/Lit"));
-            material.SetColor("_BaseColor", colorNuevo);
+            Material material = new Material(Shader.Find("Standard"));
+            material.SetColor("_Color", colorNuevo);
 
             renderer1.material = material;
             renderer2.material = material;

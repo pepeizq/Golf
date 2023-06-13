@@ -165,12 +165,12 @@ Material:
     - _AlphaToMask: 0
     - _AlphaToMaskInspectorValue: 0
     - _Anisotropy: 0
-    - _BendRotationRandom: 0.25
+    - _BendRotationRandom: 0.1
     - _BladeCurve: 1
-    - _BladeForward: 0.2
-    - _BladeHeight: 0.2
-    - _BladeHeightRandom: 0.02
-    - _BladeWidth: 0.005
+    - _BladeForward: 0.15
+    - _BladeHeight: 0.3
+    - _BladeHeightRandom: 0.1
+    - _BladeWidth: 0.01
     - _BladeWidthRandom: 0
     - _BlendMode: 0
     - _CoatMask: 0
@@ -248,7 +248,7 @@ Material:
     - _SubsurfaceMask: 1
     - _SupportDecals: 1
     - _SurfaceType: 0
-    - _TessellationUniform: 30
+    - _TessellationUniform: 50
     - _TexWorldScale: 1
     - _TexWorldScaleEmissive: 1
     - _Thickness: 1
@@ -266,7 +266,7 @@ Material:
     - _UVEmissive: 0
     - _UseEmissiveIntensity: 0
     - _UseShadowThreshold: 0
-    - _WindStrength: 0.1
+    - _WindStrength: 0.05
     - _ZTestDepthEqualForOpaque: 3
     - _ZTestGBuffer: 4
     - _ZTestTransparent: 4
@@ -288,5 +288,5 @@ Material:
     - _UVDetailsMappingMask: {r: 1, g: 0, b: 0, a: 0}
     - _UVMappingMask: {r: 1, g: 0, b: 0, a: 0}
     - _UVMappingMaskEmissive: {r: 1, g: 0, b: 0, a: 0}
-    - _WindFrequency: {r: 0.05, g: 0.05, b: 0, a: 0}
+    - _WindFrequency: {r: 0.02, g: 0.02, b: 0, a: 0}
   m_BuildTextureStacks: []
