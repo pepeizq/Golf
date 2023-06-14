@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[ExecuteInEditMode]
+//[ExecuteInEditMode]
 public class HierbaDesplazamientoBola : MonoBehaviour
 {
     [SerializeField]
@@ -12,52 +12,47 @@ public class HierbaDesplazamientoBola : MonoBehaviour
     [SerializeField]
     private float distanciaMaxima = 2f;
 
-    private MeshRenderer _displacementRenderer;
-    private MaterialPropertyBlock _propertyBlock;
+    private MeshRenderer desplazamientoRenderer;
+    private MaterialPropertyBlock propiedadesBlock;
 
-    private int _transparencyGuid;
+    private int transparenciaGuid;
 
-    private Ray _cachedRay;
+    private Ray cacheadoRay;
 
     private void Awake()
     {
-        if (objetoDesplazamiento == null)
+        if (objetoDesplazamiento != null)
         {
-            Debug.LogWarning("No Displacement Object has been set.");
-        }           
-        else
-        {
-            _propertyBlock = new MaterialPropertyBlock();
+            propiedadesBlock = new MaterialPropertyBlock();
 
-            _displacementRenderer = objetoDesplazamiento.GetComponent<MeshRenderer>();
-            _displacementRenderer.GetPropertyBlock(_propertyBlock);
+            desplazamientoRenderer = objetoDesplazamiento.GetComponent<MeshRenderer>();
+            desplazamientoRenderer.GetPropertyBlock(propiedadesBlock);
 
-            _cachedRay = new Ray(this.transform.position, Vector3.down);
+            cacheadoRay = new Ray(this.transform.position, Vector3.down);
 
-            _transparencyGuid = Shader.PropertyToID("_Transparency");
+            transparenciaGuid = Shader.PropertyToID("_Transparency");
         }
     }
 
     private void Update()
     {
-        _cachedRay.origin = this.transform.position;
+        cacheadoRay.origin = this.transform.position;
 
 #if UNITY_EDITOR
         Awake();
 #endif
 
-        if (Physics.Raycast(_cachedRay, out RaycastHit hit, distanciaMaxima, capaHierba))
+        if (Physics.Raycast(cacheadoRay, out RaycastHit hit, distanciaMaxima, capaHierba))
         {
-            _propertyBlock.SetFloat(_transparencyGuid, hit.distance / distanciaMaxima);
-            _displacementRenderer.SetPropertyBlock(_propertyBlock);
+            propiedadesBlock.SetFloat(transparenciaGuid, hit.distance / distanciaMaxima);
+            desplazamientoRenderer.SetPropertyBlock(propiedadesBlock);
         }
         else
         {
-            _propertyBlock.SetFloat(_transparencyGuid, 1);
-            _displacementRenderer.SetPropertyBlock(_propertyBlock);
+            propiedadesBlock.SetFloat(transparenciaGuid, 1f);
+            desplazamientoRenderer.SetPropertyBlock(propiedadesBlock);
         }
 
-        //Fix X and Z rotations
         objetoDesplazamiento.transform.rotation = Quaternion.Euler(0f, objetoDesplazamiento.transform.rotation.eulerAngles.y, 0f);
     }
 }

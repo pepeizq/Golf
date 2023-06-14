@@ -1,21 +1,23 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
-[ExecuteInEditMode]
-public class GrassDisplacementCamera : MonoBehaviour
+//[ExecuteInEditMode]
+public class HierbaDesplazamientoCamara : MonoBehaviour
 {  
     [SerializeField]
-    private Camera _camera;
+    private Camera camara;
 
     void Update()
     {
-        Vector3 position = transform.position;
+        Vector3 posicion = transform.position;
 
-        position.x -= _camera.orthographicSize;
-        position.z -= _camera.orthographicSize;
+        if (camara != null)
+        {
+            posicion.x -= camara.orthographicSize;
+            posicion.z -= camara.orthographicSize;
 
-        Shader.SetGlobalVector("_DisplacementLocation", position);
-        Shader.SetGlobalFloat("_DisplacementSize", _camera.orthographicSize * 2f);
+            Shader.SetGlobalVector("_DisplacementLocation", posicion);
+            Shader.SetGlobalFloat("_DisplacementSize", camara.orthographicSize * 2f);
+        }
     }
 }
