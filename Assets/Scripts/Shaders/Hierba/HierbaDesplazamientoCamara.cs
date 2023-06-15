@@ -1,7 +1,5 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
-//[ExecuteInEditMode]
 public class HierbaDesplazamientoCamara : MonoBehaviour
 {  
     [SerializeField]
