@@ -1,13 +1,13 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 
 public class HierbaDesplazamientoCamara : MonoBehaviour
 {  
-    [SerializeField]
-    private Camera camara;
-
     void Update()
     {
-        Vector3 posicion = transform.position;
+        Camera camara = this.gameObject.GetComponent<Camera>();
+
+        Vector3 posicion = this.transform.position;
 
         if (camara != null)
         {
