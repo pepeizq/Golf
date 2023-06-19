@@ -8,7 +8,17 @@ namespace Jugador
         {
             MeshRenderer renderer = new MeshRenderer();
 
-            if (MultiPhoton.instancia.Conectado() == true)
+            bool multijugador = false;
+
+            if (MultiPhoton.instancia != null)
+            {
+                if (MultiPhoton.instancia.Conectado() == true)
+                {
+                    multijugador = true;
+                }
+            }
+
+            if (multijugador == true)
             {
                 renderer = bola.transform.GetChild(0).gameObject.GetComponent<MeshRenderer>();
             }
@@ -27,7 +37,7 @@ namespace Jugador
 
                 LineRenderer linea = new LineRenderer();
 
-                if (MultiPhoton.instancia.Conectado() == true)
+                if (multijugador == true)
                 {
                     linea = bola.transform.GetChild(0).gameObject.GetComponent<LineRenderer>();
                 }

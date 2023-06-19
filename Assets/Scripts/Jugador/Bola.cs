@@ -11,7 +11,6 @@ using UnityEngine.InputSystem;
 
 namespace Jugador
 {
-    //https://www.youtube.com/watch?v=rHM9bDgT2zQ
     public class Bola : MonoBehaviourPunCallbacks, IPunObservable
     {
         [HideInInspector] public Player photonJugador;
