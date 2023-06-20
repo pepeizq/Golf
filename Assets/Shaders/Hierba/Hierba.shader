@@ -1,7 +1,12 @@
 ﻿Shader "pepe/Hierba" {
     Properties {
-        _TranslucentGain("Translucidez Ganancia", Range(0,1)) = 0.5
 
+        [Header(Transparencia)]
+        [Space(5)]
+        _TranslucentGain("Translucidez", Range(0,1)) = 0.5
+
+        [Header(Texturas)]
+        [Space(5)]
         _GroundTexture("Textura Tierra", 2D) = "white" {}
 
         _DisplacementTexture("Textura Desplazamiento", 2D) = "grey" {}
@@ -10,6 +15,8 @@
         _GrassMask("Mascara Hierba", 2D) = "white" {}
         _GrassMaskThreshold("Mascara Limite", Range(0,1)) = 0.1
 
+        [Header(Espada)]
+        [Space(5)]
         _BendRotationRandom("Curva Rotacion Aleatoria", Range(0, 1)) = 0.2
 
         _BladeWidth("Espada Ancho", Float) = 0.05
@@ -18,8 +25,12 @@
         _BladeHeight("Espada Alto", Float) = 0.5
         _BladeHeightRandom("Espada Alto Aleatoria", Float) = 0.3
 
+        [Header(Cantidad)]
+        [Space(5)]
         _TessellationUniform("Teselacion Uniformidad", Range(1, 64)) = 1
 
+        [Header(Viento)]
+        [Space(5)]
         _WindDistortionMap("Viento Distorsion Mapa", 2D) = "white" {}
         _WindFrequency("Viento Frecuencia", Vector) = (0.05, 0.05, 0, 0)
         _WindStrength("Viento Fuerza", Float) = 1
@@ -188,7 +199,6 @@
         float3 displacement = normalize(float3(dispSample.x, dispSample.y, 0));
 
         float3x3 dispRotation = AngleAxis3x3(float2(-_DisplacementFactor * abs(dispSample.x + dispSample.y), 0), displacement);
-
         float3x3 facingRotationMatrix = AngleAxis3x3(rand(pos) * UNITY_TWO_PI, float3(0, 0, 1));
         float3x3 bendRotationMatrix = AngleAxis3x3(rand(pos.zzx) * _BendRotationRandom * UNITY_PI * 0.5, float3(-1, 0, 0));
 

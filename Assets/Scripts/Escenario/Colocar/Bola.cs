@@ -15,7 +15,7 @@ namespace Escenario.Colocar
             instancia = this;
         }
 
-        public void Colocar(Casilla[,] casillas)
+        public void Colocar(Casilla[,] casillas, CampoTipo campoTipo)
         {
             bool buscarPosicion = true;
 
@@ -53,7 +53,7 @@ namespace Escenario.Colocar
                                     {
                                         if (MultiPhoton.instancia.Conectado() == false)
                                         {
-                                            InstanciarBola(posicion);
+                                            InstanciarBola(posicion, campoTipo);
                                         }
                                         else
                                         {
@@ -67,7 +67,7 @@ namespace Escenario.Colocar
                                     {
                                         if (Unjugador.instancia == null)
                                         {
-                                            InstanciarBola(posicion);
+                                            InstanciarBola(posicion, campoTipo);
                                         }
                                     }
                                         
@@ -90,23 +90,30 @@ namespace Escenario.Colocar
                     {
                         if (Unjugador.instancia != null)
                         {
-                            InstanciarBola(Unjugador.instancia.partida.posicion.ObtenerVector3());
+                            InstanciarBola(Unjugador.instancia.partida.posicion.ObtenerVector3(), campoTipo);
                         }
                     }                       
                 }
             }
         }
 
-        public void InstanciarBola(Vector3 posicion)
+        public void InstanciarBola(Vector3 posicion, CampoTipo campoTipo)
         {
             GameObject bola = Instantiate(Configuracion.instancia.bolaObjeto);
             bola.transform.position = posicion;
             
             Vector3 posicion2 = bola.transform.position;
             Configuracion.instancia.camaraObjeto.transform.position = posicion2;
+
+            //--------------------------------
+
+            if (campoTipo == CampoTipo.Verde)
+            {
+
+            }
         }
 
-        public void InstanciarBolaMulti(Vector3 posicion)
+        public void InstanciarBolaMulti(Vector3 posicion, CampoTipo campoTipo)
         {
             GameObject bola = PhotonNetwork.Instantiate("Prefabs/Prefab Bola", posicion, Quaternion.identity);
             Vector3 nuevaPosicion = Configuracion.instancia.multiPosicionBolaInicio;
@@ -116,6 +123,13 @@ namespace Escenario.Colocar
             bola2.photonView.RPC("Arranque", RpcTarget.All, MultiPhoton.instancia.JugadorLocal());
 
             Configuracion.instancia.camaraObjeto.transform.position = bola.transform.position;
+
+            //--------------------------------
+
+            if (campoTipo == CampoTipo.Verde)
+            {
+
+            }
         }
     }
 }

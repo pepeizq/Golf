@@ -121,7 +121,7 @@ namespace Escenario
 
             if (Configuracion.instancia.bola == true)
             {
-                Colocar.Bola.instancia.Colocar(casillasMapa);
+                Colocar.Bola.instancia.Colocar(casillasMapa, Configuracion.instancia.campo.tipo);
             }
 
             if (Configuracion.instancia.hoyo == true)

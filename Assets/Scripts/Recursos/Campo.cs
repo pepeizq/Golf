@@ -9,6 +9,7 @@ namespace Recursos
         public int id;
         public List<Casilla> casillas;
         public List<CampoHoyo> hoyos;
+        public CampoTipo tipo;
 
         [Header("Materiales")]
         public Material casillaClaroOpaco;
@@ -20,4 +21,6 @@ namespace Recursos
         public GameObject hoyo;
         public List<GameObject> muros;
     }
+
+    public enum CampoTipo { Verde }
 }
