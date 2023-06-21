@@ -158,7 +158,7 @@ namespace Escenario
 
             if (jugadoresDentro == MultiPhoton.instancia.ListaJugadores().Length)
             {
-                Colocar.Bola.instancia.InstanciarBolaMulti(multiPosicionBolaInicio, Configuracion.instancia.campo.tipo);
+                Colocar.Bola.instancia.InstanciarBolaMulti(multiPosicionBolaInicio);
             }
 
             if (jugadoresDentro == MultiPhoton.instancia.Sala().PlayerCount)

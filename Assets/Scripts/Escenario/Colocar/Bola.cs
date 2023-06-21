@@ -53,13 +53,15 @@ namespace Escenario.Colocar
                                     {
                                         if (MultiPhoton.instancia.Conectado() == false)
                                         {
-                                            InstanciarBola(posicion, campoTipo);
+                                            InstanciarBola(posicion);
+                                            Hierba.instancia.PodarInicio(x, z, casillas, campoTipo);
                                         }
                                         else
                                         {
                                             if (MultiPhoton.instancia.Maestro() == true)
                                             {
                                                 Configuracion.instancia.photonView.RPC("MultijugadorPosicionInicioBola", RpcTarget.All, posicion);
+                                                Hierba.instancia.PodarInicio(x, z, casillas, campoTipo);
                                             }
                                         }
                                     }
@@ -67,7 +69,8 @@ namespace Escenario.Colocar
                                     {
                                         if (Unjugador.instancia == null)
                                         {
-                                            InstanciarBola(posicion, campoTipo);
+                                            InstanciarBola(posicion);
+                                            Hierba.instancia.PodarInicio(x, z, casillas, campoTipo);
                                         }
                                     }
                                         
@@ -90,30 +93,24 @@ namespace Escenario.Colocar
                     {
                         if (Unjugador.instancia != null)
                         {
-                            InstanciarBola(Unjugador.instancia.partida.posicion.ObtenerVector3(), campoTipo);
+                            InstanciarBola(Unjugador.instancia.partida.posicion.ObtenerVector3());
+                            Hierba.instancia.PodarInicio((int)Unjugador.instancia.partida.posicion.ObtenerVector3().x, (int)Unjugador.instancia.partida.posicion.ObtenerVector3().z, casillas, campoTipo);
                         }
                     }                       
                 }
             }
         }
 
-        public void InstanciarBola(Vector3 posicion, CampoTipo campoTipo)
+        public void InstanciarBola(Vector3 posicion)
         {
             GameObject bola = Instantiate(Configuracion.instancia.bolaObjeto);
             bola.transform.position = posicion;
             
             Vector3 posicion2 = bola.transform.position;
             Configuracion.instancia.camaraObjeto.transform.position = posicion2;
-
-            //--------------------------------
-
-            if (campoTipo == CampoTipo.Verde)
-            {
-
-            }
         }
 
-        public void InstanciarBolaMulti(Vector3 posicion, CampoTipo campoTipo)
+        public void InstanciarBolaMulti(Vector3 posicion)
         {
             GameObject bola = PhotonNetwork.Instantiate("Prefabs/Prefab Bola", posicion, Quaternion.identity);
             Vector3 nuevaPosicion = Configuracion.instancia.multiPosicionBolaInicio;
@@ -123,13 +120,6 @@ namespace Escenario.Colocar
             bola2.photonView.RPC("Arranque", RpcTarget.All, MultiPhoton.instancia.JugadorLocal());
 
             Configuracion.instancia.camaraObjeto.transform.position = bola.transform.position;
-
-            //--------------------------------
-
-            if (campoTipo == CampoTipo.Verde)
-            {
-
-            }
         }
     }
 }

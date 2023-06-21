@@ -15,7 +15,7 @@ namespace Escenario.Colocar
             instancia = this;
         }
 
-        public void Colocar(Casilla[,] casillas, int tamañoX, int tamañoZ)
+        public void Colocar(Casilla[,] casillas, int tamañoX, int tamañoZ, CampoTipo campoTipo)
         {
             bool buscarPosicion = true;
       
@@ -51,13 +51,13 @@ namespace Escenario.Colocar
                                     {
                                         if (MultiPhoton.instancia.Conectado() == false)
                                         {
-                                            InstanciarHoyo(casillas, x, z);
+                                            InstanciarHoyo(casillas, x, z, campoTipo);
                                         }
                                         else
                                         {
                                             if (MultiPhoton.instancia.Maestro() == true)
                                             {
-                                                InstanciarHoyo(casillas, x, z);
+                                                InstanciarHoyo(casillas, x, z, campoTipo);
                                             }
                                         }
                                     }
@@ -65,7 +65,7 @@ namespace Escenario.Colocar
                                     {
                                         if (Unjugador.instancia == null)
                                         {
-                                            InstanciarHoyo(casillas, x, z);
+                                            InstanciarHoyo(casillas, x, z, campoTipo);
                                         }
                                     }
        
@@ -86,14 +86,14 @@ namespace Escenario.Colocar
                     else
                     {
                         PartidaHoyo hoyo = Cargar.CargarPartida(Unjugador.instancia.partida.numeroPartida).hoyo;
-                        InstanciarHoyo(casillas, hoyo.casillaX, hoyo.casillaZ);
+                        InstanciarHoyo(casillas, hoyo.casillaX, hoyo.casillaZ, campoTipo);
                     }                       
                 }
             }
         }
 
   
-        public void InstanciarHoyo(Casilla[,] casillas, int casillaX, int casillaZ)
+        public void InstanciarHoyo(Casilla[,] casillas, int casillaX, int casillaZ, CampoTipo campoTipo)
         {
             bool conectado = false;
 
@@ -124,6 +124,8 @@ namespace Escenario.Colocar
                 Destroy(casillas[casillaX, casillaZ].prefab);
                 casillas[casillaX, casillaZ].prefab = hoyo;
                 casillas[casillaX, casillaZ].modificable = false;
+
+                Hierba.instancia.PodarHoyo(casillaX, casillaZ, casillas, campoTipo);
             }
         }
     }
