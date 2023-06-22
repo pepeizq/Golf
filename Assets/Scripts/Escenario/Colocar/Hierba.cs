@@ -48,21 +48,24 @@ namespace Escenario.Colocar
 
         private void Podar(int x, int z, Casilla[,] casillas)
         {
-            if (casillas[x, z].prefab != null)
+            if (casillas[x, z] != null)
             {
-                if (casillas[x, z].prefab.transform.childCount > 1)
+                if (casillas[x, z].prefab != null)
                 {
-                    GameObject hierbaBaja = casillas[x, z].prefab.transform.GetChild(1).gameObject;
-
-                    if (hierbaBaja.name == "Hierba Baja" && hierbaBaja.activeSelf == false)
+                    if (casillas[x, z].prefab.transform.childCount > 1)
                     {
-                        hierbaBaja.SetActive(true);
+                        GameObject hierbaBaja = casillas[x, z].prefab.transform.GetChild(1).gameObject;
 
-                        GameObject hierbaAlta = casillas[x, z].prefab.transform.GetChild(0).gameObject;
-
-                        if (hierbaAlta.name == "Hierba Alta")
+                        if (hierbaBaja.name == "Hierba Baja" && hierbaBaja.activeSelf == false)
                         {
-                            hierbaAlta.SetActive(false);
+                            hierbaBaja.SetActive(true);
+
+                            GameObject hierbaAlta = casillas[x, z].prefab.transform.GetChild(0).gameObject;
+
+                            if (hierbaAlta.name == "Hierba Alta")
+                            {
+                                hierbaAlta.SetActive(false);
+                            }
                         }
                     }
                 }
