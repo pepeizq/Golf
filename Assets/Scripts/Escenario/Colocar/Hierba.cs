@@ -12,6 +12,7 @@ namespace Escenario.Colocar
             instancia = this;
         }
 
+
         public void PodarInicio(int x, int z, Casilla[,] casillas, CampoTipo campoTipo)
         {
             if (campoTipo == CampoTipo.Verde)
