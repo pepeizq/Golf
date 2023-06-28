@@ -33,30 +33,30 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _DepthDensity: 0.5
-    - _DistanceDensity: 0.02
+    - _DepthDensity: 0.2
+    - _DistanceDensity: 0.01
     - _EdgeFoamDepth: 0.25
     - _FancyShadows: 1
     - _FoamContribution: 0.6
     - _FoamNoiseScale: 0.3
     - _FoamScale: 10
-    - _FoamSpeed: 0.1
+    - _FoamSpeed: 0.05
     - _MaxSampleDistance: 49
     - _MaxShadowDistance: 50
     - _ReflectionContribution: 1
     - _RefractionStrength: 0
     - _SparkleExponent: 25000
     - _SparkleScale: 20
-    - _SparkleSpeed: 0.1
+    - _SparkleSpeed: 0.01
     - _SunSpecularExponent: 3000
     - _VertexNormalDelta: 0.01
     - _Wave1Amplitude: 0.25
     - _Wave1Direction: 0.5
-    - _Wave1Speed: 0.25
+    - _Wave1Speed: 0
     - _Wave1Wavelength: 10
     - _Wave2Amplitude: 0.2
     - _Wave2Direction: 0.25
-    - _Wave2Speed: 1
+    - _Wave2Speed: 0
     - _Wave2Wavelength: 10
     - _WaveNormalDelta: 0.01
     - _WaveNormalScale: 20
